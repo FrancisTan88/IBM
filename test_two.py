@@ -1,2 +1,0 @@
-print("Francis")
-print("yes")
