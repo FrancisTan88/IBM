@@ -11,6 +11,7 @@ import numpy as np
 import pandas as pd
 from datetime import time as dt
 
+
 """
 SC_Case 11, 13~15
 """
@@ -21,12 +22,12 @@ attribute_xpath = 'xpath'
 attribute_css = 'css'
 
 
-def toInt(whetherNA, value):
-    if whetherNA :
-        value = value.astype(int)
-        return value
-    else:
-        return value
+def RemoveDotZero(value):
+    return str(value).replace('.0', '')
+        
+
+def AddZero(value):
+    return '0'+str(value)
 
 
 def LocateByAttribute(attribute, locate_name):
@@ -521,6 +522,29 @@ def Search(ID_No):
 
 if __name__ == "__main__":
 
+    file_path = '/Users/kian199887/Downloads/github_francistan88/DSA/automatic_testing/submission_information.xlsx'
+    data = pd.read_excel(file_path)
+    df = pd.DataFrame(data)
+    ID_isnull = df['IdNo'].isnull()
+
+    # remove'.0' and add '0' in front of the Mobile Phone
+    for i in range(len(df['IdNo'])):
+        if ID_isnull[i] == False:
+            df['IdNo'].iloc[i] = RemoveDotZero(df['IdNo'].iloc[i])
+            df['Guarantor Person(Indi)'].iloc[i] = RemoveDotZero(df['Guarantor Person(Indi)'].iloc[i])
+            df['Mobile Phone'].iloc[i] = RemoveDotZero(df['Mobile Phone'].iloc[i])
+            df['Mobile Phone'].iloc[i] = AddZero(df['Mobile Phone'].iloc[i])
+
+    # # Guarantor Part:
+    ID_No = int(df['IdNo'].iloc[0])
+    PersonalID = int(df['Guarantor Person(Indi)'].iloc[0])
+    CorporateID = df['Guarantor Person(Corpo)'].iloc[0]
+    CustomerName = df['Customer Name'].iloc[0] 
+    MobilePhone = df['Mobile Phone'].iloc[0]
+
+    login_email = 'nabiladibidris@chailease.com.my'
+    CaseType = 'SC_Case'
+
     s = Service('./chromedriver')
     driver = webdriver.Chrome(service=s)
     driver.maximize_window()
@@ -528,22 +552,6 @@ if __name__ == "__main__":
     driver.get(url)
     time.sleep(3)
 
-    file_path = '/Users/kian199887/Downloads/github_francistan88/DSA/automatic_testing/submission_information.xlsx'
-    data = pd.read_excel(file_path)
-    df = pd.DataFrame(data)
-    notNA = df['Mobile Phone'].notna()
-
-    # Guarantor Part:
-    ID_No = int(df['IdNo'].iloc[0])
-    PersonalID = int(df['Guarantor Person(Indi)'].iloc[0])
-    CorporateID = df['Guarantor Person(Corpo)'].iloc[0]
-    CustomerName = df['Customer Name'].iloc[0] 
-    MobilePhone = toInt(notNA[0], df['Mobile Phone'][0])
-    MobilePhone = '0'+str(MobilePhone)
-
-    login_email = 'nabiladibidris@chailease.com.my'
-    CaseType = 'SC_Case'
-    
 
     LogIn(login_email)    
 
