@@ -46,7 +46,7 @@ def LocateByAttribute(attribute, locate_name):
 
 def LocateByText(locate_name, text_name):
     text_name = '"' + text_name + '"'
-    element = driver.find_element(By.XPATH, locate_name + f'//*[contains(text(), {text_name})]')   # select all element that contains text "Preliminary"
+    element = driver.find_element(By.XPATH, locate_name + f'/*[contains(text(), {text_name})]')   # select all element that contains text "Preliminary"
     return element
 
 
@@ -592,13 +592,15 @@ def EnterIntoPCR(text_name):
     try:
         locate_main = '//*[@id="p-accordiontab-0-content"]/div'
         element = LocateByText(locate_main, text_name)
+        print(element.text)
         sleep(1)
         element.click()
         sleep(10)
     
     except:
-        driver.quit()
-        sys.exit("fail to enter the Premilinary Credit Review")
+        # driver.quit()
+        # sys.exit("fail to enter the Premilinary Credit Review")
+        print("PCR")
 
 
 def EnterIntoSM(text_name):
@@ -641,50 +643,21 @@ def AddCaseToDF(df, row_data, dic_column, CaseNo):
     return df
 
 
-def Pre_EnterCase(text_name):
+def EnterCase(text_name):
     try:
         locate_body = '/html/body/app-root/div[1]/sigv-layout/div/div/div/app-credit-operations-todo-list/sigv-data-table/div/p-table/div/div[2]/div/div[2]'
-        locate_page2 = '/html/body/app-root/div[1]/sigv-layout/div/div/div/app-credit-operations-todo-list/sigv-data-table/div/p-table/div/p-paginator/div/span[2]/button[2]'
         element = LocateByText(locate_body, text_name)
         sleep(0.5)
-
-        if not element:
-            element = Press(locate_page2, attribute_xpath)
-            sleep(1)
-            element = LocateByText(locate_body, text_name)
-            sleep(0.5)
-
         element.click()
         sleep(12)
     
     except:
-        driver.quit()
-        sys.exit("fail to enter the case")
+        # driver.quit()
+        # sys.exit("fail to enter the case")
+        print("AAA")
 
 
-def SM_EnterCase(text_name):
-    try:
-        locate_body = '/html/body/app-root/div[1]/sigv-layout/div/div/div/app-credit-operations-todo-list/sigv-data-table/div/p-table/div/div[2]/div/div[2]/table/tbody'
-        locate_page2 = '/html/body/app-root/div[1]/sigv-layout/div/div/div/app-credit-operations-todo-list/sigv-data-table/div/p-table/div/p-paginator/div/span[2]/button[2]'
-        '/html/body/app-root/div[1]/sigv-layout/div/div/div/app-credit-operations-todo-list/sigv-data-table/div/p-table/div/p-paginator/div/span[2]/button[2]'
-        element = LocateByText(locate_body, text_name)
-        sleep(0.5)
-        
-        if not element:
-            element = Press(locate_page2, attribute_xpath)
-            sleep(1)
-            element = LocateByText(locate_body, text_name)
-            sleep(0.5)
-    
-        element.click()
-        sleep(12)
-    
-    except:
-        driver.quit()
-        sys.exit("fail to enter the Sales Manager case")
-
-
-def Pre_CreditInstructions():
+def CreditInstructions():
     try:
         locate_CreditInstructions = '/html/body/app-root/div[1]/sigv-layout/div/div/div/app-credit-operations-detail/p-tabview/div/ul/li[2]/a/span[1]'
         locate_CreditComment = '/html/body/app-root/div[1]/sigv-layout/div/div/div/app-credit-operations-detail/p-tabview/div/div/p-tabpanel[2]/div/app-credit-instructions/div/div[1]/div/div/p-dropdown/div/div[2]/span'
@@ -755,8 +728,9 @@ def SM_CreditInstructions():
         driver.quit()
         sys.exit("fail to fill in the Sales Manager Credit Instructions")
 
+    
 
-def Pre_CreditCustomerInformation():
+def CreditCustomerInformation():
     try:
         locate_EducationLvl = '/html/body/app-root/div[1]/sigv-layout/div/div/div/app-credit-operations-detail/p-tabview/div/div/p-tabpanel[3]/div/app-credit-operations-information/div[2]/app-information-individual/div[1]/div[4]/div[1]/div/div/p-dropdown/div/div[2]/span'
         locate_master = '/html/body/div/div/ul/p-dropdownitem[1]/li/span[1]'
@@ -784,7 +758,7 @@ def Pre_CreditCustomerInformation():
         sys.exit("fail to fill in the Credit Customer Information")
 
 
-def Pre_CreditCollateral():
+def CreditCollateral():
     locate_CollateralType = '/html/body/app-root/div[1]/sigv-layout/div/div/div/app-credit-operations-detail/p-tabview/div/div/p-tabpanel[6]/div/app-credit-operations-security-asset/div/div/div/div/div/div/div/p-dropdown/div/div[2]/span'
     locate_vehicle = '/html/body/div/div/ul/p-dropdownitem[1]/li/span[1]'
     locate_purpose = '/html/body/app-root/div[1]/sigv-layout/div/div/div/app-credit-operations-detail/p-tabview/div/div/p-tabpanel[6]/div/app-credit-operations-security-asset/p-card/div/div[2]/div/app-vehicle-motor/div/div[1]/div[4]/div/p-dropdown/div/div[2]/span'
@@ -849,7 +823,7 @@ def Pre_CreditCollateral():
     sleep(5)
 
 
-def Pre_CreditReport():
+def CreditPreliminaryReport():
     locate_NegativeRemark = '/html/body/app-root/div[1]/sigv-layout/div/div/div/app-credit-operations-detail/p-tabview/div/div/p-tabpanel[8]/div/app-credit-operations-report/app-sub-side-menu/div[2]/div[1]/app-scoring/div/div[2]/div/div/div/p-table/div/div/table/tbody/tr[12]/td[3]/p-dropdown/div/span'
     locate_age = '/html/body/app-root/div[1]/sigv-layout/div/div/div/app-credit-operations-detail/p-tabview/div/div/p-tabpanel[8]/div/app-credit-operations-report/app-sub-side-menu/div[2]/div[1]/app-scoring/div/div[2]/div/div/div/p-table/div/div/table/tbody/tr[1]/td[3]/p-dropdown/div/div[2]/span'
     locate_61 = '/html/body/div/div/ul/p-dropdownitem[1]/li/span[1]'
@@ -949,6 +923,8 @@ def SM_Submit():
 
     element = Press(locate_submit, attribute_xpath)
     sleep(10)
+    # driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
+    # sleep(1)
 
 
 
@@ -982,7 +958,7 @@ if __name__ == "__main__":
     CaseType = 'SC_Case'
 
     # Case related information:
-    RowNo = 7
+    RowNo = 5
     row_data = df.iloc[RowNo]
     ID_No = int(df['IdNo'].iloc[RowNo])
     PersonalID = int(df['Guarantor Person(Indi)'].iloc[RowNo])
@@ -994,27 +970,27 @@ if __name__ == "__main__":
     s = Service('./chromedriver')
     driver = webdriver.Chrome(service=s)
     driver.maximize_window()
-    url = 'https://sit01-websubmission.chailease.com.my/websubmission-ui/'
-    driver.get(url)
-    time.sleep(3)
+    # url = 'https://sit01-websubmission.chailease.com.my/websubmission-ui/'
+    # driver.get(url)
+    # time.sleep(3)
 
-    LogIn(login_email)    
+    # LogIn(login_email)    
 
-    CreateCase(CaseType)
+    # CreateCase(CaseType)
 
-    FillCustomerInformation(ID_No)
+    # FillCustomerInformation(ID_No)
 
-    FillEmployment()
+    # FillEmployment()
 
-    FillGuarantorPerson(PersonalID, CorporateID, CustomerName, MobilePhone)
+    # FillGuarantorPerson(PersonalID, CorporateID, CustomerName, MobilePhone)
 
-    FillContactPerson()
+    # FillContactPerson()
 
-    FillCollateral()
+    # FillCollateral()
 
-    FillTermsConditions()
+    # FillTermsConditions()
 
-    FillAttachment()
+    # FillAttachment()
 
 
     ############################################################# Preliminary Credit Review ####################################################################################
@@ -1027,19 +1003,21 @@ if __name__ == "__main__":
     cursor = cnxn.cursor()
     
     # get CaseNo, ApplicantId
-    by = 'IdNo'
-    CaseNo, CurrentApplicantId = GetSqlData(cursor, ID_No, by)
-    sleep(1)
+    # by = 'IdNo'
+    # CaseNo, CurrentApplicantId = GetSqlData(cursor, ID_No, by)
+    # sleep(1)
     
     # write the case information to dataframe
-    df = AddCaseToDF(df, row_data, column_name, CaseNo)
-    print('\n\n')
-    print(df)
-    print('\n\n')
+    # df = AddCaseToDF(df, row_data, column_name, CaseNo)
+    # print('\n\n')
+    # print(df)
+    # print('\n\n')
     
     # get credit officer's Email through API
+    CurrentApplicantId = 'MY00329'
+    CaseNo = 'H227000803VA2'
     api_url = f"http://10.164.55.100:8000/dev-backdoor/system-management/Rbac/UserProfile/{CurrentApplicantId}"
-    OfficerEmail = GetApplicantEmail(api_url)
+    OfficerEmail = 'MichaelLin@chailease.com.my.bak'
 
     # log in preliminary credit review
     credit_url = 'https://sit01-creditratingscales.chailease.com.my/creditratingscales-ui/'
@@ -1052,23 +1030,48 @@ if __name__ == "__main__":
     
     EnterIntoPCR(text_name)
 
-    # Pre_EnterCase(CaseNo)
+    EnterCase(CaseNo)
     
-    # Pre_CreditInstructions()
+    CreditInstructions()
  
-    # Pre_CreditCustomerInformation()
+    CreditCustomerInformation()
 
-    # new_file = '/Users/kian199887/Downloads/github_francistan88/DSA/automatic_testing/case_submission.xlsx'
-    # df.to_excel(new_file, index=False)
+    new_file = '/Users/kian199887/Downloads/github_francistan88/DSA/automatic_testing/case_submission.xlsx'
+    df.to_excel(new_file, index=False)
     
-    # Pre_CreditCollateral()
+    CreditCollateral()
 
-    # Pre_CreditReport()
+    CreditPreliminaryReport()
 
 
-    # ############################################################# Sales Manager Confirming Stage ####################################################################################
+    ############################################################# Sales Manager Confirming Stage ####################################################################################
+    # get CaseNo, ApplicantId
+    by = 'CaseNo'
+    CaseNo, CurrentApplicantId = GetSqlData(cursor, CaseNo, by)
+    sleep(1)
+
+    # get credit officer's Email through API
+    api_url = f"http://10.164.55.100:8000/dev-backdoor/system-management/Rbac/UserProfile/{CurrentApplicantId}"
+    OfficerEmail = GetApplicantEmail(api_url)
+
+    # log in Sales Manager credit review
+    text_name = "Sales"
+
+    LogOut()
+
+    Credit_LogIn(OfficerEmail)
+
+    EnterIntoSM(text_name)
+
+    EnterCase(CaseNo)
+
+    SM_CreditInstructions()
+    
+    SM_Submit()
+
+
+    ############################################################# Secondary Credit Review Stage ####################################################################################
     # # get CaseNo, ApplicantId
-    # by = 'CaseNo'
     # CaseNo, CurrentApplicantId = GetSqlData(cursor, CaseNo, by)
     # sleep(1)
 
@@ -1078,29 +1081,4 @@ if __name__ == "__main__":
 
     # # log in Sales Manager credit review
     # text_name = "Sales"
-
-    # LogOut()
-
-    # Credit_LogIn(OfficerEmail)
-
-    # EnterIntoSM(text_name)
-
-    # SM_EnterCase(CaseNo)
-
-    # SM_CreditInstructions()
-    
-    # SM_Submit()
-
-
-    # ############################################################# Secondary Credit Review Stage ####################################################################################
-    # # get CaseNo, ApplicantId
-    # # CaseNo, CurrentApplicantId = GetSqlData(cursor, CaseNo, by)
-    # # sleep(1)
-
-    # # # get credit officer's Email through API
-    # # api_url = f"http://10.164.55.100:8000/dev-backdoor/system-management/Rbac/UserProfile/{CurrentApplicantId}"
-    # # OfficerEmail = GetApplicantEmail(api_url)
-
-    # # # log in Sales Manager credit review
-    # # text_name = "Sales"
 
