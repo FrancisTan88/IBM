@@ -34,12 +34,18 @@ def LocateByAttribute(attribute, locate_name):
         element = WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.CLASS_NAME, locate_name)))
 
     elif attribute == 'xpath':
-        element = WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.XPATH, locate_name)))
+        element = WebDriverWait(driver, 15).until(EC.presence_of_element_located((By.XPATH, locate_name)))
     
     elif attribute == 'css':
         element = WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.CSS_SELECTOR, locate_name)))
 
     return element
+
+
+# def LocateByText(locate_name, text_name):
+#     text_name = '"' + text_name + '"'
+#     element = driver.find_element(By.XPATH, locate_name + f'//*[contains(text(), {text_name})]')   
+#     return element
 
 
 def Press(locate_name, attribute):
@@ -509,11 +515,28 @@ def FillAttachment():
         driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
         time.sleep(1)
         element = Press(locate_submit, attribute_xpath)
-        time.sleep(15)
+        # time.sleep(15)
 
     except:
         driver.quit()
-        sys.exit("fail to submit the case")
+        sys.exit("fail to press the submit button")
+
+
+def CheckAlert():
+    try:
+        locate_popup = '/html/body/app-root/div[1]/app-layout/p-toast/div/p-toastitem/div/div/div//*[contains(text(), "Submit Success")]'
+        text_name = 'Submit Success'
+        element = LocateByAttribute(attribute_xpath, locate_popup)
+        sleep(1)
+        if text_name in element.text:
+            print(element.text)
+            print("The case is submitted successfully")
+        else:
+            print("Not  success")
+    
+    except:
+        driver.quit()
+        sys.exit("The case is failed")
 
 
 def GetEmailFromJson(obj):
@@ -535,7 +558,8 @@ def GetSqlData(cursor, index, by):
     sleep(2)
     CaseNo = SQL_data[0]
     CurrentApplicantId = SQL_data[2]
-    return CaseNo, CurrentApplicantId
+    StatusID = SQL_data[3]
+    return CaseNo, CurrentApplicantId, StatusID
 
 
 def GetApplicantEmail(url):
@@ -557,10 +581,9 @@ def DataPreprocessing(df, id_isnull):
     return df
 
 
-def AddCaseToDF(df, row_data, dic_column, CaseNo):
+def AddCaseToDF(df, row_data, dic_column, CaseNo, status):
     dic = {}
     date = datetime.today().strftime('%Y-%m-%d')
-    status = 1
 
     for i in range(len(dic_column)):
         dic[dic_column[str(i)]] = row_data[i]
@@ -574,14 +597,14 @@ def AddCaseToDF(df, row_data, dic_column, CaseNo):
 
 
 
-
-
 if __name__ == "__main__":
 
     ############################################################ Submission ####################################################################################
     # read excel and convert to dataframe
-    file_path = '/Users/kian199887/Downloads/github_francistan88/DSA/automatic_testing/submission_information.xlsx'
+    file_path = '/Users/kian199887/Downloads/github_francistan88/DSA/automatic_testing/submission_information_new.xlsx'
+    export_file = 'submission_information_new拷貝.xlsx'
     df = pd.read_excel(file_path)
+    writer = pd.ExcelWriter(export_file, engine='openpyxl', date_format='yyyy-mm-dd')
     ID_isnull = df['IdNo'].isnull()
     column_name = {
         '0': 'Date',
@@ -593,8 +616,7 @@ if __name__ == "__main__":
         '6': 'Mobile Phone',
         '7': 'CIF No(Corp)',
         '8': 'Status',
-        '9': 'Product Name',
-        '10': 'Attach pdf'
+        '9': 'Product Name'
     } 
 
     # remove'.0' for all and add '0' in front of the Mobile Phone
@@ -640,6 +662,8 @@ if __name__ == "__main__":
 
     FillAttachment()
 
+    CheckAlert()
+
 
     ############################################################# Preliminary Credit Review ####################################################################################
     # connect to SQL server
@@ -652,17 +676,17 @@ if __name__ == "__main__":
     
     # get CaseNo, ApplicantId
     by = 'IdNo'
-    CaseNo, CurrentApplicantId = GetSqlData(cursor, ID_No, by)
+    CaseNo, CurrentApplicantId, StatusId = GetSqlData(cursor, ID_No, by)
     sleep(1)
-    print(CaseNo, CurrentApplicantId)
     
     # add the case information to dataframe and export the excel file
-    new_file = '/Users/kian199887/Downloads/github_francistan88/DSA/automatic_testing/case_submission.xlsx'
-    df = AddCaseToDF(df, row_data, column_name, CaseNo)
+    df = AddCaseToDF(df, row_data, column_name, CaseNo, StatusId)
     print('\n\n')
     print(df)
     print('\n')
-    df.to_excel(new_file, index=False)
+
+    df.to_excel(writer, index=False)
+    writer.save()
     
     # get credit officer's Email through API
     api_url = f"http://10.164.55.100:8000/dev-backdoor/system-management/Rbac/UserProfile/{CurrentApplicantId}"
