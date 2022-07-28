@@ -1,4 +1,3 @@
-from xml.dom.minidom import Element
 from selenium import webdriver  
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
@@ -7,6 +6,7 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.action_chains import ActionChains
 from datetime import datetime
+from openpyxl import Workbook, load_workbook
 import time
 from time import sleep
 import numpy as np
@@ -530,9 +530,9 @@ def CheckAlert():
         sleep(1)
         if text_name in element.text:
             print(element.text)
-            print("The case is submitted successfully")
+            print("The case is submitted successfully", '\n')
         else:
-            print("Not  success")
+            print("Not  success", '\n')
     
     except:
         driver.quit()
@@ -581,18 +581,31 @@ def DataPreprocessing(df, id_isnull):
     return df
 
 
-def AddCaseToDF(df, row_data, dic_column, CaseNo, status):
-    dic = {}
+# def AddCaseToDF(df, row_data, dic_column, CaseNo, status):
+#     dic = {}
+#     date = datetime.today().strftime('%Y-%m-%d')
+
+#     for i in range(len(dic_column)):
+#         dic[dic_column[str(i)]] = row_data[i]
+
+#     df = df.append(dic, ignore_index=True)
+#     df['CaseNo'].iloc[len(df)-1] = CaseNo
+#     df['Date'].iloc[len(df)-1] = date
+#     df['Status'].iloc[len(df)-1] = status
+#     return df
+
+
+def RowDataToDF(row_no, dataframe, dic_column):
     date = datetime.today().strftime('%Y-%m-%d')
+    row_data = dataframe.iloc[row_no]
+    num_column = dataframe.shape[1]
+    dictionary = {}
 
-    for i in range(len(dic_column)):
-        dic[dic_column[str(i)]] = row_data[i]
+    for i in range(num_column):
+        dictionary[dic_column[str(i)]] = row_data[i]
 
-    df = df.append(dic, ignore_index=True)
-    df['CaseNo'].iloc[len(df)-1] = CaseNo
-    df['Date'].iloc[len(df)-1] = date
-    df['Status'].iloc[len(df)-1] = status
-    return df
+    df_row = pd.DataFrame(dictionary, index=[0])
+    return df_row
 
 
 
@@ -601,10 +614,14 @@ if __name__ == "__main__":
 
     ############################################################ Submission ####################################################################################
     # read excel and convert to dataframe
-    file_path = '/Users/kian199887/Downloads/github_francistan88/DSA/automatic_testing/submission_information_new.xlsx'
-    export_file = 'submission_information_new拷貝.xlsx'
+    file_path = '/Users/kian199887/Downloads/github_francistan88/DSA/automatic_testing/submission_import.xlsx'
+    export_file = '/Users/kian199887/Downloads/github_francistan88/DSA/automatic_testing/submission_export.xlsx'
     df = pd.read_excel(file_path)
+    book = load_workbook(export_file)
     writer = pd.ExcelWriter(export_file, engine='openpyxl', date_format='yyyy-mm-dd')
+    writer.book = book
+    writer.sheets = {ws.title: ws for ws in book.worksheets}
+    start_row = writer.sheets['fuck'].max_row
     ID_isnull = df['IdNo'].isnull()
     column_name = {
         '0': 'Date',
@@ -618,17 +635,19 @@ if __name__ == "__main__":
         '8': 'Status',
         '9': 'Product Name'
     } 
+    login_email = 'nabiladibidris@chailease.com.my'
+    CaseType = 'SC_Case'
 
     # remove'.0' for all and add '0' in front of the Mobile Phone
     df = DataPreprocessing(df, ID_isnull)
 
-    # log in part:
-    login_email = 'nabiladibidris@chailease.com.my'
-    CaseType = 'SC_Case'
-
-    # Case related information:
-    RowNo = 7
-    row_data = df.iloc[RowNo]
+    # Get row data:
+    print("\n")
+    RowNo = int(input("Please input the row number from the excel file submission_import.xlsx: "))
+    while (RowNo < 5 and RowNo != 3 ) or (RowNo > 7 ):
+        print("The case data can not be applied to SC0011 or SC0013 ~ SC0015")
+        RowNo = int(input("Please input another row number from the excel file submission_import.xlsx: "))
+    df_row = RowDataToDF(RowNo, df, column_name)
     ID_No = int(df['IdNo'].iloc[RowNo])
     PersonalID = int(df['Guarantor Person(Indi)'].iloc[RowNo])
     CorporateID = df['Guarantor Person(Corpo)'].iloc[RowNo]
@@ -678,16 +697,19 @@ if __name__ == "__main__":
     by = 'IdNo'
     CaseNo, CurrentApplicantId, StatusId = GetSqlData(cursor, ID_No, by)
     sleep(1)
-    
-    # add the case information to dataframe and export the excel file
-    df = AddCaseToDF(df, row_data, column_name, CaseNo, StatusId)
-    print('\n\n')
-    print(df)
-    print('\n')
 
-    df.to_excel(writer, index=False)
-    writer.save()
+    date = datetime.today().strftime('%Y-%m-%d')
+    df_row['Date'].loc[0] = date
+    df_row['CaseNo'].loc[0] = CaseNo
+    df_row['Status'].loc[0] = StatusId
     
+    # add the case data to the excel file
+    print('\n')
+    print(df_row)
+    print('\n')
+    df_row.to_excel(writer, sheet_name='fuck', startrow=start_row, index=False, header=False)
+    writer.save()
+
     # get credit officer's Email through API
     api_url = f"http://10.164.55.100:8000/dev-backdoor/system-management/Rbac/UserProfile/{CurrentApplicantId}"
     OfficerEmail = GetApplicantEmail(api_url)

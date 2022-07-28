@@ -1,5 +1,3 @@
-from pydoc import locate
-from xml.dom.minidom import Element
 from selenium import webdriver  
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
@@ -1058,8 +1056,8 @@ if __name__ == "__main__":
  
     # Pre_CreditCustomerInformation()
 
-    # new_file = '/Users/kian199887/Downloads/github_francistan88/DSA/automatic_testing/case_submission.xlsx'
-    # df.to_excel(new_file, index=False)
+    new_file = '/Users/kian199887/Downloads/github_francistan88/DSA/automatic_testing/case_submission.xlsx'
+    df.to_excel(new_file, index=False)
     
     # Pre_CreditCollateral()
 

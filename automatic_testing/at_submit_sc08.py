@@ -1,5 +1,3 @@
-from pydoc import locate
-from xml.dom.minidom import Element
 from selenium import webdriver  
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
@@ -8,6 +6,7 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.action_chains import ActionChains
 from datetime import datetime
+from openpyxl import Workbook, load_workbook
 import time
 from time import sleep
 import numpy as np
@@ -18,14 +17,13 @@ import sys
 
 
 """
-SC_Case 11, 13~15
+SC_Case 08 or 10
 """
 
 attribute_id = 'id'
 attribute_class = 'class'
 attribute_xpath = 'xpath'
 attribute_css = 'css'
-
 
 
 def LocateByAttribute(attribute, locate_name):
@@ -36,7 +34,7 @@ def LocateByAttribute(attribute, locate_name):
         element = WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.CLASS_NAME, locate_name)))
 
     elif attribute == 'xpath':
-        element = WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.XPATH, locate_name)))
+        element = WebDriverWait(driver, 15).until(EC.presence_of_element_located((By.XPATH, locate_name)))
     
     elif attribute == 'css':
         element = WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.CSS_SELECTOR, locate_name)))
@@ -44,10 +42,10 @@ def LocateByAttribute(attribute, locate_name):
     return element
 
 
-def LocateByText(locate_name, text_name):
-    text_name = '"' + text_name + '"'
-    element = driver.find_element(By.XPATH, locate_name + f'/*[contains(text(), {text_name})]')   # select all element that contains text "Preliminary"
-    return element
+# def LocateByText(locate_name, text_name):
+#     text_name = '"' + text_name + '"'
+#     element = driver.find_element(By.XPATH, locate_name + f'//*[contains(text(), {text_name})]')   
+#     return element
 
 
 def Press(locate_name, attribute):
@@ -73,20 +71,6 @@ def LogIn(login_email):
     except:
         driver.quit()
         sys.exit("fail to log in")
-
-
-def Credit_LogIn(OfficerEmail):
-    try:
-        locate_e = '//*[@id="userEmail"]'
-        credit_login = '/html/body/app-root/div[1]/sigv-login/div[1]/form/div[2]/button'
-        element = Type(locate_e, OfficerEmail, attribute_xpath)
-        sleep(1)
-        element = Press(credit_login, attribute_xpath)
-        sleep(6)
-    
-    except:
-        driver.quit()
-        sys.exit("fail to log in credit review")
 
 
 def CreateCase(CaseType):
@@ -207,7 +191,7 @@ def FillGuarantorPerson(PersonalID, CorporateID, CustomerName, MobilePhone):
         locate_CorporateID = '/html/body/app-root/div[1]/app-layout/div/div/div/app-process/div[2]/div/div[5]/app-guarantor-person/div[1]/div[2]/div[2]/form/div[1]/div[2]/input'
             
         locate_PersonalLegalRelationship = '/html/body/app-root/div[1]/app-layout/div/div/div/app-process/div[2]/div/div[5]/app-guarantor-person/div[1]/div[1]/div[2]/form/div[1]/div[3]/p-dropdown/div/div[2]'
-        locate_CorporateLegalRelationship = '/html/body/app-root/div[1]/app-layout/div/div/div/app-process/div[2]/div/div[5]/app-guarantor-person/div[1]/div[2]/div[2]/form/div[1]/div[3]/p-dropdown/div/div[2]/span'
+        locate_CorporateLegalRelationship = '/html/body/app-root/div[1]/app-layout/div/div/div/app-process/div[2]/div/div[5]/app-guarantor-person/div[1]/div[2]/div[2]/form/div[1]/div[3]/p-dropdown/div/span'
         locate_PersonalRelationship = '/html/body/app-root/div[1]/app-layout/div/div/div/app-process/div[2]/div/div[5]/app-guarantor-person/div[1]/div[1]/div[2]/form/div[2]/div[2]/p-dropdown/div/div[2]/span'
         locate_CorporateRelationship = '/html/body/app-root/div[1]/app-layout/div/div/div/app-process/div[2]/div/div[5]/app-guarantor-person/div[1]/div[2]/div[2]/form/div[2]/div[2]/p-dropdown/div/div[2]/span'
 
@@ -261,6 +245,8 @@ def FillGuarantorPerson(PersonalID, CorporateID, CustomerName, MobilePhone):
 
         element = Press(locate_CorporateLegalRelationship, attribute_xpath)
         time.sleep(1)
+        element = Press(locate_CorporateLegalRelationship, attribute_xpath)
+        time.sleep(1)
         element = Press(locate_CorporateGuarantor, attribute_xpath)
 
         element = Press(locate_CorporateRelationship, attribute_xpath)
@@ -276,7 +262,7 @@ def FillGuarantorPerson(PersonalID, CorporateID, CustomerName, MobilePhone):
         time.sleep(3)
     
     except:
-        driver.quit()
+        # driver.quit()
         sys.exit("fail to fill in guarantor person")
 
 
@@ -339,11 +325,12 @@ def FillContactPerson():
         sys.exit("fail to fill in contact person")
        
 
-
-def FillCollateral():
+def FillCollateral(main_page):
     try:
+        ################################################################  First Collateral ################################################################################
         ################################################################  Address  ################################################################################
         locate_AddCollateral = '/html/body/app-root/div[1]/app-layout/div/div/div/app-process/div[2]/div/div[7]/app-collateral/div[1]/div/p-accordion'
+        locate_AddSecondCollateral = '/html/body/app-root/div[1]/app-layout/div/div/div/app-process/div[2]/div/div[7]/app-collateral/div[1]/div/p-accordion/div/p-accordiontab/div/div[2]/div/div[2]/button/span[2]'
 
         locate_property = '/html/body/app-root/div[1]/app-layout/div/div/div/app-process/div[2]/div/div[7]/app-collateral/div[1]/div/p-accordion/div/p-accordiontab/div/div[2]/div/div[1]/div[2]/app-collateral-vehicle-motor/div/form/div/div[1]/div[1]/p-dropdown/div/div[2]'
         locate_FinanceAsset = '/html/body/app-root/div[1]/app-layout/div/div/div/app-process/div[2]/div/div[7]/app-collateral/div[1]/div/p-accordion/div/p-accordiontab/div/div[2]/div/div[1]/div[2]/app-collateral-vehicle-motor/div/form/div/div[1]/div[1]/p-dropdown/div/div[3]/div/ul/p-dropdownitem[1]'
@@ -378,22 +365,99 @@ def FillCollateral():
 
         locate_DownPayment = '/html/body/app-root/div[1]/app-layout/div/div/div/app-process/div[2]/div/div[7]/app-collateral/div[1]/div/p-accordion/div/p-accordiontab/div/div[2]/div/div[1]/div[2]/app-collateral-vehicle-motor/div/form/div/div[2]/div[1]/div[2]/sigv-currency/div/p-inputnumber/span/input'
 
+        locate_Insurance = '/html/body/app-root/div[1]/app-layout/div/div/div/app-process/div[2]/div/div[7]/app-collateral/div[1]/div/p-accordion/div/p-accordiontab/div/div[2]/div/div[1]/div[2]/app-collateral-vehicle-motor/div/form/div/div[2]/div[2]/p-dropdown/div/div[2]/span'
+        locate_InsuranceYes = '/html/body/app-root/div[1]/app-layout/div/div/div/app-process/div[2]/div/div[7]/app-collateral/div[1]/div/p-accordion/div/p-accordiontab/div/div[2]/div/div[1]/div[2]/app-collateral-vehicle-motor/div/form/div/div[2]/div[2]/p-dropdown/div/div[3]/div/ul/p-dropdownitem[1]/li'
+
         locate_GPSinstallation = '/html/body/app-root/div[1]/app-layout/div/div/div/app-process/div[2]/div/div[7]/app-collateral/div[1]/div/p-accordion/div/p-accordiontab/div/div[2]/div/div[1]/div[2]/app-collateral-vehicle-motor/div/form/div/div[2]/div[3]/p-dropdown/div/div[2]/span'
         locate_None = '/html/body/app-root/div[1]/app-layout/div/div/div/app-process/div[2]/div/div[7]/app-collateral/div[1]/div/p-accordion/div/p-accordiontab/div/div[2]/div/div[1]/div[2]/app-collateral-vehicle-motor/div/form/div/div[2]/div[3]/p-dropdown/div/div[3]/div/ul/p-dropdownitem/li'
 
-        locate_next = '/html/body/app-root/div[1]/app-layout/div/div/div/app-process/div[2]/div/div[10]/div[2]/a'
+        locate_quotation = '/html/body/app-root/div[1]/app-layout/div/div/div/app-process/div[2]/div/div[7]/app-collateral/div[1]/div/p-accordion/div/p-accordiontab/div/div[2]/div/div[1]/div[2]/app-collateral-vehicle-motor/div/form/div/div[3]/div/app-collateral-fee-n-charge/div/app-inner-table/div/table/tbody/tr/td[1]/label/div/div[2]/div/a'
+        locate_InsuranceStartYear = '/html/body/app-root/div[1]/app-layout/div/div/div/app-premium/div[2]/div[2]/div[2]/div/p-dropdown/div/div[2]/span'
+        locate_2022 = '/html/body/app-root/div[1]/app-layout/div/div/div/app-premium/div[2]/div[2]/div[2]/div/p-dropdown/div/div[3]/div/ul/p-dropdownitem[1]/li'
+        locate_InsuranceCompany = '/html/body/app-root/div[1]/app-layout/div/div/div/app-premium/div[2]/div[2]/div[3]/div/p-dropdown/div/div[2]/span'
+        locate_RoadTax = '/html/body/app-root/div[1]/app-layout/div/div/div/app-premium/div[2]/div[2]/div[3]/div/p-dropdown/div/div[3]/div/ul/p-dropdownitem[5]/li'
+        locate_ActualPremium = '/html/body/app-root/div[1]/app-layout/div/div/div/app-premium/div[2]/div[3]/div[2]/div/div[2]/p-inputnumber/span/input'
+        locate_ChargedPremium = '/html/body/app-root/div[1]/app-layout/div/div/div/app-premium/div[2]/div[3]/div[3]/div/div[2]/p-inputnumber/span/input'
+        locate_save = '/html/body/app-root/div[1]/app-layout/div/div/div/app-premium/div[1]/a[1]'
 
         PurchasePrice = '99999'
         SalesApprisalPrice = PurchasePrice
         DownPayment = '33333'
+        ActualPremium = 555
+        ChargedPremium = ActualPremium
 
+        ################################################################  Second Collateral ################################################################################
+        ################################################################  Address  ################################################################################
+        locate_property2 = '/html/body/app-root/div[1]/app-layout/div/div/div/app-process/div[2]/div/div[7]/app-collateral/div[1]/div/p-accordion/div/p-accordiontab/div/div[2]/div/div[2]/div[2]/app-collateral-vehicle-motor/div/form/div/div[1]/div[1]/p-dropdown'
+        locate_FinanceAsset2 = '/html/body/app-root/div[1]/app-layout/div/div/div/app-process/div[2]/div/div[7]/app-collateral/div[1]/div/p-accordion/div/p-accordiontab/div/div[2]/div/div[2]/div[2]/app-collateral-vehicle-motor/div/form/div/div[1]/div[1]/p-dropdown/div/div[3]/div/ul/p-dropdownitem[1]/li'
+
+        locate_category2 = '/html/body/app-root/div[1]/app-layout/div/div/div/app-process/div[2]/div/div[7]/app-collateral/div[1]/div/p-accordion/div/p-accordiontab/div/div[2]/div/div[2]/div[2]/app-collateral-vehicle-motor/div/form/div/div[1]/div[2]/p-dropdown/div/div[2]/span'
+        locate_CommercialVehicle2 = '/html/body/app-root/div[1]/app-layout/div/div/div/app-process/div[2]/div/div[7]/app-collateral/div[1]/div/p-accordion/div/p-accordiontab/div/div[2]/div/div[2]/div[2]/app-collateral-vehicle-motor/div/form/div/div[1]/div[2]/p-dropdown/div/div[3]/div/ul/p-dropdownitem[1]/li/span[1]'
+        
+        locate_HasValue2 = '/html/body/app-root/div[1]/app-layout/div/div/div/app-process/div[2]/div/div[7]/app-collateral/div[1]/div/p-accordion/div/p-accordiontab/div/div[2]/div/div[2]/div[2]/app-collateral-vehicle-motor/div/form/div/div[1]/div[3]/p-dropdown/div/div[2]/span'
+        locate_Y2 = '/html/body/app-root/div[1]/app-layout/div/div/div/app-process/div[2]/div/div[7]/app-collateral/div[1]/div/p-accordion/div/p-accordiontab/div/div[2]/div/div[2]/div[2]/app-collateral-vehicle-motor/div/form/div/div[1]/div[3]/p-dropdown/div/div[3]/div/ul/p-dropdownitem[1]/li'
+
+        locate_brand2 = '/html/body/app-root/div[1]/app-layout/div/div/div/app-process/div[2]/div/div[7]/app-collateral/div[1]/div/p-accordion/div/p-accordiontab/div/div[2]/div/div[2]/div[2]/app-collateral-vehicle-motor/div/form/div/div[1]/div[4]/p-dropdown/div/div[2]'
+        locate_Adiva2 = '/html/body/app-root/div[1]/app-layout/div/div/div/app-process/div[2]/div/div[7]/app-collateral/div[1]/div/p-accordion/div/p-accordiontab/div/div[2]/div/div[2]/div[2]/app-collateral-vehicle-motor/div/form/div/div[1]/div[4]/p-dropdown/div/div[3]/div/ul/p-dropdownitem[5]/li'
+
+        locate_model2 = '/html/body/app-root/div[1]/app-layout/div/div/div/app-process/div[2]/div/div[7]/app-collateral/div[1]/div/p-accordion/div/p-accordiontab/div/div[2]/div/div[2]/div[2]/app-collateral-vehicle-motor/div/form/div/div[1]/div[5]/p-dropdown/div/div[2]/span'
+        locate_AD3_2 = '/html/body/app-root/div[1]/app-layout/div/div/div/app-process/div[2]/div/div[7]/app-collateral/div[1]/div/p-accordion/div/p-accordiontab/div/div[2]/div/div[2]/div[2]/app-collateral-vehicle-motor/div/form/div/div[1]/div[5]/p-dropdown/div/div[3]/div/ul/p-dropdownitem/li'
+
+        locate_transaction2 = '/html/body/app-root/div[1]/app-layout/div/div/div/app-process/div[2]/div/div[7]/app-collateral/div[1]/div/p-accordion/div/p-accordiontab/div/div[2]/div/div[2]/div[2]/app-collateral-vehicle-motor/div/form/div/div[1]/div[6]/p-dropdown/div/div[2]/span'
+        locate_new2 = '/html/body/app-root/div[1]/app-layout/div/div/div/app-process/div[2]/div/div[7]/app-collateral/div[1]/div/p-accordion/div/p-accordiontab/div/div[2]/div/div[2]/div[2]/app-collateral-vehicle-motor/div/form/div/div[1]/div[6]/p-dropdown/div/div[3]/div/ul/p-dropdownitem[1]/li'
+
+        locate_date2 = '/html/body/app-root/div[1]/app-layout/div/div/div/app-process/div[2]/div/div[7]/app-collateral/div[1]/div/p-accordion/div/p-accordiontab/div/div[2]/div/div[2]/div[2]/app-collateral-vehicle-motor/div/form/div/div[1]/div[7]/div[2]/p-calendar/span/button/span[1]'
+        locate_left2 = '/html/body/app-root/div[1]/app-layout/div/div/div/app-process/div[2]/div/div[7]/app-collateral/div[1]/div/p-accordion/div/p-accordiontab/div/div[2]/div/div[2]/div[2]/app-collateral-vehicle-motor/div/form/div/div[1]/div[7]/div[2]/p-calendar/span/div/div[1]/div/div/button[1]'
+        locate_Febrary = '/html/body/app-root/div[1]/app-layout/div/div/div/app-process/div[2]/div/div[7]/app-collateral/div[1]/div/p-accordion/div/p-accordiontab/div/div[2]/div/div[2]/div[2]/app-collateral-vehicle-motor/div/form/div/div[1]/div[7]/div[2]/p-calendar/span/div/div[2]/span[2]'
+
+        locate_manu2 = '/html/body/app-root/div[1]/app-layout/div/div/div/app-process/div[2]/div/div[7]/app-collateral/div[1]/div/p-accordion/div/p-accordiontab/div/div[2]/div/div[2]/div[2]/app-collateral-vehicle-motor/div/form/div/div[1]/div[10]/p-dropdown/div/div[2]/span'
+        locate_BMW2 = '/html/body/app-root/div[1]/app-layout/div/div/div/app-process/div[2]/div/div[7]/app-collateral/div[1]/div/p-accordion/div/p-accordiontab/div/div[2]/div/div[2]/div[2]/app-collateral-vehicle-motor/div/form/div/div[1]/div[10]/p-dropdown/div/div[3]/div/ul/p-dropdownitem[1]/li/span[1]'
+
+        locate_transmission2 = '/html/body/app-root/div[1]/app-layout/div/div/div/app-process/div[2]/div/div[7]/app-collateral/div[1]/div/p-accordion/div/p-accordiontab/div/div[2]/div/div[2]/div[2]/app-collateral-vehicle-motor/div/form/div/div[1]/div[11]/p-dropdown/div/div[2]/span'
+        locate_auto2 = '/html/body/app-root/div[1]/app-layout/div/div/div/app-process/div[2]/div/div[7]/app-collateral/div[1]/div/p-accordion/div/p-accordiontab/div/div[2]/div/div[2]/div[2]/app-collateral-vehicle-motor/div/form/div/div[1]/div[11]/p-dropdown/div/div[3]/div/ul/p-dropdownitem[2]/li'
+
+        locate_PurchasePrice2 = '/html/body/app-root/div[1]/app-layout/div/div/div/app-process/div[2]/div/div[7]/app-collateral/div[1]/div/p-accordion/div/p-accordiontab/div/div[2]/div/div[2]/div[2]/app-collateral-vehicle-motor/div/form/div/div[1]/div[15]/div[2]/sigv-currency/div/p-inputnumber/span/input'
+        
+        locate_SalesApprisalPrice2 = '/html/body/app-root/div[1]/app-layout/div/div/div/app-process/div[2]/div/div[7]/app-collateral/div[1]/div/p-accordion/div/p-accordiontab/div/div[2]/div/div[2]/div[2]/app-collateral-vehicle-motor/div/form/div/div[1]/div[16]/div[2]/sigv-currency/div/p-inputnumber/span/input'
+
+        locate_DownPayment2 = '/html/body/app-root/div[1]/app-layout/div/div/div/app-process/div[2]/div/div[7]/app-collateral/div[1]/div/p-accordion/div/p-accordiontab/div/div[2]/div/div[2]/div[2]/app-collateral-vehicle-motor/div/form/div/div[2]/div[1]/div[2]/sigv-currency/div/p-inputnumber/span/input'
+
+        locate_Insurance2 = '/html/body/app-root/div[1]/app-layout/div/div/div/app-process/div[2]/div/div[7]/app-collateral/div[1]/div/p-accordion/div/p-accordiontab/div/div[2]/div/div[2]/div[2]/app-collateral-vehicle-motor/div/form/div/div[2]/div[2]/p-dropdown/div/div[2]/span'
+        locate_InsuranceYes2 = '/html/body/app-root/div[1]/app-layout/div/div/div/app-process/div[2]/div/div[7]/app-collateral/div[1]/div/p-accordion/div/p-accordiontab/div/div[2]/div/div[2]/div[2]/app-collateral-vehicle-motor/div/form/div/div[2]/div[2]/p-dropdown/div/div[3]/div/ul/p-dropdownitem[1]/li'
+
+        locate_GPSinstallation2 = '/html/body/app-root/div[1]/app-layout/div/div/div/app-process/div[2]/div/div[7]/app-collateral/div[1]/div/p-accordion/div/p-accordiontab/div/div[2]/div/div[2]/div[2]/app-collateral-vehicle-motor/div/form/div/div[2]/div[3]/p-dropdown/div/div[2]/span'
+        locate_None2 = '/html/body/app-root/div[1]/app-layout/div/div/div/app-process/div[2]/div/div[7]/app-collateral/div[1]/div/p-accordion/div/p-accordiontab/div/div[2]/div/div[2]/div[2]/app-collateral-vehicle-motor/div/form/div/div[2]/div[3]/p-dropdown/div/div[3]/div/ul/p-dropdownitem/li'
+
+
+        locate_quotation2 = '/html/body/app-root/div[1]/app-layout/div/div/div/app-process/div[2]/div/div[7]/app-collateral/div[1]/div/p-accordion/div/p-accordiontab/div/div[2]/div/div[2]/div[2]/app-collateral-vehicle-motor/div/form/div/div[3]/div/app-collateral-fee-n-charge/div/app-inner-table/div/table/tbody/tr/td[1]/label/div/div[2]/div/a'
+        locate_InsuranceStartYear2 = '/html/body/app-root/div[1]/app-layout/div/div/div/app-premium/div[2]/div[2]/div[2]/div/p-dropdown/div/div[2]/span'
+        locate_2022_2 = '/html/body/app-root/div[1]/app-layout/div/div/div/app-premium/div[2]/div[2]/div[2]/div/p-dropdown/div/div[3]/div/ul/p-dropdownitem[1]/li'
+        locate_InsuranceCompany2 = '/html/body/app-root/div[1]/app-layout/div/div/div/app-premium/div[2]/div[2]/div[3]/div/p-dropdown/div/div[2]'
+        locate_RoadTax2 = '/html/body/app-root/div[1]/app-layout/div/div/div/app-premium/div[2]/div[2]/div[3]/div/p-dropdown/div/div[3]/div/ul/p-dropdownitem[5]/li'
+        locate_ChargedPremium2 = '/html/body/app-root/div[1]/app-layout/div/div/div/app-premium/div[2]/div[3]/div[3]/div/div[2]/p-inputnumber/span/input'
+        locate_save2 = '/html/body/app-root/div[1]/app-layout/div/div/div/app-premium/div[1]/a[1]'
+
+        locate_remark = '/html/body/app-root/div[1]/app-layout/div/div/div/app-process/div[2]/div/div[7]/app-collateral/div[1]/div/p-accordion/div/p-accordiontab/div/div[2]/div/div[2]/div[2]/app-collateral-vehicle-motor/div/form/div/div[5]/div/div/div/textarea'
+
+        locate_next = '/html/body/app-root/div[1]/app-layout/div/div/div/app-process/div[2]/div/div[10]/div[2]/a'
+
+        PurchasePrice2 = 77777
+        SalesApprisalPrice2 = PurchasePrice2
+        DownPayment2 = 33333
+        ChargedPremium2 = 444
+        
+        ################################################################ First Collateral ################################################################################
         ################################################################  Execution: Fill it  ################################################################################
         element = Press(locate_AddCollateral, attribute_xpath)
         time.sleep(10)
 
+        element = Press(locate_AddSecondCollateral, attribute_xpath)
+        time.sleep(2)
+
         element = Press(locate_property, attribute_xpath)
         time.sleep(1)
         element = Press(locate_FinanceAsset, attribute_xpath)
+        time.sleep(1)
 
         element = Press(locate_category, attribute_xpath)
         time.sleep(1)
@@ -403,10 +467,10 @@ def FillCollateral():
         time.sleep(1)
         element = Press(locate_Y, attribute_xpath)
 
-        element = Press(locate_brand, attribute_xpath)
-        time.sleep(1.5)
+        element = Press(locate_brand, attribute_xpath)                    
+        time.sleep(1)
         element = Press(locate_Adiva, attribute_xpath)
-        time.sleep(3)   
+        time.sleep(4)                                                    
 
         element = Press(locate_model, attribute_xpath)
         time.sleep(1)
@@ -437,57 +501,214 @@ def FillCollateral():
         element = Type(locate_DownPayment, DownPayment, attribute_xpath)
         time.sleep(1)
 
+        element = Press(locate_Insurance, attribute_xpath)
+        time.sleep(1)
+        element = Press(locate_InsuranceYes, attribute_xpath)
+
         element = Press(locate_GPSinstallation, attribute_xpath)
         time.sleep(1)
         element = Press(locate_None, attribute_xpath)
+
+        ##################################################################################### quotation 1 #####################################################################################
+        element = Press(locate_quotation, attribute_xpath)
+        time.sleep(3)
+
+        for window in driver.window_handles:                    
+              if  window != main_page:
+                    quote_page = window
+
+        driver.switch_to.window(quote_page)
+        time.sleep(2)
+
+        element = Press(locate_InsuranceStartYear, attribute_xpath)
         time.sleep(1)
+        element = Press(locate_2022, attribute_xpath)
+        element = Press(locate_InsuranceCompany, attribute_xpath)
+        time.sleep(1)
+        element = Press(locate_RoadTax, attribute_xpath)
+        time.sleep(5)
+        element = LocateByAttribute(attribute_xpath, locate_ActualPremium)
+        action = ActionChains(driver)
+        action.double_click(element).perform()
+        time.sleep(1)
+        element.send_keys(ActualPremium)
+        time.sleep(1)
+        element = LocateByAttribute(attribute_xpath, locate_ChargedPremium)
+        action.double_click(element).perform()
+        time.sleep(1)
+        element.send_keys(ChargedPremium)
+        time.sleep(1)
+        element = Press(locate_save, attribute_xpath)
+        time.sleep(2)
+
+        driver.switch_to.window(main_page)
+        time.sleep(2)
+
+        
+        ################################################################  Second Collateral ################################################################################
+        ################################################################  Execution  ################################################################################
+        action = ActionChains(driver)
+        element = LocateByAttribute(attribute_xpath, locate_remark)
+        time.sleep(1)
+        action.move_to_element(element).perform()
+        time.sleep(1)
+
+        element = Press(locate_property2, attribute_xpath)
+        time.sleep(1)
+        element = Press(locate_FinanceAsset2, attribute_xpath)
+
+        element = Press(locate_category2, attribute_xpath)
+        time.sleep(1)
+        element = Press(locate_CommercialVehicle2, attribute_xpath)
+
+        element = Press(locate_HasValue2, attribute_xpath)
+        time.sleep(1)
+        element = Press(locate_Y2, attribute_xpath)
+
+        element = Press(locate_brand2, attribute_xpath)
+        time.sleep(1)
+        element = Press(locate_Adiva2, attribute_xpath)
+        time.sleep(3)
+
+        element = Press(locate_model2, attribute_xpath)
+        time.sleep(1)
+        element = Press(locate_AD3_2, attribute_xpath)
+
+        element = Press(locate_transaction2, attribute_xpath)
+        time.sleep(1)
+        element = Press(locate_new2, attribute_xpath)
+
+        element = Press(locate_date2, attribute_xpath)
+        time.sleep(1)
+        element = Press(locate_left2, attribute_xpath)
+        time.sleep(1)
+        element = Press(locate_Febrary, attribute_xpath)
+
+        element = Press(locate_manu2, attribute_xpath)
+        time.sleep(1)
+        element = Press(locate_BMW2, attribute_xpath)
+
+        element = Press(locate_transmission2, attribute_xpath)
+        time.sleep(1)
+        element = Press(locate_auto2, attribute_xpath)
+
+        element = Type(locate_PurchasePrice2, PurchasePrice2, attribute_xpath)
+        time.sleep(1)
+        element = Type(locate_SalesApprisalPrice2, SalesApprisalPrice2, attribute_xpath)
+        time.sleep(1)
+        element = Type(locate_DownPayment2, DownPayment2, attribute_xpath)
+        time.sleep(1)
+
+        element = Press(locate_Insurance2, attribute_xpath)
+        time.sleep(1)
+        element = Press(locate_InsuranceYes2, attribute_xpath)
+
+        element = Press(locate_GPSinstallation2, attribute_xpath)
+        time.sleep(1)
+        element = Press(locate_None2, attribute_xpath)
+
+        ##################################################################################### quotation 2 #####################################################################################
+        element = Press(locate_quotation2, attribute_xpath)
+        time.sleep(3)
+
+        for window in driver.window_handles:                    
+              if  window != main_page:
+                    quote_page = window
+
+        driver.switch_to.window(quote_page)
+        time.sleep(2)
+        element = Press(locate_InsuranceStartYear2, attribute_xpath)
+        time.sleep(1)
+        element = Press(locate_2022_2, attribute_xpath)
+        time.sleep(1)
+        element = Press(locate_InsuranceCompany2, attribute_xpath)
+        time.sleep(1)
+        element = Press(locate_RoadTax2, attribute_xpath)
+        time.sleep(5)
+        element = LocateByAttribute(attribute_xpath, locate_ChargedPremium2)
+        time.sleep(1)
+        action.double_click(element).perform()
+        time.sleep(1)
+        element.send_keys(ChargedPremium2)
+        time.sleep(1)
+        element = Press(locate_save2, attribute_xpath)
+        time.sleep(2)
+
+        driver.switch_to.window(main_page)
+        time.sleep(2)
 
         driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
         time.sleep(1)
 
         element = Press(locate_next, attribute_xpath)
-        time.sleep(3)
+        time.sleep(4)
 
     except:
         driver.quit()
-        sys.exit("fail to fill in collateral")
-        
+        sys.exit("fail to fill in the collateral")
 
 
-def FillTermsConditions():
+def FillTermsConditions(main_page):
     try:
         ################################################################  Address  ################################################################################
         locate_DealSource = '/html/body/app-root/div[1]/app-layout/div/div/div/app-process/div[2]/div/div[8]/app-terms-conditions/div/div[1]/div[2]/div[1]/p-dropdown/div/div[2]/span'
         locate_CarDealer = '/html/body/app-root/div[1]/app-layout/div/div/div/app-process/div[2]/div/div[8]/app-terms-conditions/div/div[1]/div[2]/div[1]/p-dropdown/div/div[3]/div/ul/p-dropdownitem[1]/li'
         locate_DealerName = '/html/body/app-root/div[1]/app-layout/div/div/div/app-process/div[2]/div/div[8]/app-terms-conditions/div/div[1]/div[2]/div[2]/p-dropdown/div/div[2]/span'
         locate_InputName = '/html/body/app-root/div[1]/app-layout/div/div/div/app-process/div[2]/div/div[8]/app-terms-conditions/div/div[1]/div[2]/div[2]/p-dropdown/div/div[3]/div[1]/div/input'
+        DealerName = 'JHR0001 Twit'
         locate_SalesName = '/html/body/app-root/div[1]/app-layout/div/div/div/app-process/div[2]/div/div[8]/app-terms-conditions/div/div[1]/div[2]/div[3]/p-dropdown/div/div[2]/span'
         locate_PAIDAIAH = '/html/body/app-root/div[1]/app-layout/div/div/div/app-process/div[2]/div/div[8]/app-terms-conditions/div/div[1]/div[2]/div[3]/p-dropdown/div/div[3]/div/ul/p-dropdownitem[2]/li'
         locate_QuotesType = '/html/body/app-root/div[1]/app-layout/div/div/div/app-process/div[2]/div/div[8]/app-terms-conditions/div/div[1]/div[3]/div[1]/p-dropdown/div/div[2]/span'
         locate_ETP = '/html/body/app-root/div[1]/app-layout/div/div/div/app-process/div[2]/div/div[8]/app-terms-conditions/div/div[1]/div[3]/div[1]/p-dropdown/div/div[3]/div/ul/p-dropdownitem/li'
         locate_InterestRate = '/html/body/app-root/div[1]/app-layout/div/div/div/app-process/div[2]/div/div[8]/app-terms-conditions/div/div[1]/div[3]/div[2]/div[2]/p-inputnumber/span/input'
+        InterestRate = '8'
         locate_CommisionDeduction = '/html/body/app-root/div[1]/app-layout/div/div/div/app-process/div[2]/div/div[8]/app-terms-conditions/div/div[2]/div/div/p-table/div/div/table/tbody/tr[1]/td[5]/p-checkbox/div/div[2]'
         locate_ApplyTerms = '/html/body/app-root/div[1]/app-layout/div/div/div/app-process/div[2]/div/div[8]/app-terms-conditions/div/div[4]/div/div[1]/p-inputnumber/span/input'
+        Terms = '50'
         locate_random2 = '/html/body/app-root/div[1]/app-layout/div/div/div/app-process/div[2]/div/div[8]/app-terms-conditions/div/div[4]'
+        locate_previous = '/html/body/app-root/div[1]/app-layout/div/div/div/app-process/div[2]/div/div[10]/div[1]/a'
         locate_next = '/html/body/app-root/div[1]/app-layout/div/div/div/app-process/div[2]/div/div[10]/div[2]/a'
 
-        DealerName = 'JHR0001 Twit'
-        InterestRate = 8
-        Terms = 50
+        locate_Insurance = '/html/body/app-root/div[1]/app-layout/div/div/div/app-process/div[2]/div/div[7]/app-collateral/div[1]/div/p-accordion/div/p-accordiontab/div/div[2]/div/div[1]/div[2]/app-collateral-vehicle-motor/div/form/div/div[2]/div[2]/p-dropdown/div/div[2]/span'
+        locate_InsuranceYes = '/html/body/app-root/div[1]/app-layout/div/div/div/app-process/div[2]/div/div[7]/app-collateral/div[1]/div/p-accordion/div/p-accordiontab/div/div[2]/div/div[1]/div[2]/app-collateral-vehicle-motor/div/form/div/div[2]/div[2]/p-dropdown/div/div[3]/div/ul/p-dropdownitem[1]/li'
+        locate_quotation = '/html/body/app-root/div[1]/app-layout/div/div/div/app-process/div[2]/div/div[7]/app-collateral/div[1]/div/p-accordion/div/p-accordiontab/div/div[2]/div/div[1]/div[2]/app-collateral-vehicle-motor/div/form/div/div[3]/div/app-collateral-fee-n-charge/div/app-inner-table/div/table/tbody/tr/td[1]/label/div/div[2]/div/a'
+        locate_InsuranceStartYear = '/html/body/app-root/div[1]/app-layout/div/div/div/app-premium/div[2]/div[2]/div[2]/div/p-dropdown/div/div[2]/span'
+        locate_2022 = '/html/body/app-root/div[1]/app-layout/div/div/div/app-premium/div[2]/div[2]/div[2]/div/p-dropdown/div/div[3]/div/ul/p-dropdownitem[1]/li'
+        locate_InsuranceCompany = '/html/body/app-root/div[1]/app-layout/div/div/div/app-premium/div[2]/div[2]/div[3]/div/p-dropdown/div/div[2]/span'
+        locate_RoadTax = '/html/body/app-root/div[1]/app-layout/div/div/div/app-premium/div[2]/div[2]/div[3]/div/p-dropdown/div/div[3]/div/ul/p-dropdownitem[5]/li'
+        locate_ActualPremium = '/html/body/app-root/div[1]/app-layout/div/div/div/app-premium/div[2]/div[3]/div[2]/div/div[2]/p-inputnumber/span/input'
+        locate_ChargedPremium = '/html/body/app-root/div[1]/app-layout/div/div/div/app-premium/div[2]/div[3]/div[3]/div/div[2]/p-inputnumber/span/input'
+        locate_save = '/html/body/app-root/div[1]/app-layout/div/div/div/app-premium/div[1]/a[1]'
+        ActualPremium = 555
+        ChargedPremium = ActualPremium
 
-        ################################################################  Execution: Fill it  ################################################################################
+        locate_Insurance2 = '/html/body/app-root/div[1]/app-layout/div/div/div/app-process/div[2]/div/div[7]/app-collateral/div[1]/div/p-accordion/div/p-accordiontab/div/div[2]/div/div[2]/div[2]/app-collateral-vehicle-motor/div/form/div/div[2]/div[2]/p-dropdown/div/div[2]/span'
+        locate_InsuranceYes2 = '/html/body/app-root/div[1]/app-layout/div/div/div/app-process/div[2]/div/div[7]/app-collateral/div[1]/div/p-accordion/div/p-accordiontab/div/div[2]/div/div[2]/div[2]/app-collateral-vehicle-motor/div/form/div/div[2]/div[2]/p-dropdown/div/div[3]/div/ul/p-dropdownitem[1]/li'
+        locate_quotation2 = '/html/body/app-root/div[1]/app-layout/div/div/div/app-process/div[2]/div/div[7]/app-collateral/div[1]/div/p-accordion/div/p-accordiontab/div/div[2]/div/div[2]/div[2]/app-collateral-vehicle-motor/div/form/div/div[3]/div/app-collateral-fee-n-charge/div/app-inner-table/div/table/tbody/tr/td[1]/label/div/div[2]/div/a'
+        locate_InsuranceStartYear2 = '/html/body/app-root/div[1]/app-layout/div/div/div/app-premium/div[2]/div[2]/div[2]/div/p-dropdown/div/div[2]/span'
+        locate_2022_2 = '/html/body/app-root/div[1]/app-layout/div/div/div/app-premium/div[2]/div[2]/div[2]/div/p-dropdown/div/div[3]/div/ul/p-dropdownitem[1]/li'
+        locate_InsuranceCompany2 = '/html/body/app-root/div[1]/app-layout/div/div/div/app-premium/div[2]/div[2]/div[3]/div/p-dropdown/div/div[2]'
+        locate_RoadTax2 = '/html/body/app-root/div[1]/app-layout/div/div/div/app-premium/div[2]/div[2]/div[3]/div/p-dropdown/div/div[3]/div/ul/p-dropdownitem[5]/li'
+        locate_ChargedPremium2 = '/html/body/app-root/div[1]/app-layout/div/div/div/app-premium/div[2]/div[3]/div[3]/div/div[2]/p-inputnumber/span/input'
+        locate_save2 = '/html/body/app-root/div[1]/app-layout/div/div/div/app-premium/div[1]/a[1]'
+        ChargedPremium2 = 444
+
+        locate_AutoLife = '/html/body/app-root/div[1]/app-layout/div/div/div/app-process/div[2]/div/div[8]/app-terms-conditions/div/div[3]/div[1]/div/p-checkbox/div/div[2]'
+        locate_AutoLifeFinance = '/html/body/app-root/div[1]/app-layout/div/div/div/app-process/div[2]/div/div[8]/app-terms-conditions/div/div[3]/div[2]/div/p-table/div/div/table/tbody/tr[2]/td[4]/p-checkbox/div/div[2]'
+
+        ################################################################  Execution  ################################################################################
         element = Press(locate_DealSource, attribute_xpath)
         time.sleep(1)
         element = Press(locate_CarDealer, attribute_xpath)
 
         element = Press(locate_DealerName, attribute_xpath)
-        time.sleep(1)
+        time.sleep(2)
         element = Type(locate_InputName, DealerName, attribute_xpath)
         time.sleep(1)
         element.send_keys(Keys.ARROW_DOWN)
         time.sleep(0.5)
         element.send_keys(Keys.ENTER)
-        time.sleep(1)
+        time.sleep(2)
 
         element = Press(locate_SalesName, attribute_xpath)
         time.sleep(1)
@@ -497,7 +718,6 @@ def FillTermsConditions():
         element = Press(locate_QuotesType, attribute_xpath)
         time.sleep(1)
         element = Press(locate_ETP, attribute_xpath)
-        time.sleep(0.5)
 
         element = Type(locate_InterestRate, InterestRate, attribute_xpath)
         time.sleep(1)
@@ -506,6 +726,104 @@ def FillTermsConditions():
         time.sleep(1)
 
         driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
+        time.sleep(1)
+
+        ######################################################################## Back to previous page  ############################################################################################
+        element = Press(locate_previous, attribute_xpath)
+        time.sleep(2)
+
+        ##################################################################################### quotation 1 ################################################################################################
+        element = Press(locate_Insurance, attribute_xpath)
+        time.sleep(1)
+        element = Press(locate_InsuranceYes, attribute_xpath)
+        time.sleep(0.5)
+
+        element = Press(locate_quotation, attribute_xpath)
+        time.sleep(3)
+
+        for window in driver.window_handles:                    
+              if  window != main_page:
+                    quote_page = window
+        
+        driver.switch_to.window(quote_page)
+        time.sleep(2)
+        
+        element = Press(locate_InsuranceStartYear, attribute_xpath)
+        time.sleep(1)
+        element = Press(locate_2022, attribute_xpath)
+        element = Press(locate_InsuranceCompany, attribute_xpath)
+        time.sleep(1)
+        element = Press(locate_RoadTax, attribute_xpath)
+        time.sleep(5)
+
+        action = ActionChains(driver)
+        element = LocateByAttribute(attribute_xpath, locate_ActualPremium)
+        time.sleep(1)
+        action.double_click(element).perform()
+        time.sleep(1)
+        element.send_keys(ActualPremium)
+        element = LocateByAttribute(attribute_xpath, locate_ChargedPremium)
+        time.sleep(1)
+        action.double_click(element).perform()
+        time.sleep(1)
+        element.send_keys(ChargedPremium)
+        time.sleep(1)
+        
+        element = Press(locate_save, attribute_xpath)
+        time.sleep(1)
+
+        driver.switch_to.window(main_page)
+        time.sleep(2)
+
+        driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
+        time.sleep(1)
+
+        ##################################################################################### quotation 2 ################################################################################################
+        element = Press(locate_Insurance2, attribute_xpath)
+        time.sleep(1)
+        element = Press(locate_InsuranceYes2, attribute_xpath)
+        time.sleep(1)
+        element = Press(locate_quotation2, attribute_xpath)
+        time.sleep(3)
+
+        for window in driver.window_handles:                    
+              if  window != main_page:
+                    quote_page = window
+        
+        driver.switch_to.window(quote_page)
+        time.sleep(2)
+
+        element = Press(locate_InsuranceStartYear2, attribute_xpath)
+        time.sleep(1)
+        element = Press(locate_2022_2, attribute_xpath)
+        
+        element = Press(locate_InsuranceCompany2, attribute_xpath)
+        time.sleep(1)
+        element = Press(locate_RoadTax2, attribute_xpath)
+        time.sleep(5)
+
+        element = LocateByAttribute(attribute_xpath, locate_ChargedPremium2)
+        time.sleep(1)
+        action.double_click(element).perform()
+        time.sleep(1)
+        element.send_keys(ChargedPremium2)
+        time.sleep(1)
+        
+        element = Press(locate_save2, attribute_xpath)
+        time.sleep(1)
+
+        ######################################################################## Back to Terms and Conditions ########################################################################
+        driver.switch_to.window(main_page)
+        time.sleep(2)
+        element = Press(locate_next, attribute_xpath)
+        time.sleep(2)
+
+        driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
+        time.sleep(1)
+
+        element = Press(locate_AutoLife, attribute_xpath)
+        time.sleep(1)
+        element = Press(locate_AutoLifeFinance, attribute_xpath)
         time.sleep(1)
 
         element = Type(locate_ApplyTerms, Terms, attribute_xpath)
@@ -518,12 +836,12 @@ def FillTermsConditions():
         time.sleep(1)
 
         element = Press(locate_next, attribute_xpath)
-        time.sleep(3)
+        time.sleep(4)
 
     except:
         driver.quit()
         sys.exit("fail to fill in terms and conditions")
-        
+
 
 def FillAttachment():
     try:
@@ -532,31 +850,28 @@ def FillAttachment():
         driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
         time.sleep(1)
         element = Press(locate_submit, attribute_xpath)
-        time.sleep(15)
+        # time.sleep(15)
 
     except:
         driver.quit()
-        sys.exit("fail to submit the case")
-        
+        sys.exit("fail to press the submit button")
 
-# def Search(ID_No):
-#     try:
-#         locate_SearchSidebar = '/html/body/app-root/div[1]/app-layout/div/app-side-menu/p-sidebar[2]/div/div/div/ul/li[3]/a/div/img'
-#         locate_SearchIdno = '/html/body/app-root/div[1]/app-layout/div/div/div/app-index/p-accordion/div/p-accordiontab/div/div[2]/div/div/div[1]/div[2]/div/div/input'
-#         locate_SearchButton = '/html/body/app-root/div[1]/app-layout/div/div/div/app-index/p-accordion/div/p-accordiontab/div/div[2]/div/div/div[6]/div/div/div/div/a[1]'
 
-#         element = Press(locate_SearchSidebar, attribute_xpath)
-#         time.sleep(3)
-
-#         element = Type(locate_SearchIdno, ID_No, attribute_xpath)
-#         time.sleep(1)
-
-#         element = Press(locate_SearchButton, attribute_xpath)
-#         time.sleep(10)
+def CheckAlert():
+    try:
+        locate_popup = '/html/body/app-root/div[1]/app-layout/p-toast/div/p-toastitem/div/div/div//*[contains(text(), "Submit Success")]'
+        text_name = 'Submit Success'
+        element = LocateByAttribute(attribute_xpath, locate_popup)
+        sleep(1)
+        if text_name in element.text:
+            print(element.text)
+            print("The case is submitted successfully", '\n')
+        else:
+            print("Not success", '\n')
     
-#     except:
-#         driver.quit()
-#         sys.exit("fail to search the case")
+    except:
+        driver.quit()
+        sys.exit("The case is failed")
 
 
 def GetEmailFromJson(obj):
@@ -575,45 +890,18 @@ def GetSqlData(cursor, index, by):
                         ORDER BY CreateTime DESC
                         """).fetchone()
 
+    sleep(2)
     CaseNo = SQL_data[0]
     CurrentApplicantId = SQL_data[2]
-    return CaseNo, CurrentApplicantId
+    StatusID = int(SQL_data[3])
+    return CaseNo, CurrentApplicantId, StatusID
 
 
 def GetApplicantEmail(url):
     response = requests.get(url)
     json_data = response.json()
     email = GetEmailFromJson(json_data)
-    sleep(1)
     return email
-
-
-def EnterIntoPCR(text_name):
-    try:
-        locate_main = '//*[@id="p-accordiontab-0-content"]/div'
-        element = LocateByText(locate_main, text_name)
-        print(element.text)
-        sleep(1)
-        element.click()
-        sleep(10)
-    
-    except:
-        # driver.quit()
-        # sys.exit("fail to enter the Premilinary Credit Review")
-        print("PCR")
-
-
-def EnterIntoSM(text_name):
-    try:
-        locate_main = '/html/body/app-root/div[1]/sigv-layout/div/div/div/app-todo/p-tabview/div/div/p-tabpanel[1]/div/p-accordion/div/p-accordiontab/div/div[2]'
-        element = LocateByText(locate_main, text_name)
-        sleep(1)
-        element.click()
-        sleep(10)
-
-    except:
-        driver.quit()
-        sys.exit("fail to enter the Sales Manager Review")
 
 
 def DataPreprocessing(df, id_isnull):
@@ -628,303 +916,28 @@ def DataPreprocessing(df, id_isnull):
     return df
 
 
-def AddCaseToDF(df, row_data, dic_column, CaseNo):
-    dic = {}
+# def AddCaseToDF(df, row_data, dic_column, CaseNo, status):
+#     dic = {}
+#     date = datetime.today().strftime('%Y-%m-%d')
+
+#     for i in range(len(dic_column)):
+#         dic[dic_column[str(i)]] = row_data[i]
+
+#     df = df.append(dic, ignore_index=True)
+#     return df
+
+
+def RowDataToDF(row_no, dataframe, dic_column):
     date = datetime.today().strftime('%Y-%m-%d')
-    status = 1
+    row_data = dataframe.iloc[row_no]
+    num_column = dataframe.shape[1]
+    dictionary = {}
 
-    for i in range(len(dic_column)):
-        dic[dic_column[str(i)]] = row_data[i]
+    for i in range(num_column):
+        dictionary[dic_column[str(i)]] = row_data[i]
 
-    df = df.append(dic, ignore_index=True)
-    df['CaseNo'].iloc[len(df)-1] = CaseNo
-    df['Date'].iloc[len(df)-1] = date
-    df['Status'].iloc[len(df)-1] = status
-    return df
-
-
-def EnterCase(text_name):
-    try:
-        locate_body = '/html/body/app-root/div[1]/sigv-layout/div/div/div/app-credit-operations-todo-list/sigv-data-table/div/p-table/div/div[2]/div/div[2]'
-        element = LocateByText(locate_body, text_name)
-        sleep(0.5)
-        element.click()
-        sleep(12)
-    
-    except:
-        # driver.quit()
-        # sys.exit("fail to enter the case")
-        print("AAA")
-
-
-def CreditInstructions():
-    try:
-        locate_CreditInstructions = '/html/body/app-root/div[1]/sigv-layout/div/div/div/app-credit-operations-detail/p-tabview/div/ul/li[2]/a/span[1]'
-        locate_CreditComment = '/html/body/app-root/div[1]/sigv-layout/div/div/div/app-credit-operations-detail/p-tabview/div/div/p-tabpanel[2]/div/app-credit-instructions/div/div[1]/div/div/p-dropdown/div/div[2]/span'
-        locate_RecommendAppro = '/html/body/app-root/div[1]/sigv-layout/div/div/div/app-credit-operations-detail/p-tabview/div/div/p-tabpanel[2]/div/app-credit-instructions/div/div[1]/div/div/p-dropdown/div/div[3]/div/ul/p-dropdownitem[1]/li'
-        locate_InstructionsBlock = '/html/body/app-root/div[1]/sigv-layout/div/div/div/app-credit-operations-detail/p-tabview/div/div/p-tabpanel[2]/div/app-credit-instructions/div/div[2]/app-instruction/div/div/div[2]/div/textarea'
-        locate_decision = '/html/body/app-root/div[1]/sigv-layout/div/div/div/app-credit-operations-detail/p-tabview/div/div/p-tabpanel[2]/div/app-credit-instructions/div/div[2]/app-instruction/div/div/div[2]/div/div'
-        locate_random = '/html/body/app-root/div[1]/sigv-layout/div/div/div/app-credit-operations-detail/p-tabview/div/div/p-tabpanel[2]/div/app-credit-instructions/div/div[1]'
-        locate_CustomerInformation = '//*[@id="version-comparison_customer-information"]'
-        text_name = 'Approval'
-        
-        driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
-        sleep(1)
-        element = Press(locate_CreditInstructions, attribute_xpath)
-        sleep(1)
-        element = Press(locate_CreditComment, attribute_xpath)
-        sleep(1)
-        element = Press(locate_RecommendAppro, attribute_xpath)
-        sleep(0.5)
-        element = Press(locate_InstructionsBlock, attribute_xpath)
-        sleep(1)
-        element = LocateByText(locate_decision, text_name)
-        sleep(0.5)
-        element.click()
-        element = Press(locate_random, attribute_xpath)
-        sleep(0.5)
-        element = Press(locate_CustomerInformation, attribute_xpath)
-        sleep(5)
-        
-    except:
-        driver.quit()
-        sys.exit("fail to fill in the Credit Instructions")
-
-
-def SM_CreditInstructions():
-    try:
-        locate_CreditInstructions = '/html/body/app-root/div[1]/sigv-layout/div/div/div/app-credit-operations-detail/p-tabview/div/ul/li[2]/a/span[1]'
-        locate_CreditComment = '/html/body/app-root/div[1]/sigv-layout/div/div/div/app-credit-operations-detail/p-tabview/div/div/p-tabpanel[2]/div/app-credit-instructions/div/div[1]/div/div/p-dropdown/div/div[2]/span'
-        locate_RecommendAppro = '/html/body/app-root/div[1]/sigv-layout/div/div/div/app-credit-operations-detail/p-tabview/div/div/p-tabpanel[2]/div/app-credit-instructions/div/div[1]/div/div/p-dropdown/div/div[3]/div/ul/p-dropdownitem[1]/li'
-        locate_InstructionsBlock = '/html/body/app-root/div[1]/sigv-layout/div/div/div/app-credit-operations-detail/p-tabview/div/div/p-tabpanel[2]/div/app-credit-instructions/div/div[2]/app-instruction/div/div/div[2]/div/textarea'
-        locate_decision = '/html/body/app-root/div[1]/sigv-layout/div/div/div/app-credit-operations-detail/p-tabview/div/div/p-tabpanel[2]/div/app-credit-instructions/div/div[2]/app-instruction/div/div/div[2]/div/div'
-        locate_random = '/html/body/app-root/div[1]/sigv-layout/div/div/div/app-credit-operations-detail/p-tabview/div/div/p-tabpanel[2]/div/app-credit-instructions/div/div[1]'
-        # locate_submit = '/html/body/app-root/div[1]/sigv-layout/div/div/div/app-credit-operations-detail/sigv-fixed-bottom-panel/div/div/div/div/sigv-bpm-btn/div/button[1]/span'
-
-        driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
-        sleep(1)
-
-        element = Press(locate_CreditInstructions, attribute_xpath)
-        sleep(1)
-        element = Press(locate_CreditComment, attribute_xpath)
-        sleep(1)
-        element = Press(locate_RecommendAppro, attribute_xpath)
-        sleep(0.5)
-        element = Press(locate_InstructionsBlock, attribute_xpath)
-        sleep(1)
-        element = LocateByText(locate_decision, text_name)
-        sleep(0.5)
-        element.click()
-        element = Press(locate_random, attribute_xpath)
-        sleep(0.5)
-
-        driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
-        sleep(1)
-
-        # element = Press(locate_submit, attribute_xpath)
-        # sleep(10)
-
-    except:
-        driver.quit()
-        sys.exit("fail to fill in the Sales Manager Credit Instructions")
-
-    
-
-def CreditCustomerInformation():
-    try:
-        locate_EducationLvl = '/html/body/app-root/div[1]/sigv-layout/div/div/div/app-credit-operations-detail/p-tabview/div/div/p-tabpanel[3]/div/app-credit-operations-information/div[2]/app-information-individual/div[1]/div[4]/div[1]/div/div/p-dropdown/div/div[2]/span'
-        locate_master = '/html/body/div/div/ul/p-dropdownitem[1]/li/span[1]'
-        locate_LengthOfResidence = '/html/body/app-root/div[1]/sigv-layout/div/div/div/app-credit-operations-detail/p-tabview/div/div/p-tabpanel[3]/div/app-credit-operations-information/div[2]/app-information-individual/div[1]/div[4]/div[3]/div/div/p-inputnumber/span/input'
-        locate_collateral = '/html/body/app-root/div[1]/sigv-layout/div/div/div/app-credit-operations-detail/p-tabview/div/ul/li[6]/a/span[1]'
-        locate_MobilePhone2 = '/html/body/app-root/div[1]/sigv-layout/div/div/div/app-credit-operations-detail/p-tabview/div/div/p-tabpanel[3]/div/app-credit-operations-information/div[2]/app-information-individual/div[2]/div[1]/div[2]/div/app-phone/div[2]/input' 
-        LengthOfResidence = 1
-        action = ActionChains(driver)
-
-        element = LocateByAttribute(attribute_xpath, locate_MobilePhone2)
-        sleep(0.5)
-        action.move_to_element(element).perform()
-        sleep(1)
-        element = Press(locate_EducationLvl, attribute_xpath)
-        sleep(1)
-        element = Press(locate_master, attribute_xpath)
-        sleep(0.5)
-        element = Type(locate_LengthOfResidence, LengthOfResidence, attribute_xpath)
-        sleep(1)
-        element = Press(locate_collateral, attribute_xpath)
-        sleep(5)
-
-    except:
-        driver.quit()
-        sys.exit("fail to fill in the Credit Customer Information")
-
-
-def CreditCollateral():
-    locate_CollateralType = '/html/body/app-root/div[1]/sigv-layout/div/div/div/app-credit-operations-detail/p-tabview/div/div/p-tabpanel[6]/div/app-credit-operations-security-asset/div/div/div/div/div/div/div/p-dropdown/div/div[2]/span'
-    locate_vehicle = '/html/body/div/div/ul/p-dropdownitem[1]/li/span[1]'
-    locate_purpose = '/html/body/app-root/div[1]/sigv-layout/div/div/div/app-credit-operations-detail/p-tabview/div/div/p-tabpanel[6]/div/app-credit-operations-security-asset/p-card/div/div[2]/div/app-vehicle-motor/div/div[1]/div[4]/div/p-dropdown/div/div[2]/span'
-    locate_selfuse = '/html/body/div/div/ul/p-dropdownitem[1]/li'
-    locate_VehicleType = '/html/body/app-root/div[1]/sigv-layout/div/div/div/app-credit-operations-detail/p-tabview/div/div/p-tabpanel[6]/div/app-credit-operations-security-asset/p-card/div/div[2]/div/app-vehicle-motor/div/div[2]/div[3]/div/p-dropdown/div/div[2]/span'
-    locate_van = '/html/body/div/div/ul/p-dropdownitem[2]/li/span[1]'
-    locate_displacement = '/html/body/app-root/div[1]/sigv-layout/div/div/div/app-credit-operations-detail/p-tabview/div/div/p-tabpanel[6]/div/app-credit-operations-security-asset/p-card/div/div[2]/div/app-vehicle-motor/div/div[4]/div[2]/div/input'
-    locate_FuelType = '/html/body/app-root/div[1]/sigv-layout/div/div/div/app-credit-operations-detail/p-tabview/div/div/p-tabpanel[6]/div/app-credit-operations-security-asset/p-card/div/div[2]/div/app-vehicle-motor/div/div[4]/div[4]/div/p-dropdown/div/div[2]/span'
-    locate_diesel = '/html/body/div/div/ul/p-dropdownitem[1]/li/span[1]'
-
-    locate_OfficerAppraisalPrice = '/html/body/app-root/div[1]/sigv-layout/div/div/div/app-credit-operations-detail/p-tabview/div/div/p-tabpanel[6]/div/app-credit-operations-security-asset/p-card/div/div[2]/div/app-vehicle-motor/div/div[7]/div[3]/div/div[2]/sigv-currency/div/p-inputnumber/span/input'
-    locate_AppraisalMethod = '/html/body/app-root/div[1]/sigv-layout/div/div/div/app-credit-operations-detail/p-tabview/div/div/p-tabpanel[6]/div/app-credit-operations-security-asset/p-card/div/div[2]/div/app-vehicle-motor/div/div[7]/div[4]/div/p-dropdown/div/div[2]/span'
-    locate_internet = '/html/body/div/div/ul/p-dropdownitem[1]/li/span[1]'
-    locate_RegistrationType = '/html/body/app-root/div[1]/sigv-layout/div/div/div/app-credit-operations-detail/p-tabview/div/div/p-tabpanel[6]/div/app-credit-operations-security-asset/p-card/div/div[2]/div/app-vehicle-motor/div/div[9]/div[4]/div/p-dropdown/div/div[2]/span'
-    locate_TitleTransfer = '/html/body/div/div/ul/p-dropdownitem[1]/li/span[1]'
-
-    locate_CreditReport = '/html/body/app-root/div[1]/sigv-layout/div/div/div/app-credit-operations-detail/p-tabview/div/ul/li[8]/a/span[1]'
-
-    displacement = 1
-    OfficerAppraisalPrice = 99999
-    action = ActionChains(driver)
-
-    element = Press(locate_CollateralType, attribute_xpath)
-    sleep(1)
-    element = Press(locate_vehicle, attribute_xpath)
-
-    element = Press(locate_purpose, attribute_xpath)
-    sleep(1)
-    element = Press(locate_selfuse, attribute_xpath)
-
-    element = Press(locate_VehicleType, attribute_xpath)
-    sleep(1)
-    element = Press(locate_van, attribute_xpath)
-
-    element = Type(locate_displacement, displacement, attribute_xpath)
-    sleep(1)
-
-    element = Press(locate_FuelType, attribute_xpath)
-    sleep(1)
-    element = Press(locate_diesel, attribute_xpath)
-    sleep(0.5)
-
-    driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
-    sleep(1)
-
-    Type(locate_OfficerAppraisalPrice, OfficerAppraisalPrice, attribute_xpath)
-    sleep(1)
-
-    element = Press(locate_AppraisalMethod, attribute_xpath)
-    sleep(1)
-    element = Press(locate_internet, attribute_xpath)
-
-    element = Press(locate_RegistrationType, attribute_xpath)
-    sleep(1)
-    element = Press(locate_TitleTransfer, attribute_xpath)
-
-    element = LocateByAttribute(attribute_xpath, locate_CreditReport)
-    sleep(1)
-    action.move_to_element(element).perform()
-    sleep(1)
-    element.click()
-    sleep(5)
-
-
-def CreditPreliminaryReport():
-    locate_NegativeRemark = '/html/body/app-root/div[1]/sigv-layout/div/div/div/app-credit-operations-detail/p-tabview/div/div/p-tabpanel[8]/div/app-credit-operations-report/app-sub-side-menu/div[2]/div[1]/app-scoring/div/div[2]/div/div/div/p-table/div/div/table/tbody/tr[12]/td[3]/p-dropdown/div/span'
-    locate_age = '/html/body/app-root/div[1]/sigv-layout/div/div/div/app-credit-operations-detail/p-tabview/div/div/p-tabpanel[8]/div/app-credit-operations-report/app-sub-side-menu/div[2]/div[1]/app-scoring/div/div[2]/div/div/div/p-table/div/div/table/tbody/tr[1]/td[3]/p-dropdown/div/div[2]/span'
-    locate_61 = '/html/body/div/div/ul/p-dropdownitem[1]/li/span[1]'
-    locate_TypeOfBiz = '/html/body/app-root/div[1]/sigv-layout/div/div/div/app-credit-operations-detail/p-tabview/div/div/p-tabpanel[8]/div/app-credit-operations-report/app-sub-side-menu/div[2]/div[1]/app-scoring/div/div[2]/div/div/div/p-table/div/div/table/tbody/tr[3]/td[3]/p-dropdown/div/div[2]/span'
-    locate_IPO = '/html/body/div/div/ul/p-dropdownitem[1]/li/span[1]'
-    locate_position = '/html/body/app-root/div[1]/sigv-layout/div/div/div/app-credit-operations-detail/p-tabview/div/div/p-tabpanel[8]/div/app-credit-operations-report/app-sub-side-menu/div[2]/div[1]/app-scoring/div/div[2]/div/div/div/p-table/div/div/table/tbody/tr[4]/td[3]/p-dropdown/div/div[2]/span'
-    locate_specialist = '/html/body/div/div/ul/p-dropdownitem[1]/li/span[1]'
-    locate_PeriodEmployment = '/html/body/app-root/div[1]/sigv-layout/div/div/div/app-credit-operations-detail/p-tabview/div/div/p-tabpanel[8]/div/app-credit-operations-report/app-sub-side-menu/div[2]/div[1]/app-scoring/div/div[2]/div/div/div/p-table/div/div/table/tbody/tr[5]/td[3]/p-dropdown/div/div[2]'
-    locate_Over5Y = '/html/body/div/div/ul/p-dropdownitem[1]/li/span[1]'
-
-    locate_bankruptcy = '/html/body/app-root/div[1]/sigv-layout/div/div/div/app-credit-operations-detail/p-tabview/div/div/p-tabpanel[8]/div/app-credit-operations-report/app-sub-side-menu/div[2]/div[1]/app-scoring/div/div[2]/div/div/div/p-table/div/div/table/tbody/tr[20]/td[3]/p-dropdown/div/span'
-    locate_HirerNature = '/html/body/app-root/div[1]/sigv-layout/div/div/div/app-credit-operations-detail/p-tabview/div/div/p-tabpanel[8]/div/app-credit-operations-report/app-sub-side-menu/div[2]/div[1]/app-scoring/div/div[2]/div/div/div/p-table/div/div/table/tbody/tr[14]/td[3]/p-dropdown/div/div[2]/span'
-    locate_individual = '/html/body/div/div/ul/p-dropdownitem[1]/li/span[1]'
-    locate_1stBuyerProject = '/html/body/app-root/div[1]/sigv-layout/div/div/div/app-credit-operations-detail/p-tabview/div/div/p-tabpanel[8]/div/app-credit-operations-report/app-sub-side-menu/div[2]/div[1]/app-scoring/div/div[2]/div/div/div/p-table/div/div/table/tbody/tr[15]/td[3]/p-dropdown/div/div[2]/span'
-    locate_N = '/html/body/div/div/ul/p-dropdownitem[1]/li'
-    locate_DriverLicense = '/html/body/app-root/div[1]/sigv-layout/div/div/div/app-credit-operations-detail/p-tabview/div/div/p-tabpanel[8]/div/app-credit-operations-report/app-sub-side-menu/div[2]/div[1]/app-scoring/div/div[2]/div/div/div/p-table/div/div/table/tbody/tr[16]/td[3]/p-dropdown/div/div[2]/span'
-    locate_Y = '/html/body/div/div/ul/p-dropdownitem[2]'
-    locate_BuyingPurpose = '/html/body/app-root/div[1]/sigv-layout/div/div/div/app-credit-operations-detail/p-tabview/div/div/p-tabpanel[8]/div/app-credit-operations-report/app-sub-side-menu/div[2]/div[1]/app-scoring/div/div[2]/div/div/div/p-table/div/div/table/tbody/tr[17]/td[3]/p-dropdown/div/div[2]/span'
-    locate_NonBusiness = '/html/body/div/div/ul/p-dropdownitem[1]/li/span[1]'
-
-    locate_get = '/html/body/app-root/div[1]/sigv-layout/div/div/div/app-credit-operations-detail/p-tabview/div/div/p-tabpanel[8]/div/app-credit-operations-report/app-sub-side-menu/div[2]/div[1]/app-scoring/div/div[1]/div/div/div/p-table/div/div/table/thead/tr/th[3]/div/button/span'
-    locate_submit = '/html/body/app-root/div[1]/sigv-layout/div/div/div/app-credit-operations-detail/sigv-fixed-bottom-panel/div/div/div/div/sigv-bpm-btn/div/button[1]/span'
-    locate_CreditReport = '/html/body/app-root/div[1]/sigv-layout/div/div/div/app-credit-operations-detail/p-tabview/div/ul/li[8]/a/span[1]'
-    # locate_random = '/html/body/app-root/div[1]/sigv-layout/div/div/div/app-credit-operations-detail/p-tabview/div/div'
-    action = ActionChains(driver)
-
-    element = LocateByAttribute(attribute_xpath, locate_NegativeRemark)
-    sleep(0.5)
-    action.move_to_element(element).perform()
-    sleep(1)
-
-    element = Press(locate_age, attribute_xpath)
-    sleep(1)
-    element = Press(locate_61, attribute_xpath)
-
-    element = Press(locate_TypeOfBiz, attribute_xpath)
-    sleep(1)    
-    element = Press(locate_IPO, attribute_xpath)
-
-    element = Press(locate_position, attribute_xpath)
-    sleep(1)
-    element = Press(locate_specialist, attribute_xpath)
-
-    element = Press(locate_PeriodEmployment, attribute_xpath)
-    sleep(1)
-    element = Press(locate_Over5Y, attribute_xpath)
-    sleep(0.5)
-
-    element = LocateByAttribute(attribute_xpath, locate_bankruptcy)
-    sleep(0.5)
-    action.move_to_element(element).perform()
-    sleep(1)
-
-    element = Press(locate_HirerNature, attribute_xpath)
-    sleep(1)
-    element = Press(locate_individual, attribute_xpath)
-
-    element = Press(locate_1stBuyerProject, attribute_xpath)
-    sleep(1)
-    element = Press(locate_N, attribute_xpath)
-
-    element = Press(locate_DriverLicense, attribute_xpath)
-    sleep(1)
-    element = Press(locate_Y, attribute_xpath)
-
-    element = Press(locate_BuyingPurpose, attribute_xpath)
-    sleep(1)
-    element = Press(locate_NonBusiness, attribute_xpath)
-    sleep(0.5)
-
-    element = LocateByAttribute(attribute_xpath, locate_CreditReport)
-    sleep(0.5)
-    action.move_to_element(element).perform()
-    sleep(1)
-    element = Press(locate_get, attribute_xpath)
-    sleep(1)
-
-    driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
-    sleep(1)
-    
-    element = Press(locate_submit, attribute_xpath)
-    sleep(15)
-
-
-def LogOut():
-    locate_LogOutBlock = '/html/body/app-root/div[1]/sigv-layout/sigv-header/div/div[2]/button[2]'
-    locate_LogOutButton = '/html/body/app-root/div[1]/sigv-layout/sigv-header/div/div[3]/div/div/button/span'
-
-    element = Press(locate_LogOutBlock, attribute_xpath)
-    sleep(1)
-    element = Press(locate_LogOutButton, attribute_xpath)
-    sleep(1)
-
-
-def SM_Submit():
-    locate_submit = '/html/body/app-root/div[1]/sigv-layout/div/div/div/app-credit-operations-detail/sigv-fixed-bottom-panel/div/div/div/div/sigv-bpm-btn/div/button[1]/span'
-
-    element = Press(locate_submit, attribute_xpath)
-    sleep(10)
-    # driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
-    # sleep(1)
+    df_row = pd.DataFrame(dictionary, index=[0])
+    return df_row
 
 
 
@@ -933,8 +946,14 @@ if __name__ == "__main__":
 
     ############################################################ Submission ####################################################################################
     # read excel and convert to dataframe
-    file_path = '/Users/kian199887/Downloads/github_francistan88/DSA/automatic_testing/submission_information.xlsx'
+    file_path = '/Users/kian199887/Downloads/github_francistan88/DSA/automatic_testing/submission_import.xlsx'
+    export_file = '/Users/kian199887/Downloads/github_francistan88/DSA/automatic_testing/submission_export.xlsx'
     df = pd.read_excel(file_path)
+    book = load_workbook(export_file)
+    writer = pd.ExcelWriter(export_file, engine='openpyxl', date_format='yyyy-mm-dd')
+    writer.book = book
+    writer.sheets = {ws.title: ws for ws in book.worksheets}
+    start_row = writer.sheets['fuck'].max_row
     ID_isnull = df['IdNo'].isnull()
     column_name = {
         '0': 'Date',
@@ -946,20 +965,22 @@ if __name__ == "__main__":
         '6': 'Mobile Phone',
         '7': 'CIF No(Corp)',
         '8': 'Status',
-        '9': 'Product Name',
-        '10': 'Attach pdf'
+        '9': 'Product Name'
     } 
+    login_email = 'nabiladibidris@chailease.com.my'
+    CaseType = 'SC_Case'
 
     # remove'.0' for all and add '0' in front of the Mobile Phone
     df = DataPreprocessing(df, ID_isnull)
 
-    # log in part:
-    login_email = 'nabiladibidris@chailease.com.my'
-    CaseType = 'SC_Case'
 
-    # Case related information:
-    RowNo = 5
-    row_data = df.iloc[RowNo]
+    # Get row data:
+    print("\n")
+    RowNo = int(input("Please input the row number from the excel file submission_import.xlsx: "))
+    while RowNo != 0 and RowNo != 2:
+        print("The case data can not be applied to SC008 or SC0010")
+        RowNo = int(input("Please input another row number from the excel file submission_import.xlsx: "))
+    df_row = RowDataToDF(RowNo, df, column_name)
     ID_No = int(df['IdNo'].iloc[RowNo])
     PersonalID = int(df['Guarantor Person(Indi)'].iloc[RowNo])
     CorporateID = df['Guarantor Person(Corpo)'].iloc[RowNo]
@@ -970,27 +991,31 @@ if __name__ == "__main__":
     s = Service('./chromedriver')
     driver = webdriver.Chrome(service=s)
     driver.maximize_window()
-    # url = 'https://sit01-websubmission.chailease.com.my/websubmission-ui/'
-    # driver.get(url)
-    # time.sleep(3)
+    url = 'https://sit01-websubmission.chailease.com.my/websubmission-ui/'
+    driver.get(url)
+    time.sleep(3)
+    main_page = driver.current_window_handle
 
-    # LogIn(login_email)    
+    # Submit
+    LogIn(login_email)    
 
-    # CreateCase(CaseType)
+    CreateCase(CaseType)
 
-    # FillCustomerInformation(ID_No)
+    FillCustomerInformation(ID_No)
 
-    # FillEmployment()
+    FillEmployment()
 
-    # FillGuarantorPerson(PersonalID, CorporateID, CustomerName, MobilePhone)
+    FillGuarantorPerson(PersonalID, CorporateID, CustomerName, MobilePhone)
 
-    # FillContactPerson()
+    FillContactPerson()
 
-    # FillCollateral()
+    FillCollateral(main_page)
 
-    # FillTermsConditions()
+    FillTermsConditions(main_page)
 
-    # FillAttachment()
+    FillAttachment()
+
+    CheckAlert()
 
 
     ############################################################# Preliminary Credit Review ####################################################################################
@@ -1003,82 +1028,24 @@ if __name__ == "__main__":
     cursor = cnxn.cursor()
     
     # get CaseNo, ApplicantId
-    # by = 'IdNo'
-    # CaseNo, CurrentApplicantId = GetSqlData(cursor, ID_No, by)
-    # sleep(1)
-    
-    # write the case information to dataframe
-    # df = AddCaseToDF(df, row_data, column_name, CaseNo)
-    # print('\n\n')
-    # print(df)
-    # print('\n\n')
-    
-    # get credit officer's Email through API
-    CurrentApplicantId = 'MY00329'
-    CaseNo = 'H227000803VA2'
-    api_url = f"http://10.164.55.100:8000/dev-backdoor/system-management/Rbac/UserProfile/{CurrentApplicantId}"
-    OfficerEmail = 'MichaelLin@chailease.com.my.bak'
-
-    # log in preliminary credit review
-    credit_url = 'https://sit01-creditratingscales.chailease.com.my/creditratingscales-ui/'
-    text_name = "Preliminary"
-
-    driver.get(credit_url)
-    sleep(6)
-
-    Credit_LogIn(OfficerEmail)
-    
-    EnterIntoPCR(text_name)
-
-    EnterCase(CaseNo)
-    
-    CreditInstructions()
- 
-    CreditCustomerInformation()
-
-    new_file = '/Users/kian199887/Downloads/github_francistan88/DSA/automatic_testing/case_submission.xlsx'
-    df.to_excel(new_file, index=False)
-    
-    CreditCollateral()
-
-    CreditPreliminaryReport()
-
-
-    ############################################################# Sales Manager Confirming Stage ####################################################################################
-    # get CaseNo, ApplicantId
-    by = 'CaseNo'
-    CaseNo, CurrentApplicantId = GetSqlData(cursor, CaseNo, by)
+    by = 'IdNo'
+    CaseNo, CurrentApplicantId, StatusId = GetSqlData(cursor, ID_No, by)
     sleep(1)
+
+    date = datetime.today().strftime('%Y-%m-%d')
+    df_row['Date'].loc[0] = date
+    df_row['CaseNo'].loc[0] = CaseNo
+    df_row['Status'].loc[0] = StatusId
+    
+    # add the case data to the excel file
+    print('\n')
+    print(df_row)
+    print('\n')
+    df_row.to_excel(writer, sheet_name='fuck', startrow=start_row, index=False, header=False)
+    writer.save()
 
     # get credit officer's Email through API
     api_url = f"http://10.164.55.100:8000/dev-backdoor/system-management/Rbac/UserProfile/{CurrentApplicantId}"
     OfficerEmail = GetApplicantEmail(api_url)
-
-    # log in Sales Manager credit review
-    text_name = "Sales"
-
-    LogOut()
-
-    Credit_LogIn(OfficerEmail)
-
-    EnterIntoSM(text_name)
-
-    EnterCase(CaseNo)
-
-    SM_CreditInstructions()
-    
-    SM_Submit()
-
-
-    ############################################################# Secondary Credit Review Stage ####################################################################################
-    # # get CaseNo, ApplicantId
-    # CaseNo, CurrentApplicantId = GetSqlData(cursor, CaseNo, by)
-    # sleep(1)
-
-    # # get credit officer's Email through API
-    # api_url = f"http://10.164.55.100:8000/dev-backdoor/system-management/Rbac/UserProfile/{CurrentApplicantId}"
-    # OfficerEmail = GetApplicantEmail(api_url)
-
-    # # log in Sales Manager credit review
-    # text_name = "Sales"
-
+    print(OfficerEmail)
+    print('\n')
