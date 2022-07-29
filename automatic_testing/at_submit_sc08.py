@@ -69,7 +69,7 @@ def LogIn(login_email):
         time.sleep(3)
 
     except:
-        driver.quit()
+        # driver.quit()
         sys.exit("fail to log in")
 
 
@@ -111,7 +111,7 @@ def CreateCase(CaseType):
         time.sleep(5)
 
     except:
-        driver.quit()
+        # driver.quit()
         sys.exit("fail to create case")
 
 
@@ -130,7 +130,7 @@ def FillCustomerInformation(ID_No):
         element = Type(locate_IDNO, ID_No, attribute_xpath)
         time.sleep(1)
         element = Press(locate_random, attribute_xpath) 
-        time.sleep(5)
+        time.sleep(8)
         element = Press(locate_nationality, attribute_xpath)
         sleep(1)
         element = Press(locate_citizen, attribute_xpath)
@@ -145,7 +145,7 @@ def FillCustomerInformation(ID_No):
         time.sleep(3)
 
     except:
-        driver.quit()
+        # driver.quit()
         sys.exit("fail to fill in customer information")
 
 
@@ -194,6 +194,7 @@ def FillGuarantorPerson(PersonalID, CorporateID, CustomerName, MobilePhone):
         locate_CorporateLegalRelationship = '/html/body/app-root/div[1]/app-layout/div/div/div/app-process/div[2]/div/div[5]/app-guarantor-person/div[1]/div[2]/div[2]/form/div[1]/div[3]/p-dropdown/div/span'
         locate_PersonalRelationship = '/html/body/app-root/div[1]/app-layout/div/div/div/app-process/div[2]/div/div[5]/app-guarantor-person/div[1]/div[1]/div[2]/form/div[2]/div[2]/p-dropdown/div/div[2]/span'
         locate_CorporateRelationship = '/html/body/app-root/div[1]/app-layout/div/div/div/app-process/div[2]/div/div[5]/app-guarantor-person/div[1]/div[2]/div[2]/form/div[2]/div[2]/p-dropdown/div/div[2]/span'
+        locate_random = '/html/body/app-root/div[1]/app-layout/div/div/div/app-process/div[2]/div/div[5]/app-guarantor-person/div[1]/div[2]/div[1]'
 
         locate_PersonalRace = '/html/body/app-root/div[1]/app-layout/div/div/div/app-process/div[2]/div/div[5]/app-guarantor-person/div[1]/div[1]/div[2]/form/div[3]/div[1]/p-dropdown/div/div[2]/span'
         locate_PersonalMalay = '/html/body/app-root/div[1]/app-layout/div/div/div/app-process/div[2]/div/div[5]/app-guarantor-person/div[1]/div[1]/div[2]/form/div[3]/div[1]/p-dropdown/div/div[3]/div/ul/p-dropdownitem[1]/li'
@@ -243,7 +244,7 @@ def FillGuarantorPerson(PersonalID, CorporateID, CustomerName, MobilePhone):
         element = Type(locate_CorporateID, CorporateID, attribute_xpath)
         time.sleep(0.5)
 
-        element = Press(locate_CorporateLegalRelationship, attribute_xpath)
+        element = Press(locate_random, attribute_xpath)
         time.sleep(1)
         element = Press(locate_CorporateLegalRelationship, attribute_xpath)
         time.sleep(1)
@@ -321,7 +322,7 @@ def FillContactPerson():
         time.sleep(3)
 
     except:
-        driver.quit()
+        # driver.quit()
         sys.exit("fail to fill in contact person")
        
 
@@ -644,7 +645,7 @@ def FillCollateral(main_page):
         time.sleep(4)
 
     except:
-        driver.quit()
+        # driver.quit()
         sys.exit("fail to fill in the collateral")
 
 
@@ -839,7 +840,7 @@ def FillTermsConditions(main_page):
         time.sleep(4)
 
     except:
-        driver.quit()
+        # driver.quit()
         sys.exit("fail to fill in terms and conditions")
 
 
@@ -853,7 +854,7 @@ def FillAttachment():
         # time.sleep(15)
 
     except:
-        driver.quit()
+        # driver.quit()
         sys.exit("fail to press the submit button")
 
 
@@ -870,7 +871,7 @@ def CheckAlert():
             print("Not success", '\n')
     
     except:
-        driver.quit()
+        # driver.quit()
         sys.exit("The case is failed")
 
 
@@ -953,7 +954,7 @@ if __name__ == "__main__":
     writer = pd.ExcelWriter(export_file, engine='openpyxl', date_format='yyyy-mm-dd')
     writer.book = book
     writer.sheets = {ws.title: ws for ws in book.worksheets}
-    start_row = writer.sheets['fuck'].max_row
+    start_row = writer.sheets['工作表1'].max_row
     ID_isnull = df['IdNo'].isnull()
     column_name = {
         '0': 'Date',
@@ -1041,7 +1042,7 @@ if __name__ == "__main__":
     print('\n')
     print(df_row)
     print('\n')
-    df_row.to_excel(writer, sheet_name='fuck', startrow=start_row, index=False, header=False)
+    df_row.to_excel(writer, sheet_name='工作表1', startrow=start_row, index=False, header=False)
     writer.save()
 
     # get credit officer's Email through API
