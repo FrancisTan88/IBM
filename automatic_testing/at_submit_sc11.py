@@ -48,6 +48,12 @@ def LocateByAttribute(attribute, locate_name):
 #     return element
 
 
+def GetElementText(locate_name):
+    # text = WebDriverWait(driver, 10).until(EC.visibility_of_element_located((By.XPATH, locate_name))).text
+    text = WebDriverWait(driver, 10).until(EC.visibility_of_element_located((By.XPATH, locate_name))).get_attribute("value")
+    return text
+
+
 def Press(locate_name, attribute):
     element = LocateByAttribute(attribute, locate_name)
     element.click()
@@ -254,8 +260,11 @@ def FillGuarantorPerson(PersonalID, CorporateID, CustomerName, MobilePhone):
         time.sleep(1)
         element = Press(locate_Sister, attribute_xpath)
 
-        element = Type(locate_CustomerName, CustomerName, attribute_xpath)
-        time.sleep(1)
+        text = GetElementText(locate_CustomerName)
+        if not text: 
+            element = Type(locate_CustomerName, CustomerName, attribute_xpath)
+            time.sleep(1)
+        
         element = Type(locate_MobilePhone, MobilePhone, attribute_xpath)
         time.sleep(1)
 
@@ -448,7 +457,7 @@ def FillTermsConditions():
         locate_DealerName = '/html/body/app-root/div[1]/app-layout/div/div/div/app-process/div[2]/div/div[8]/app-terms-conditions/div/div[1]/div[2]/div[2]/p-dropdown/div/div[2]/span'
         locate_InputName = '/html/body/app-root/div[1]/app-layout/div/div/div/app-process/div[2]/div/div[8]/app-terms-conditions/div/div[1]/div[2]/div[2]/p-dropdown/div/div[3]/div[1]/div/input'
         locate_SalesName = '/html/body/app-root/div[1]/app-layout/div/div/div/app-process/div[2]/div/div[8]/app-terms-conditions/div/div[1]/div[2]/div[3]/p-dropdown/div/div[2]/span'
-        locate_PAIDAIAH = '/html/body/app-root/div[1]/app-layout/div/div/div/app-process/div[2]/div/div[8]/app-terms-conditions/div/div[1]/div[2]/div[3]/p-dropdown/div/div[3]/div/ul/p-dropdownitem[2]/li'
+        locate_PAIDAIAH = '/html/body/app-root/div[1]/app-layout/div/div/div/app-process/div[2]/div/div[8]/app-terms-conditions/div/div[1]/div[2]/div[3]/p-dropdown/div/div[3]/div/ul/p-dropdownitem[1]/li'
         locate_QuotesType = '/html/body/app-root/div[1]/app-layout/div/div/div/app-process/div[2]/div/div[8]/app-terms-conditions/div/div[1]/div[3]/div[1]/p-dropdown/div/div[2]/span'
         locate_ETP = '/html/body/app-root/div[1]/app-layout/div/div/div/app-process/div[2]/div/div[8]/app-terms-conditions/div/div[1]/div[3]/div[1]/p-dropdown/div/div[3]/div/ul/p-dropdownitem/li'
         locate_InterestRate = '/html/body/app-root/div[1]/app-layout/div/div/div/app-process/div[2]/div/div[8]/app-terms-conditions/div/div[1]/div[3]/div[2]/div[2]/p-inputnumber/span/input'
