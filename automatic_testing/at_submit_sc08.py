@@ -42,10 +42,17 @@ def LocateByAttribute(attribute, locate_name):
     return element
 
 
-# def LocateByText(locate_name, text_name):
-#     text_name = '"' + text_name + '"'
-#     element = driver.find_element(By.XPATH, locate_name + f'//*[contains(text(), {text_name})]')   
-#     return element
+def LocateByText(locate_name, text_name):
+    text_name = '"' + text_name + '"'
+    # element = WebDriverWait(driver, 10).until(EC.presence_of_element_located(By.XPATH, locate_name + f'//*[contains(text(), {text_name})]'))
+    element = driver.find_element(By.XPATH, locate_name + f'//*[contains(text(), {text_name})]')   
+    return element
+
+
+def GetElementText(locate_name):
+    # text = WebDriverWait(driver, 10).until(EC.visibility_of_element_located((By.XPATH, locate_name))).text
+    text = WebDriverWait(driver, 10).until(EC.visibility_of_element_located((By.XPATH, locate_name))).get_attribute("value")
+    return text
 
 
 def Press(locate_name, attribute):
@@ -126,11 +133,36 @@ def FillCustomerInformation(ID_No):
         locate_nationality = '/html/body/app-root/div[1]/app-layout/div/div/div/app-process/div[2]/div/div[3]/app-customer-information/div/form/div/div[2]/div[4]/p-dropdown/div/div[2]/span'
         locate_citizen = '/html/body/app-root/div[1]/app-layout/div/div/div/app-process/div[2]/div/div[3]/app-customer-information/div/form/div/div[2]/div[4]/p-dropdown/div/div[3]/div/ul/p-dropdownitem[1]/li'
 
+        locate_loading = '/html/body/app-root/div[1]/sigv-loading-mask/p-blockui/div'
+        text_name = '"' + "loading" + '"'
+        loading_path = locate_loading + f'//*[contains(text(), {text_name})]'
+
         ################################################################  Execution: Fill it  ################################################################################
         element = Type(locate_IDNO, ID_No, attribute_xpath)
         time.sleep(1)
+
         element = Press(locate_random, attribute_xpath) 
         time.sleep(8)
+
+        # /html/body/app-root/div[1]/sigv-loading-mask
+        # /html/body/app-root/div[1]/sigv-loading-mask/p-blockui
+        # /html/body/app-root/div[1]/sigv-loading-mask/p-blockui/div
+        # /html/body/app-root/div[1]/sigv-loading-mask/p-blockui/div/div
+        # /html/body/app-root/div[1]/sigv-loading-mask/p-blockui/div/div/p-progressspinner
+        # /html/body/app-root/div[1]/sigv-loading-mask/p-blockui/div/div/p-progressspinner/div
+        
+        # element = LocateByText(locate_loading, text_name)
+        # element = WebDriverWait(driver, 10).until(EC.presence_of_element_located(By.XPATH, locate_loading))
+        # # element = WebDriverWait(driver, 2).until(EC.presence_of_element_located((By.XPATH, loading_path)))
+        # # element = LocateByText(locate_loading, 'loading')
+        # # print(element.text)
+        # # element = WebDriverWait(driver, 3).until(EC.presence_of_element_located(), element)
+        # # alert = driver.switch_to.alert
+        # # print(alert.text)
+        # # print(element.text)
+        # WebDriverWait(driver, 3).until_not(EC.presence_of_element_located(By.XPATH, locate_loading + f'//*[contains(text(), {text_name})]'))
+        # print(element.text)
+
         element = Press(locate_nationality, attribute_xpath)
         sleep(1)
         element = Press(locate_citizen, attribute_xpath)
@@ -254,8 +286,11 @@ def FillGuarantorPerson(PersonalID, CorporateID, CustomerName, MobilePhone):
         time.sleep(1)
         element = Press(locate_Sister, attribute_xpath)
 
-        element = Type(locate_CustomerName, CustomerName, attribute_xpath)
-        time.sleep(1)
+        text = GetElementText(locate_CustomerName)
+        if not text: 
+            element = Type(locate_CustomerName, CustomerName, attribute_xpath)
+            time.sleep(1)
+
         element = Type(locate_MobilePhone, MobilePhone, attribute_xpath)
         time.sleep(1)
 
@@ -658,7 +693,7 @@ def FillTermsConditions(main_page):
         locate_InputName = '/html/body/app-root/div[1]/app-layout/div/div/div/app-process/div[2]/div/div[8]/app-terms-conditions/div/div[1]/div[2]/div[2]/p-dropdown/div/div[3]/div[1]/div/input'
         DealerName = 'JHR0001 Twit'
         locate_SalesName = '/html/body/app-root/div[1]/app-layout/div/div/div/app-process/div[2]/div/div[8]/app-terms-conditions/div/div[1]/div[2]/div[3]/p-dropdown/div/div[2]/span'
-        locate_PAIDAIAH = '/html/body/app-root/div[1]/app-layout/div/div/div/app-process/div[2]/div/div[8]/app-terms-conditions/div/div[1]/div[2]/div[3]/p-dropdown/div/div[3]/div/ul/p-dropdownitem[2]/li'
+        locate_PAIDAIAH = '/html/body/app-root/div[1]/app-layout/div/div/div/app-process/div[2]/div/div[8]/app-terms-conditions/div/div[1]/div[2]/div[3]/p-dropdown/div/div[3]/div/ul/p-dropdownitem[1]/li'
         locate_QuotesType = '/html/body/app-root/div[1]/app-layout/div/div/div/app-process/div[2]/div/div[8]/app-terms-conditions/div/div[1]/div[3]/div[1]/p-dropdown/div/div[2]/span'
         locate_ETP = '/html/body/app-root/div[1]/app-layout/div/div/div/app-process/div[2]/div/div[8]/app-terms-conditions/div/div[1]/div[3]/div[1]/p-dropdown/div/div[3]/div/ul/p-dropdownitem/li'
         locate_InterestRate = '/html/body/app-root/div[1]/app-layout/div/div/div/app-process/div[2]/div/div[8]/app-terms-conditions/div/div[1]/div[3]/div[2]/div[2]/p-inputnumber/span/input'
