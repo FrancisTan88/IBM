@@ -18,3 +18,6 @@ for i in range(len(data)):
 
 df = pd.DataFrame(list, columns=['SQL query'])
 df.to_csv(export_path, header=False, index=False)
+
+
+

@@ -5,8 +5,6 @@ import xlsxwriter
 
 
 
-
-
 def toMilliseconds(time):
     t = time.split(".")
     d = datetime.strptime(t[0], '%Y-%m-%d %H:%M:%S').timestamp() * 1000 +float("0."+t[1])*1000
