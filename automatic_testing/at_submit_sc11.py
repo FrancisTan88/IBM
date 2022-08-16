@@ -698,10 +698,10 @@ if __name__ == "__main__":
 
     ############################################################# Preliminary Credit Review ####################################################################################
     # connect to SQL server
-    server = 'tcp:misql-sigv-sit04.6c276a28d249.database.windows.net' 
-    database = 'my_credit_rating_scales' 
-    username = 'IBM_DBA' 
-    password = 'IBM_DBA' 
+    server = 'Please input your server name'
+    database = 'Your DataBase'
+    username = 'Please input your username'
+    password = 'Please input your password'
     cnxn = pyodbc.connect('DRIVER={ODBC Driver 18 for SQL Server};SERVER='+server+';DATABASE='+database+';UID='+username+';PWD='+password)
     cursor = cnxn.cursor()
     
