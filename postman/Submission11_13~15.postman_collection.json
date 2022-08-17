@@ -1,0 +1,491 @@
+{
+	"info": {
+		"_postman_id": "cc8929fd-51fe-47c7-885f-d0a68f1b6368",
+		"name": "Submission11_13~15",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "getRepaymentSchedule",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"var PP = pm.environment.get(\"collPurchasePrice(input)\");",
+							"var DP = pm.environment.get(\"collDownPayment(input)\");",
+							"var financialamount = PP - DP;",
+							"pm.environment.set(\"financialAmount\", financialamount);",
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var res_RepaymentSchedule = pm.response.json();",
+							"var RepaymentScheduleMsg = res_RepaymentSchedule.msg;",
+							"var RepaymentScheduleData = res_RepaymentSchedule.data;",
+							"",
+							"pm.test(\"Get repayment schedule successfully!\", function(){",
+							"    if (RepaymentScheduleMsg != \"success\"){",
+							"        console.log(\"Fail to get Repayment Schedule :(\");",
+							"        postman.setNextRequest(null);",
+							"    }",
+							"    else{",
+							"        pm.environment.set(\"pmt\", RepaymentScheduleData.pmt);",
+							"        pm.environment.set(\"pmtLast\", RepaymentScheduleData.pmtLast);",
+							"        console.log(\"Get Repayment Schedule successfully!\");    ",
+							"    }",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"domain\": \"WebSubmission\",\n    \"subDomain\": \"WebSubmission\",\n    \"method\": \"flatVariance\",\n    \"rateYear\": {{interestRate(input)}},\n    \"tenure\": {{applyTerms(input)}},\n    \"paymentFrequency\": 1,\n    \"financialAmount\": {{financialAmount}}\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://{{host}}/{{domainSubmission}}/Common/CalculatePmt",
+					"protocol": "https",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"{{domainSubmission}}",
+						"Common",
+						"CalculatePmt"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "calculateNPVandIRR",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var res_CalNPVandIRR = pm.response.json();",
+							"var CalNPVandIRRMsg = res_CalNPVandIRR.msg;",
+							"var CalNPVandIRRData = res_CalNPVandIRR.data;",
+							"pm.test(\"Calculate NPV and IRR successfully!\", function(){",
+							"    if (CalNPVandIRRMsg != \"success\"){",
+							"        console.log(\"Fail to Calculate NPV and IRR :(\");",
+							"        postman.setNextRequest(null);",
+							"    }",
+							"    else{",
+							"        pm.environment.set(\"npv\", CalNPVandIRRData.npv);",
+							"        pm.environment.set(\"netIRR\", CalNPVandIRRData.netIRR);",
+							"        pm.environment.set(\"realIRR\", CalNPVandIRRData.realIRR);",
+							"        console.log(\"Calculate NPV and IRR successfully!\");    ",
+							"    }",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"interestMode\": \"D\",\n    \"currency\": \"MYR\",\n    \"financialAmount\": {{financialAmount}},\n    \"plusItem\": [\n        350\n    ],\n    \"minusItem\": [],\n    \"finacalRate\": 0,\n    \"finacalRatebonus\": 0,\n    \"rateYear\": {{interestRate(input)}},\n    \"tenure\": {{applyTerms(input)}},\n    \"quotesType\": \"{{quotesType(input)}}\",\n    \"method\": \"BY FLAT RATE\",\n    \"interestFDT\": \"2022-08-05\",\n    \"paymentFrequency\": 1,\n    \"paymentData\": [\n        {\n            \"paymentDate\": \"2022-08-31\",\n            \"tenure\": 1,\n            \"pmt\": {{pmt}}\n        },\n        {\n            \"paymentDate\": \"2022-09-30\",\n            \"tenure\": 2,\n            \"pmt\": {{pmt}}\n        },\n        {\n            \"paymentDate\": \"2022-10-31\",\n            \"tenure\": 3,\n            \"pmt\": {{pmt}}\n        },\n        {\n            \"paymentDate\": \"2022-11-30\",\n            \"tenure\": 4,\n            \"pmt\": {{pmt}}\n        },\n        {\n            \"paymentDate\": \"2022-12-31\",\n            \"tenure\": 5,\n            \"pmt\": {{pmt}}\n        },\n        {\n            \"paymentDate\": \"2023-01-31\",\n            \"tenure\": 6,\n            \"pmt\": {{pmt}}\n        },\n        {\n            \"paymentDate\": \"2023-02-28\",\n            \"tenure\": 7,\n            \"pmt\": {{pmt}}\n        },\n        {\n            \"paymentDate\": \"2023-03-31\",\n            \"tenure\": 8,\n            \"pmt\": {{pmt}}\n        },\n        {\n            \"paymentDate\": \"2023-04-30\",\n            \"tenure\": 9,\n            \"pmt\": {{pmt}}\n        },\n        {\n            \"paymentDate\": \"2023-05-31\",\n            \"tenure\": 10,\n            \"pmt\": {{pmt}}\n        },\n        {\n            \"paymentDate\": \"2023-06-30\",\n            \"tenure\": 11,\n            \"pmt\": {{pmt}}\n        },\n        {\n            \"paymentDate\": \"2023-07-31\",\n            \"tenure\": 12,\n            \"pmt\": {{pmt}}\n        },\n        {\n            \"paymentDate\": \"2023-08-31\",\n            \"tenure\": 13,\n            \"pmt\": {{pmt}}\n        },\n        {\n            \"paymentDate\": \"2023-09-30\",\n            \"tenure\": 14,\n            \"pmt\": {{pmt}}\n        },\n        {\n            \"paymentDate\": \"2023-10-31\",\n            \"tenure\": 15,\n            \"pmt\": {{pmt}}\n        },\n        {\n            \"paymentDate\": \"2023-11-30\",\n            \"tenure\": 16,\n            \"pmt\": {{pmt}}\n        },\n        {\n            \"paymentDate\": \"2023-12-31\",\n            \"tenure\": 17,\n            \"pmt\": {{pmt}}\n        },\n        {\n            \"paymentDate\": \"2024-01-31\",\n            \"tenure\": 18,\n            \"pmt\": {{pmt}}\n        },\n        {\n            \"paymentDate\": \"2024-02-29\",\n            \"tenure\": 19,\n            \"pmt\": {{pmt}}\n        },\n        {\n            \"paymentDate\": \"2024-03-31\",\n            \"tenure\": 20,\n            \"pmt\": {{pmt}}\n        },\n        {\n            \"paymentDate\": \"2024-04-30\",\n            \"tenure\": 21,\n            \"pmt\": {{pmt}}\n        },\n        {\n            \"paymentDate\": \"2024-05-31\",\n            \"tenure\": 22,\n            \"pmt\": {{pmt}}\n        },\n        {\n            \"paymentDate\": \"2024-06-30\",\n            \"tenure\": 23,\n            \"pmt\": {{pmt}}\n        },\n        {\n            \"paymentDate\": \"2024-07-31\",\n            \"tenure\": 24,\n            \"pmt\": {{pmt}}\n        },\n        {\n            \"paymentDate\": \"2024-08-31\",\n            \"tenure\": 25,\n            \"pmt\": {{pmt}}\n        },\n        {\n            \"paymentDate\": \"2024-09-30\",\n            \"tenure\": 26,\n            \"pmt\": {{pmt}}\n        },\n        {\n            \"paymentDate\": \"2024-10-31\",\n            \"tenure\": 27,\n            \"pmt\": {{pmt}}\n        },\n        {\n            \"paymentDate\": \"2024-11-30\",\n            \"tenure\": 28,\n            \"pmt\": {{pmt}}\n        },\n        {\n            \"paymentDate\": \"2024-12-31\",\n            \"tenure\": 29,\n            \"pmt\": {{pmt}}\n        },\n        {\n            \"paymentDate\": \"2025-01-31\",\n            \"tenure\": 30,\n            \"pmt\": {{pmt}}\n        },\n        {\n            \"paymentDate\": \"2025-02-28\",\n            \"tenure\": 31,\n            \"pmt\": {{pmt}}\n        },\n        {\n            \"paymentDate\": \"2025-03-31\",\n            \"tenure\": 32,\n            \"pmt\": {{pmt}}\n        },\n        {\n            \"paymentDate\": \"2025-04-30\",\n            \"tenure\": 33,\n            \"pmt\": {{pmt}}\n        },\n        {\n            \"paymentDate\": \"2025-05-31\",\n            \"tenure\": 34,\n            \"pmt\": {{pmt}}\n        },\n        {\n            \"paymentDate\": \"2025-06-30\",\n            \"tenure\": 35,\n            \"pmt\": {{pmt}}\n        },\n        {\n            \"paymentDate\": \"2025-07-31\",\n            \"tenure\": 36,\n            \"pmt\": {{pmt}}\n        },\n        {\n            \"paymentDate\": \"2025-08-31\",\n            \"tenure\": 37,\n            \"pmt\": {{pmt}}\n        },\n        {\n            \"paymentDate\": \"2025-09-30\",\n            \"tenure\": 38,\n            \"pmt\": {{pmt}}\n        },\n        {\n            \"paymentDate\": \"2025-10-31\",\n            \"tenure\": 39,\n            \"pmt\": {{pmt}}\n        },\n        {\n            \"paymentDate\": \"2025-11-30\",\n            \"tenure\": 40,\n            \"pmt\": {{pmt}}\n        },\n        {\n            \"paymentDate\": \"2025-12-31\",\n            \"tenure\": 41,\n            \"pmt\": {{pmt}}\n        },\n        {\n            \"paymentDate\": \"2026-01-31\",\n            \"tenure\": 42,\n            \"pmt\": {{pmt}}\n        },\n        {\n            \"paymentDate\": \"2026-02-28\",\n            \"tenure\": 43,\n            \"pmt\": {{pmt}}\n        },\n        {\n            \"paymentDate\": \"2026-03-31\",\n            \"tenure\": 44,\n            \"pmt\": {{pmt}}\n        },\n        {\n            \"paymentDate\": \"2026-04-30\",\n            \"tenure\": 45,\n            \"pmt\": {{pmt}}\n        },\n        {\n            \"paymentDate\": \"2026-05-31\",\n            \"tenure\": 46,\n            \"pmt\": {{pmt}}\n        },\n        {\n            \"paymentDate\": \"2026-06-30\",\n            \"tenure\": 47,\n            \"pmt\": {{pmt}}\n        },\n        {\n            \"paymentDate\": \"2026-07-31\",\n            \"tenure\": 48,\n            \"pmt\": {{pmt}}\n        },\n        {\n            \"paymentDate\": \"2026-08-31\",\n            \"tenure\": 49,\n            \"pmt\": {{pmt}}\n        },\n        {\n            \"paymentDate\": \"2026-09-30\",\n            \"tenure\": 50,\n            \"pmt\": {{pmtLast}}\n        }\n    ]\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://{{host}}/{{domainSubmission}}/Common/CalculateNPVAndIRR",
+					"protocol": "https",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"{{domainSubmission}}",
+						"Common",
+						"CalculateNPVAndIRR"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetSubUserName",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var swagger_data = pm.response.json();",
+							"pm.test(\"Get submission userName\", function(){",
+							"    if (swagger_data.userName){",
+							"        pm.environment.set(\"subUserName\", swagger_data.userName);",
+							"        console.log(\"Get submission userName successfully!\");",
+							"    }",
+							"    else{",
+							"        console.log(\"Fail to get submission userName :(\");",
+							"        postman.setNextRequest(null);",
+							"    }",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://{{preSwaggerUserProfile}}{{subUserNo(input)}}",
+					"protocol": "http",
+					"host": [
+						"{{preSwaggerUserProfile}}{{subUserNo(input)}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "submitCase",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var res_submit = pm.response.json();",
+							"var submitMsg = res_submit.msg;",
+							"",
+							"pm.test(\"Submit successfully!\", function(){",
+							"    if (submitMsg != \"success\"){",
+							"        console.log(\"Fail to submit the case :(\");",
+							"        postman.setNextRequest(null);",
+							"    }",
+							"    else{",
+							"        console.log(\"Submit successfully!\");    ",
+							"    }",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"var total_term = pm.environment.get(\"applyTerms(input)\");",
+							"var familyStatus = pm.environment.get(\"familyStatus(input)\");",
+							"// var PP = pm.environment.get(\"collPurchasePrice(input)\");",
+							"// var DP = pm.environment.get(\"collDownPayment(input)\");",
+							"// var financialamount = PP - DP;",
+							"",
+							"",
+							"function FamilyStatus(){",
+							"    if (familyStatus == \"Married (with kid)\"){",
+							"        pm.environment.set(\"scoreFamilyStatus\", 1);",
+							"        pm.environment.set(\"categoryFamilyStatus\", 1);",
+							"    }",
+							"    else if (familyStatus == \"Married (without kid)\"){",
+							"        pm.environment.set(\"scoreFamilyStatus\", 1);",
+							"        pm.environment.set(\"categoryFamilyStatus\", 2);",
+							"    }",
+							"    else if (familyStatus == \"Single (with kid)\"){",
+							"        pm.environment.set(\"scoreFamilyStatus\", 0);",
+							"        pm.environment.set(\"categoryFamilyStatus\", 3);",
+							"    }",
+							"    else if (familyStatus == \"Single (without kid)\"){",
+							"        pm.environment.set(\"scoreFamilyStatus\", 0);",
+							"        pm.environment.set(\"categoryFamilyStatus\", 4);",
+							"    }",
+							"    else if (familyStatus == \"Widowed (with kid)\"){",
+							"        pm.environment.set(\"scoreFamilyStatus\", 0);",
+							"        pm.environment.set(\"categoryFamilyStatus\", 5);",
+							"    }",
+							"    else if (familyStatus == \"Widowed (without kid)\"){",
+							"        pm.environment.set(\"scoreFamilyStatus\", 0);",
+							"        pm.environment.set(\"categoryFamilyStatus\", 6);",
+							"    }",
+							"    else{",
+							"        console.log(\"FamilyStatus input error\");",
+							"    }",
+							"}",
+							"",
+							"// pm.environment.set(\"financialAmount\", financialamount);",
+							"pm.environment.set(\"endTerm\", total_term-1);",
+							"FamilyStatus();",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "X-UserNo",
+						"value": "{{subUserNo(input)}}",
+						"type": "text"
+					},
+					{
+						"key": "X-From-Channel",
+						"value": "Web",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"useRole\": \"0\",\n    \"submission\": {\n        \"agreement\": false,\n        \"applicantId\": \"{{subUserNo(input)}}\",\n        \"applicantName\": \"{{subUserName}}\",\n        \"applyIdType\": \"C\",\n        \"companyId\": \"{{companyID(input)}}\",\n        \"deptId\": 20618,\n        \"lending\": \"H\",\n        \"productName\": \"{{productName(input)}}\",\n        \"productType\": \"012\",\n        \"productCode\": \"{{productCode(input)}}\",\n        \"statusId\": 0,\n        \"submissionNo\": 0,\n        \"useDevice\": \"Web\",\n        \"useRole\": \"0\",\n        \"configId\": 20016,\n        \"conditionChange\": \"\",\n        \"creditComment\": \"\",\n        \"creditInstruction\": \"\",\n        \"exchangeRate\": 1,\n        \"exchangeRateReverse\": 1,\n        \"npv\": {{npv}},\n        \"normalIrr\": {{netIRR}},\n        \"realIrr\": {{realIRR}},\n        \"productVersion\": 0\n    },\n    \"customerInformation\": {\n        \"position\": \"Casher\",\n        \"positionKh\": null,\n        \"lengthOfEmployment\": 4,\n        \"employerName\": \"Employer Name\",\n        \"monthlyIncome\": {{monthlyIncome(input)}},\n        \"occupation\": \"J\",\n        \"workAddressLevel1\": \"JHR\",\n        \"workAddressLevel2\": \"JHR1\",\n        \"workAddressLevel3\": \"\",\n        \"workAddressLevel4\": \"\",\n        \"workAddressLevel\": null,\n        \"workPhone\": \"41364832648168\",\n        \"workingInSingapore\": false,\n        \"individualIndustry\": null,\n        \"responsiblePersonIdno\": null,\n        \"responsiblePersonName\": null,\n        \"responsiblePersonNameKh\": null,\n        \"payUpCapital\": null,\n        \"submissionSubNo\": 1,\n        \"identityType\": \"I\",\n        \"corporateIndustry\": null,\n        \"submissionNo\": 0,\n        \"idNo\": \"{{idNo(input)}}\",\n        \"identificationType\": \"1\",\n        \"mobilePhone1\": \"0172643918\",\n        \"mobilePhone2\": \"\",\n        \"email\": null,\n        \"readMykad\": false,\n        \"fingerprintIsVerify\": false,\n        \"firstName\": \"全新申戶 -4\",\n        \"firstNameKH\": null,\n        \"lastName\": \"Hsu\",\n        \"lastNameKH\": null,\n        \"birthdate\": \"1989-10-07\",\n        \"gender\": \"2\",\n        \"nationality\": \"001\",\n        \"maritalStatus\": \"{{categoryFamilyStatus}}\",\n        \"race\": \"1\",\n        \"registeredAddressLevel1\": \"JHR\",\n        \"registeredAddressLevel1KH\": null,\n        \"registeredAddressLevel2\": \"JHR1\",\n        \"registeredAddressLevel2KH\": null,\n        \"registeredAddressLevel3\": \"\",\n        \"registeredAddressLevel3KH\": null,\n        \"registeredAddressLevel4\": \"\",\n        \"registeredAddressLevel4KH\": null,\n        \"registeredAddress\": \"Lot 4717, Jalan 13D, Selayang Baru, Selayang, Selangor\",\n        \"registeredAddressKH\": null,\n        \"residentialStatus\": \"RS1\",\n        \"contactAddressLevel1\": \"JHR\",\n        \"contactAddressLevel1KH\": null,\n        \"contactAddressLevel2\": \"JHR1\",\n        \"contactAddressLevel2KH\": null,\n        \"contactAddressLevel3\": \"\",\n        \"contactAddressLevel3KH\": null,\n        \"contactAddressLevel4\": \"\",\n        \"contactAddressLevel4KH\": null,\n        \"contactAddress\": \"Lot 4717, Jalan 13D, Selayang Baru, Selayang, Selangor\",\n        \"contactAddressKH\": null,\n        \"telephone\": null,\n        \"customerName\": null,\n        \"customerNameKh\": null,\n        \"dateofIncoporation\": null,\n        \"companyContactPhone\": null,\n        \"greditLine\": null,\n        \"yearofEmployment\": null,\n        \"workAddress\": \"Lot 4717, Jalan 13D, Selayang Baru, Selayang, Selangor\",\n        \"industry\": null,\n        \"operatorIdNo\": null,\n        \"operatorName\": null,\n        \"vcifVersion\": 0\n    },\n    \"guarantorPersons\": [\n        {\n            \"submissionNo\": 0,\n            \"submissionSubNo\": 1,\n            \"identityType\": \"I\",\n            \"identificationType\": null,\n            \"legalPosition\": \"LG1\",\n            \"idNo\": \"{{idNo(G1)(input)}}\",\n            \"firstName\": \"全新保證人 - 自然人 -4\",\n            \"lastName\": \"WongWongWong\",\n            \"customerName\": null,\n            \"relationship\": \"101\",\n            \"race\": \"1\",\n            \"maritalStatus\": null,\n            \"mobilePhone\": \"0123456\",\n            \"contactAddressLevel1\": null,\n            \"contactAddressLevel2\": null,\n            \"contactAddressLevel3\": null,\n            \"contactAddressLevel4\": null,\n            \"contactAddress\": null,\n            \"vcifVersion\": 0\n        },\n        {\n            \"submissionNo\": 0,\n            \"submissionSubNo\": 2,\n            \"identityType\": \"C\",\n            \"identificationType\": null,\n            \"legalPosition\": \"LG1\",\n            \"idNo\": \"{{idNo(G2)(input)}}\",\n            \"firstName\": null,\n            \"lastName\": null,\n            \"customerName\": \"GKS KOKHILA ENTERPRISE\",\n            \"relationship\": \"102\",\n            \"race\": null,\n            \"maritalStatus\": null,\n            \"mobilePhone\": \"0163662970\",\n            \"contactAddressLevel1\": null,\n            \"contactAddressLevel2\": null,\n            \"contactAddressLevel3\": null,\n            \"contactAddressLevel4\": null,\n            \"contactAddress\": null,\n            \"vcifVersion\": null\n        }\n    ],\n    \"contactPersons\": [\n        {\n            \"submissionNo\": 0,\n            \"submissionSubNo\": 1,\n            \"firstName\": \"aa\",\n            \"lastName\": null,\n            \"relationship\": \"104\",\n            \"mobilePhone\": \"123\",\n            \"telephone\": null\n        },\n        {\n            \"submissionNo\": 0,\n            \"submissionSubNo\": 2,\n            \"firstName\": \"bb\",\n            \"lastName\": null,\n            \"relationship\": \"105\",\n            \"mobilePhone\": \"321\",\n            \"telephone\": null\n        }\n    ],\n    \"securityAsset\": {\n        \"vehicleNMotors\": [\n            {\n                \"assetProperty\": \"f\",\n                \"assetCategory\": \"CV\",\n                \"plateNo\": null,\n                \"transaction\": \"TS1\",\n                \"vehicleType\": null,\n                \"brand\": \"BR104\",\n                \"model\": \"MD1007\",\n                \"transmission\": \"TM2\",\n                \"displacement\": null,\n                \"gasoline\": null,\n                \"dateManufacture\": \"2021-08-01\",\n                \"purchasePrice\": {{collPurchasePrice(input)}},\n                \"downPayment\": {{collDownPayment(input)}},\n                \"vehicleRegNo\": null,\n                \"insurance\": \"{{insurance(input)}}\",\n                \"gpsInstallation\": \"{{gpsInstallation(input)}}\",\n                \"remark\": \"\",\n                \"purpose\": null,\n                \"registrationType\": null,\n                \"engineNo\": null,\n                \"chassisNo\": null,\n                \"bodyType\": null,\n                \"seats\": null,\n                \"ton\": null,\n                \"manufacturerNationality\": \"MF1\",\n                \"licenseType\": null,\n                \"vehicleColor\": null,\n                \"vehicleColorKH\": null,\n                \"cap\": 5,\n                \"accessories\": null,\n                \"salesAppraisalPrice\": {{collPurchasePrice(input)}},\n                \"remarkforVehiclePrice\": null,\n                \"carUser\": null,\n                \"dlType\": null,\n                \"dlNo\": null,\n                \"premium\": [],\n                \"assetFeeNcharges\": [],\n                \"hasCollateralValue\": {{hasCollValue(input)}},\n                \"age\": 1,\n                \"submissionNo\": 0,\n                \"submissionSubNo\": 1\n            }\n        ],\n        \"movables\": [],\n        \"realEstates\": []\n    },\n    \"termNCondition\": {\n        \"submissionSubNo\": 1,\n        \"companyId\": \"{{companyID(input)}}\",\n        \"purposeNbc\": null,\n        \"refinancing\": false,\n        \"settlementContract\": null,\n        \"changeSchedule\": false,\n        \"changeTerm\": null,\n        \"quotesType\": \"{{quotesType(input)}}\",\n        \"currency\": \"MYR\",\n        \"applyAmount\": {{financialAmount}},\n        \"interestFlatRate\": {{interestRate(input)}},\n        \"annualPercentageRate\": 14.31,\n        \"totalApplyAmount\": {{financialAmount}},\n        \"vat\": true,\n        \"vatamount\": {{financialAmount}},\n        \"vatpaidby\": null,\n        \"dealerInvoiceType\": null,\n        \"autolife\": {{autoLife(input)}},\n        \"autolifeSumInsured\": {{financialAmount}},\n        \"tenureMonth\": {{applyTerms(input)}},\n        \"paymentFrequency\": 1,\n        \"paymentTiming\": \"PT1\",\n        \"paymentDueatMonthEnd\": false,\n        \"totalPayment\": 0,\n        \"dealSource\": \"DS1\",\n        \"dealerCode\": \"{{dealerCode(input)}}\",\n        \"dealerName\": \"{{dealerName(input)}}\",\n        \"dealerSalesId\": \"780821085137\",\n        \"dealerSalesName\": \"{{dealerSalesName(input)}}  \",\n        \"agentCode\": null,\n        \"agentName\": null,\n        \"marketingOfficer\": \"{{subUserNo(input)}}\",\n        \"remark\": null,\n        \"feeNcharges\": [\n            {\n                \"item\": \"1151002\",\n                \"itemName\": \"\",\n                \"paidBy\": \"C\",\n                \"paidByName\": null,\n                \"payment\": \"C\",\n                \"paymentName\": \"Charged at Commencement Date\",\n                \"currency\": \"MYR\",\n                \"amount\": 350,\n                \"finance\": false,\n                \"deduct\": {{deduct(input)}},\n                \"irr\": true,\n                \"byAsset\": \"A\",\n                \"fromSecurityAsset\": false,\n                \"submissionNo\": 0,\n                \"submissionSubNo\": 1,\n                \"chargeSubId\": 1\n            },\n            {\n                \"item\": \"514501\",\n                \"itemName\": \"\",\n                \"paidBy\": \"C\",\n                \"paidByName\": null,\n                \"payment\": \"C\",\n                \"paymentName\": \"Charged at Commencement Date\",\n                \"currency\": \"MYR\",\n                \"amount\": 200,\n                \"finance\": false,\n                \"deduct\": false,\n                \"irr\": false,\n                \"byAsset\": \"A\",\n                \"fromSecurityAsset\": false,\n                \"submissionNo\": 0,\n                \"submissionSubNo\": 1,\n                \"chargeSubId\": 2\n            }\n        ],\n        \"incentives\": [],\n        \"insurances\": [],\n        \"startNEndTerms\": [\n            {\n                \"termId\": 1,\n                \"startTerm\": 1,\n                \"endTerm\": {{endTerm}},\n                \"monthlyPaymentExcludeFee\": {{pmt}},\n                \"fee\": 0,\n                \"monthlyPayment\": {{pmt}}\n            },\n            {\n                \"termId\": 2,\n                \"startTerm\": {{applyTerms(input)}},\n                \"endTerm\": {{applyTerms(input)}},\n                \"monthlyPaymentExcludeFee\": {{pmtLast}},\n                \"fee\": 0,\n                \"monthlyPayment\": {{pmtLast}}\n            }\n        ],\n        \"submissionNo\": 0\n    },\n    \"attachments\": []\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://{{host}}/{{domainSubmission}}/Submission/Submit",
+					"protocol": "https",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"{{domainSubmission}}",
+						"Submission",
+						"Submit"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "sit01Host",
+			"value": "sit01-apigw.chailease.com.my",
+			"disabled": true
+		},
+		{
+			"key": "SwaggerUserProfile",
+			"value": "10.164.55.100:8000/dev-backdoor/system-management/Rbac/UserProfile",
+			"type": "string",
+			"disabled": true
+		},
+		{
+			"key": "userNo(input)",
+			"value": "",
+			"type": "string",
+			"disabled": true
+		},
+		{
+			"key": "companyID(input)",
+			"value": "92",
+			"disabled": true
+		},
+		{
+			"key": "productCode(input)",
+			"value": "H-012-0000",
+			"type": "string",
+			"disabled": true
+		},
+		{
+			"key": "productName(input)",
+			"value": "SC_Case",
+			"type": "string",
+			"disabled": true
+		},
+		{
+			"key": "idNo(input)",
+			"value": "970118123456",
+			"type": "string",
+			"disabled": true
+		},
+		{
+			"key": "idNo(G1)(input)",
+			"value": "990513123456",
+			"type": "string",
+			"disabled": true
+		},
+		{
+			"key": "idNo(G2)(input)",
+			"value": "201803022",
+			"type": "string",
+			"disabled": true
+		},
+		{
+			"key": "dealerCode(input)",
+			"value": "JHR0001",
+			"type": "string",
+			"disabled": true
+		},
+		{
+			"key": "dealerName(input)",
+			"value": "TWITCH",
+			"type": "string",
+			"disabled": true
+		},
+		{
+			"key": "dealerSalesName(input)",
+			"value": "PAIDAIAH",
+			"type": "string",
+			"disabled": true
+		},
+		{
+			"key": "applyTerms(input)",
+			"value": "48",
+			"type": "string",
+			"disabled": true
+		},
+		{
+			"key": "interestRate(input)",
+			"value": "8",
+			"type": "string",
+			"disabled": true
+		},
+		{
+			"key": "collPurchasePrice(input)",
+			"value": "99999",
+			"type": "string",
+			"disabled": true
+		},
+		{
+			"key": "collDownPayment(input)",
+			"value": "22222",
+			"type": "string",
+			"disabled": true
+		},
+		{
+			"key": "insurance(input)",
+			"value": "N",
+			"type": "string",
+			"disabled": true
+		},
+		{
+			"key": "gpsInstallation(input)",
+			"value": "None",
+			"type": "string",
+			"disabled": true
+		},
+		{
+			"key": "hasCollValue(input)",
+			"value": "true",
+			"type": "string",
+			"disabled": true
+		},
+		{
+			"key": "quotesType(input)",
+			"value": "ETP",
+			"type": "string",
+			"disabled": true
+		},
+		{
+			"key": "autoLife(input)",
+			"value": "false",
+			"type": "string",
+			"disabled": true
+		},
+		{
+			"key": "deduct(input)",
+			"value": "true",
+			"type": "string",
+			"disabled": true
+		},
+		{
+			"key": "ApplicantEmail",
+			"value": "",
+			"disabled": true
+		},
+		{
+			"key": "UserName",
+			"value": "",
+			"disabled": true
+		},
+		{
+			"key": "financialAmount",
+			"value": "",
+			"disabled": true
+		},
+		{
+			"key": "npv",
+			"value": "",
+			"disabled": true
+		},
+		{
+			"key": "netIRR",
+			"value": "",
+			"disabled": true
+		},
+		{
+			"key": "realIRR",
+			"value": "",
+			"disabled": true
+		},
+		{
+			"key": "pmt",
+			"value": "",
+			"disabled": true
+		},
+		{
+			"key": "pmtLast",
+			"value": "",
+			"disabled": true
+		},
+		{
+			"key": "endTerm",
+			"value": "",
+			"disabled": true
+		},
+		{
+			"key": "applicantEmail",
+			"value": ""
+		},
+		{
+			"key": "userName",
+			"value": ""
+		}
+	]
+}

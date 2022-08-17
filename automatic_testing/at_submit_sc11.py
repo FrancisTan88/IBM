@@ -697,36 +697,36 @@ if __name__ == "__main__":
 
 
     ############################################################# Preliminary Credit Review ####################################################################################
-    # connect to SQL server
-    server = 'Please input your server name'
-    database = 'Your DataBase'
-    username = 'Please input your username'
-    password = 'Please input your password'
-    cnxn = pyodbc.connect('DRIVER={ODBC Driver 18 for SQL Server};SERVER='+server+';DATABASE='+database+';UID='+username+';PWD='+password)
-    cursor = cnxn.cursor()
+    # # connect to SQL server
+    # server = 'Please input your server name'
+    # database = 'Your DataBase'
+    # username = 'Please input your username'
+    # password = 'Please input your password'
+    # cnxn = pyodbc.connect('DRIVER={ODBC Driver 18 for SQL Server};SERVER='+server+';DATABASE='+database+';UID='+username+';PWD='+password)
+    # cursor = cnxn.cursor()
     
-    # get CaseNo, ApplicantId
-    by = 'IdNo'
-    CaseNo, CurrentApplicantId, StatusId = GetSqlData(cursor, ID_No, by)
-    sleep(1)
+    # # get CaseNo, ApplicantId
+    # by = 'IdNo'
+    # CaseNo, CurrentApplicantId, StatusId = GetSqlData(cursor, ID_No, by)
+    # sleep(1)
 
-    date = datetime.today().strftime('%Y-%m-%d')
-    df_row['Date'].loc[0] = date
-    df_row['CaseNo'].loc[0] = CaseNo
-    df_row['Status'].loc[0] = StatusId
+    # date = datetime.today().strftime('%Y-%m-%d')
+    # df_row['Date'].loc[0] = date
+    # df_row['CaseNo'].loc[0] = CaseNo
+    # df_row['Status'].loc[0] = StatusId
     
-    # add the case data to the excel file
-    print('\n')
-    print(df_row)
-    print('\n')
-    df_row.to_excel(writer, sheet_name='工作表1', startrow=start_row, index=False, header=False)
-    writer.save()
+    # # add the case data to the excel file
+    # print('\n')
+    # print(df_row)
+    # print('\n')
+    # df_row.to_excel(writer, sheet_name='工作表1', startrow=start_row, index=False, header=False)
+    # writer.save()
 
-    # get credit officer's Email through API
-    api_url = f"http://10.164.55.100:8000/dev-backdoor/system-management/Rbac/UserProfile/{CurrentApplicantId}"
-    OfficerEmail = GetApplicantEmail(api_url)
-    print(OfficerEmail)
-    print('\n')
+    # # get credit officer's Email through API
+    # api_url = f"http://10.164.55.100:8000/dev-backdoor/system-management/Rbac/UserProfile/{CurrentApplicantId}"
+    # OfficerEmail = GetApplicantEmail(api_url)
+    # print(OfficerEmail)
+    # print('\n')
 
 
 

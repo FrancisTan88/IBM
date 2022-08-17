@@ -1,0 +1,206 @@
+{
+	"info": {
+		"_postman_id": "e772611a-f136-4fe3-a263-0bb2bc550fbd",
+		"name": "法務通知信函下載&送出",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "法務通知信函 (1) - 查詢案件列表",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var data = pm.response.json();\r",
+							"if(data.items.length==0){\r",
+							"    postman.setNextRequest(null);\r",
+							"    // pm.test(\"This user doesn't have any cases to submit\", function () {\r",
+							"    //     pm.response.to.have.body(\"response_body_string\");\r",
+							"    // });\r",
+							"}else{\r",
+							"    pm.collectionVariables.set(\"noticeApplicationId\", data.items[0].noticeApplicationId)\r",
+							"}"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {
+					"user-agent": true
+				}
+			},
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "X-UserNo",
+						"value": "{{login_user}}",
+						"type": "default"
+					},
+					{
+						"key": "User-Agent",
+						"value": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/103.0.0.0 Safari/537.36",
+						"type": "default"
+					},
+					{
+						"key": "Username",
+						"value": "{{login_username}}",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n   \"filter\":{\r\n      \"noticeTypeList\":[\r\n         {{noticeTypeId}}\r\n      ],\r\n      \"contractNoList\":[\r\n         \"{{contractNo}}\"\r\n      ]\r\n   },\r\n   \"orderSettings\":[\r\n      \r\n   ],\r\n   \"currPage\":1,\r\n   \"pageSize\":10\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{protocol}}://{{domain}}/collection/legal-execution/Notice/Apply/Search",
+					"protocol": "{{protocol}}",
+					"host": [
+						"{{domain}}"
+					],
+					"path": [
+						"collection",
+						"legal-execution",
+						"Notice",
+						"Apply",
+						"Search"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "法務通知信函 (2) - 檢查案件是否可下載",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "X-UserNo",
+						"value": "{{login_user}}",
+						"type": "default"
+					},
+					{
+						"key": "Username",
+						"value": "{{login_username}}",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"noticeApplications\":[{{noticeApplicationId}}]}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{protocol}}://{{domain}}/collection/legal-execution/Notice/Apply/CheckPrintTicket",
+					"protocol": "{{protocol}}",
+					"host": [
+						"{{domain}}"
+					],
+					"path": [
+						"collection",
+						"legal-execution",
+						"Notice",
+						"Apply",
+						"CheckPrintTicket"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "法務通知信函 (3) - 下載案件",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"var noticeApplicationId = pm.collectionVariables.get(\"noticeApplicationId\");\r",
+							"if(noticeApplicationId == ''){\r",
+							"    // 中止這個Collection運作\r",
+							"    postman.setNextRequest(null)\r",
+							"}"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "X-UserNo",
+						"value": "{{login_user}}",
+						"type": "default"
+					},
+					{
+						"key": "Username",
+						"value": "{{login_username}}",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n   \"systemId\":\"{{systemId}}\",\r\n   \"companyId\":{{companyId}},\r\n   \"pageType\":\"Apply\",\r\n   \"noticeApplications\":[\r\n      {{noticeApplicationId}}\r\n   ]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{protocol}}://{{domain}}/collection/legal-execution/Notice/Apply/Print",
+					"protocol": "{{protocol}}",
+					"host": [
+						"{{domain}}"
+					],
+					"path": [
+						"collection",
+						"legal-execution",
+						"Notice",
+						"Apply",
+						"Print"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "noticeApplicationId",
+			"value": "",
+			"type": "default"
+		}
+	]
+}

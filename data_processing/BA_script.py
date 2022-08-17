@@ -31,14 +31,14 @@ for l in lines:
         SchemaAndTable = SchemaAndTable.replace("[", "").replace("]", "")
         list_SAT.append(SchemaAndTable)
 list_SAT = list_SAT[::2]
+# print(list_SAT)
 
-
-# # only keep "INSERT" line and remove "INSERT", "VALUES" --> output new file 
-# with open(new_path, "w") as new_file:
-#     for l in lines:
-#         if filter_str in l and str_set not in l:
-#             l = l.replace(filter_str, "").replace(str_value, "")
-#             new_file.write(l)
+# only keep "INSERT" line and remove "INSERT", "VALUES" --> output new file 
+with open(new_path, "w") as new_file:
+    for l in lines:
+        if filter_str in l and str_set not in l:
+            l = l.replace(filter_str, "").replace(str_value, "")
+            new_file.write(l)
 
 
 # read new file and extract [schema].[table], columns, values and convert them into dataframe: df
@@ -69,10 +69,10 @@ df = pd.DataFrame(dic)
 
 
 # connect to SQL server and get TableName, ColName, ColDescription from db
-server = 'Your Server Name' 
-database = 'Your DataBase'
-username = 'Your UserName' 
-password = 'Your Password' 
+server = 'tcp:misql-sigv-sit04.6c276a28d249.database.windows.net' 
+database = 'ibm_dev_my_collection'
+username = 'IBM_DBA' 
+password = 'IBM_DBA' 
 cnxn = pyodbc.connect('DRIVER={ODBC Driver 18 for SQL Server};SERVER='+server+';DATABASE='+database+';UID='+username+';PWD='+password)
 cursor = cnxn.cursor()
 schema = 'collection'
@@ -128,7 +128,7 @@ df_columnAnddesciption = pd.DataFrame({ key:pd.Series(value) for key, value in d
 
 # write excel
 dic_AllDF = {}
-export_file = 'MultiDF2.xlsx'
+export_file = 'MultiDF3.xlsx'
 writer = pd.ExcelWriter(export_file, engine='openpyxl')   
 str_CAST = 'CAST'
 str_AsDatetime = ' AS DateTime'
@@ -154,10 +154,10 @@ for schema in list_SAT:
             list_TmpVal.append(df['Values'].iloc[i].split(","))        
     
 
-    for j in range(len(list_TmpVal)):  # iterations: the number of values to be INSERTED(one line)
+    for j in range(len(list_TmpVal)):  # iterations: the number of value lines to be INSERTED
         insert_dic = {}
 
-        for k in range(len(list_TmpVal[j])):
+        for k in range(len(list_TmpVal[j])):  # iterations: the number of values in one line
             if ")" in list_TmpVal[j][k] and "(" not in list_TmpVal[j][k]:
                 list_TmpVal[j][k-1] = list_TmpVal[j][k-1] + ", " + list_TmpVal[j][k]
                 list_TmpVal[j].remove(list_TmpVal[j][k])
