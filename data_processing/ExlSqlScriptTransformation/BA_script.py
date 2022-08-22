@@ -1,10 +1,5 @@
-from tkinter.ttk import Style
-from types import NoneType
 import pandas as pd
-import numpy as np
-import xlsxwriter
 import pyodbc
-from openpyxl import Workbook, load_workbook
 from styleframe import StyleFrame, Styler, utils
 
 
@@ -88,7 +83,7 @@ def NewFileToDF(data):
                 values[j] = values[j].replace("N'", "").replace("'", "")
 
         df['Values'].iloc[i] = ', '.join(values)
-        
+    # df.to_excel('NewFileDF.xlsx', index=False)
     return df
 
 
@@ -132,6 +127,7 @@ def SqlDataToDF():
     dict['欄位名稱'] = list_ColumnName
     dict['欄位描述'] = list_ColumnDescrip
     df = pd.DataFrame(dict)
+    # df.to_excel('SqlDF.xlsx', index=False)
     return df
 
 
@@ -139,12 +135,11 @@ def SqlDataToDF():
 def AggregateData(list_s, df_sql, df_txt):
     dict = {}
 
-    for schema in list_s:
+    list_pack = []
+    for schema in list_s[:]:
         list_cols = []
         list_desc = []
         list_vals = []
-        # list_coll = []
-        list_pack = []
 
         # store colNames and descriptions
         for i in range(len(df_sql)):
@@ -157,20 +152,24 @@ def AggregateData(list_s, df_sql, df_txt):
             if df_txt['Schema & Table'].iloc[j] == schema:
                 list_vals.append(df_txt['Values'].iloc[j].split(", "))
         
-        list_coll = [list_cols, list_desc, list_vals]
-        list_pack.append(list_coll)
-        # print(list_pack)
+        # check if the data from SQL DB and SQL file are identical
+        notIdentity = False
+        num_cols = len(list_cols)
+        for k in list_vals:
+            if len(k) != num_cols:
+                notIdentity = True
 
-    print(len(list_pack[0]))
-    print(len(list_s))
+        if notIdentity:
+            list_s.remove(schema)  # drop the schema with problems
+        else:
+            list_coll = [list_cols, list_desc, list_vals]
+            list_pack.append(list_coll)
+        
+    # append lists to dictionary by schema    
+    for k in range(len(list_s)):
+        dict[list_s[k]] = list_pack[k]
     
-    # for i in range(len(list_s)):
-    #     dict[list_s[i]] = list_pack[i]
-    
-    # return dict
-
-
-
+    return dict
 
 
 
@@ -193,7 +192,7 @@ if __name__ == "__main__":
     list_schema = GetSchema(lines)
 
     # clean the data and write it as new file
-    # DataCleaning(lines, new_path)
+    DataCleaning(lines, new_path)
 
     # read new txt file
     with open(new_path, "r") as new_file:
@@ -207,109 +206,142 @@ if __name__ == "__main__":
 
     # aggregate colNames, descriptions, values
     dict_aggregate = AggregateData(list_schema, df_sqlData, df_newFile)
-    # print(dict_aggregate)
-    # for key, value in dict_aggregate.items():
-    #     tmp_df = pd.DataFrame(columns=value[0])
-    #     tmp_df[0] = value[1]
-    #     for i in range(len(value[2])):
-    #         tmp_df.iloc[len(tmp_df)] = value[2][i]
-    #     print(key)
-    #     print(tmp_df)
-    #     print('\n\n')
+
+    # write excel
+    export_file = 'MultiDF3.xlsx'
+    writer = pd.ExcelWriter(export_file, engine='openpyxl')  
+    start_row = 0
+    pre_len = 0
+    for key, value in dict_aggregate.items():  # make dataframes
+        tmp_df = pd.DataFrame(columns=value[0])  # column names
+        tmp_df.loc[0] = pd.Series(value[1]).values  # column descriptions
+
+        for i in range(len(value[2])):  # values
+            
+            # convert value list to dictionary
+            dict = {}
+            for j in range(len(value[0])):  # number of columns
+                dict[value[0][j]] = value[2][i][j]
+            
+            tmp_df.loc[len(tmp_df)] = dict
+
+        start_row += pre_len
+
+        # schema to excel
+        df_schema = pd.DataFrame({'Schema.Table': key}, index=[0])
+        sf_schema = StyleFrame(df_schema, Styler(border_type=None, fill_pattern_type=None))
+        sf_schema.apply_column_style(cols_to_style=['Schema.Table'], styler_obj=Styler(font_size=18))
+        sf_schema.to_excel(writer, sheet_name='sheet1', startrow=start_row, startcol=0, index=False, header=False) 
+        
+        # convert the left to excel
+        sf_value = StyleFrame(tmp_df, Styler(border_type=None, fill_pattern_type=None))
+        sf_value.apply_headers_style(styler_obj=Styler(bg_color=utils.colors.yellow))
+        sf_value.to_excel(writer, sheet_name='sheet1', startrow=start_row+1, startcol=0, index=False)
+
+        pre_len = len(tmp_df)+3
+        
+    writer.save() 
+
+
+
+
+    #     # print(key)
+    #     # print(tmp_df)
+    #     # print('\n\n')
 
 
     
-    # get the column names and descriptions of those schema that are present in the database
-    # dic3 = {}
-    # for schema in list_schema:
-    #     list_TmpCN = []
-    #     list_TmpDes = []
+    # # get the column names and descriptions of those schema that are present in the database
+    # # dic3 = {}
+    # # for schema in list_schema:
+    # #     list_TmpCN = []
+    # #     list_TmpDes = []
 
-    #     for i in range(len(df_SqlData)):
-    #         if df_SqlData['表格名稱'].iloc[i] == schema:
-    #             list_TmpCN.append(df_SqlData['欄位名稱'].iloc[i])
-    #             list_TmpDes.append(df_SqlData['欄位描述'].iloc[i])
+    # #     for i in range(len(df_SqlData)):
+    # #         if df_SqlData['表格名稱'].iloc[i] == schema:
+    # #             list_TmpCN.append(df_SqlData['欄位名稱'].iloc[i])
+    # #             list_TmpDes.append(df_SqlData['欄位描述'].iloc[i])
 
-    #     dic3[schema+'_column'] = list_TmpCN
-    #     dic3[schema+'_description'] = list_TmpDes
+    # #     dic3[schema+'_column'] = list_TmpCN
+    # #     dic3[schema+'_description'] = list_TmpDes
 
-    # df_columnAnddesciption = pd.DataFrame({ key:pd.Series(value) for key, value in dic3.items() })  
+    # # df_columnAnddesciption = pd.DataFrame({ key:pd.Series(value) for key, value in dic3.items() })  
 
 
-    # # write excel
-    # dic_AllDF = {}
-    # export_file = 'MultiDF3.xlsx'
-    # writer = pd.ExcelWriter(export_file, engine='openpyxl')   
-    # str_CAST = 'CAST'
-    # str_AsDatetime = ' AS DateTime'
-    # for schema in list_SAT:
+    # # # write excel
+    # # dic_AllDF = {}
+    # # export_file = 'MultiDF3.xlsx'
+    # # writer = pd.ExcelWriter(export_file, engine='openpyxl')   
+    # # str_CAST = 'CAST'
+    # # str_AsDatetime = ' AS DateTime'
+    # # for schema in list_SAT:
 
-    #     tmp_ColData = df_columnAnddesciption[schema + '_column']
-    #     tmp_DescripData = df_columnAnddesciption[schema + '_description']
+    # #     tmp_ColData = df_columnAnddesciption[schema + '_column']
+    # #     tmp_DescripData = df_columnAnddesciption[schema + '_description']
 
-    #     isStr_col = [True if isinstance(i, str) == True or isinstance(i, NoneType) == True else False for i in tmp_ColData]
-    #     isStr_descrip = [True if isinstance(i, str) == True or isinstance(i, NoneType) == True else False for i in tmp_DescripData]
+    # #     isStr_col = [True if isinstance(i, str) == True or isinstance(i, NoneType) == True else False for i in tmp_ColData]
+    # #     isStr_descrip = [True if isinstance(i, str) == True or isinstance(i, NoneType) == True else False for i in tmp_DescripData]
 
-    #     ColumnNames = tmp_ColData[isStr_col]
-    #     Descriptions = tmp_DescripData[isStr_descrip].values
+    # #     ColumnNames = tmp_ColData[isStr_col]
+    # #     Descriptions = tmp_DescripData[isStr_descrip].values
 
-    #     list_TmpVal = []
+    # #     list_TmpVal = []
 
-    #     tmp_df = pd.DataFrame(columns=ColumnNames)   # set column names as headers
-    #     tmp_df.loc[0] = Descriptions  # set columns descriptions as first row data
+    # #     tmp_df = pd.DataFrame(columns=ColumnNames)   # set column names as headers
+    # #     tmp_df.loc[0] = Descriptions  # set columns descriptions as first row data
 
-    #     # Get the values to be inserted using schema as the keys
-    #     for i in range(len(df)):
-    #         if df['Schema & Table'].iloc[i] == schema:
-    #             list_TmpVal.append(df['Values'].iloc[i].split(","))        
+    # #     # Get the values to be inserted using schema as the keys
+    # #     for i in range(len(df)):
+    # #         if df['Schema & Table'].iloc[i] == schema:
+    # #             list_TmpVal.append(df['Values'].iloc[i].split(","))        
         
 
-    #     for j in range(len(list_TmpVal)):  # iterations: the number of value lines to be INSERTED
-    #         insert_dic = {}
+    # #     for j in range(len(list_TmpVal)):  # iterations: the number of value lines to be INSERTED
+    # #         insert_dic = {}
 
-    #         for k in range(len(list_TmpVal[j])):  # iterations: the number of values in one line
-    #             if ")" in list_TmpVal[j][k] and "(" not in list_TmpVal[j][k]:
-    #                 list_TmpVal[j][k-1] = list_TmpVal[j][k-1] + ", " + list_TmpVal[j][k]
-    #                 list_TmpVal[j].remove(list_TmpVal[j][k])
-    #                 break
+    # #         for k in range(len(list_TmpVal[j])):  # iterations: the number of values in one line
+    # #             if ")" in list_TmpVal[j][k] and "(" not in list_TmpVal[j][k]:
+    # #                 list_TmpVal[j][k-1] = list_TmpVal[j][k-1] + ", " + list_TmpVal[j][k]
+    # #                 list_TmpVal[j].remove(list_TmpVal[j][k])
+    # #                 break
 
-    #         for c in range(len(ColumnNames)):  # iterations: the number of columns
+    # #         for c in range(len(ColumnNames)):  # iterations: the number of columns
 
-    #             # data processing
-    #             if str_CAST and str_AsDatetime in list_TmpVal[j][c]:
-    #                 list_TmpVal[j][c] = list_TmpVal[j][c].replace(str_CAST, "").replace(str_AsDatetime, "").replace("(", "").replace(")", "").replace("-", "/").replace("T", " ")
-    #                 list_TmpVal[j][c] = list_TmpVal[j][c].replace("N'", "").replace("'", "")
+    # #             # data processing
+    # #             if str_CAST and str_AsDatetime in list_TmpVal[j][c]:
+    # #                 list_TmpVal[j][c] = list_TmpVal[j][c].replace(str_CAST, "").replace(str_AsDatetime, "").replace("(", "").replace(")", "").replace("-", "/").replace("T", " ")
+    # #                 list_TmpVal[j][c] = list_TmpVal[j][c].replace("N'", "").replace("'", "")
 
-    #             elif str(list_TmpVal[j][c]) == " N'N'":
-    #                 list_TmpVal[j][c] = "N"
+    # #             elif str(list_TmpVal[j][c]) == " N'N'":
+    # #                 list_TmpVal[j][c] = "N"
                 
-    #             else:
-    #                 list_TmpVal[j][c] = list_TmpVal[j][c].replace("N'", "").replace("'", "")
+    # #             else:
+    # #                 list_TmpVal[j][c] = list_TmpVal[j][c].replace("N'", "").replace("'", "")
 
-    #             insert_dic[ColumnNames[c]] = list_TmpVal[j][c]
+    # #             insert_dic[ColumnNames[c]] = list_TmpVal[j][c]
 
             
-    #         # add values to be inserted as row data
-    #         tmp_df.loc[len(tmp_df)] = insert_dic
+    # #         # add values to be inserted as row data
+    # #         tmp_df.loc[len(tmp_df)] = insert_dic
         
-    #     dic_AllDF[schema] = tmp_df
+    # #     dic_AllDF[schema] = tmp_df
 
-    # start_row = 0
-    # pre_len = 0
-    # for key, value in dic_AllDF.items():
-    #     start_row += pre_len
+    # # start_row = 0
+    # # pre_len = 0
+    # # for key, value in dic_AllDF.items():
+    # #     start_row += pre_len
 
-    #     df_schema = pd.DataFrame({'Schema.Table': key}, index=[0])
-    #     sf_schema = StyleFrame(df_schema, Styler(border_type=None, fill_pattern_type=None))
-    #     sf_schema.apply_column_style(cols_to_style=['Schema.Table'], styler_obj=Styler(font_size=18))
-    #     sf_schema.to_excel(writer, sheet_name='sheet1', startrow=start_row, startcol=0, index=False, header=False) 
+    # #     df_schema = pd.DataFrame({'Schema.Table': key}, index=[0])
+    # #     sf_schema = StyleFrame(df_schema, Styler(border_type=None, fill_pattern_type=None))
+    # #     sf_schema.apply_column_style(cols_to_style=['Schema.Table'], styler_obj=Styler(font_size=18))
+    # #     sf_schema.to_excel(writer, sheet_name='sheet1', startrow=start_row, startcol=0, index=False, header=False) 
         
-    #     sf_value = StyleFrame(value, Styler(border_type=None, fill_pattern_type=None))
-    #     sf_value.apply_headers_style(styler_obj=Styler(bg_color=utils.colors.yellow))
-    #     sf_value.to_excel(writer, sheet_name='sheet1', startrow=start_row+1, startcol=0, index=False)
+    # #     sf_value = StyleFrame(value, Styler(border_type=None, fill_pattern_type=None))
+    # #     sf_value.apply_headers_style(styler_obj=Styler(bg_color=utils.colors.yellow))
+    # #     sf_value.to_excel(writer, sheet_name='sheet1', startrow=start_row+1, startcol=0, index=False)
 
-    #     pre_len = len(value)+3
+    # #     pre_len = len(value)+3
 
-    # writer.save() 
+    # # writer.save() 
 
 
