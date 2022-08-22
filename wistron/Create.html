@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script>
+$(document).ready(function(){
+    $("#confirm").click(function(){
+  let dataInfo = {
+    userId: $('#userId').val(),
+    paymentType: parseInt($('#paymentType').val()),
+    products: []
+   };
+  $.ajax( {
+                   type: 'post',
+                   url: 'https://localhost:7106/Order',
+       async: false,
+                   data: JSON.stringify(dataInfo),
+                   dataType: 'json',
+                   contentType: "application/json; charset=utf-8",
+                   success: function ( data )
+                   {
+                      $("#result").text(data.orderId);
+                    
+                   },
+                   error: function ( jqXHR, textStatus, errorThrown )
+                   {
+                       
+                   }
+               } );
+    });
+    $("#redirect").click(function(){
+        window.location = 'Query.html';
+    });
+});
+</script>
+</head>
+<body>
+ <label for="userId">UserId:</label>
+ <input type="text" id="userId" name="userId"><br><br>
+ <label for="paymentType">PaymentType:</label>
+ <input type="text" id="paymentType" name="paymentType"><br><br>
+    <label id="result"></label><br>
+    <button type="button" id="confirm">confirm</button>
+    <button type="button" id="redirect">redirect</button>
+</body>
+</html>
