@@ -14,6 +14,9 @@ data = pd.read_csv(file_name, sep='|', header=None)
 original_df = pd.DataFrame(data)
 empty_df = pd.DataFrame(columns=["Time", "Space", "Interval", "Action", "Time took", "Command"])
 
+print(data)
+
+
 str_send = ' Sending HTTP request '
 str_receive =' Received HTTP response ' 
 str_exe = 'Executed DbCommand'
@@ -23,6 +26,7 @@ for i in range(len(original_df)):
     condition_exe = tmp_row_data.str.contains(str_exe, na=False)
     condition_receive = tmp_row_data.str.contains(str_receive, na=False)
     condition_send = tmp_row_data.str.contains(str_send, na=False)
+    print(condition_exe)
 
     if condition_exe[6]:
         date_time = tmp_row_data[0]  # A
