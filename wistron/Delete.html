@@ -6,14 +6,15 @@
 $(document).ready(function(){
     $("#confirm").click(function(){
 		$.ajax( {
-                   type: 'get',
+                   type: 'DELETE',
                    url: 'https://localhost:7106/Order/' + $('#orderId').val(),
 				   async: false,
                    dataType: 'json',
                    contentType: "application/json; charset=utf-8",
                    success: function ( data )
                    {
-						$("#result").text(data);
+						if(data)
+							alert('Sccuess');
                    },
                    error: function ( jqXHR, textStatus, errorThrown )
                    {
@@ -30,7 +31,6 @@ $(document).ready(function(){
 	<label for="orderId">OrderId:</label>
 	<input type="text" id="orderId" name="orderId"><br><br>
 	<label id="result"></label><br>
-    <button type="button" id="confirm">Query</button>
-	<button type="button" id="redirect">redirect</button>
+    <button type="button" id="confirm">Delete</button>
 </body>
 </html>
