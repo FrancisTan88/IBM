@@ -96,7 +96,7 @@ def AggregateData(num_schema, list_len_table, df):
             
 
 if __name__ == "__main__":
-    xlsx_file_path = 'MultiDF3.xlsx'
+    xlsx_file_path = 'MultiDF.xlsx'
     export_path = 'test.txt'
     empty_count = 0
     df_excel = pd.read_excel(xlsx_file_path, header=None)

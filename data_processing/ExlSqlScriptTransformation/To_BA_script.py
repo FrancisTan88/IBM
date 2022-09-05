@@ -26,40 +26,14 @@ def DataCleaning(data, new_path):
     str_insert = "INSERT "
     str_value = "VALUES "
     str_set = 'SET'
-    str_on = 'ON'
-    str_off = 'OFF'
-    
-    # # filter "GO"
-    # with open(new_path, "w") as new_file:
-    #     for l in data:
-    #         if l != "GO":
-    #             new_file.write(l)
-    
-    # check if there are "INSERT" queries without "SET" schema ON in advance
-    # list_no_set = []
-    # list_no_set_pack = []
-    # tag = -2
-    # with open(new_path, "r") as new_file:
-    #     lines_without_go = new_file.readlines()
-    #     for i in range(len(lines_without_go)):
-    #         if (i == tag+1) and (str_set and str_on not in lines_without_go[i]):
-    #             ind = i
-    #             while str_set and str_on not in lines_without_go[ind]:
-    #                 list_no_set.append(lines_without_go[i])
-    #                 ind += 1
-    #             list_no_set_pack.append(list_no_set)
 
-    #         if str_set and str_off in l:
-    #             tag = i
-
-    # only leave the INSERT lines
+    # only keep the INSERT lines
     with open(new_path, "w") as new_file:
         for l in data:
             if (str_insert in l) and (str_value in l) and (str_set not in l):
                 l = l.replace(str_insert, "").replace(str_value, "")
                 new_file.write(l)
     
-    # return list_no_set_pack
 
 # read new file and extract [schema].[table], columns, values and convert them into dataframe: df and process [Values]
 def NewFileToDF(data):
