@@ -40,7 +40,18 @@ class Solution:
     Space complexity: O(1)
     """
     def isPalindrome(self, x: int) -> bool:
+        if x < 0 or (x % 10 == 0 and x != 0):
+            return False
         
+        revert = 0
+        while x > revert:
+            complement = x % 10
+            revert = revert*10 + complement
+            x = int(x/10)
+        if revert == x or int(revert/10) == x:
+                return True
+        return False
+            
 
 
 
