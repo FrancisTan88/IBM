@@ -1,3 +1,6 @@
+from itertools import count
+
+
 class Solution:
     """
     Method: Vertical scanning
@@ -29,6 +32,19 @@ class Solution:
                     
         return ret_str
 
+
+    """
+    Method: Vertical scanning (improved)
+    """
+    def longestCommonPrefix(self, strs: List[str]) -> str:
+        for i in range(len(strs[0])):
+            char = strs[0][i]
+            for j in range(len(strs)):
+                if i >= len(strs[j]) or char != strs[j][i]:
+                    return strs[0][:i]
+        return strs[0]
+
+
     """
     Tricky method: Get the most different two strings by the function min(), max() and find the longest common prefix of them
 
@@ -40,14 +56,11 @@ class Solution:
     comparing these two strings will represent all others.
     """
     def longestCommonPrefix(self, strs: List[str]) -> str:
-        if not strs: return ""
-            count = 0
-            minimum, maximum= min(strs), max(strs)
-            for i in range(len(minimum)):
-                if minimum[i] != maximum[i]: break
-                else: count+=1
-            return minimum[:count]
-
-
-
-        
+        minimum = min(strs)
+        maximum = max(strs)
+        # count = 0
+        for i in range(len(minimum)):
+            if minimum[i] != maximum[i]:
+                return minimum[:i]
+        return minimum
+  
