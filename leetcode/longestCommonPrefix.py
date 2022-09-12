@@ -1,10 +1,11 @@
-from itertools import count
+
 
 
 class Solution:
     """
     Method: Vertical scanning
-    Time complexity: O(n^2)
+    
+    Time complexity: O(N*M), given that there are N strings in list at most, and the length of every string is not longer than M
     Space complexity: O(1)
 
     For the first for loop, find the shortest string in the array, and store that string.
@@ -35,6 +36,10 @@ class Solution:
 
     """
     Method: Vertical scanning (improved)
+
+    Time complexity: O(N*M), given that there are N strings in list at most, and the length of every string is not longer than M
+    Space complexity: O(1)
+
     """
     def longestCommonPrefix(self, strs: List[str]) -> str:
         for i in range(len(strs[0])):
@@ -47,6 +52,10 @@ class Solution:
 
     """
     Tricky method: Get the most different two strings by the function min(), max() and find the longest common prefix of them
+
+    Time Complexity: O(N*M), given that there are N strings in list at most, and the length of every string is not longer than M
+                    -> function min(), max() scan all the characters in list 
+    Space Complexity: O(1)
 
     function min() and max() will sort a string list by its alphabet, 
     Ex: S = ['aa', 'aac', 'aaf', 'ac', 'ad', 'aafz'],
