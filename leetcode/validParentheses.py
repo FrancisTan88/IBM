@@ -1,29 +1,5 @@
 class Solution:
     """
-    Algo: using stack
-
-    Time Complexity: O(N)
-    Space Complexity: O(N)
-
-    """
-    def isValid(self, s: str) -> bool:
-        stack = []
-        for i in range(len(s)):
-            if s[i] == '(' or s[i] == '[' or s[i] == '{':
-                stack.append(s[i])
-            else:
-                if not stack:
-                    return False
-                tmp = stack.pop()
-                if (s[i] == ')' and tmp != '(') or (s[i] == ']' and tmp != '[') or (s[i] == '}' and tmp != '{'):
-                    return False
-                
-        if stack:
-            return False
-        return True
-
-
-    """
     Algo: using hash map and stack
 
     Time Complexity: O(N)
@@ -47,3 +23,5 @@ class Solution:
                 return False
             stack.pop()
         return not stack
+
+        
