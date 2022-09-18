@@ -37,6 +37,7 @@ def DataCleaning(data, new_path):
 
 # read new file and extract [schema].[table], columns, values and convert them into dataframe: df and process [Values]
 def NewFileToDF(data):
+    # convert it to dataframe so that we can process the script more effectively
     cut_f = " ("
     cut_s = ") ("
     dict = {}
@@ -58,10 +59,16 @@ def NewFileToDF(data):
     dict['Columns'] = list_columns
     dict['Values'] = list_values
     df = pd.DataFrame(dict)
+    return df
 
+
+def ValueProcessingAndLabel(df):
     # remove N'', CAST...AS DATETIME, CAST...AS DECIMAL
+    dict_label = {}
     for i in range(len(df)):
-        values = df['Values'].iloc[i].split(", ")  # a list
+        curr_schema = df['Schema & Table'].iloc[i]
+        values = df['Values'].iloc[i].split(", ")  # a list, e.g. ['1', "N'12'", "N'2'", "N'Pv'", "N'System'", '0', "CAST(N'2022-05-04T13:29:06.150' AS DateTime)", "CAST(N'2022-05-04T13:29:06.150' AS DateTime)"]
+        # print(values[0])
 
         # remove '8))'
         for k in range(len(values)):
@@ -70,23 +77,30 @@ def NewFileToDF(data):
                 break
 
         for j in range(len(values)):
+            curr_column = df['Columns'].iloc[i].split(", ")[j]
 
             if 'CAST' and ' AS DateTime' in values[j]:
                 values[j] = values[j].replace('CAST', "").replace(' AS DateTime', "").replace("(", "").replace(")", "").replace("-", "/").replace("T", " ")
                 values[j] = values[j].replace("N'", "").replace("'", "")
+                dict_label[curr_schema + '.' + curr_column] = "datetime"
 
             elif 'CAST' and ' AS Decimal' in values[j]:
                 values[j] = values[j].split('(', 1)[1]
                 values[j] = values[j].split(' AS', 1)[0]
-                
+                dict_label[curr_schema + '.' + curr_column] = "decimal"
+            
+            # To avoid that we remove N'N' incorrectly 
             elif str(values[j]) == "N'N'":
                 values[j] = "N"
+                dict_label[curr_schema + '.' + curr_column] = "N"
             
             elif "N'" in values[j]:
                 values[j] = values[j].replace("N'", "").replace("'", "")
+                dict_label[curr_schema + '.' + curr_column] = "N"
 
         df['Values'].iloc[i] = ', '.join(values)
-    return df
+
+    return df, dict_label
 
 
 # connect to SQL server and get TableName, ColName, ColDescription from db
@@ -248,47 +262,55 @@ def WriteExl(dict_aggregate, writer, start_row, pre_len, dict_problems):
 
 
 
-if __name__ == "__main__":
-    path = 'DML_Ru.txt'
-    new_path = 'DML_Ru_InsertOnly.txt'
-    str_set = 'SET'
-    str_on = 'ON'
-    bp = 'IDENTITY_INSERT '
-    bp2 = ' '
-    filter_str = "INSERT "
-    str_value = "VALUES "
+# if __name__ == "__main__":
+path = 'DML_Ru.txt'
+new_path = 'DML_Ru_InsertOnly.txt'
+str_set = 'SET'
+str_on = 'ON'
+bp = 'IDENTITY_INSERT '
+bp2 = ' '
+filter_str = "INSERT "
+str_value = "VALUES "
 
-    # read txt file
-    with open(path, "r") as ori_file:
-        lines = ori_file.readlines()
+# read txt file
+with open(path, "r") as ori_file:
+    lines = ori_file.readlines()
 
-    # get schema
-    list_schema = GetSchema(lines)
+# get schema
+list_schema = GetSchema(lines)
 
-    # clean the data and write it as new file
-    DataCleaning(lines, new_path)
+# only keep the "INSERT" lines and write it as new txt file
+DataCleaning(lines, new_path)
 
-    # read new txt file
-    with open(new_path, "r") as new_file:
-        new_lines = new_file.readlines()
+# read new txt file
+with open(new_path, "r") as new_file:
+    new_lines = new_file.readlines()
 
-    # convert new txt file to dataframe:  (1)Schema & Table  (2)Columns  (3)Values
-    df_newFile = NewFileToDF(new_lines)
-        
-    # connect to SQL server and get TableName, ColName, ColDescription from db and convert them to dataframe
-    # [表格名稱] [欄位名稱] [欄位描述]
-    df_sqlData = SqlDataToDF()
+# convert new txt file to dataframe:  (1)Schema & Table  (2)Columns  (3)Values
+# label the schema.table.column if we did preprocessing to the data
+df_newFile = NewFileToDF(new_lines)
+# print(df_newFile)
 
-    # aggregate colNames, descriptions, values
-    dict_aggregate, dict_problems = AggregateData(list_schema, df_sqlData, df_newFile)
-
-    # write excel
-    export_file = 'MultiDF.xlsx'
-    writer = pd.ExcelWriter(export_file, engine='openpyxl')  
-    start_row = 0
-    pre_len = 0
-    WriteExl(dict_aggregate, writer, start_row, pre_len, dict_problems)
+# processing the texts of df['Values'] and label them if any of them were processed
+df_newFile, dict_label = ValueProcessingAndLabel(df_newFile)
+# for k, v in dict_label.items():
+#     print(k, v)
+# print(dict_label)
     
-    
-    
+# # connect to SQL server and get TableName, ColName, ColDescription from db and convert them to dataframe
+# # [表格名稱] [欄位名稱] [欄位描述]
+# df_sqlData = SqlDataToDF()
+
+# # aggregate colNames, descriptions, values
+# dict_aggregate, dict_problems = AggregateData(list_schema, df_sqlData, df_newFile)
+
+# # write excel
+# export_file = 'MultiDF.xlsx'
+# writer = pd.ExcelWriter(export_file, engine='openpyxl')  
+# start_row = 0
+# pre_len = 0
+# WriteExl(dict_aggregate, writer, start_row, pre_len, dict_problems)
+
+
+
 

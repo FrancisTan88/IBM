@@ -4,7 +4,7 @@
     "applicantId": "{{fifthUserNo}}",
     "applicantName": "{{fifthUserName}}",
     "companyId": "{{companyID(input)}}",
-    "departmentId": 10372,
+    "departmentId": 20750,
     "operationId": "1",
     "stageId": "4",
     "lendingType": "H",
@@ -17,14 +17,14 @@
     "aggrement": true,
     "useRole": "",
     "creditInstruction": {
-        "openTime": "2022-08-10T13:56:19.9791549+08:00",
+        "openTime": "2022-08-29T11:23:48.991767+08:00",
         "financeAmount": {{financialAmount}},
         "totalFinanceAmount": {{financialAmount}},
         "financeTenure": {{applyTerms(input)}},
         "interestRate": {{interestRate(input)}},
         "rejectReason": null,
         "instruction": "Approval  ",
-        "advancePaymentTerms": {{advancePaymentTerms(input)}},
+        "advancePaymentTerms": null,
         "prepaidRentalTerms": null,
         "securityDepositValue": null,
         "dealerRetention": false,
@@ -62,8 +62,8 @@
                 "creditCommentName": "Return to Credit Officer"
             }
         ],
-        "ltv": 50,
-        "ltvApply": 50
+        "ltv": 52.94117647058824,
+        "ltvApply": 52.94117647058824
     },
     "customerInformation": {
         "customerTypeId": "I",
@@ -245,7 +245,9 @@
                     "oldIdNo": null,
                     "isEastMY": null,
                     "residentialStatus": null,
-                    "lengthOfResidence": null
+                    "lengthOfResidence": null,
+                    "industry": null,
+                    "corporationIndustry": null
                 },
                 "contactInformation": {
                     "mobilePhone1": "0123456",
@@ -395,7 +397,9 @@
                     "oldIdNo": null,
                     "isEastMY": null,
                     "residentialStatus": null,
-                    "lengthOfResidence": null
+                    "lengthOfResidence": null,
+                    "industry": null,
+                    "corporationIndustry": null
                 },
                 "contactInformation": {
                     "mobilePhone1": null,
@@ -559,24 +563,6 @@
         "vatPaidBy": null,
         "feeNCharges": [
             {
-                "identityKey": "1659509825_1",
-                "item": "1151002",
-                "itemName": "Commission",
-                "chargeTo": "C",
-                "chargeToName": null,
-                "amount": 350,
-                "finance": false,
-                "isFinanceReadOnly": true,
-                "deduction": true,
-                "isDeductReadOnly": false,
-                "payment": "C",
-                "paymentName": "Charged at Commencement Date",
-                "isFixed": false,
-                "fromSecutiryAsset": false,
-                "irr": true,
-                "byAsset": "A"
-            },
-            {
                 "identityKey": "1659509825_2",
                 "item": "514501",
                 "itemName": "Handling Fee",
@@ -592,6 +578,24 @@
                 "isFixed": false,
                 "fromSecutiryAsset": false,
                 "irr": false,
+                "byAsset": "A"
+            },
+            {
+                "identityKey": "1659509825_1",
+                "item": "1151002",
+                "itemName": "Commission",
+                "chargeTo": "C",
+                "chargeToName": null,
+                "amount": 350,
+                "finance": false,
+                "isFinanceReadOnly": true,
+                "deduction": true,
+                "isDeductReadOnly": false,
+                "payment": "C",
+                "paymentName": "Charged at Commencement Date",
+                "isFixed": false,
+                "fromSecutiryAsset": false,
+                "irr": true,
                 "byAsset": "A"
             }
         ],
@@ -653,24 +657,6 @@
             ],
             "feeNCharges": [
                 {
-                    "identityKey": "1659509825_1",
-                    "item": "1151002",
-                    "itemName": "Commission",
-                    "chargeTo": "C",
-                    "chargeToName": null,
-                    "amount": 350,
-                    "finance": false,
-                    "isFinanceReadOnly": true,
-                    "deduction": true,
-                    "isDeductReadOnly": false,
-                    "payment": "C",
-                    "paymentName": "Charged at Commencement Date",
-                    "isFixed": false,
-                    "fromSecutiryAsset": false,
-                    "irr": true,
-                    "byAsset": "A"
-                },
-                {
                     "identityKey": "1659509825_2",
                     "item": "514501",
                     "itemName": "Handling Fee",
@@ -687,11 +673,29 @@
                     "fromSecutiryAsset": false,
                     "irr": false,
                     "byAsset": "A"
+                },
+                {
+                    "identityKey": "1659509825_1",
+                    "item": "1151002",
+                    "itemName": "Commission",
+                    "chargeTo": "C",
+                    "chargeToName": null,
+                    "amount": 350,
+                    "finance": false,
+                    "isFinanceReadOnly": true,
+                    "deduction": true,
+                    "isDeductReadOnly": false,
+                    "payment": "C",
+                    "paymentName": "Charged at Commencement Date",
+                    "isFixed": false,
+                    "fromSecutiryAsset": false,
+                    "irr": true,
+                    "byAsset": "A"
                 }
             ],
             "insurance": {
                 "autolife": false,
-                "autolifeSumInsured": {{collDownPayment(input)}},
+                "autolifeSumInsured": {{financialAmount}},
                 "insuranceTypes": []
             },
             "applyTenure": {{applyTerms(input)}},
@@ -705,12 +709,13 @@
             "realIRRFinal": {{realIRR}},
             "annualPercentageRateFinal": 14.31,
             "vehicleMotorsCaps": [
+                5,
                 5
             ],
             "capFinal": 5,
-            "ltvTotalFinal": 50,
-            "ltvAppraisalFinal": 50,
-            "ltvApplyFinal": 50,
+            "ltvTotalFinal": 52.94117647058824,
+            "ltvAppraisalFinal": 52.9412,
+            "ltvApplyFinal": 52.94117647058824,
             "isPurchasePriceNew": false,
             "purchasePriceFinal": 0
         }
@@ -727,7 +732,7 @@
                 "securityAssetRemark": "",
                 "sort": 0,
                 "hasCollateralValue": {{hasCollValue(input)}},
-                "submissionSubNo": 1,
+                "submissionSubNo": 0,
                 "identityKey": "1659509825_1",
                 "securityAssetId": 100496,
                 "isNew": true,
@@ -779,9 +784,9 @@
                 "securityAssetRemark": "",
                 "sort": 0,
                 "hasCollateralValue": {{hasCollValue2(input)}},
-                "submissionSubNo": 2,
+                "submissionSubNo": 0,
                 "identityKey": "1659509825_1",
-                "securityAssetId": 100496,
+                "securityAssetId": 100497,
                 "isNew": true,
                 "amendingCol": [],
                 "brand": "BR104",
@@ -847,6 +852,12 @@
                     "outdoor": false,
                     "isPositive": false,
                     "sortId": 1,
+                    "itemCode": "B1",
+                    "description": "Individual/Owner Age\t",
+                    "orderBy": 1,
+                    "autoRef": "None",
+                    "autoRefValue": "None",
+                    "notRated": false,
                     "preliminaryReviewMust": true,
                     "optionNScores": [
                         {
@@ -948,9 +959,7 @@
                             "isPositive": null,
                             "isDigital": false
                         }
-                    ],
-                    "autoRef": "None",
-                    "autoRefValue": "None"
+                    ]
                 },
                 {
                     "scoringItemId": 1434,
@@ -966,6 +975,12 @@
                     "outdoor": false,
                     "isPositive": false,
                     "sortId": 2,
+                    "itemCode": "B2",
+                    "description": "Education",
+                    "orderBy": 2,
+                    "autoRef": "AR6",
+                    "autoRefValue": "AR6",
+                    "notRated": false,
                     "preliminaryReviewMust": true,
                     "optionNScores": [
                         {
@@ -1034,9 +1049,7 @@
                             "isPositive": null,
                             "isDigital": false
                         }
-                    ],
-                    "autoRef": "AR6",
-                    "autoRefValue": "AR6"
+                    ]
                 },
                 {
                     "scoringItemId": 1435,
@@ -1052,6 +1065,12 @@
                     "outdoor": false,
                     "isPositive": false,
                     "sortId": 3,
+                    "itemCode": "B3",
+                    "description": "Type of Biz\t",
+                    "orderBy": 3,
+                    "autoRef": "None",
+                    "autoRefValue": "None",
+                    "notRated": false,
                     "preliminaryReviewMust": true,
                     "optionNScores": [
                         {
@@ -1087,9 +1106,7 @@
                             "isPositive": null,
                             "isDigital": false
                         }
-                    ],
-                    "autoRef": "None",
-                    "autoRefValue": "None"
+                    ]
                 },
                 {
                     "scoringItemId": 1436,
@@ -1105,6 +1122,12 @@
                     "outdoor": false,
                     "isPositive": false,
                     "sortId": 4,
+                    "itemCode": "B4",
+                    "description": "Position",
+                    "orderBy": 4,
+                    "autoRef": "None",
+                    "autoRefValue": "None",
+                    "notRated": false,
                     "preliminaryReviewMust": true,
                     "optionNScores": [
                         {
@@ -1173,9 +1196,7 @@
                             "isPositive": null,
                             "isDigital": false
                         }
-                    ],
-                    "autoRef": "None",
-                    "autoRefValue": "None"
+                    ]
                 },
                 {
                     "scoringItemId": 1437,
@@ -1191,6 +1212,12 @@
                     "outdoor": false,
                     "isPositive": false,
                     "sortId": 5,
+                    "itemCode": "B5",
+                    "description": "Period Employment\t",
+                    "orderBy": 5,
+                    "autoRef": "None",
+                    "autoRefValue": "None",
+                    "notRated": false,
                     "preliminaryReviewMust": true,
                     "optionNScores": [
                         {
@@ -1237,9 +1264,7 @@
                             "isPositive": null,
                             "isDigital": false
                         }
-                    ],
-                    "autoRef": "None",
-                    "autoRefValue": "None"
+                    ]
                 },
                 {
                     "scoringItemId": 1438,
@@ -1255,6 +1280,12 @@
                     "outdoor": false,
                     "isPositive": false,
                     "sortId": 6,
+                    "itemCode": "B6",
+                    "description": "Family Status(Owner/Hirer)\t",
+                    "orderBy": 6,
+                    "autoRef": "AR4",
+                    "autoRefValue": "AR4",
+                    "notRated": false,
                     "preliminaryReviewMust": true,
                     "optionNScores": [
                         {
@@ -1323,9 +1354,7 @@
                             "isPositive": null,
                             "isDigital": false
                         }
-                    ],
-                    "autoRef": "AR4",
-                    "autoRefValue": "AR4"
+                    ]
                 },
                 {
                     "scoringItemId": 1439,
@@ -1341,6 +1370,12 @@
                     "outdoor": false,
                     "isPositive": false,
                     "sortId": 7,
+                    "itemCode": "P1",
+                    "description": "Basic/Fixed Net Income\t",
+                    "orderBy": 7,
+                    "autoRef": "None",
+                    "autoRefValue": "None",
+                    "notRated": false,
                     "preliminaryReviewMust": false,
                     "optionNScores": [
                         {
@@ -1398,9 +1433,7 @@
                             "isPositive": null,
                             "isDigital": false
                         }
-                    ],
-                    "autoRef": "None",
-                    "autoRefValue": "None"
+                    ]
                 },
                 {
                     "scoringItemId": 1440,
@@ -1416,6 +1449,12 @@
                     "outdoor": false,
                     "isPositive": false,
                     "sortId": 8,
+                    "itemCode": "P2",
+                    "description": "DSR",
+                    "orderBy": 8,
+                    "autoRef": "None",
+                    "autoRefValue": "None",
+                    "notRated": false,
                     "preliminaryReviewMust": false,
                     "optionNScores": [
                         {
@@ -1484,9 +1523,7 @@
                             "isPositive": null,
                             "isDigital": false
                         }
-                    ],
-                    "autoRef": "None",
-                    "autoRefValue": "None"
+                    ]
                 },
                 {
                     "scoringItemId": 1441,
@@ -1502,6 +1539,12 @@
                     "outdoor": false,
                     "isPositive": false,
                     "sortId": 9,
+                    "itemCode": "P3",
+                    "description": "CCris Record\t",
+                    "orderBy": 9,
+                    "autoRef": "None",
+                    "autoRefValue": "None",
+                    "notRated": false,
                     "preliminaryReviewMust": false,
                     "optionNScores": [
                         {
@@ -1559,9 +1602,7 @@
                             "isPositive": null,
                             "isDigital": false
                         }
-                    ],
-                    "autoRef": "None",
-                    "autoRefValue": "None"
+                    ]
                 },
                 {
                     "scoringItemId": 1442,
@@ -1577,6 +1618,12 @@
                     "outdoor": false,
                     "isPositive": false,
                     "sortId": 10,
+                    "itemCode": "P4",
+                    "description": "Facility Serving Years\t",
+                    "orderBy": 10,
+                    "autoRef": "None",
+                    "autoRefValue": "None",
+                    "notRated": false,
                     "preliminaryReviewMust": false,
                     "optionNScores": [
                         {
@@ -1623,9 +1670,7 @@
                             "isPositive": null,
                             "isDigital": false
                         }
-                    ],
-                    "autoRef": "None",
-                    "autoRefValue": "None"
+                    ]
                 },
                 {
                     "scoringItemId": 1443,
@@ -1641,6 +1686,12 @@
                     "outdoor": false,
                     "isPositive": false,
                     "sortId": 11,
+                    "itemCode": "P5",
+                    "description": "Utilization of Credit Card\t",
+                    "orderBy": 11,
+                    "autoRef": "None",
+                    "autoRefValue": "None",
+                    "notRated": false,
                     "preliminaryReviewMust": false,
                     "optionNScores": [
                         {
@@ -1720,9 +1771,7 @@
                             "isPositive": null,
                             "isDigital": false
                         }
-                    ],
-                    "autoRef": "None",
-                    "autoRefValue": "None"
+                    ]
                 },
                 {
                     "scoringItemId": 1444,
@@ -1738,6 +1787,12 @@
                     "outdoor": false,
                     "isPositive": false,
                     "sortId": 12,
+                    "itemCode": "P6",
+                    "description": "Negative Remark(Trade Reference/Bounce Cheque/Bankruptcy)\t",
+                    "orderBy": 12,
+                    "autoRef": "None",
+                    "autoRefValue": "None",
+                    "notRated": false,
                     "preliminaryReviewMust": false,
                     "optionNScores": [
                         {
@@ -1806,9 +1861,7 @@
                             "isPositive": null,
                             "isDigital": false
                         }
-                    ],
-                    "autoRef": "None",
-                    "autoRefValue": "None"
+                    ]
                 },
                 {
                     "scoringItemId": 1445,
@@ -1824,6 +1877,12 @@
                     "outdoor": false,
                     "isPositive": false,
                     "sortId": 13,
+                    "itemCode": "P7",
+                    "description": "House Status\t",
+                    "orderBy": 13,
+                    "autoRef": "AR5",
+                    "autoRefValue": "AR5",
+                    "notRated": false,
                     "preliminaryReviewMust": false,
                     "optionNScores": [
                         {
@@ -1892,9 +1951,7 @@
                             "isPositive": null,
                             "isDigital": false
                         }
-                    ],
-                    "autoRef": "AR5",
-                    "autoRefValue": "AR5"
+                    ]
                 },
                 {
                     "scoringItemId": 1446,
@@ -1910,6 +1967,12 @@
                     "outdoor": false,
                     "isPositive": false,
                     "sortId": 14,
+                    "itemCode": "B7",
+                    "description": "Hirer Nature\t",
+                    "orderBy": 14,
+                    "autoRef": "None",
+                    "autoRefValue": "None",
+                    "notRated": false,
                     "preliminaryReviewMust": true,
                     "optionNScores": [
                         {
@@ -1956,9 +2019,7 @@
                             "isPositive": null,
                             "isDigital": false
                         }
-                    ],
-                    "autoRef": "None",
-                    "autoRefValue": "None"
+                    ]
                 },
                 {
                     "scoringItemId": 1447,
@@ -1974,6 +2035,12 @@
                     "outdoor": false,
                     "isPositive": false,
                     "sortId": 15,
+                    "itemCode": "B8",
+                    "description": "1st Time Buyer Project\t",
+                    "orderBy": 15,
+                    "autoRef": "None",
+                    "autoRefValue": "None",
+                    "notRated": false,
                     "preliminaryReviewMust": true,
                     "optionNScores": [
                         {
@@ -1998,9 +2065,7 @@
                             "isPositive": null,
                             "isDigital": false
                         }
-                    ],
-                    "autoRef": "None",
-                    "autoRefValue": "None"
+                    ]
                 },
                 {
                     "scoringItemId": 1448,
@@ -2016,6 +2081,12 @@
                     "outdoor": false,
                     "isPositive": false,
                     "sortId": 16,
+                    "itemCode": "B9",
+                    "description": "Driver License\t",
+                    "orderBy": 16,
+                    "autoRef": "None",
+                    "autoRefValue": "None",
+                    "notRated": false,
                     "preliminaryReviewMust": true,
                     "optionNScores": [
                         {
@@ -2040,9 +2111,7 @@
                             "isPositive": null,
                             "isDigital": false
                         }
-                    ],
-                    "autoRef": "None",
-                    "autoRefValue": "None"
+                    ]
                 },
                 {
                     "scoringItemId": 1449,
@@ -2058,6 +2127,12 @@
                     "outdoor": false,
                     "isPositive": false,
                     "sortId": 17,
+                    "itemCode": "B10",
+                    "description": "Purpose of Buying the Vehicle\t",
+                    "orderBy": 17,
+                    "autoRef": "None",
+                    "autoRefValue": "None",
+                    "notRated": false,
                     "preliminaryReviewMust": true,
                     "optionNScores": [
                         {
@@ -2126,9 +2201,7 @@
                             "isPositive": null,
                             "isDigital": false
                         }
-                    ],
-                    "autoRef": "None",
-                    "autoRefValue": "None"
+                    ]
                 },
                 {
                     "scoringItemId": 1450,
@@ -2144,6 +2217,12 @@
                     "outdoor": false,
                     "isPositive": false,
                     "sortId": 18,
+                    "itemCode": "G1",
+                    "description": "Guarantor Relationship\t",
+                    "orderBy": 18,
+                    "autoRef": "None",
+                    "autoRefValue": "None",
+                    "notRated": false,
                     "preliminaryReviewMust": false,
                     "optionNScores": [
                         {
@@ -2212,9 +2291,7 @@
                             "isPositive": null,
                             "isDigital": false
                         }
-                    ],
-                    "autoRef": "None",
-                    "autoRefValue": "None"
+                    ]
                 },
                 {
                     "scoringItemId": 1451,
@@ -2230,6 +2307,12 @@
                     "outdoor": false,
                     "isPositive": false,
                     "sortId": 19,
+                    "itemCode": "P8",
+                    "description": "Bounce Check\t",
+                    "orderBy": 19,
+                    "autoRef": "None",
+                    "autoRefValue": "None",
+                    "notRated": false,
                     "preliminaryReviewMust": false,
                     "optionNScores": [
                         {
@@ -2254,9 +2337,7 @@
                             "isPositive": null,
                             "isDigital": false
                         }
-                    ],
-                    "autoRef": "None",
-                    "autoRefValue": "None"
+                    ]
                 },
                 {
                     "scoringItemId": 1452,
@@ -2272,6 +2353,12 @@
                     "outdoor": false,
                     "isPositive": false,
                     "sortId": 20,
+                    "itemCode": "P9",
+                    "description": "Bankruptcy",
+                    "orderBy": 20,
+                    "autoRef": "None",
+                    "autoRefValue": "None",
+                    "notRated": false,
                     "preliminaryReviewMust": false,
                     "optionNScores": [
                         {
@@ -2296,9 +2383,7 @@
                             "isPositive": null,
                             "isDigital": false
                         }
-                    ],
-                    "autoRef": "None",
-                    "autoRefValue": "None"
+                    ]
                 },
                 {
                     "scoringItemId": 1453,
@@ -2314,6 +2399,12 @@
                     "outdoor": false,
                     "isPositive": false,
                     "sortId": 21,
+                    "itemCode": "P10",
+                    "description": "Special Attention Account\t",
+                    "orderBy": 21,
+                    "autoRef": "None",
+                    "autoRefValue": "None",
+                    "notRated": false,
                     "preliminaryReviewMust": false,
                     "optionNScores": [
                         {
@@ -2360,9 +2451,7 @@
                             "isPositive": null,
                             "isDigital": false
                         }
-                    ],
-                    "autoRef": "None",
-                    "autoRefValue": "None"
+                    ]
                 },
                 {
                     "scoringItemId": 1454,
@@ -2378,6 +2467,12 @@
                     "outdoor": false,
                     "isPositive": false,
                     "sortId": 22,
+                    "itemCode": "P11",
+                    "description": "Trade Reference\t",
+                    "orderBy": 22,
+                    "autoRef": "None",
+                    "autoRefValue": "None",
+                    "notRated": false,
                     "preliminaryReviewMust": false,
                     "optionNScores": [
                         {
@@ -2424,9 +2519,7 @@
                             "isPositive": null,
                             "isDigital": false
                         }
-                    ],
-                    "autoRef": "None",
-                    "autoRefValue": "None"
+                    ]
                 },
                 {
                     "scoringItemId": 1455,
@@ -2442,6 +2535,12 @@
                     "outdoor": false,
                     "isPositive": false,
                     "sortId": 23,
+                    "itemCode": "P12\t",
+                    "description": "Loan Recently Applied\t",
+                    "orderBy": 23,
+                    "autoRef": "None",
+                    "autoRefValue": "None",
+                    "notRated": false,
                     "preliminaryReviewMust": false,
                     "optionNScores": [
                         {
@@ -2488,9 +2587,7 @@
                             "isPositive": 1,
                             "isDigital": false
                         }
-                    ],
-                    "autoRef": "None",
-                    "autoRefValue": "None"
+                    ]
                 },
                 {
                     "scoringItemId": 1456,
@@ -2506,6 +2603,12 @@
                     "outdoor": false,
                     "isPositive": false,
                     "sortId": 24,
+                    "itemCode": "M1\t",
+                    "description": "Credit Service Program\t",
+                    "orderBy": 24,
+                    "autoRef": "None",
+                    "autoRefValue": "None",
+                    "notRated": false,
                     "preliminaryReviewMust": false,
                     "optionNScores": [
                         {
@@ -2530,9 +2633,7 @@
                             "isPositive": null,
                             "isDigital": false
                         }
-                    ],
-                    "autoRef": "None",
-                    "autoRefValue": "None"
+                    ]
                 },
                 {
                     "scoringItemId": 1457,
@@ -2548,6 +2649,12 @@
                     "outdoor": false,
                     "isPositive": false,
                     "sortId": 25,
+                    "itemCode": "M2\t",
+                    "description": "Local Customer\t",
+                    "orderBy": 25,
+                    "autoRef": "None",
+                    "autoRefValue": "None",
+                    "notRated": false,
                     "preliminaryReviewMust": false,
                     "optionNScores": [
                         {
@@ -2572,9 +2679,7 @@
                             "isPositive": null,
                             "isDigital": false
                         }
-                    ],
-                    "autoRef": "None",
-                    "autoRefValue": "None"
+                    ]
                 },
                 {
                     "scoringItemId": 1458,
@@ -2590,6 +2695,12 @@
                     "outdoor": false,
                     "isPositive": false,
                     "sortId": 27,
+                    "itemCode": "M3",
+                    "description": "Income Type\t",
+                    "orderBy": 27,
+                    "autoRef": "None",
+                    "autoRefValue": "None",
+                    "notRated": false,
                     "preliminaryReviewMust": false,
                     "optionNScores": [
                         {
@@ -2647,9 +2758,7 @@
                             "isPositive": null,
                             "isDigital": false
                         }
-                    ],
-                    "autoRef": "None",
-                    "autoRefValue": "None"
+                    ]
                 },
                 {
                     "scoringItemId": 1459,
@@ -2665,6 +2774,12 @@
                     "outdoor": false,
                     "isPositive": false,
                     "sortId": 28,
+                    "itemCode": "M4\t",
+                    "description": "Contract Worker\t",
+                    "orderBy": 28,
+                    "autoRef": "None",
+                    "autoRefValue": "None",
+                    "notRated": false,
                     "preliminaryReviewMust": false,
                     "optionNScores": [
                         {
@@ -2689,9 +2804,7 @@
                             "isPositive": null,
                             "isDigital": false
                         }
-                    ],
-                    "autoRef": "None",
-                    "autoRefValue": "None"
+                    ]
                 },
                 {
                     "scoringItemId": 1460,
@@ -2707,6 +2820,12 @@
                     "outdoor": false,
                     "isPositive": false,
                     "sortId": 29,
+                    "itemCode": "M5\t",
+                    "description": "Cancelled By Customer But Approved\t",
+                    "orderBy": 29,
+                    "autoRef": "None",
+                    "autoRefValue": "None",
+                    "notRated": false,
                     "preliminaryReviewMust": false,
                     "optionNScores": [
                         {
@@ -2731,9 +2850,7 @@
                             "isPositive": null,
                             "isDigital": false
                         }
-                    ],
-                    "autoRef": "None",
-                    "autoRefValue": "None"
+                    ]
                 },
                 {
                     "scoringItemId": 1461,
@@ -2749,6 +2866,12 @@
                     "outdoor": false,
                     "isPositive": false,
                     "sortId": 30,
+                    "itemCode": "M6\t",
+                    "description": "Special Request\t",
+                    "orderBy": 30,
+                    "autoRef": "None",
+                    "autoRefValue": "None",
+                    "notRated": false,
                     "preliminaryReviewMust": false,
                     "optionNScores": [
                         {
@@ -2795,9 +2918,7 @@
                             "isPositive": null,
                             "isDigital": false
                         }
-                    ],
-                    "autoRef": "None",
-                    "autoRefValue": "None"
+                    ]
                 },
                 {
                     "scoringItemId": 1462,
@@ -2813,6 +2934,12 @@
                     "outdoor": false,
                     "isPositive": false,
                     "sortId": 31,
+                    "itemCode": "M7",
+                    "description": "Cash Flow_Any Month End Balance lower than instalment calculated\t",
+                    "orderBy": 31,
+                    "autoRef": "None",
+                    "autoRefValue": "None",
+                    "notRated": false,
                     "preliminaryReviewMust": false,
                     "optionNScores": [
                         {
@@ -2848,9 +2975,7 @@
                             "isPositive": null,
                             "isDigital": false
                         }
-                    ],
-                    "autoRef": "None",
-                    "autoRefValue": "None"
+                    ]
                 },
                 {
                     "scoringItemId": 1463,
@@ -2866,6 +2991,12 @@
                     "outdoor": false,
                     "isPositive": false,
                     "sortId": 32,
+                    "itemCode": "M8\t",
+                    "description": "TryCase_Ram 7-10 ignore NDI\t",
+                    "orderBy": 32,
+                    "autoRef": "None",
+                    "autoRefValue": "None",
+                    "notRated": false,
                     "preliminaryReviewMust": false,
                     "optionNScores": [
                         {
@@ -2890,9 +3021,7 @@
                             "isPositive": null,
                             "isDigital": false
                         }
-                    ],
-                    "autoRef": "None",
-                    "autoRefValue": "None"
+                    ]
                 },
                 {
                     "scoringItemId": 1464,
@@ -2908,6 +3037,12 @@
                     "outdoor": false,
                     "isPositive": false,
                     "sortId": 33,
+                    "itemCode": "M10",
+                    "description": "TryCase_Ram 7-10 waive DriverLicense\t",
+                    "orderBy": 33,
+                    "autoRef": "None",
+                    "autoRefValue": "None",
+                    "notRated": false,
                     "preliminaryReviewMust": false,
                     "optionNScores": [
                         {
@@ -2932,9 +3067,7 @@
                             "isPositive": null,
                             "isDigital": false
                         }
-                    ],
-                    "autoRef": "None",
-                    "autoRefValue": "None"
+                    ]
                 },
                 {
                     "scoringItemId": 1465,
@@ -2950,6 +3083,12 @@
                     "outdoor": false,
                     "isPositive": false,
                     "sortId": 34,
+                    "itemCode": "M9",
+                    "description": "TryCase_Ram 7-10 ignore DSR\t",
+                    "orderBy": 34,
+                    "autoRef": "None",
+                    "autoRefValue": "None",
+                    "notRated": false,
                     "preliminaryReviewMust": false,
                     "optionNScores": [
                         {
@@ -2974,9 +3113,7 @@
                             "isPositive": null,
                             "isDigital": false
                         }
-                    ],
-                    "autoRef": "None",
-                    "autoRefValue": "None"
+                    ]
                 },
                 {
                     "scoringItemId": 1466,
@@ -2992,6 +3129,12 @@
                     "outdoor": false,
                     "isPositive": false,
                     "sortId": 35,
+                    "itemCode": "M11",
+                    "description": "Employment Verification",
+                    "orderBy": 35,
+                    "autoRef": "None",
+                    "autoRefValue": "None",
+                    "notRated": false,
                     "preliminaryReviewMust": false,
                     "optionNScores": [
                         {
@@ -3060,14 +3203,12 @@
                             "isPositive": null,
                             "isDigital": false
                         }
-                    ],
-                    "autoRef": "None",
-                    "autoRefValue": "None"
+                    ]
                 }
             ]
         },
         "repaymentCapability": {
-            "thisInstallment": 1186,
+            "thisInstallment": {{pmt}},
             "netDisposableIncome": 0,
             "dsr": null,
             "rr": null,
@@ -3077,25 +3218,25 @@
                 "income": [
                     {
                         "isCanDelete": false,
-                        "incomeExpenseItemId": 25026,
+                        "incomeExpenseItemId": 27248,
                         "item": "Monthly Income",
                         "amount": 0
                     },
                     {
                         "isCanDelete": false,
-                        "incomeExpenseItemId": 25027,
+                        "incomeExpenseItemId": 27249,
                         "item": "Allowances & Bonusess",
                         "amount": 0
                     },
                     {
                         "isCanDelete": false,
-                        "incomeExpenseItemId": 25028,
+                        "incomeExpenseItemId": 27250,
                         "item": "Commissions",
                         "amount": 0
                     },
                     {
                         "isCanDelete": false,
-                        "incomeExpenseItemId": 25029,
+                        "incomeExpenseItemId": 27251,
                         "item": "Dividends & Interests",
                         "amount": 0
                     }
@@ -3103,43 +3244,43 @@
                 "expense": [
                     {
                         "isCanDelete": false,
-                        "incomeExpenseItemId": 25030,
+                        "incomeExpenseItemId": 27252,
                         "item": "Housing & Utility",
                         "amount": 0
                     },
                     {
                         "isCanDelete": false,
-                        "incomeExpenseItemId": 25031,
+                        "incomeExpenseItemId": 27253,
                         "item": "Loan Amortizations",
                         "amount": 0
                     },
                     {
                         "isCanDelete": false,
-                        "incomeExpenseItemId": 25032,
+                        "incomeExpenseItemId": 27254,
                         "item": "Living",
                         "amount": 0
                     },
                     {
                         "isCanDelete": false,
-                        "incomeExpenseItemId": 25033,
+                        "incomeExpenseItemId": 27255,
                         "item": "Transportation",
                         "amount": 0
                     },
                     {
                         "isCanDelete": false,
-                        "incomeExpenseItemId": 25034,
+                        "incomeExpenseItemId": 27256,
                         "item": "Education",
                         "amount": 0
                     },
                     {
                         "isCanDelete": false,
-                        "incomeExpenseItemId": 25035,
+                        "incomeExpenseItemId": 27257,
                         "item": "EPF",
                         "amount": 0
                     },
                     {
                         "isCanDelete": false,
-                        "incomeExpenseItemId": 25036,
+                        "incomeExpenseItemId": 27258,
                         "item": "Others",
                         "amount": 0
                     }
@@ -3278,7 +3419,7 @@
                 ]
             }
         ],
-        "reportHTML": null
+        "reportHTML": "<!DOCTYPE html PUBLIC \"XSLT-compat\"><html>  <head>    <META http-equiv=\"Content-Type\" content=\"text/html; charset=utf-16\">    <title>    </title>    <style type=\"text/css\">table, .section {page-break-inside:avoid;}body {width: 100%;font-family: arial,san-serif;font-size: 10px;}.h1 {font-family: arial,san-serif;font-size: 20px;font-weight: bold;margin-bottom: 5px;color: #1F497D;text-transform:uppercase;}.italic-bold {font-family: arial,san-serif;font-weight: bold;font-style: italic;}.normal-text {font-family: arial,san-serif;font-size: 10px;}.red {color: #E44249;}.popup-box {width: 550px;height: 550px;color: #111;padding: 25px;border: 1px dotted #CAA162;background-color: #FFF;border-radius: 10px;box-shadow: 0 0 25px 5px #999;display:none;overflow: auto;_background-color: #F7F7FF;*width: 600px;}.bClose {border-radius: 7px 7px 7px 7px;box-shadow: none;font: bold 131% sans-serif;padding: 3px 6px 3px 6px;position: absolute;right: 7px;top: 7px;background-color: #2B91AF;color: #FFF;cursor: pointer;display: inline-block;text-align: center;}.popup-box p {padding: 5px;font-family: arial,san-serif;font-size: 12px;margin: 0px;}.input-text-style, .input-button-style {padding: 4px 7px;}.align-radio, .align-checkbox {float:left; margin-top: 5px;}label {display: block;float: left;padding: 5px;width: 150px;}#popup_form {margin: 0px;padding: 0px;font-family: Arial, Helvetica, sans-serif;font-size: 12px;}.clear {clear: both;}.bClose {zoom:1; display:inline;}.nowrap {white-space: nowrap;}.wrapper {width: 660px;margin-left: auto;margin-right: auto;}.wrapper_landscape {width: 960px;margin-left: auto;margin-right: auto;}table.full_border, table.full_border_2p {border-collapse:collapse;border-color:#000000; border-style:solid; border-width:1px;}table.full_border tr th, table.full_border tr td {border-width: 1px;border-style:solid;border-color:#C4C1C0;padding: 5px;}table.full_border tr th {font-size: 12px;background-color: #DAEEF3;}table.full_border_2p tr td {font-size: 7px;border-width: 1px;border-style:solid;border-color:#C4C1C0;padding: 1px;}table.full_border_2p tr th {font-size: 12px;background-color: #DAEEF3;border-width: 1px;border-style:solid;border-color:#C4C1C0;padding: 5px;}table.woborder tr td {border: 0;}table.full_border tr .no-padding {padding: 1px;}table.full_border tr .no-padding p {margin: 2px;}.no-margin {margin: 0;}.margin20 {margin: 20px 0 0 0;}.margin10 {margin: 10px 0 0 0;}table.nobottom {border: 1px solid #C4C1C0;padding: 0;border-collapse:collapse;}.nobottom th {border: 1px solid #C4C1C0;background-color: #DAEEF3;font-size: 12px;padding: 5px;margin: 0px;}.nobottom td {border-left: 1px solid #C4C1C0;border-right: 1px solid #C4C1C0;padding: 3px;margin: 0px;}.nobottom td.show_border {border: 1px solid #C4C1C0;padding: 3px;margin: 0px;}.nobottom td.show_border2 {border: 1px solid #C4C1C0;padding: 3px;margin: 0px;border-bottom: white;}table.nostyle {border: 1px solid #C4C1C0;padding: 0;border-collapse:collapse;}.nostyle tr th {padding: 5px;font-size: 12px;background-color: #DAEEF3;}.nostyle td {padding: 5px;margin: 0px;border: 0px;}.nostyle td.show_border, .nostyle th.show_border {border: 1px solid #C4C1C0;padding: 5px;margin: 0px;}.nostyle td.show_right_border {border-right: 1px solid #C4C1C0;padding: 5px;margin: 0px;}.nostyle td.show_left_border {border-left: 1px solid #C4C1C0;padding: 5px;margin: 0px;}.nostyle td.show_bottom_border {border-bottom: 1px solid #C4C1C0;padding: 5px;margin: 0px;}.nostyle td.show_top_border {border-top: 1px solid #C4C1C0;padding: 5px;margin: 0px;}.background_DAEEF3 {background-color: #DAEEF3;}.bold {  font-weight: bold;}.uline {text-decoration: underline;}.legend {margin: 3px;border-collapse:collapse;border-width: 1px;border-style:solid;border-color:#DAEEF3;}.legend td {text-align: center;}.total {text-decoration: overline underline;}.small {font-size: 9px;font-weight: normal;display: inline-block;}.highlight {background-color: #DAEEF3; }.highlight_F8F8FF {  background-color: #F8F8FF; }.padding5 {padding: 5px;}.padding8 {padding: 8px;}.prev_enq {  border-collapse:collapse;            }.prev_enq th, .prev_enq td {  border-width: 1px;  border-style:solid;  border-color:black;  text-align: center;           }.liteblue {color: #17365D;}.blue {color: #00f;}.term {text-align: justify;font-size: 9px;padding: 0px;margin: 0px;}.h3 {  font-size: 11px;  font-weight: bold;  margin-bottom: 5px;}.h3_pcrp {  font-size: 10px;  font-weight: bold;  margin: 2px;}.report-date {font-size: 12px;}.h2 {  font-family: arial,san-serif;  font-size: 14px;  font-weight: bold;  margin-bottom: 5px;  text-decoration: underline;}.font12 {font-size: 12px;}.font14 {font-size: 14px;}.fontRed {color: red;}.bgRedFontWhite {background-color: red;color: white;}.justify {text-align:justify;text-justify:inter-word;}.left {float:left;}.right {float:right;}ol { counter-reset: item }ol li { display: block }ol li:before { content: counter(item) \". \"; counter-increment: item }ol.reset { counter-reset: item }li.suit { display: block }li.suit:before { content: counter(item) \". \"; counter-increment: item }.pcr_report_title {font-size: large;font-weight: bold;display: inline-block;width: 60%;}.pcr_report_details_box {display: inline-block;width: 30%;border-style: solid;border-width: thin;padding: 5px 30px;border-color: #C4C1C0;}.pcr_report_detail_title {display: inline-block;width: 50%;}.pcr_report_logo {margin-right: 78%;}.risk_grade_active {text-align: center;font-weight: bold;font-size: 1em;background-color: #DAEEF3;}table.full_border tr .risk_grade_active {border: 2px solid black;}.risk_grade_not_active {text-align: center;font-size: 0.8em;}table {  font-family: arial,san-serif;  font-size: 10px;}.kyc_header {background-color: #DAEEF3;text-align: justify;}.kyc_request_table {font-size:12px;}/*.note {font-weight: bold;font-style: italic;padding: 8px;}.term {  text-align: justify;  font-family: arial,san-serif;  font-size: 10px;  padding: 3px;}hr {  border: solid 1px;  color: #778899;  height: 1px;  border-top: 1px;}.tablewborder {  border-collapse:collapse;  border-width: 1px;  border-style:solid;  border-color:black; }/*.tablewborder th, .tablewborder td {  border-width: 1px;  border-style:solid;  border-color:black;       }*//*p {  font-family: arial,san-serif;  font-size: 10px;}.blue {color: #00f;}.right {text-align: right;}/* add zoom:1; display:inline; to inline-block elements *//*.column_border {border: 1px solid black;}.main th {  color: #fff;  font-size: 15px;  padding: 5px;  text-align: left;}.bg_maroon {  background-color: #943634;}.bg_black {  background-color: #000;}.bg_grey {  background-color: #ccc;}*/</style><table border=\"0\" width=\"100%\" class=\"full_border_2p\">          <tr>            <th colspan=\"25\" align=\"left\">DETAILED CREDIT REPORT (BANKING ACCOUNTS)</th>          </tr>          <tr>            <td class=\"background_DAEEF3 bold\">No.</td>            <td class=\"background_DAEEF3 bold\">Aprv date /<br>R&amp;R date </td>            <td class=\"background_DAEEF3 bold\">Sts</td>            <td class=\"background_DAEEF3 bold\">Capacity</td>            <td class=\"background_DAEEF3 bold\">Lender Type</td>            <td class=\"background_DAEEF3 bold\">Facility</td>            <td class=\"background_DAEEF3 bold\">Total Outstanding Balance (RM)</td>            <td class=\"background_DAEEF3 bold\">Date Balance Updated</td>            <td class=\"background_DAEEF3 bold\">Limit /<br>Inst.Amt <br>(RM)</td>            <td class=\"background_DAEEF3 bold\">Prin Repymt Term</td>            <td class=\"background_DAEEF3 bold\">Col Type</td>            <td class=\"background_DAEEF3 bold\" colspan=\"12\">Conduct of Account for the last 12 months</td>            <td class=\"background_DAEEF3 bold\">Legal Sts</td>            <td class=\"background_DAEEF3 bold\">Date Status Update</td>          </tr>          <tr>            <td class=\"background_DAEEF3 bold\" colspan=\"11\"> </td>            <td class=\"background_DAEEF3 bold justify\" colspan=\"12\">              <div class=\"left\">              </div>              <div class=\"clear\"></div>            </td>            <td class=\"background_DAEEF3 bold\"> </td>            <td class=\"background_DAEEF3 bold\"> </td>          </tr>          <tr>            <td class=\"background_DAEEF3 bold\" colspan=\"11\" align=\"left\">OUTSTANDING CREDIT</td>            <th> </th>            <th> </th>            <th> </th>            <th> </th>            <th> </th>            <th> </th>            <th> </th>            <th> </th>            <th> </th>            <th> </th>            <th> </th>            <th> </th>            <td class=\"background_DAEEF3 bold\"> </td>            <td class=\"background_DAEEF3 bold\"> </td>          </tr>          <tr>            <td> </td>            <td> </td>            <td> </td>            <td> </td>            <td> </td>            <td> </td>            <td> </td>            <td> </td>            <td> </td>            <td> </td>            <td> </td>            <td> </td>            <td> </td>            <td> </td>            <td> </td>            <td> </td>            <td> </td>            <td> </td>            <td> </td>            <td> </td>            <td> </td>            <td> </td>            <td> </td>            <td> </td>            <td> </td>          </tr>          <tr>            <td> </td>            <td> </td>            <td> </td>            <td> </td>            <td> </td>            <td class=\"bold\">TOTAL<br>OUTSTANDING<br>BALANCE:</td>            <td class=\"bold\">0.00</td>            <td class=\"bold\">TOTAL<br>LIMIT:</td>            <td class=\"bold\">0.00</td>            <td> </td>            <td> </td>            <td> </td>            <td> </td>            <td> </td>            <td> </td>            <td> </td>            <td> </td>            <td> </td>            <td> </td>            <td> </td>            <td> </td>            <td> </td>            <td> </td>            <td> </td>            <td> </td>          </tr>          <tr>            <td class=\"background_DAEEF3 bold\" colspan=\"11\" align=\"left\">CREDIT APPLICATION</td>            <th> </th>            <th> </th>            <th> </th>            <th> </th>            <th> </th>            <th> </th>            <th> </th>            <th> </th>            <th> </th>            <th> </th>            <th> </th>            <th> </th>            <th> </th>            <th> </th>          </tr>          <tr>            <td class=\"background_DAEEF3 bold\">No.</td>            <td class=\"background_DAEEF3 bold\">Aprv date</td>            <td class=\"background_DAEEF3 bold\">Sts</td>            <td class=\"background_DAEEF3 bold\">Capacity</td>            <td class=\"background_DAEEF3 bold\">Lender Type</td>            <td class=\"background_DAEEF3 bold\">Facility</td>            <td class=\"background_DAEEF3 bold\">Total Outstanding Balance (RM)</td>            <td class=\"background_DAEEF3 bold\">Date Balance Updated</td>            <td class=\"background_DAEEF3 bold\">Limit (RM)</td>            <td class=\"background_DAEEF3 bold\">Prin Repymt Term</td>            <td class=\"background_DAEEF3 bold\">Col Type</td>            <td class=\"background_DAEEF3 bold\" colspan=\"12\">Conduct of Account for the last 12 months</td>            <td class=\"background_DAEEF3 bold\">Legal Sts</td>            <td class=\"background_DAEEF3 bold\">Date Status Update</td>          </tr>          <tr>            <td colspan=\"25\">NO RECORD ON FILE</td>          </tr>          <tr>            <td colspan=\"11\" align=\"left\" class=\"background_DAEEF3 bold fontRed\">SPECIAL ATTENTION ACCOUNT</td>            <td class=\"background_DAEEF3 bold\"> </td>            <td class=\"background_DAEEF3 bold\"> </td>            <td class=\"background_DAEEF3 bold\"> </td>            <td class=\"background_DAEEF3 bold\"> </td>            <td class=\"background_DAEEF3 bold\"> </td>            <td class=\"background_DAEEF3 bold\"> </td>            <td class=\"background_DAEEF3 bold\"> </td>            <td class=\"background_DAEEF3 bold\"> </td>            <td class=\"background_DAEEF3 bold\"> </td>            <td class=\"background_DAEEF3 bold\"> </td>            <td class=\"background_DAEEF3 bold\"> </td>            <td class=\"background_DAEEF3 bold\"> </td>            <td class=\"background_DAEEF3 bold\"> </td>            <td class=\"background_DAEEF3 bold\"> </td>          </tr>          <tr>            <td class=\"background_DAEEF3 bold\">No.</td>            <td class=\"background_DAEEF3 bold\">Aprv date</td>            <td class=\"background_DAEEF3 bold\">Sts</td>            <td class=\"background_DAEEF3 bold\">Capacity</td>            <td class=\"background_DAEEF3 bold\">Lender Type</td>            <td class=\"background_DAEEF3 bold\">Facility</td>            <td class=\"background_DAEEF3 bold\">Total Outstanding Balance (RM)</td>            <td class=\"background_DAEEF3 bold\">Date Balance Updated</td>            <td class=\"background_DAEEF3 bold\">Limit (RM)</td>            <td class=\"background_DAEEF3 bold\">Prin Repymt Term</td>            <td class=\"background_DAEEF3 bold\">Col Type</td>            <td class=\"background_DAEEF3 bold\" colspan=\"12\">Conduct of Account for the last 12 months</td>            <td class=\"background_DAEEF3 bold\">Legal Sts</td>            <td class=\"background_DAEEF3 bold\">Date Status Update</td>          </tr>          <tr>            <td> </td>            <td> </td>            <td> </td>            <td> </td>            <td> </td>            <td> </td>            <td> </td>            <td> </td>            <td> </td>            <td> </td>            <td> </td>            <td> </td>            <td> </td>            <td> </td>            <td> </td>            <td> </td>            <td> </td>            <td> </td>            <td> </td>            <td> </td>            <td> </td>            <td> </td>            <td> </td>            <td> </td>            <td> </td>          </tr>        </table>"
     },
     "fbSurvey": [
         {
@@ -3660,12 +3801,12 @@
             "dataCount": 1,
             "details": [
                 {
-                    "attachmentId": 712,
-                    "fileDetailId": "a7399829-9018-4ea9-a02c-846eb49aea51",
-                    "fileDate": "10/08/2022 00:00:00",
-                    "fileName": "Application_Form_Individual_20220810_134150874",
-                    "fullPath": "WebSubmissoin\\87ee02dc-8c45-4d11-82c3-a16d47e95084",
-                    "fileSize": 140013,
+                    "attachmentId": 1149,
+                    "fileDetailId": "73eaea1d-033d-4ec5-9af6-874dbda09cd4",
+                    "fileDate": "29/08/2022 00:00:00",
+                    "fileName": "APPLICATION & CONSENT FORM(Individual)_20220829_112141663",
+                    "fullPath": "WebSubmission\\9b0c525b-9f3e-4564-9c10-e60de51958ba",
+                    "fileSize": 75407,
                     "extension": ".pdf",
                     "description": "",
                     "fileSource": "0"
@@ -3678,34 +3819,34 @@
             "dataCount": 3,
             "details": [
                 {
-                    "attachmentId": 713,
-                    "fileDetailId": "49676179-7b0c-4fc9-9c65-cd87f650b3bb",
-                    "fileDate": "10/08/2022 00:00:00",
-                    "fileName": "EConsent_20220810_134152555",
-                    "fullPath": "WebSubmissoin\\89b7503d-c6e7-4675-9bfb-702f001ce6bf",
-                    "fileSize": 79397,
+                    "attachmentId": 1147,
+                    "fileDetailId": "ab8d952c-8b75-4adf-a628-8239cdb5f39d",
+                    "fileDate": "29/08/2022 00:00:00",
+                    "fileName": "EConsent_20220829_112144976",
+                    "fullPath": "WebSubmission\\d3eefb3a-7a6c-45bc-b159-8eedc45e1e27",
+                    "fileSize": 80000,
                     "extension": ".pdf",
                     "description": "",
                     "fileSource": "0"
                 },
                 {
-                    "attachmentId": 714,
-                    "fileDetailId": "f388dc61-6c5a-455a-bd1e-c389a1cf73fc",
-                    "fileDate": "10/08/2022 00:00:00",
-                    "fileName": "EConsent_20220810_134153239",
-                    "fullPath": "WebSubmissoin\\890a8082-6db5-4948-8279-acd1f4bda196",
-                    "fileSize": 79738,
+                    "attachmentId": 1148,
+                    "fileDetailId": "0dd5a68a-0e1e-4e40-aa4e-54f0c33df719",
+                    "fileDate": "29/08/2022 00:00:00",
+                    "fileName": "EConsent_20220829_112144309",
+                    "fullPath": "WebSubmission\\747cd66d-b7f4-412c-9110-6f8bec2357f6",
+                    "fileSize": 79706,
                     "extension": ".pdf",
                     "description": "",
                     "fileSource": "0"
                 },
                 {
-                    "attachmentId": 715,
-                    "fileDetailId": "c96b3a2b-df17-4609-bc3a-272c0d03e6cd",
-                    "fileDate": "10/08/2022 00:00:00",
-                    "fileName": "EConsent_20220810_134153904",
-                    "fullPath": "WebSubmissoin\\d44258dd-542b-4fa1-b531-53ee2cfbb906",
-                    "fileSize": 73471,
+                    "attachmentId": 1150,
+                    "fileDetailId": "9227e5b2-c9f5-42ed-8366-217331fb783e",
+                    "fileDate": "29/08/2022 00:00:00",
+                    "fileName": "EConsent_20220829_112145659",
+                    "fullPath": "WebSubmission\\5fc54b0a-51fa-4c35-9a0a-429e44126929",
+                    "fileSize": 73962,
                     "extension": ".pdf",
                     "description": "",
                     "fileSource": "0"
@@ -3744,13 +3885,13 @@
         }
     ],
     "ltvApply": 66.6667,
-    "ltvAppraisal": 50,
+    "ltvAppraisal": 66.6667,
     "ltvTotal": 0,
     "normalIRR": 14.8605,
     "appealReason": null,
     "realIRR": 15.1502,
     "npv": 12858.11,
-    "submissionNo": 3006,
+    "submissionNo": 3124,
     "amendmentReason": null,
     "amendmentOtherReason": null,
     "extendCAExpiryDate": false,
@@ -3759,10 +3900,10 @@
         {
             "item": "Applicant List",
             "itemId": "1",
-            "applied": 822214,
-            "approved": 13936187.99,
+            "applied": 2177756,
+            "approved": 14391405.66,
             "outstanding": 0,
-            "total": 14758401.99,
+            "total": 16569161.66,
             "hasData": true,
             "quotas": [
                 {
@@ -3821,9 +3962,9 @@
                     "tenure": 50,
                     "vehicleRegNo": "",
                     "appliedAmt": 0,
-                    "approvedAmt": 44444,
+                    "approvedAmt": 0,
                     "principal": 0,
-                    "commencementDate": null
+                    "commencementDate": "2022-08-22T00:00:00"
                 },
                 {
                     "submissionId": 694193,
@@ -4151,9 +4292,9 @@
                     "tenure": 50,
                     "vehicleRegNo": "",
                     "appliedAmt": 0,
-                    "approvedAmt": 66666,
+                    "approvedAmt": 0,
                     "principal": 0,
-                    "commencementDate": null
+                    "commencementDate": "2022-08-22T00:00:00"
                 },
                 {
                     "submissionId": 694264,
@@ -4166,9 +4307,9 @@
                     "tenure": 50,
                     "vehicleRegNo": "",
                     "appliedAmt": 0,
-                    "approvedAmt": 66666,
+                    "approvedAmt": 0,
                     "principal": 0,
-                    "commencementDate": null
+                    "commencementDate": "2022-08-24T00:00:00"
                 },
                 {
                     "submissionId": 694276,
@@ -4226,9 +4367,9 @@
                     "tenure": 50,
                     "vehicleRegNo": "",
                     "appliedAmt": 0,
-                    "approvedAmt": 66999.33,
+                    "approvedAmt": 0,
                     "principal": 0,
-                    "commencementDate": null
+                    "commencementDate": "2022-08-15T00:00:00"
                 },
                 {
                     "submissionId": 694292,
@@ -4499,6 +4640,501 @@
                     "approvedAmt": 44444,
                     "principal": 0,
                     "commencementDate": null
+                },
+                {
+                    "submissionId": 694348,
+                    "caseNo": "H228000938VA2",
+                    "statusID": null,
+                    "operationId": null,
+                    "customerIC": "891007666666",
+                    "customerName": "全新申戶 -4 Hsu",
+                    "productName": "SC_Case",
+                    "tenure": 50,
+                    "vehicleRegNo": "",
+                    "appliedAmt": 0,
+                    "approvedAmt": 44444,
+                    "principal": 0,
+                    "commencementDate": null
+                },
+                {
+                    "submissionId": 694352,
+                    "caseNo": "H228000942VA2",
+                    "statusID": null,
+                    "operationId": null,
+                    "customerIC": "891007666666",
+                    "customerName": "全新申戶 -4 Hsu",
+                    "productName": "SC_Case",
+                    "tenure": 50,
+                    "vehicleRegNo": "",
+                    "appliedAmt": 0,
+                    "approvedAmt": 44444,
+                    "principal": 0,
+                    "commencementDate": null
+                },
+                {
+                    "submissionId": 694356,
+                    "caseNo": "H228000946VA2",
+                    "statusID": null,
+                    "operationId": null,
+                    "customerIC": "891007666666",
+                    "customerName": "全新申戶 -4 Hsu",
+                    "productName": "SC_Case",
+                    "tenure": 50,
+                    "vehicleRegNo": "",
+                    "appliedAmt": 0,
+                    "approvedAmt": 44444,
+                    "principal": 0,
+                    "commencementDate": null
+                },
+                {
+                    "submissionId": 694357,
+                    "caseNo": "H228000947VA2",
+                    "statusID": null,
+                    "operationId": null,
+                    "customerIC": "891007666666",
+                    "customerName": "全新申戶 -4 Hsu",
+                    "productName": "SC_Case",
+                    "tenure": 50,
+                    "vehicleRegNo": "",
+                    "appliedAmt": 44444,
+                    "approvedAmt": 0,
+                    "principal": 0,
+                    "commencementDate": null
+                },
+                {
+                    "submissionId": 694358,
+                    "caseNo": "H228000948VA2",
+                    "statusID": null,
+                    "operationId": null,
+                    "customerIC": "891007666666",
+                    "customerName": "全新申戶 -4 Hsu",
+                    "productName": "SC_Case",
+                    "tenure": 50,
+                    "vehicleRegNo": "",
+                    "appliedAmt": 44444,
+                    "approvedAmt": 0,
+                    "principal": 0,
+                    "commencementDate": null
+                },
+                {
+                    "submissionId": 694359,
+                    "caseNo": "H228000949VA2",
+                    "statusID": null,
+                    "operationId": null,
+                    "customerIC": "891007666666",
+                    "customerName": "全新申戶 -4 Hsu",
+                    "productName": "SC_Case",
+                    "tenure": 50,
+                    "vehicleRegNo": "",
+                    "appliedAmt": 0,
+                    "approvedAmt": 44444,
+                    "principal": 0,
+                    "commencementDate": null
+                },
+                {
+                    "submissionId": 694360,
+                    "caseNo": "H228000950VA2",
+                    "statusID": null,
+                    "operationId": null,
+                    "customerIC": "891007666666",
+                    "customerName": "全新申戶 -4 Hsu",
+                    "productName": "SC_Case",
+                    "tenure": 50,
+                    "vehicleRegNo": "",
+                    "appliedAmt": 0,
+                    "approvedAmt": 44444,
+                    "principal": 0,
+                    "commencementDate": null
+                },
+                {
+                    "submissionId": 694363,
+                    "caseNo": "H228000953VA2",
+                    "statusID": null,
+                    "operationId": null,
+                    "customerIC": "891007666666",
+                    "customerName": "全新申戶 -4 Hsu",
+                    "productName": "SC_Case",
+                    "tenure": 50,
+                    "vehicleRegNo": "",
+                    "appliedAmt": 0,
+                    "approvedAmt": 44444,
+                    "principal": 0,
+                    "commencementDate": null
+                },
+                {
+                    "submissionId": 694366,
+                    "caseNo": "H228000956BI1",
+                    "statusID": null,
+                    "operationId": null,
+                    "customerIC": "891007666666",
+                    "customerName": "全新申戶 -4 Hsu",
+                    "productName": "HP for PC-New",
+                    "tenure": null,
+                    "vehicleRegNo": "",
+                    "appliedAmt": 0,
+                    "approvedAmt": 0,
+                    "principal": 0,
+                    "commencementDate": null
+                },
+                {
+                    "submissionId": 694371,
+                    "caseNo": "H228000961VA2",
+                    "statusID": null,
+                    "operationId": null,
+                    "customerIC": "891007666666",
+                    "customerName": "全新申戶 -4 Hsu",
+                    "productName": "SC_Case",
+                    "tenure": 50,
+                    "vehicleRegNo": "",
+                    "appliedAmt": 0,
+                    "approvedAmt": 44444,
+                    "principal": 0,
+                    "commencementDate": null
+                },
+                {
+                    "submissionId": 694372,
+                    "caseNo": "H228000962VA2",
+                    "statusID": null,
+                    "operationId": null,
+                    "customerIC": "891007666666",
+                    "customerName": "全新申戶 -4 Hsu",
+                    "productName": "SC_Case",
+                    "tenure": 50,
+                    "vehicleRegNo": "",
+                    "appliedAmt": 0,
+                    "approvedAmt": 44444,
+                    "principal": 0,
+                    "commencementDate": null
+                },
+                {
+                    "submissionId": 694374,
+                    "caseNo": "H228000964VA2",
+                    "statusID": null,
+                    "operationId": null,
+                    "customerIC": "891007666666",
+                    "customerName": "全新申戶 -4 Hsu",
+                    "productName": "SC_Case",
+                    "tenure": 50,
+                    "vehicleRegNo": "",
+                    "appliedAmt": 44444,
+                    "approvedAmt": 0,
+                    "principal": 0,
+                    "commencementDate": null
+                },
+                {
+                    "submissionId": 694378,
+                    "caseNo": "H228000968VA2",
+                    "statusID": null,
+                    "operationId": null,
+                    "customerIC": "891007666666",
+                    "customerName": "全新申戶 -4 Hsu",
+                    "productName": "SC_Case",
+                    "tenure": 50,
+                    "vehicleRegNo": "",
+                    "appliedAmt": 44444,
+                    "approvedAmt": 0,
+                    "principal": 0,
+                    "commencementDate": null
+                },
+                {
+                    "submissionId": 694422,
+                    "caseNo": "H228001012VA2",
+                    "statusID": null,
+                    "operationId": null,
+                    "customerIC": "891007666666",
+                    "customerName": "全新申戶 -4 Hsu",
+                    "productName": "SC_Case",
+                    "tenure": 50,
+                    "vehicleRegNo": "",
+                    "appliedAmt": 44444,
+                    "approvedAmt": 0,
+                    "principal": 0,
+                    "commencementDate": null
+                },
+                {
+                    "submissionId": 694423,
+                    "caseNo": "H228001013VA2",
+                    "statusID": null,
+                    "operationId": null,
+                    "customerIC": "891007666666",
+                    "customerName": "全新申戶 -4 Hsu",
+                    "productName": "SC_Case",
+                    "tenure": 50,
+                    "vehicleRegNo": "",
+                    "appliedAmt": 44444,
+                    "approvedAmt": 0,
+                    "principal": 0,
+                    "commencementDate": null
+                },
+                {
+                    "submissionId": 694424,
+                    "caseNo": "H228001014VA2",
+                    "statusID": null,
+                    "operationId": null,
+                    "customerIC": "891007666666",
+                    "customerName": "全新申戶 -4 Hsu",
+                    "productName": "SC_Case",
+                    "tenure": 50,
+                    "vehicleRegNo": "",
+                    "appliedAmt": 44444,
+                    "approvedAmt": 0,
+                    "principal": 0,
+                    "commencementDate": null
+                },
+                {
+                    "submissionId": 694425,
+                    "caseNo": "H228001015VA2",
+                    "statusID": null,
+                    "operationId": null,
+                    "customerIC": "891007666666",
+                    "customerName": "全新申戶 -4 Hsu",
+                    "productName": "SC_Case",
+                    "tenure": 50,
+                    "vehicleRegNo": "",
+                    "appliedAmt": 44444,
+                    "approvedAmt": 0,
+                    "principal": 0,
+                    "commencementDate": null
+                },
+                {
+                    "submissionId": 694426,
+                    "caseNo": "H228001016VA2",
+                    "statusID": null,
+                    "operationId": null,
+                    "customerIC": "891007666666",
+                    "customerName": "全新申戶 -4 Hsu",
+                    "productName": "SC_Case",
+                    "tenure": 50,
+                    "vehicleRegNo": "",
+                    "appliedAmt": 0,
+                    "approvedAmt": 44444,
+                    "principal": 0,
+                    "commencementDate": null
+                },
+                {
+                    "submissionId": 694427,
+                    "caseNo": "H228001019VA2",
+                    "statusID": null,
+                    "operationId": null,
+                    "customerIC": "891007666666",
+                    "customerName": "全新申戶 -4 Hsu",
+                    "productName": "SC_Case",
+                    "tenure": null,
+                    "vehicleRegNo": "",
+                    "appliedAmt": 0,
+                    "approvedAmt": 0,
+                    "principal": 0,
+                    "commencementDate": null
+                },
+                {
+                    "submissionId": 694428,
+                    "caseNo": "H228001020VA2",
+                    "statusID": null,
+                    "operationId": null,
+                    "customerIC": "891007666666",
+                    "customerName": "全新申戶 -4 Hsu",
+                    "productName": "SC_Case",
+                    "tenure": 50,
+                    "vehicleRegNo": "",
+                    "appliedAmt": 99999,
+                    "approvedAmt": 0,
+                    "principal": 0,
+                    "commencementDate": null
+                },
+                {
+                    "submissionId": 694429,
+                    "caseNo": "H228001021VA2",
+                    "statusID": null,
+                    "operationId": null,
+                    "customerIC": "891007666666",
+                    "customerName": "全新申戶 -4 Hsu",
+                    "productName": "SC_Case",
+                    "tenure": null,
+                    "vehicleRegNo": "",
+                    "appliedAmt": 0,
+                    "approvedAmt": 0,
+                    "principal": 0,
+                    "commencementDate": null
+                },
+                {
+                    "submissionId": 694430,
+                    "caseNo": "H228001022VA2",
+                    "statusID": null,
+                    "operationId": null,
+                    "customerIC": "891007666666",
+                    "customerName": "全新申戶 -4 Hsu",
+                    "productName": "SC_Case",
+                    "tenure": 50,
+                    "vehicleRegNo": "",
+                    "appliedAmt": 99999,
+                    "approvedAmt": 0,
+                    "principal": 0,
+                    "commencementDate": null
+                },
+                {
+                    "submissionId": 694431,
+                    "caseNo": "H228001023VA2",
+                    "statusID": null,
+                    "operationId": null,
+                    "customerIC": "891007666666",
+                    "customerName": "全新申戶 -4 Hsu",
+                    "productName": "SC_Case",
+                    "tenure": 50,
+                    "vehicleRegNo": "",
+                    "appliedAmt": 99999,
+                    "approvedAmt": 0,
+                    "principal": 0,
+                    "commencementDate": null
+                },
+                {
+                    "submissionId": 694432,
+                    "caseNo": "H228001024VA2",
+                    "statusID": null,
+                    "operationId": null,
+                    "customerIC": "891007666666",
+                    "customerName": "全新申戶 -4 Hsu",
+                    "productName": "SC_Case",
+                    "tenure": 50,
+                    "vehicleRegNo": "",
+                    "appliedAmt": 99999,
+                    "approvedAmt": 0,
+                    "principal": 0,
+                    "commencementDate": null
+                },
+                {
+                    "submissionId": 694433,
+                    "caseNo": "H228001025VA2",
+                    "statusID": null,
+                    "operationId": null,
+                    "customerIC": "891007666666",
+                    "customerName": "全新申戶 -4 Hsu",
+                    "productName": "SC_Case",
+                    "tenure": 50,
+                    "vehicleRegNo": "",
+                    "appliedAmt": 99999,
+                    "approvedAmt": 0,
+                    "principal": 0,
+                    "commencementDate": null
+                },
+                {
+                    "submissionId": 694434,
+                    "caseNo": "H228001026VA2",
+                    "statusID": null,
+                    "operationId": null,
+                    "customerIC": "891007666666",
+                    "customerName": "全新申戶 -4 Hsu",
+                    "productName": "SC_Case",
+                    "tenure": 50,
+                    "vehicleRegNo": "",
+                    "appliedAmt": 99999,
+                    "approvedAmt": 0,
+                    "principal": 0,
+                    "commencementDate": null
+                },
+                {
+                    "submissionId": 694435,
+                    "caseNo": "H228001027VA2",
+                    "statusID": null,
+                    "operationId": null,
+                    "customerIC": "891007666666",
+                    "customerName": "全新申戶 -4 Hsu",
+                    "productName": "SC_Case",
+                    "tenure": 50,
+                    "vehicleRegNo": "",
+                    "appliedAmt": 0,
+                    "approvedAmt": 99999,
+                    "principal": 0,
+                    "commencementDate": null
+                },
+                {
+                    "submissionId": 694436,
+                    "caseNo": "H228001028VA2",
+                    "statusID": null,
+                    "operationId": null,
+                    "customerIC": "891007666666",
+                    "customerName": "全新申戶 -4 Hsu",
+                    "productName": "SC_Case",
+                    "tenure": 50,
+                    "vehicleRegNo": "",
+                    "appliedAmt": 0,
+                    "approvedAmt": 99999,
+                    "principal": 0,
+                    "commencementDate": null
+                },
+                {
+                    "submissionId": 694437,
+                    "caseNo": "H228001029VA2",
+                    "statusID": null,
+                    "operationId": null,
+                    "customerIC": "891007666666",
+                    "customerName": "全新申戶 -4 Hsu",
+                    "productName": "SC_Case",
+                    "tenure": 50,
+                    "vehicleRegNo": "",
+                    "appliedAmt": 99999,
+                    "approvedAmt": 0,
+                    "principal": 0,
+                    "commencementDate": null
+                },
+                {
+                    "submissionId": 694438,
+                    "caseNo": "H228001030VA2",
+                    "statusID": null,
+                    "operationId": null,
+                    "customerIC": "891007666666",
+                    "customerName": "全新申戶 -4 Hsu",
+                    "productName": "SC_Case",
+                    "tenure": 50,
+                    "vehicleRegNo": "",
+                    "appliedAmt": 0,
+                    "approvedAmt": 99999,
+                    "principal": 0,
+                    "commencementDate": null
+                },
+                {
+                    "submissionId": 694441,
+                    "caseNo": "H228001033VA2",
+                    "statusID": null,
+                    "operationId": null,
+                    "customerIC": "891007666666",
+                    "customerName": "全新申戶 -4 Hsu",
+                    "productName": "SC_Case",
+                    "tenure": 50,
+                    "vehicleRegNo": "",
+                    "appliedAmt": 99999,
+                    "approvedAmt": 0,
+                    "principal": 0,
+                    "commencementDate": null
+                },
+                {
+                    "submissionId": 694445,
+                    "caseNo": "H228001037VA2",
+                    "statusID": null,
+                    "operationId": null,
+                    "customerIC": "891007666666",
+                    "customerName": "全新申戶 -4 Hsu",
+                    "productName": "SC_Case",
+                    "tenure": 50,
+                    "vehicleRegNo": "",
+                    "appliedAmt": 99999,
+                    "approvedAmt": 0,
+                    "principal": 0,
+                    "commencementDate": null
+                },
+                {
+                    "submissionId": 694446,
+                    "caseNo": "H228001038VA2",
+                    "statusID": null,
+                    "operationId": null,
+                    "customerIC": "891007666666",
+                    "customerName": "全新申戶 -4 Hsu",
+                    "productName": "SC_Case",
+                    "tenure": 50,
+                    "vehicleRegNo": "",
+                    "appliedAmt": 99999,
+                    "approvedAmt": 0,
+                    "principal": 0,
+                    "commencementDate": null
                 }
             ]
         },
@@ -4525,10 +5161,10 @@
         {
             "item": "Guaranteed by Applicant's Related Party List",
             "itemId": "4",
-            "applied": 822214,
-            "approved": 13936187.99,
+            "applied": 2177756,
+            "approved": 14391405.66,
             "outstanding": 0,
-            "total": 14758401.99,
+            "total": 16569161.66,
             "hasData": true,
             "quotas": [
                 {
@@ -4602,9 +5238,9 @@
                     "tenure": 50,
                     "vehicleRegNo": "",
                     "appliedAmt": 0,
-                    "approvedAmt": 44444,
+                    "approvedAmt": 0,
                     "principal": 0,
-                    "commencementDate": null
+                    "commencementDate": "2022-08-22T00:00:00"
                 },
                 {
                     "submissionId": 694193,
@@ -4932,9 +5568,9 @@
                     "tenure": 50,
                     "vehicleRegNo": "",
                     "appliedAmt": 0,
-                    "approvedAmt": 66666,
+                    "approvedAmt": 0,
                     "principal": 0,
-                    "commencementDate": null
+                    "commencementDate": "2022-08-22T00:00:00"
                 },
                 {
                     "submissionId": 694264,
@@ -4947,9 +5583,9 @@
                     "tenure": 50,
                     "vehicleRegNo": "",
                     "appliedAmt": 0,
-                    "approvedAmt": 66666,
+                    "approvedAmt": 0,
                     "principal": 0,
-                    "commencementDate": null
+                    "commencementDate": "2022-08-24T00:00:00"
                 },
                 {
                     "submissionId": 694276,
@@ -5007,9 +5643,9 @@
                     "tenure": 50,
                     "vehicleRegNo": "",
                     "appliedAmt": 0,
-                    "approvedAmt": 66999.33,
+                    "approvedAmt": 0,
                     "principal": 0,
-                    "commencementDate": null
+                    "commencementDate": "2022-08-15T00:00:00"
                 },
                 {
                     "submissionId": 694292,
@@ -5280,26 +5916,521 @@
                     "approvedAmt": 44444,
                     "principal": 0,
                     "commencementDate": null
+                },
+                {
+                    "submissionId": 694348,
+                    "caseNo": "H228000938VA2",
+                    "statusID": null,
+                    "operationId": null,
+                    "customerIC": "891007666666",
+                    "customerName": "全新申戶 -4 Hsu",
+                    "productName": "SC_Case",
+                    "tenure": 50,
+                    "vehicleRegNo": "",
+                    "appliedAmt": 0,
+                    "approvedAmt": 44444,
+                    "principal": 0,
+                    "commencementDate": null
+                },
+                {
+                    "submissionId": 694352,
+                    "caseNo": "H228000942VA2",
+                    "statusID": null,
+                    "operationId": null,
+                    "customerIC": "891007666666",
+                    "customerName": "全新申戶 -4 Hsu",
+                    "productName": "SC_Case",
+                    "tenure": 50,
+                    "vehicleRegNo": "",
+                    "appliedAmt": 0,
+                    "approvedAmt": 44444,
+                    "principal": 0,
+                    "commencementDate": null
+                },
+                {
+                    "submissionId": 694356,
+                    "caseNo": "H228000946VA2",
+                    "statusID": null,
+                    "operationId": null,
+                    "customerIC": "891007666666",
+                    "customerName": "全新申戶 -4 Hsu",
+                    "productName": "SC_Case",
+                    "tenure": 50,
+                    "vehicleRegNo": "",
+                    "appliedAmt": 0,
+                    "approvedAmt": 44444,
+                    "principal": 0,
+                    "commencementDate": null
+                },
+                {
+                    "submissionId": 694357,
+                    "caseNo": "H228000947VA2",
+                    "statusID": null,
+                    "operationId": null,
+                    "customerIC": "891007666666",
+                    "customerName": "全新申戶 -4 Hsu",
+                    "productName": "SC_Case",
+                    "tenure": 50,
+                    "vehicleRegNo": "",
+                    "appliedAmt": 44444,
+                    "approvedAmt": 0,
+                    "principal": 0,
+                    "commencementDate": null
+                },
+                {
+                    "submissionId": 694358,
+                    "caseNo": "H228000948VA2",
+                    "statusID": null,
+                    "operationId": null,
+                    "customerIC": "891007666666",
+                    "customerName": "全新申戶 -4 Hsu",
+                    "productName": "SC_Case",
+                    "tenure": 50,
+                    "vehicleRegNo": "",
+                    "appliedAmt": 44444,
+                    "approvedAmt": 0,
+                    "principal": 0,
+                    "commencementDate": null
+                },
+                {
+                    "submissionId": 694359,
+                    "caseNo": "H228000949VA2",
+                    "statusID": null,
+                    "operationId": null,
+                    "customerIC": "891007666666",
+                    "customerName": "全新申戶 -4 Hsu",
+                    "productName": "SC_Case",
+                    "tenure": 50,
+                    "vehicleRegNo": "",
+                    "appliedAmt": 0,
+                    "approvedAmt": 44444,
+                    "principal": 0,
+                    "commencementDate": null
+                },
+                {
+                    "submissionId": 694360,
+                    "caseNo": "H228000950VA2",
+                    "statusID": null,
+                    "operationId": null,
+                    "customerIC": "891007666666",
+                    "customerName": "全新申戶 -4 Hsu",
+                    "productName": "SC_Case",
+                    "tenure": 50,
+                    "vehicleRegNo": "",
+                    "appliedAmt": 0,
+                    "approvedAmt": 44444,
+                    "principal": 0,
+                    "commencementDate": null
+                },
+                {
+                    "submissionId": 694363,
+                    "caseNo": "H228000953VA2",
+                    "statusID": null,
+                    "operationId": null,
+                    "customerIC": "891007666666",
+                    "customerName": "全新申戶 -4 Hsu",
+                    "productName": "SC_Case",
+                    "tenure": 50,
+                    "vehicleRegNo": "",
+                    "appliedAmt": 0,
+                    "approvedAmt": 44444,
+                    "principal": 0,
+                    "commencementDate": null
+                },
+                {
+                    "submissionId": 694366,
+                    "caseNo": "H228000956BI1",
+                    "statusID": null,
+                    "operationId": null,
+                    "customerIC": "891007666666",
+                    "customerName": "全新申戶 -4 Hsu",
+                    "productName": "HP for PC-New",
+                    "tenure": null,
+                    "vehicleRegNo": "",
+                    "appliedAmt": 0,
+                    "approvedAmt": 0,
+                    "principal": 0,
+                    "commencementDate": null
+                },
+                {
+                    "submissionId": 694371,
+                    "caseNo": "H228000961VA2",
+                    "statusID": null,
+                    "operationId": null,
+                    "customerIC": "891007666666",
+                    "customerName": "全新申戶 -4 Hsu",
+                    "productName": "SC_Case",
+                    "tenure": 50,
+                    "vehicleRegNo": "",
+                    "appliedAmt": 0,
+                    "approvedAmt": 44444,
+                    "principal": 0,
+                    "commencementDate": null
+                },
+                {
+                    "submissionId": 694372,
+                    "caseNo": "H228000962VA2",
+                    "statusID": null,
+                    "operationId": null,
+                    "customerIC": "891007666666",
+                    "customerName": "全新申戶 -4 Hsu",
+                    "productName": "SC_Case",
+                    "tenure": 50,
+                    "vehicleRegNo": "",
+                    "appliedAmt": 0,
+                    "approvedAmt": 44444,
+                    "principal": 0,
+                    "commencementDate": null
+                },
+                {
+                    "submissionId": 694374,
+                    "caseNo": "H228000964VA2",
+                    "statusID": null,
+                    "operationId": null,
+                    "customerIC": "891007666666",
+                    "customerName": "全新申戶 -4 Hsu",
+                    "productName": "SC_Case",
+                    "tenure": 50,
+                    "vehicleRegNo": "",
+                    "appliedAmt": 44444,
+                    "approvedAmt": 0,
+                    "principal": 0,
+                    "commencementDate": null
+                },
+                {
+                    "submissionId": 694378,
+                    "caseNo": "H228000968VA2",
+                    "statusID": null,
+                    "operationId": null,
+                    "customerIC": "891007666666",
+                    "customerName": "全新申戶 -4 Hsu",
+                    "productName": "SC_Case",
+                    "tenure": 50,
+                    "vehicleRegNo": "",
+                    "appliedAmt": 44444,
+                    "approvedAmt": 0,
+                    "principal": 0,
+                    "commencementDate": null
+                },
+                {
+                    "submissionId": 694422,
+                    "caseNo": "H228001012VA2",
+                    "statusID": null,
+                    "operationId": null,
+                    "customerIC": "891007666666",
+                    "customerName": "全新申戶 -4 Hsu",
+                    "productName": "SC_Case",
+                    "tenure": 50,
+                    "vehicleRegNo": "",
+                    "appliedAmt": 44444,
+                    "approvedAmt": 0,
+                    "principal": 0,
+                    "commencementDate": null
+                },
+                {
+                    "submissionId": 694423,
+                    "caseNo": "H228001013VA2",
+                    "statusID": null,
+                    "operationId": null,
+                    "customerIC": "891007666666",
+                    "customerName": "全新申戶 -4 Hsu",
+                    "productName": "SC_Case",
+                    "tenure": 50,
+                    "vehicleRegNo": "",
+                    "appliedAmt": 44444,
+                    "approvedAmt": 0,
+                    "principal": 0,
+                    "commencementDate": null
+                },
+                {
+                    "submissionId": 694424,
+                    "caseNo": "H228001014VA2",
+                    "statusID": null,
+                    "operationId": null,
+                    "customerIC": "891007666666",
+                    "customerName": "全新申戶 -4 Hsu",
+                    "productName": "SC_Case",
+                    "tenure": 50,
+                    "vehicleRegNo": "",
+                    "appliedAmt": 44444,
+                    "approvedAmt": 0,
+                    "principal": 0,
+                    "commencementDate": null
+                },
+                {
+                    "submissionId": 694425,
+                    "caseNo": "H228001015VA2",
+                    "statusID": null,
+                    "operationId": null,
+                    "customerIC": "891007666666",
+                    "customerName": "全新申戶 -4 Hsu",
+                    "productName": "SC_Case",
+                    "tenure": 50,
+                    "vehicleRegNo": "",
+                    "appliedAmt": 44444,
+                    "approvedAmt": 0,
+                    "principal": 0,
+                    "commencementDate": null
+                },
+                {
+                    "submissionId": 694426,
+                    "caseNo": "H228001016VA2",
+                    "statusID": null,
+                    "operationId": null,
+                    "customerIC": "891007666666",
+                    "customerName": "全新申戶 -4 Hsu",
+                    "productName": "SC_Case",
+                    "tenure": 50,
+                    "vehicleRegNo": "",
+                    "appliedAmt": 0,
+                    "approvedAmt": 44444,
+                    "principal": 0,
+                    "commencementDate": null
+                },
+                {
+                    "submissionId": 694427,
+                    "caseNo": "H228001019VA2",
+                    "statusID": null,
+                    "operationId": null,
+                    "customerIC": "891007666666",
+                    "customerName": "全新申戶 -4 Hsu",
+                    "productName": "SC_Case",
+                    "tenure": null,
+                    "vehicleRegNo": "",
+                    "appliedAmt": 0,
+                    "approvedAmt": 0,
+                    "principal": 0,
+                    "commencementDate": null
+                },
+                {
+                    "submissionId": 694428,
+                    "caseNo": "H228001020VA2",
+                    "statusID": null,
+                    "operationId": null,
+                    "customerIC": "891007666666",
+                    "customerName": "全新申戶 -4 Hsu",
+                    "productName": "SC_Case",
+                    "tenure": 50,
+                    "vehicleRegNo": "",
+                    "appliedAmt": 99999,
+                    "approvedAmt": 0,
+                    "principal": 0,
+                    "commencementDate": null
+                },
+                {
+                    "submissionId": 694429,
+                    "caseNo": "H228001021VA2",
+                    "statusID": null,
+                    "operationId": null,
+                    "customerIC": "891007666666",
+                    "customerName": "全新申戶 -4 Hsu",
+                    "productName": "SC_Case",
+                    "tenure": null,
+                    "vehicleRegNo": "",
+                    "appliedAmt": 0,
+                    "approvedAmt": 0,
+                    "principal": 0,
+                    "commencementDate": null
+                },
+                {
+                    "submissionId": 694430,
+                    "caseNo": "H228001022VA2",
+                    "statusID": null,
+                    "operationId": null,
+                    "customerIC": "891007666666",
+                    "customerName": "全新申戶 -4 Hsu",
+                    "productName": "SC_Case",
+                    "tenure": 50,
+                    "vehicleRegNo": "",
+                    "appliedAmt": 99999,
+                    "approvedAmt": 0,
+                    "principal": 0,
+                    "commencementDate": null
+                },
+                {
+                    "submissionId": 694431,
+                    "caseNo": "H228001023VA2",
+                    "statusID": null,
+                    "operationId": null,
+                    "customerIC": "891007666666",
+                    "customerName": "全新申戶 -4 Hsu",
+                    "productName": "SC_Case",
+                    "tenure": 50,
+                    "vehicleRegNo": "",
+                    "appliedAmt": 99999,
+                    "approvedAmt": 0,
+                    "principal": 0,
+                    "commencementDate": null
+                },
+                {
+                    "submissionId": 694432,
+                    "caseNo": "H228001024VA2",
+                    "statusID": null,
+                    "operationId": null,
+                    "customerIC": "891007666666",
+                    "customerName": "全新申戶 -4 Hsu",
+                    "productName": "SC_Case",
+                    "tenure": 50,
+                    "vehicleRegNo": "",
+                    "appliedAmt": 99999,
+                    "approvedAmt": 0,
+                    "principal": 0,
+                    "commencementDate": null
+                },
+                {
+                    "submissionId": 694433,
+                    "caseNo": "H228001025VA2",
+                    "statusID": null,
+                    "operationId": null,
+                    "customerIC": "891007666666",
+                    "customerName": "全新申戶 -4 Hsu",
+                    "productName": "SC_Case",
+                    "tenure": 50,
+                    "vehicleRegNo": "",
+                    "appliedAmt": 99999,
+                    "approvedAmt": 0,
+                    "principal": 0,
+                    "commencementDate": null
+                },
+                {
+                    "submissionId": 694434,
+                    "caseNo": "H228001026VA2",
+                    "statusID": null,
+                    "operationId": null,
+                    "customerIC": "891007666666",
+                    "customerName": "全新申戶 -4 Hsu",
+                    "productName": "SC_Case",
+                    "tenure": 50,
+                    "vehicleRegNo": "",
+                    "appliedAmt": 99999,
+                    "approvedAmt": 0,
+                    "principal": 0,
+                    "commencementDate": null
+                },
+                {
+                    "submissionId": 694435,
+                    "caseNo": "H228001027VA2",
+                    "statusID": null,
+                    "operationId": null,
+                    "customerIC": "891007666666",
+                    "customerName": "全新申戶 -4 Hsu",
+                    "productName": "SC_Case",
+                    "tenure": 50,
+                    "vehicleRegNo": "",
+                    "appliedAmt": 0,
+                    "approvedAmt": 99999,
+                    "principal": 0,
+                    "commencementDate": null
+                },
+                {
+                    "submissionId": 694436,
+                    "caseNo": "H228001028VA2",
+                    "statusID": null,
+                    "operationId": null,
+                    "customerIC": "891007666666",
+                    "customerName": "全新申戶 -4 Hsu",
+                    "productName": "SC_Case",
+                    "tenure": 50,
+                    "vehicleRegNo": "",
+                    "appliedAmt": 0,
+                    "approvedAmt": 99999,
+                    "principal": 0,
+                    "commencementDate": null
+                },
+                {
+                    "submissionId": 694437,
+                    "caseNo": "H228001029VA2",
+                    "statusID": null,
+                    "operationId": null,
+                    "customerIC": "891007666666",
+                    "customerName": "全新申戶 -4 Hsu",
+                    "productName": "SC_Case",
+                    "tenure": 50,
+                    "vehicleRegNo": "",
+                    "appliedAmt": 99999,
+                    "approvedAmt": 0,
+                    "principal": 0,
+                    "commencementDate": null
+                },
+                {
+                    "submissionId": 694438,
+                    "caseNo": "H228001030VA2",
+                    "statusID": null,
+                    "operationId": null,
+                    "customerIC": "891007666666",
+                    "customerName": "全新申戶 -4 Hsu",
+                    "productName": "SC_Case",
+                    "tenure": 50,
+                    "vehicleRegNo": "",
+                    "appliedAmt": 0,
+                    "approvedAmt": 99999,
+                    "principal": 0,
+                    "commencementDate": null
+                },
+                {
+                    "submissionId": 694441,
+                    "caseNo": "H228001033VA2",
+                    "statusID": null,
+                    "operationId": null,
+                    "customerIC": "891007666666",
+                    "customerName": "全新申戶 -4 Hsu",
+                    "productName": "SC_Case",
+                    "tenure": 50,
+                    "vehicleRegNo": "",
+                    "appliedAmt": 99999,
+                    "approvedAmt": 0,
+                    "principal": 0,
+                    "commencementDate": null
+                },
+                {
+                    "submissionId": 694445,
+                    "caseNo": "H228001037VA2",
+                    "statusID": null,
+                    "operationId": null,
+                    "customerIC": "891007666666",
+                    "customerName": "全新申戶 -4 Hsu",
+                    "productName": "SC_Case",
+                    "tenure": 50,
+                    "vehicleRegNo": "",
+                    "appliedAmt": 99999,
+                    "approvedAmt": 0,
+                    "principal": 0,
+                    "commencementDate": null
+                },
+                {
+                    "submissionId": 694446,
+                    "caseNo": "H228001038VA2",
+                    "statusID": null,
+                    "operationId": null,
+                    "customerIC": "891007666666",
+                    "customerName": "全新申戶 -4 Hsu",
+                    "productName": "SC_Case",
+                    "tenure": 50,
+                    "vehicleRegNo": "",
+                    "appliedAmt": 99999,
+                    "approvedAmt": 0,
+                    "principal": 0,
+                    "commencementDate": null
                 }
             ]
         },
         {
             "item": "ThisApplicant",
             "itemId": "5",
-            "applied": 44444,
+            "applied": 99999,
             "approved": 0,
             "outstanding": 0,
-            "total": 44444,
+            "total": 99999,
             "hasData": false,
             "quotas": null
         },
         {
             "item": "Cumulative Amount For Approval",
             "itemId": "6",
-            "applied": 1688872,
-            "approved": 27872375.98,
+            "applied": 4455511,
+            "approved": 28782811.32,
             "outstanding": 0,
-            "total": 14802845.99,
+            "total": 16669160.66,
             "hasData": false,
             "quotas": null
         }
@@ -5308,7 +6439,8 @@
     "dealerNplrate": 0,
     "agentNplrate": 0,
     "salesNplrate": 0,
-    "departmentName": "Credit",
+    "departmentName": "Commercial&Sme",
     "cap": 5,
-    "amendingLists": []
+    "amendingLists": [],
+    "cumulativeAmountForApproval": 16669160.66
 }
