@@ -1,8 +1,8 @@
 class Solution:
     """
     Method: Sum the two numbers first, and process the carrying digits problems after
-    Time complexity: 
-    Space complexity:
+    Time complexity: 很大的O(n)
+    Space complexity: O(n)
     """
     def addBinary(self, a: str, b: str) -> str:
         # calculate the sum of two
@@ -29,3 +29,25 @@ class Solution:
         for i in addition:
             string += str(i)
         return string
+    
+    
+    """
+    Method: Using the properties of Arithmetic: %, //
+    Time complexity: O(n)
+    Space complexity: O(1)
+    """
+    def addBinary(self, a: str, b: str) -> str:
+        aL, bL = -len(a), -len(b)
+        i, carry, res = -1, 0, ""
+
+        while i >= aL or i >= bL:
+            aBit = int(a[i]) if i >= aL else 0
+            bBit = int(b[i]) if i >= bL else 0
+            
+            sum = aBit + bBit + carry
+            res = str(sum % 2) + res
+            carry = sum // 2
+
+            i -= 1
+            
+        return "1" + res if carry else res
