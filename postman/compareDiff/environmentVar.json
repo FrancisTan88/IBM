@@ -1,0 +1,1401 @@
+{
+	"id": "f0f0abf6-6885-4352-a3cb-14907434c272",
+	"name": "CreditRating",
+	"values": [
+		{
+			"key": "host",
+			"value": "sit01-apigw.chailease.com.my",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "submissionSwaggerUserProfile",
+			"value": "10.164.55.100:8000/dev-backdoor/system-management/Rbac/UserProfile",
+			"type": "default",
+			"enabled": false
+		},
+		{
+			"key": "domainSubmission",
+			"value": "websubmission-service",
+			"type": "default",
+			"enabled": false
+		},
+		{
+			"key": "subUserNo(input)",
+			"value": "MY00021",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "companyID(input)",
+			"value": "92",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "productCode(input)",
+			"value": "H-001-0000",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "productName(input)",
+			"value": "HP for PC-New",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "monthlyIncome(input)",
+			"value": "100000",
+			"type": "default",
+			"enabled": false
+		},
+		{
+			"key": "idNo(input)",
+			"value": "891007777777",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "idNo(G1)(input)",
+			"value": "800225777777",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "idNo(G2)(input)",
+			"value": "556097-H",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "dealerCode(input)",
+			"value": "A000005",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "dealerName(input)",
+			"value": "TWITCH",
+			"type": "default",
+			"enabled": false
+		},
+		{
+			"key": "dealerSalesName(input)",
+			"value": "PAIDAIAH",
+			"type": "default",
+			"enabled": false
+		},
+		{
+			"key": "applyTerms(input)",
+			"value": "50",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "interestRate(input)",
+			"value": "8",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "collPurchasePrice(input)",
+			"value": "88888",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "collDownPayment(input)",
+			"value": "22222",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "collPurchasePrice2(input)",
+			"value": "99999",
+			"type": "default",
+			"enabled": false
+		},
+		{
+			"key": "collDownPayment2(input)",
+			"value": "44444",
+			"type": "default",
+			"enabled": false
+		},
+		{
+			"key": "insurance(input)",
+			"value": "N",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "insurance2(input)",
+			"value": "N",
+			"type": "default",
+			"enabled": false
+		},
+		{
+			"key": "gpsInstallation(input)",
+			"value": "null",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "gpsInstallation2(input)",
+			"value": "None",
+			"type": "default",
+			"enabled": false
+		},
+		{
+			"key": "hasCollValue(input)",
+			"value": "true",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "hasCollValue2(input)",
+			"value": "true",
+			"type": "default",
+			"enabled": false
+		},
+		{
+			"key": "quotesType(input)",
+			"value": "ETP",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "autoLife(input)",
+			"value": "false",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "deduct(input)",
+			"value": "true",
+			"type": "default",
+			"enabled": false
+		},
+		{
+			"key": "subUserName",
+			"value": "Nabil",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "financialAmount",
+			"value": "66666",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "npv",
+			"value": "12591.14",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "netIRR",
+			"value": "14.399135112762451",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "realIRR",
+			"value": "14.678770303726196",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "pmt",
+			"value": "1778",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "pmtLast",
+			"value": "1766",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "endTerm",
+			"value": "34",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "dealerName",
+			"value": "",
+			"type": "any",
+			"enabled": true
+		},
+		{
+			"key": "dealerEmail",
+			"value": "",
+			"type": "any",
+			"enabled": true
+		},
+		{
+			"key": "=================================",
+			"value": "=================================",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": " ",
+			"value": "",
+			"type": "default",
+			"enabled": false
+		},
+		{
+			"key": "========= First Credit Review========",
+			"value": "========= First Credit Review=========",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "CaseNo(input)",
+			"value": "H229001411VA2",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "preUserNo(input)",
+			"value": "MY00329",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "preSwaggerUserProfile",
+			"value": "10.164.55.100:8000/dev-backdoor/system-management/Rbac/UserProfile/",
+			"type": "default",
+			"enabled": false
+		},
+		{
+			"key": "domainCreditReview",
+			"value": "creditratingscales-service",
+			"type": "default",
+			"enabled": false
+		},
+		{
+			"key": "preApplicantEmail",
+			"value": "NurulAmirah@chailease.com.my",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "preUserName",
+			"value": "Nurul Amirah Binti Hasni",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "submissionId",
+			"value": "694984",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "industry(input)",
+			"value": "IND1",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "age(input)",
+			"value": "33",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "manufacturerNationality(input)",
+			"value": "MF1",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "race(input)",
+			"value": "1",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "education(input)",
+			"value": "1",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "typeOfBusiness(input)",
+			"value": "IPO / Well Known / Government",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "position(input)",
+			"value": "Specialist & Professional",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "periodEmployment(input)",
+			"value": "Over 5 yrs",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "familyStatus(input)",
+			"value": "Married (with kid)",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "houseStatus(input)",
+			"value": "RS1",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "hirerNature(input)",
+			"value": "Individual",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "firstTimeBuyerProject(input)",
+			"value": "N",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "driverLicense(input)",
+			"value": "Y",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "purposeOfBuyingTheVehicle(input)",
+			"value": "Non-Business Purpose",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "lengthOfResidence(input)",
+			"value": "8",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "scoreAge",
+			"value": "5",
+			"type": "any",
+			"enabled": true
+		},
+		{
+			"key": "scoreEducation",
+			"value": "3",
+			"type": "any",
+			"enabled": true
+		},
+		{
+			"key": "scoreTypeOfBusiness",
+			"value": "0",
+			"type": "any",
+			"enabled": true
+		},
+		{
+			"key": "scorePosition",
+			"value": "5",
+			"type": "any",
+			"enabled": true
+		},
+		{
+			"key": "scorePeriodEmployment",
+			"value": "3",
+			"type": "any",
+			"enabled": true
+		},
+		{
+			"key": "scoreFamilyStatus",
+			"value": "1",
+			"type": "any",
+			"enabled": true
+		},
+		{
+			"key": "categoryFamilyStatus",
+			"value": "1",
+			"type": "any",
+			"enabled": true
+		},
+		{
+			"key": "scoreHirerNature",
+			"value": "0",
+			"type": "any",
+			"enabled": true
+		},
+		{
+			"key": "scoreFirstTimeBuyerProject",
+			"value": "0",
+			"type": "any",
+			"enabled": true
+		},
+		{
+			"key": "scoreDriverLicense",
+			"value": "0",
+			"type": "any",
+			"enabled": true
+		},
+		{
+			"key": "scorePurposeOfBuyingTheVehicle",
+			"value": "0",
+			"type": "any",
+			"enabled": true
+		},
+		{
+			"key": "categoryEdu",
+			"value": "1",
+			"type": "any",
+			"enabled": true
+		},
+		{
+			"key": "vehicleType(input)",
+			"value": "VT1",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "displacement(input)",
+			"value": "8",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "creditOfficerAppraisalPrice(input)",
+			"value": "22",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "appraisalMethod(input)",
+			"value": "1",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "appraisalMethod2(input)",
+			"value": "1",
+			"type": "default",
+			"enabled": false
+		},
+		{
+			"key": "registrationType(input)",
+			"value": "tf",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "registrationType2(input)",
+			"value": "tf",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "securityAssetType(input)",
+			"value": "V",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "========= First Credit Review=========",
+			"value": "========= First Credit Review=========",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": " ",
+			"value": "",
+			"type": "default",
+			"enabled": false
+		},
+		{
+			"key": "========= Second Credit Review=======",
+			"value": "========= Second Credit Review=======",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "secUserNo",
+			"value": "08292",
+			"type": "any",
+			"enabled": true
+		},
+		{
+			"key": "secUserName",
+			"value": "",
+			"type": "any",
+			"enabled": true
+		},
+		{
+			"key": "========= Second Credit Review======",
+			"value": "========= Second Credit Review======",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "",
+			"value": " ",
+			"type": "default",
+			"enabled": false
+		},
+		{
+			"key": "＝＝＝＝＝Third Credit Review＝＝＝＝＝＝＝",
+			"value": "＝＝＝＝＝Third Credit Review＝＝＝＝＝＝＝",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "thirdUserNo",
+			"value": "MY00227",
+			"type": "any",
+			"enabled": true
+		},
+		{
+			"key": "thirdUserName",
+			"value": "Marlisa Shuhada Binti Mansor",
+			"type": "any",
+			"enabled": true
+		},
+		{
+			"key": "advancePaymentTerms(input)",
+			"value": "null",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "basicNetIncome(input)",
+			"value": "N>=12,000",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "DSR(input)",
+			"value": "N=< 30% and 1,200 < N",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "ccrisRecord(input)",
+			"value": "Prompt Payment(0 MIA)",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "facilityServingYears(input)",
+			"value": "5 =< N",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "utilizationOfCreditCard(input)",
+			"value": "N=< 30%",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "negativeRemark(input)",
+			"value": "2 Bounce Cheque within 2 years",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "guarantorRelationship(input)",
+			"value": "Parent",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "bounceCheck(input)",
+			"value": "N",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "bankruptcy(input)",
+			"value": "N",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "specialAttentionAccount(input)",
+			"value": "No.",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "tradeReference(input)",
+			"value": "No.",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "loanRecentlyApplied(input)",
+			"value": "No.",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "creditServiceProgram(input)",
+			"value": "N",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "localCustomer(input)",
+			"value": "N",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "incomeType(input)",
+			"value": "Variable income < 50% of the basic salary",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "contractWorker(input)",
+			"value": "N",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "cancelledByCustomerButApproved(input)",
+			"value": "N",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "specialRequest(input)",
+			"value": "NA",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "cashFlow_AnyMonth(input)",
+			"value": "NO",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "tryCase_Ram7_10IgnoreNDI(input)",
+			"value": "N",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "tryCase_Ram7_10WaiveDriverLicense(input)",
+			"value": "N",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "tryCase_Ram7_10IgnoreDSR(input)",
+			"value": "N",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "employmentVerification(input)",
+			"value": "Call",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "advancePaymentDeduction(input)",
+			"value": "true",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "scoreDSR",
+			"value": "4",
+			"type": "any",
+			"enabled": true
+		},
+		{
+			"key": "scoreCCrisRecord",
+			"value": "7",
+			"type": "any",
+			"enabled": true
+		},
+		{
+			"key": "scoreFacilityServingYears",
+			"value": "5",
+			"type": "any",
+			"enabled": true
+		},
+		{
+			"key": "scoreUtilizationOfCreditCard",
+			"value": "4",
+			"type": "any",
+			"enabled": true
+		},
+		{
+			"key": "scoreNegativeRemark",
+			"value": "-3",
+			"type": "any",
+			"enabled": true
+		},
+		{
+			"key": "scoreGuarantorRelationship",
+			"value": "0",
+			"type": "any",
+			"enabled": true
+		},
+		{
+			"key": "scoreBounceCheck",
+			"value": "0",
+			"type": "any",
+			"enabled": true
+		},
+		{
+			"key": "scoreBankruptcy",
+			"value": "0",
+			"type": "any",
+			"enabled": true
+		},
+		{
+			"key": "scoreSpecialAttentionAccount",
+			"value": "0",
+			"type": "any",
+			"enabled": true
+		},
+		{
+			"key": "scoreTradeReference",
+			"value": "0",
+			"type": "any",
+			"enabled": true
+		},
+		{
+			"key": "scoreLoanRecentlyApplied",
+			"value": "0",
+			"type": "any",
+			"enabled": true
+		},
+		{
+			"key": "scoreCreditServiceProgram",
+			"value": "0",
+			"type": "any",
+			"enabled": true
+		},
+		{
+			"key": "scoreLocalCustomer",
+			"value": "0",
+			"type": "any",
+			"enabled": true
+		},
+		{
+			"key": "scoreIncomeType",
+			"value": "0",
+			"type": "any",
+			"enabled": true
+		},
+		{
+			"key": "scoreContractWorker",
+			"value": "0",
+			"type": "any",
+			"enabled": true
+		},
+		{
+			"key": "scoreCancelledByCustomerButApproved",
+			"value": "0",
+			"type": "any",
+			"enabled": true
+		},
+		{
+			"key": "scoreSpecialRequest",
+			"value": "0",
+			"type": "any",
+			"enabled": true
+		},
+		{
+			"key": "scoreCashFlow_AnyMonth",
+			"value": "0",
+			"type": "any",
+			"enabled": true
+		},
+		{
+			"key": "scoreTryCase_Ram7_10IgnoreNDI",
+			"value": "0",
+			"type": "any",
+			"enabled": true
+		},
+		{
+			"key": "scoreTryCase_Ram7_10WaiveDriverLicense",
+			"value": "0",
+			"type": "any",
+			"enabled": true
+		},
+		{
+			"key": "scoreTryCase_Ram7_10IgnoreDSR",
+			"value": "0",
+			"type": "any",
+			"enabled": true
+		},
+		{
+			"key": "scoreEmploymentVerification",
+			"value": "0",
+			"type": "any",
+			"enabled": true
+		},
+		{
+			"key": "scoreBasicNetIncome",
+			"value": "4",
+			"type": "any",
+			"enabled": true
+		},
+		{
+			"key": "＝＝＝＝＝Third Credit Review＝＝＝＝＝＝",
+			"value": "＝＝＝＝＝Third Credit Review＝＝＝＝＝＝",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": " ",
+			"value": "",
+			"type": "default",
+			"enabled": false
+		},
+		{
+			"key": "＝＝＝＝＝Forth Credit Review＝＝＝＝＝＝",
+			"value": "＝＝＝＝＝Forth Credit Review＝＝＝＝＝＝",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "forthUserNo",
+			"value": "MY00038",
+			"type": "any",
+			"enabled": true
+		},
+		{
+			"key": "forthUserName",
+			"value": "Shima",
+			"type": "any",
+			"enabled": true
+		},
+		{
+			"key": "scoreHouseStatus",
+			"value": "2",
+			"type": "any",
+			"enabled": true
+		},
+		{
+			"key": "preTotalScore",
+			"value": "19",
+			"type": "any",
+			"enabled": true
+		},
+		{
+			"key": "totalCreditScore",
+			"value": "40",
+			"type": "any",
+			"enabled": true
+		},
+		{
+			"key": "fifthUserNo",
+			"value": "MY00002",
+			"type": "any",
+			"enabled": true
+		},
+		{
+			"key": "fifthUserName",
+			"value": "Michael Lin",
+			"type": "any",
+			"enabled": true
+		},
+		{
+			"key": "prepaidRentalTerms(input)",
+			"value": "9",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "sixthUserNo",
+			"value": "",
+			"type": "any",
+			"enabled": false
+		},
+		{
+			"key": "sixthUserName",
+			"value": "",
+			"type": "any",
+			"enabled": false
+		},
+		{
+			"key": "advancePaymentAmount",
+			"value": "",
+			"type": "any",
+			"enabled": false
+		},
+		{
+			"key": "＝＝＝＝＝Forth Credit Review＝＝＝＝＝＝＝",
+			"value": "＝＝＝＝＝Forth Credit Review＝＝＝＝＝＝＝",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": " ",
+			"value": "",
+			"type": "default",
+			"enabled": false
+		},
+		{
+			"key": "(Commencement)~~~~~~~~~~~~~~~~~~~~",
+			"value": "(Commencement)~~~~~~~~~~~~~~~~~~~~",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "contractFormat(input)",
+			"value": "ACT",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "paymentMethod(input)",
+			"value": "remit",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "platNo1(input)",
+			"value": "kian-113",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "platNo2(input)",
+			"value": "kian-114",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "commencementUserNo",
+			"value": "MY00039",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "fileId",
+			"value": "",
+			"type": "any",
+			"enabled": true
+		},
+		{
+			"key": "approvalDate",
+			"value": "",
+			"type": "any",
+			"enabled": true
+		},
+		{
+			"key": "cifNo",
+			"value": "",
+			"type": "any",
+			"enabled": true
+		},
+		{
+			"key": "salesOfficer",
+			"value": "",
+			"type": "any",
+			"enabled": true
+		},
+		{
+			"key": "salesDepartment",
+			"value": "",
+			"type": "any",
+			"enabled": true
+		},
+		{
+			"key": "npvBonus",
+			"value": "",
+			"type": "any",
+			"enabled": true
+		},
+		{
+			"key": "finacalRate",
+			"value": "",
+			"type": "any",
+			"enabled": true
+		},
+		{
+			"key": "finacalRateBonus",
+			"value": "",
+			"type": "any",
+			"enabled": true
+		},
+		{
+			"key": "expirationDate",
+			"value": "",
+			"type": "any",
+			"enabled": true
+		},
+		{
+			"key": "npv_commencement",
+			"value": "",
+			"type": "any",
+			"enabled": true
+		},
+		{
+			"key": "netIRR_commencement",
+			"value": "",
+			"type": "any",
+			"enabled": true
+		},
+		{
+			"key": "realIRR_commencement",
+			"value": "",
+			"type": "any",
+			"enabled": true
+		},
+		{
+			"key": "monthlyPaymentAmount",
+			"value": "",
+			"type": "any",
+			"enabled": true
+		},
+		{
+			"key": "lastMonthlyPaymentAmount",
+			"value": "",
+			"type": "any",
+			"enabled": true
+		},
+		{
+			"key": "temporaryOffset",
+			"value": "200",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "collateralMasterId1",
+			"value": "",
+			"type": "any",
+			"enabled": true
+		},
+		{
+			"key": "collateralMasterId2",
+			"value": "",
+			"type": "any",
+			"enabled": true
+		},
+		{
+			"key": "seqNo1",
+			"value": "",
+			"type": "any",
+			"enabled": true
+		},
+		{
+			"key": "seqNo2",
+			"value": "",
+			"type": "any",
+			"enabled": true
+		},
+		{
+			"key": "LienSerialNo1",
+			"value": "",
+			"type": "any",
+			"enabled": true
+		},
+		{
+			"key": "LienSerialNo2",
+			"value": "",
+			"type": "any",
+			"enabled": true
+		},
+		{
+			"key": "totalPayableAmount",
+			"value": "",
+			"type": "any",
+			"enabled": true
+		},
+		{
+			"key": "totalRepaymentAmount",
+			"value": "",
+			"type": "any",
+			"enabled": true
+		},
+		{
+			"key": "profitInterestInvoiceAmount",
+			"value": "",
+			"type": "any",
+			"enabled": true
+		},
+		{
+			"key": "formNo",
+			"value": "",
+			"type": "any",
+			"enabled": true
+		},
+		{
+			"key": "fileId1",
+			"value": "",
+			"type": "any",
+			"enabled": true
+		},
+		{
+			"key": "fileId2",
+			"value": "",
+			"type": "any",
+			"enabled": true
+		},
+		{
+			"key": "commencementDate(input)",
+			"value": "2022-15-09T16:00:00.000Z",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "disbursementDate(input)",
+			"value": "2022-09-29T16:00:00.000Z",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "bankName(input)",
+			"value": "MIZUHO BANK",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": " ",
+			"value": "",
+			"type": "default",
+			"enabled": false
+		},
+		{
+			"key": "===========Application============",
+			"value": "===========Application============",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "autolifeSumInsured",
+			"value": "",
+			"type": "any",
+			"enabled": true
+		},
+		{
+			"key": "chargePremium",
+			"value": "",
+			"type": "any",
+			"enabled": true
+		},
+		{
+			"key": "financePremium",
+			"value": "",
+			"type": "any",
+			"enabled": true
+		},
+		{
+			"key": "sumInsured",
+			"value": "",
+			"type": "any",
+			"enabled": true
+		},
+		{
+			"key": "chargePremiumAfterFinance",
+			"value": "",
+			"type": "any",
+			"enabled": true
+		},
+		{
+			"key": "arrayTerms",
+			"value": "",
+			"type": "any",
+			"enabled": true
+		},
+		{
+			"key": "startDate",
+			"value": "",
+			"type": "any",
+			"enabled": true
+		},
+		{
+			"key": "npvBouns",
+			"value": "",
+			"type": "any",
+			"enabled": true
+		},
+		{
+			"key": "annualRate",
+			"value": "",
+			"type": "any",
+			"enabled": true
+		},
+		{
+			"key": "subDepartmentId",
+			"value": "",
+			"type": "any",
+			"enabled": true
+		},
+		{
+			"key": "maritalStatus",
+			"value": "",
+			"type": "any",
+			"enabled": true
+		},
+		{
+			"key": "education",
+			"value": "",
+			"type": "any",
+			"enabled": true
+		},
+		{
+			"key": "position",
+			"value": "",
+			"type": "any",
+			"enabled": true
+		},
+		{
+			"key": "yearOfEmployment",
+			"value": "",
+			"type": "any",
+			"enabled": true
+		},
+		{
+			"key": "monthlyIncome",
+			"value": "",
+			"type": "any",
+			"enabled": true
+		},
+		{
+			"key": "residentialStatus",
+			"value": "",
+			"type": "any",
+			"enabled": true
+		},
+		{
+			"key": "occupation",
+			"value": "",
+			"type": "any",
+			"enabled": true
+		},
+		{
+			"key": "assetProperty(input)",
+			"value": "f",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "assetCategory(input)",
+			"value": "NCV",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "transaction(input)",
+			"value": "TS1",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "brand(input)",
+			"value": "BR118",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "model(input)",
+			"value": "MD1488",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "transmission(input)",
+			"value": "TM2",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "dateManufacture(input)",
+			"value": "2021-01-01",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "financeFeeNcharges(input)",
+			"value": "false",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "deductFeeNcharges(input)",
+			"value": "true",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "financeInsurances(input)",
+			"value": "false",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "deductInsurance(input)",
+			"value": "false",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "dealerFirstName",
+			"value": "BERJAYA",
+			"type": "any",
+			"enabled": true
+		},
+		{
+			"key": "===========Application=============",
+			"value": "===========Application=============",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": " ",
+			"value": "",
+			"type": "default",
+			"enabled": false
+		},
+		{
+			"key": "======First Credit Review==========",
+			"value": "======First Credit Review==========",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "preDepartmentId",
+			"value": "",
+			"type": "any",
+			"enabled": true
+		},
+		{
+			"key": "applicationDate",
+			"value": "",
+			"type": "any",
+			"enabled": true
+		},
+		{
+			"key": "ltv",
+			"value": "",
+			"type": "any",
+			"enabled": true
+		},
+		{
+			"key": "======First Credit Review=========",
+			"value": "======First Credit Review=========",
+			"type": "default",
+			"enabled": true
+		}
+	],
+	"_postman_variable_scope": "environment",
+	"_postman_exported_at": "2022-09-27T05:49:13.959Z",
+	"_postman_exported_using": "Postman/9.20.0-canary"
+}
