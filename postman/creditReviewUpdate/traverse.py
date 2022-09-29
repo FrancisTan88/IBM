@@ -47,6 +47,11 @@ if __name__ == '__main__':
     envVar_filePath = 'environmentVar.json'
     dict_envVar = Read_jsonFile(envVar_filePath)
     variables = dict_envVar['values']
+
+    # environment variables 
+    # reverse the keys and values so that we can search the values in O(1) every time
+    # hashmap = ReverseKeyAndValue(variables)
+    # print(hashmap)
     
     # traverse request body from payload and 
     # store it as a dictionary
@@ -55,7 +60,7 @@ if __name__ == '__main__':
     在function iterate裡concatenate兩個不同的dictionary時, 
     會有original keys被new keys覆蓋的情形
     '''
-    reqBody_path = 'firstSubmitOri copy.json'
+    reqBody_path = 'test copy.json'
     dict_reqBody = Read_jsonFile(reqBody_path)
     dict_reqBodyTraversal = Iterate(dict_reqBody)
     for k, v in dict_reqBodyTraversal.items():
@@ -66,3 +71,10 @@ if __name__ == '__main__':
 
 
 
+
+
+
+        
+      
+
+            

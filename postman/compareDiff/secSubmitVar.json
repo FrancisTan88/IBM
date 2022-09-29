@@ -1,16 +1,15 @@
 {
     "submissionId": {{submissionId}},
     "caseNo": "{{CaseNo(input)}}",
-    "applicantId": "{{preUserNo(input)}}",
-    "applicantName": "{{preUserName}}",
+    "applicantId": "{{secUserNo}}",
+    "applicantName": "{{secUserName}}",
     "companyId": "{{companyID(input)}}",
-    "departmentId": {{preDepartmentId}},
+    "departmentId": {{secUserDepartmentId}},
     "operationId": "1",
-    "stageId": "1",
+    "stageId": "2",
     "lendingType": "H",
     "productType": "001",
     "productCode": "{{productCode(input)}}",
-    "productTypeName": null,
     "productVersion": 20,
     "project": null,
     "submissionApplicantId": "",
@@ -18,9 +17,9 @@
     "aggrement": true,
     "useRole": "",
     "creditInstruction": {
-        "openTime": "2022-09-26T10:47:46.7471811+08:00",
-        "financeAmount": null,
-        "totalFinanceAmount": null,
+        "openTime": "2022-09-27T12:55:05.7888431+08:00",
+        "financeAmount": {{financialAmount}},
+        "totalFinanceAmount": {{financialAmount}},
         "financeTenure": null,
         "interestRate": null,
         "rejectReason": null,
@@ -53,10 +52,18 @@
             {
                 "creditCommentId": "4",
                 "creditCommentName": "Application Cancelled"
+            },
+            {
+                "creditCommentId": "5",
+                "creditCommentName": "Return to Sales"
+            },
+            {
+                "creditCommentId": "6",
+                "creditCommentName": "Return"
             }
         ],
-        "ltv": null,
-        "ltvApply": null
+        "ltv": 0,
+        "ltvApply": 0
     },
     "customerInformation": {
         "customerTypeId": "I",
@@ -78,7 +85,7 @@
             "birthdate": "1989-10-07T00:00:00",
             "gender": "2",
             "nationality": "001",
-            "race": "1",
+            "race": "{{race(input)}}",
             "educationLevel": "{{education}}",
             "maritalStatus": "{{maritalStatus}}",
             "spouseName": null,
@@ -92,7 +99,7 @@
             "idExpiryDate": null,
             "oldIdNo": null,
             "isEastMY": null,
-            "residentialStatus": "{{residentialStatus}}",
+            "residentialStatus": "RS1",
             "lengthOfResidence": 8,
             "industry": "{{industry(input)}}",
             "corporationIndustry": null
@@ -158,7 +165,7 @@
             "occupation": "J",
             "civilServant": null,
             "position": "Casher",
-            "yearofEmployment": {{yearOfEmployment}},
+            "yearofEmployment": 5,
             "employerName": "Employer Name",
             "monthlyIncome": {{monthlyIncome}},
             "workingInSinagapore": false
@@ -361,9 +368,9 @@
                     "idNo": null,
                     "mykad": null,
                     "fingerPrint": null,
-                    "identificationType": null,
+                    "identificationType": "2",
                     "corporationIDNo": "{{idNo(G2)(input)}}",
-                    "corporationIdentificationType": "2",
+                    "corporationIdentificationType": null,
                     "firstName": null,
                     "firstNameFromVCIF": false,
                     "familyName": null,
@@ -575,7 +582,7 @@
             }
         ],
         "insurance": {
-            "autolife": {{autoLife(input)}},
+            "autolife": false,
             "autolifeSumInsured": {{financialAmount}},
             "insuranceTypes": [
                 {
@@ -630,11 +637,24 @@
                 "securityAssetType": "{{securityAssetType(input)}}",
                 "securityAssetCategory": "{{assetCategory(input)}}",
                 "purpose": "VP01",
-                "feeInfos": [],
+                "feeInfos": [
+                    {
+                        "itemName": "Premium",
+                        "amount": 0,
+                        "payment": "Y",
+                        "paymentName": "Yearly",
+                        "feeType": "Premium",
+                        "item": "Premium",
+                        "fixed": true,
+                        "fromSecutiryAsset": true,
+                        "byAsset": "P",
+                        "identityKey": null
+                    }
+                ],
                 "securityAssetRemark": "",
                 "sort": 0,
                 "hasCollateralValue": true,
-                "submissionSubNo": 1,
+                "submissionSubNo": 0,
                 "identityKey": "1664160467_1",
                 "securityAssetId": 101209,
                 "isNew": true,
@@ -692,14 +712,24 @@
             "scoringItems": [
                 {
                     "scoringItemId": 1433,
+                    "no": "B1",
+                    "item": "Individual/Owner Age\t",
+                    "itemValue": null,
+                    "category": "61 & above\t",
+                    "basicScore": 1,
+                    "adjust": 0,
+                    "finalScore": 1,
+                    "operator": null,
+                    "isAutoRef": false,
+                    "outdoor": false,
+                    "isPositive": null,
+                    "sortId": 1,
                     "itemCode": "B1",
                     "description": "Individual/Owner Age\t",
                     "orderBy": 1,
                     "autoRef": "None",
                     "autoRefValue": "None",
-                    "isAutoRef": false,
                     "notRated": false,
-                    "outdoor": false,
                     "preliminaryReviewMust": true,
                     "optionNScores": [
                         {
@@ -801,25 +831,28 @@
                             "isPositive": null,
                             "isDigital": false
                         }
-                    ],
-                    "no": "B1",
-                    "item": "Individual/Owner Age\t",
-                    "category": "61 & above\t",
-                    "basicScore": 1,
-                    "adjust": 0,
-                    "finalScore": 1,
-                    "isPositive": null
+                    ]
                 },
                 {
                     "scoringItemId": 1434,
+                    "no": "B2",
+                    "item": "Education",
+                    "itemValue": null,
+                    "category": "1",
+                    "basicScore": 3,
+                    "adjust": 0,
+                    "finalScore": 3,
+                    "operator": null,
+                    "isAutoRef": true,
+                    "outdoor": false,
+                    "isPositive": null,
+                    "sortId": 2,
                     "itemCode": "B2",
                     "description": "Education",
                     "orderBy": 2,
                     "autoRef": "AR6",
                     "autoRefValue": "AR6",
-                    "isAutoRef": true,
                     "notRated": false,
-                    "outdoor": false,
                     "preliminaryReviewMust": true,
                     "optionNScores": [
                         {
@@ -888,25 +921,28 @@
                             "isPositive": null,
                             "isDigital": false
                         }
-                    ],
-                    "no": "B2",
-                    "item": "Education",
-                    "category": "1",
-                    "basicScore": 3,
-                    "adjust": 0,
-                    "finalScore": 3,
-                    "isPositive": null
+                    ]
                 },
                 {
                     "scoringItemId": 1435,
+                    "no": "B3",
+                    "item": "Type of Biz\t",
+                    "itemValue": null,
+                    "category": "IPO / Well Known / Government\t",
+                    "basicScore": 2,
+                    "adjust": 0,
+                    "finalScore": 2,
+                    "operator": null,
+                    "isAutoRef": false,
+                    "outdoor": false,
+                    "isPositive": null,
+                    "sortId": 3,
                     "itemCode": "B3",
                     "description": "Type of Biz\t",
                     "orderBy": 3,
                     "autoRef": "None",
                     "autoRefValue": "None",
-                    "isAutoRef": false,
                     "notRated": false,
-                    "outdoor": false,
                     "preliminaryReviewMust": true,
                     "optionNScores": [
                         {
@@ -942,25 +978,28 @@
                             "isPositive": null,
                             "isDigital": false
                         }
-                    ],
-                    "no": "B3",
-                    "item": "Type of Biz\t",
-                    "category": "IPO / Well Known / Government\t",
-                    "basicScore": 2,
-                    "adjust": 0,
-                    "finalScore": 2,
-                    "isPositive": null
+                    ]
                 },
                 {
                     "scoringItemId": 1436,
+                    "no": "B4",
+                    "item": "Position",
+                    "itemValue": null,
+                    "category": "Specialist & Professional\t",
+                    "basicScore": 5,
+                    "adjust": 0,
+                    "finalScore": 5,
+                    "operator": null,
+                    "isAutoRef": false,
+                    "outdoor": false,
+                    "isPositive": null,
+                    "sortId": 4,
                     "itemCode": "B4",
                     "description": "Position",
                     "orderBy": 4,
                     "autoRef": "None",
                     "autoRefValue": "None",
-                    "isAutoRef": false,
                     "notRated": false,
-                    "outdoor": false,
                     "preliminaryReviewMust": true,
                     "optionNScores": [
                         {
@@ -1029,25 +1068,28 @@
                             "isPositive": null,
                             "isDigital": false
                         }
-                    ],
-                    "no": "B4",
-                    "item": "Position",
-                    "category": "Specialist & Professional\t",
-                    "basicScore": 5,
-                    "adjust": 0,
-                    "finalScore": 5,
-                    "isPositive": null
+                    ]
                 },
                 {
                     "scoringItemId": 1437,
+                    "no": "B5",
+                    "item": "Period Employment\t",
+                    "itemValue": null,
+                    "category": "Over 5 yrs\t",
+                    "basicScore": 3,
+                    "adjust": 0,
+                    "finalScore": 3,
+                    "operator": null,
+                    "isAutoRef": false,
+                    "outdoor": false,
+                    "isPositive": null,
+                    "sortId": 5,
                     "itemCode": "B5",
                     "description": "Period Employment\t",
                     "orderBy": 5,
                     "autoRef": "None",
                     "autoRefValue": "None",
-                    "isAutoRef": false,
                     "notRated": false,
-                    "outdoor": false,
                     "preliminaryReviewMust": true,
                     "optionNScores": [
                         {
@@ -1094,25 +1136,28 @@
                             "isPositive": null,
                             "isDigital": false
                         }
-                    ],
-                    "no": "B5",
-                    "item": "Period Employment\t",
-                    "category": "Over 5 yrs\t",
-                    "basicScore": 3,
-                    "adjust": 0,
-                    "finalScore": 3,
-                    "isPositive": null
+                    ]
                 },
                 {
                     "scoringItemId": 1438,
+                    "no": "B6",
+                    "item": "Family Status(Owner/Hirer)\t",
+                    "itemValue": null,
+                    "category": "3",
+                    "basicScore": 0,
+                    "adjust": 0,
+                    "finalScore": 0,
+                    "operator": null,
+                    "isAutoRef": true,
+                    "outdoor": false,
+                    "isPositive": null,
+                    "sortId": 6,
                     "itemCode": "B6",
                     "description": "Family Status(Owner/Hirer)\t",
                     "orderBy": 6,
                     "autoRef": "AR4",
                     "autoRefValue": "AR4",
-                    "isAutoRef": true,
                     "notRated": false,
-                    "outdoor": false,
                     "preliminaryReviewMust": true,
                     "optionNScores": [
                         {
@@ -1181,25 +1226,28 @@
                             "isPositive": null,
                             "isDigital": false
                         }
-                    ],
-                    "no": "B6",
-                    "item": "Family Status(Owner/Hirer)\t",
-                    "category": "3",
-                    "basicScore": 0,
-                    "adjust": 0,
-                    "finalScore": 0,
-                    "isPositive": null
+                    ]
                 },
                 {
                     "scoringItemId": 1439,
+                    "no": "P1",
+                    "item": "Basic/Fixed Net Income\t",
+                    "itemValue": null,
+                    "category": "",
+                    "basicScore": 0,
+                    "adjust": 0,
+                    "finalScore": 0,
+                    "operator": null,
+                    "isAutoRef": false,
+                    "outdoor": false,
+                    "isPositive": null,
+                    "sortId": 7,
                     "itemCode": "P1",
                     "description": "Basic/Fixed Net Income\t",
                     "orderBy": 7,
                     "autoRef": "None",
                     "autoRefValue": "None",
-                    "isAutoRef": false,
                     "notRated": false,
-                    "outdoor": false,
                     "preliminaryReviewMust": false,
                     "optionNScores": [
                         {
@@ -1257,25 +1305,28 @@
                             "isPositive": null,
                             "isDigital": false
                         }
-                    ],
-                    "no": "P1",
-                    "item": "Basic/Fixed Net Income\t",
+                    ]
+                },
+                {
+                    "scoringItemId": 1440,
+                    "no": "P2",
+                    "item": "DSR",
+                    "itemValue": null,
                     "category": "",
                     "basicScore": 0,
                     "adjust": 0,
                     "finalScore": 0,
-                    "isPositive": null
-                },
-                {
-                    "scoringItemId": 1440,
+                    "operator": null,
+                    "isAutoRef": false,
+                    "outdoor": false,
+                    "isPositive": null,
+                    "sortId": 8,
                     "itemCode": "P2",
                     "description": "DSR",
                     "orderBy": 8,
                     "autoRef": "None",
                     "autoRefValue": "None",
-                    "isAutoRef": false,
                     "notRated": false,
-                    "outdoor": false,
                     "preliminaryReviewMust": false,
                     "optionNScores": [
                         {
@@ -1344,25 +1395,28 @@
                             "isPositive": null,
                             "isDigital": false
                         }
-                    ],
-                    "no": "P2",
-                    "item": "DSR",
+                    ]
+                },
+                {
+                    "scoringItemId": 1441,
+                    "no": "P3",
+                    "item": "CCris Record\t",
+                    "itemValue": null,
                     "category": "",
                     "basicScore": 0,
                     "adjust": 0,
                     "finalScore": 0,
-                    "isPositive": null
-                },
-                {
-                    "scoringItemId": 1441,
+                    "operator": null,
+                    "isAutoRef": false,
+                    "outdoor": false,
+                    "isPositive": null,
+                    "sortId": 9,
                     "itemCode": "P3",
                     "description": "CCris Record\t",
                     "orderBy": 9,
                     "autoRef": "None",
                     "autoRefValue": "None",
-                    "isAutoRef": false,
                     "notRated": false,
-                    "outdoor": false,
                     "preliminaryReviewMust": false,
                     "optionNScores": [
                         {
@@ -1420,25 +1474,28 @@
                             "isPositive": null,
                             "isDigital": false
                         }
-                    ],
-                    "no": "P3",
-                    "item": "CCris Record\t",
+                    ]
+                },
+                {
+                    "scoringItemId": 1442,
+                    "no": "P4",
+                    "item": "Facility Serving Years\t",
+                    "itemValue": null,
                     "category": "",
                     "basicScore": 0,
                     "adjust": 0,
                     "finalScore": 0,
-                    "isPositive": null
-                },
-                {
-                    "scoringItemId": 1442,
+                    "operator": null,
+                    "isAutoRef": false,
+                    "outdoor": false,
+                    "isPositive": null,
+                    "sortId": 10,
                     "itemCode": "P4",
                     "description": "Facility Serving Years\t",
                     "orderBy": 10,
                     "autoRef": "None",
                     "autoRefValue": "None",
-                    "isAutoRef": false,
                     "notRated": false,
-                    "outdoor": false,
                     "preliminaryReviewMust": false,
                     "optionNScores": [
                         {
@@ -1485,25 +1542,28 @@
                             "isPositive": null,
                             "isDigital": false
                         }
-                    ],
-                    "no": "P4",
-                    "item": "Facility Serving Years\t",
+                    ]
+                },
+                {
+                    "scoringItemId": 1443,
+                    "no": "P5",
+                    "item": "Utilization of Credit Card\t",
+                    "itemValue": null,
                     "category": "",
                     "basicScore": 0,
                     "adjust": 0,
                     "finalScore": 0,
-                    "isPositive": null
-                },
-                {
-                    "scoringItemId": 1443,
+                    "operator": null,
+                    "isAutoRef": false,
+                    "outdoor": false,
+                    "isPositive": null,
+                    "sortId": 11,
                     "itemCode": "P5",
                     "description": "Utilization of Credit Card\t",
                     "orderBy": 11,
                     "autoRef": "None",
                     "autoRefValue": "None",
-                    "isAutoRef": false,
                     "notRated": false,
-                    "outdoor": false,
                     "preliminaryReviewMust": false,
                     "optionNScores": [
                         {
@@ -1583,25 +1643,28 @@
                             "isPositive": null,
                             "isDigital": false
                         }
-                    ],
-                    "no": "P5",
-                    "item": "Utilization of Credit Card\t",
+                    ]
+                },
+                {
+                    "scoringItemId": 1444,
+                    "no": "P6",
+                    "item": "Negative Remark(Trade Reference/Bounce Cheque/Bankruptcy)\t",
+                    "itemValue": null,
                     "category": "",
                     "basicScore": 0,
                     "adjust": 0,
                     "finalScore": 0,
-                    "isPositive": null
-                },
-                {
-                    "scoringItemId": 1444,
+                    "operator": null,
+                    "isAutoRef": false,
+                    "outdoor": false,
+                    "isPositive": null,
+                    "sortId": 12,
                     "itemCode": "P6",
                     "description": "Negative Remark(Trade Reference/Bounce Cheque/Bankruptcy)\t",
                     "orderBy": 12,
                     "autoRef": "None",
                     "autoRefValue": "None",
-                    "isAutoRef": false,
                     "notRated": false,
-                    "outdoor": false,
                     "preliminaryReviewMust": false,
                     "optionNScores": [
                         {
@@ -1670,25 +1733,28 @@
                             "isPositive": null,
                             "isDigital": false
                         }
-                    ],
-                    "no": "P6",
-                    "item": "Negative Remark(Trade Reference/Bounce Cheque/Bankruptcy)\t",
-                    "category": "",
-                    "basicScore": 0,
-                    "adjust": 0,
-                    "finalScore": 0,
-                    "isPositive": null
+                    ]
                 },
                 {
                     "scoringItemId": 1445,
+                    "no": "P7",
+                    "item": "House Status\t",
+                    "itemValue": null,
+                    "category": "RS1",
+                    "basicScore": 2,
+                    "adjust": 0,
+                    "finalScore": 2,
+                    "operator": null,
+                    "isAutoRef": true,
+                    "outdoor": false,
+                    "isPositive": null,
+                    "sortId": 13,
                     "itemCode": "P7",
                     "description": "House Status\t",
                     "orderBy": 13,
                     "autoRef": "AR5",
                     "autoRefValue": "AR5",
-                    "isAutoRef": true,
                     "notRated": false,
-                    "outdoor": false,
                     "preliminaryReviewMust": false,
                     "optionNScores": [
                         {
@@ -1757,25 +1823,28 @@
                             "isPositive": null,
                             "isDigital": false
                         }
-                    ],
-                    "no": "P7",
-                    "item": "House Status\t",
-                    "category": "RS1",
-                    "basicScore": 2,
-                    "adjust": 0,
-                    "finalScore": 2,
-                    "isPositive": null
+                    ]
                 },
                 {
                     "scoringItemId": 1446,
+                    "no": "B7",
+                    "item": "Hirer Nature\t",
+                    "itemValue": null,
+                    "category": "Individual",
+                    "basicScore": 0,
+                    "adjust": 0,
+                    "finalScore": 0,
+                    "operator": null,
+                    "isAutoRef": false,
+                    "outdoor": false,
+                    "isPositive": null,
+                    "sortId": 14,
                     "itemCode": "B7",
                     "description": "Hirer Nature\t",
                     "orderBy": 14,
                     "autoRef": "None",
                     "autoRefValue": "None",
-                    "isAutoRef": false,
                     "notRated": false,
-                    "outdoor": false,
                     "preliminaryReviewMust": true,
                     "optionNScores": [
                         {
@@ -1822,25 +1891,28 @@
                             "isPositive": null,
                             "isDigital": false
                         }
-                    ],
-                    "no": "B7",
-                    "item": "Hirer Nature\t",
-                    "category": "Individual",
-                    "basicScore": 0,
-                    "adjust": 0,
-                    "finalScore": 0,
-                    "isPositive": null
+                    ]
                 },
                 {
                     "scoringItemId": 1447,
+                    "no": "B8",
+                    "item": "1st Time Buyer Project\t",
+                    "itemValue": null,
+                    "category": "N\t",
+                    "basicScore": 0,
+                    "adjust": 0,
+                    "finalScore": 0,
+                    "operator": null,
+                    "isAutoRef": false,
+                    "outdoor": false,
+                    "isPositive": null,
+                    "sortId": 15,
                     "itemCode": "B8",
                     "description": "1st Time Buyer Project\t",
                     "orderBy": 15,
                     "autoRef": "None",
                     "autoRefValue": "None",
-                    "isAutoRef": false,
                     "notRated": false,
-                    "outdoor": false,
                     "preliminaryReviewMust": true,
                     "optionNScores": [
                         {
@@ -1865,25 +1937,28 @@
                             "isPositive": null,
                             "isDigital": false
                         }
-                    ],
-                    "no": "B8",
-                    "item": "1st Time Buyer Project\t",
-                    "category": "N\t",
-                    "basicScore": 0,
-                    "adjust": 0,
-                    "finalScore": 0,
-                    "isPositive": null
+                    ]
                 },
                 {
                     "scoringItemId": 1448,
+                    "no": "B9",
+                    "item": "Driver License\t",
+                    "itemValue": null,
+                    "category": "N",
+                    "basicScore": 0,
+                    "adjust": 0,
+                    "finalScore": 0,
+                    "operator": null,
+                    "isAutoRef": false,
+                    "outdoor": false,
+                    "isPositive": null,
+                    "sortId": 16,
                     "itemCode": "B9",
                     "description": "Driver License\t",
                     "orderBy": 16,
                     "autoRef": "None",
                     "autoRefValue": "None",
-                    "isAutoRef": false,
                     "notRated": false,
-                    "outdoor": false,
                     "preliminaryReviewMust": true,
                     "optionNScores": [
                         {
@@ -1908,25 +1983,28 @@
                             "isPositive": null,
                             "isDigital": false
                         }
-                    ],
-                    "no": "B9",
-                    "item": "Driver License\t",
-                    "category": "N",
-                    "basicScore": 0,
-                    "adjust": 0,
-                    "finalScore": 0,
-                    "isPositive": null
+                    ]
                 },
                 {
                     "scoringItemId": 1449,
+                    "no": "B10",
+                    "item": "Purpose of Buying the Vehicle\t",
+                    "itemValue": null,
+                    "category": "Non-Business Purpose\t",
+                    "basicScore": 0,
+                    "adjust": 0,
+                    "finalScore": 0,
+                    "operator": null,
+                    "isAutoRef": false,
+                    "outdoor": false,
+                    "isPositive": null,
+                    "sortId": 17,
                     "itemCode": "B10",
                     "description": "Purpose of Buying the Vehicle\t",
                     "orderBy": 17,
                     "autoRef": "None",
                     "autoRefValue": "None",
-                    "isAutoRef": false,
                     "notRated": false,
-                    "outdoor": false,
                     "preliminaryReviewMust": true,
                     "optionNScores": [
                         {
@@ -1995,25 +2073,28 @@
                             "isPositive": null,
                             "isDigital": false
                         }
-                    ],
-                    "no": "B10",
-                    "item": "Purpose of Buying the Vehicle\t",
-                    "category": "Non-Business Purpose\t",
-                    "basicScore": 0,
-                    "adjust": 0,
-                    "finalScore": 0,
-                    "isPositive": null
+                    ]
                 },
                 {
                     "scoringItemId": 1450,
+                    "no": "G1",
+                    "item": "Guarantor Relationship\t",
+                    "itemValue": null,
+                    "category": "",
+                    "basicScore": 0,
+                    "adjust": 0,
+                    "finalScore": 0,
+                    "operator": null,
+                    "isAutoRef": false,
+                    "outdoor": false,
+                    "isPositive": null,
+                    "sortId": 18,
                     "itemCode": "G1",
                     "description": "Guarantor Relationship\t",
                     "orderBy": 18,
                     "autoRef": "None",
                     "autoRefValue": "None",
-                    "isAutoRef": false,
                     "notRated": false,
-                    "outdoor": false,
                     "preliminaryReviewMust": false,
                     "optionNScores": [
                         {
@@ -2082,25 +2163,28 @@
                             "isPositive": null,
                             "isDigital": false
                         }
-                    ],
-                    "no": "G1",
-                    "item": "Guarantor Relationship\t",
+                    ]
+                },
+                {
+                    "scoringItemId": 1451,
+                    "no": "P8",
+                    "item": "Bounce Check\t",
+                    "itemValue": null,
                     "category": "",
                     "basicScore": 0,
                     "adjust": 0,
                     "finalScore": 0,
-                    "isPositive": null
-                },
-                {
-                    "scoringItemId": 1451,
+                    "operator": null,
+                    "isAutoRef": false,
+                    "outdoor": false,
+                    "isPositive": null,
+                    "sortId": 19,
                     "itemCode": "P8",
                     "description": "Bounce Check\t",
                     "orderBy": 19,
                     "autoRef": "None",
                     "autoRefValue": "None",
-                    "isAutoRef": false,
                     "notRated": false,
-                    "outdoor": false,
                     "preliminaryReviewMust": false,
                     "optionNScores": [
                         {
@@ -2125,25 +2209,28 @@
                             "isPositive": null,
                             "isDigital": false
                         }
-                    ],
-                    "no": "P8",
-                    "item": "Bounce Check\t",
+                    ]
+                },
+                {
+                    "scoringItemId": 1452,
+                    "no": "P9",
+                    "item": "Bankruptcy",
+                    "itemValue": null,
                     "category": "",
                     "basicScore": 0,
                     "adjust": 0,
                     "finalScore": 0,
-                    "isPositive": null
-                },
-                {
-                    "scoringItemId": 1452,
+                    "operator": null,
+                    "isAutoRef": false,
+                    "outdoor": false,
+                    "isPositive": null,
+                    "sortId": 20,
                     "itemCode": "P9",
                     "description": "Bankruptcy",
                     "orderBy": 20,
                     "autoRef": "None",
                     "autoRefValue": "None",
-                    "isAutoRef": false,
                     "notRated": false,
-                    "outdoor": false,
                     "preliminaryReviewMust": false,
                     "optionNScores": [
                         {
@@ -2168,25 +2255,28 @@
                             "isPositive": null,
                             "isDigital": false
                         }
-                    ],
-                    "no": "P9",
-                    "item": "Bankruptcy",
+                    ]
+                },
+                {
+                    "scoringItemId": 1453,
+                    "no": "P10",
+                    "item": "Special Attention Account\t",
+                    "itemValue": null,
                     "category": "",
                     "basicScore": 0,
                     "adjust": 0,
                     "finalScore": 0,
-                    "isPositive": null
-                },
-                {
-                    "scoringItemId": 1453,
+                    "operator": null,
+                    "isAutoRef": false,
+                    "outdoor": false,
+                    "isPositive": null,
+                    "sortId": 21,
                     "itemCode": "P10",
                     "description": "Special Attention Account\t",
                     "orderBy": 21,
                     "autoRef": "None",
                     "autoRefValue": "None",
-                    "isAutoRef": false,
                     "notRated": false,
-                    "outdoor": false,
                     "preliminaryReviewMust": false,
                     "optionNScores": [
                         {
@@ -2233,25 +2323,28 @@
                             "isPositive": null,
                             "isDigital": false
                         }
-                    ],
-                    "no": "P10",
-                    "item": "Special Attention Account\t",
+                    ]
+                },
+                {
+                    "scoringItemId": 1454,
+                    "no": "P11",
+                    "item": "Trade Reference\t",
+                    "itemValue": null,
                     "category": "",
                     "basicScore": 0,
                     "adjust": 0,
                     "finalScore": 0,
-                    "isPositive": null
-                },
-                {
-                    "scoringItemId": 1454,
+                    "operator": null,
+                    "isAutoRef": false,
+                    "outdoor": false,
+                    "isPositive": null,
+                    "sortId": 22,
                     "itemCode": "P11",
                     "description": "Trade Reference\t",
                     "orderBy": 22,
                     "autoRef": "None",
                     "autoRefValue": "None",
-                    "isAutoRef": false,
                     "notRated": false,
-                    "outdoor": false,
                     "preliminaryReviewMust": false,
                     "optionNScores": [
                         {
@@ -2298,25 +2391,28 @@
                             "isPositive": null,
                             "isDigital": false
                         }
-                    ],
-                    "no": "P11",
-                    "item": "Trade Reference\t",
+                    ]
+                },
+                {
+                    "scoringItemId": 1455,
+                    "no": "P12\t",
+                    "item": "Loan Recently Applied\t",
+                    "itemValue": null,
                     "category": "",
                     "basicScore": 0,
                     "adjust": 0,
                     "finalScore": 0,
-                    "isPositive": null
-                },
-                {
-                    "scoringItemId": 1455,
+                    "operator": null,
+                    "isAutoRef": false,
+                    "outdoor": false,
+                    "isPositive": null,
+                    "sortId": 23,
                     "itemCode": "P12\t",
                     "description": "Loan Recently Applied\t",
                     "orderBy": 23,
                     "autoRef": "None",
                     "autoRefValue": "None",
-                    "isAutoRef": false,
                     "notRated": false,
-                    "outdoor": false,
                     "preliminaryReviewMust": false,
                     "optionNScores": [
                         {
@@ -2363,25 +2459,28 @@
                             "isPositive": 1,
                             "isDigital": false
                         }
-                    ],
-                    "no": "P12\t",
-                    "item": "Loan Recently Applied\t",
+                    ]
+                },
+                {
+                    "scoringItemId": 1456,
+                    "no": "M1\t",
+                    "item": "Credit Service Program\t",
+                    "itemValue": null,
                     "category": "",
                     "basicScore": 0,
                     "adjust": 0,
                     "finalScore": 0,
-                    "isPositive": null
-                },
-                {
-                    "scoringItemId": 1456,
+                    "operator": null,
+                    "isAutoRef": false,
+                    "outdoor": false,
+                    "isPositive": null,
+                    "sortId": 24,
                     "itemCode": "M1\t",
                     "description": "Credit Service Program\t",
                     "orderBy": 24,
                     "autoRef": "None",
                     "autoRefValue": "None",
-                    "isAutoRef": false,
                     "notRated": false,
-                    "outdoor": false,
                     "preliminaryReviewMust": false,
                     "optionNScores": [
                         {
@@ -2406,25 +2505,28 @@
                             "isPositive": null,
                             "isDigital": false
                         }
-                    ],
-                    "no": "M1\t",
-                    "item": "Credit Service Program\t",
+                    ]
+                },
+                {
+                    "scoringItemId": 1457,
+                    "no": "M2\t",
+                    "item": "Local Customer\t",
+                    "itemValue": null,
                     "category": "",
                     "basicScore": 0,
                     "adjust": 0,
                     "finalScore": 0,
-                    "isPositive": null
-                },
-                {
-                    "scoringItemId": 1457,
+                    "operator": null,
+                    "isAutoRef": false,
+                    "outdoor": false,
+                    "isPositive": null,
+                    "sortId": 25,
                     "itemCode": "M2\t",
                     "description": "Local Customer\t",
                     "orderBy": 25,
                     "autoRef": "None",
                     "autoRefValue": "None",
-                    "isAutoRef": false,
                     "notRated": false,
-                    "outdoor": false,
                     "preliminaryReviewMust": false,
                     "optionNScores": [
                         {
@@ -2449,25 +2551,28 @@
                             "isPositive": null,
                             "isDigital": false
                         }
-                    ],
-                    "no": "M2\t",
-                    "item": "Local Customer\t",
+                    ]
+                },
+                {
+                    "scoringItemId": 1458,
+                    "no": "M3",
+                    "item": "Income Type\t",
+                    "itemValue": null,
                     "category": "",
                     "basicScore": 0,
                     "adjust": 0,
                     "finalScore": 0,
-                    "isPositive": null
-                },
-                {
-                    "scoringItemId": 1458,
+                    "operator": null,
+                    "isAutoRef": false,
+                    "outdoor": false,
+                    "isPositive": null,
+                    "sortId": 27,
                     "itemCode": "M3",
                     "description": "Income Type\t",
                     "orderBy": 27,
                     "autoRef": "None",
                     "autoRefValue": "None",
-                    "isAutoRef": false,
                     "notRated": false,
-                    "outdoor": false,
                     "preliminaryReviewMust": false,
                     "optionNScores": [
                         {
@@ -2525,25 +2630,28 @@
                             "isPositive": null,
                             "isDigital": false
                         }
-                    ],
-                    "no": "M3",
-                    "item": "Income Type\t",
+                    ]
+                },
+                {
+                    "scoringItemId": 1459,
+                    "no": "M4\t",
+                    "item": "Contract Worker\t",
+                    "itemValue": null,
                     "category": "",
                     "basicScore": 0,
                     "adjust": 0,
                     "finalScore": 0,
-                    "isPositive": null
-                },
-                {
-                    "scoringItemId": 1459,
+                    "operator": null,
+                    "isAutoRef": false,
+                    "outdoor": false,
+                    "isPositive": null,
+                    "sortId": 28,
                     "itemCode": "M4\t",
                     "description": "Contract Worker\t",
                     "orderBy": 28,
                     "autoRef": "None",
                     "autoRefValue": "None",
-                    "isAutoRef": false,
                     "notRated": false,
-                    "outdoor": false,
                     "preliminaryReviewMust": false,
                     "optionNScores": [
                         {
@@ -2568,25 +2676,28 @@
                             "isPositive": null,
                             "isDigital": false
                         }
-                    ],
-                    "no": "M4\t",
-                    "item": "Contract Worker\t",
+                    ]
+                },
+                {
+                    "scoringItemId": 1460,
+                    "no": "M5\t",
+                    "item": "Cancelled By Customer But Approved\t",
+                    "itemValue": null,
                     "category": "",
                     "basicScore": 0,
                     "adjust": 0,
                     "finalScore": 0,
-                    "isPositive": null
-                },
-                {
-                    "scoringItemId": 1460,
+                    "operator": null,
+                    "isAutoRef": false,
+                    "outdoor": false,
+                    "isPositive": null,
+                    "sortId": 29,
                     "itemCode": "M5\t",
                     "description": "Cancelled By Customer But Approved\t",
                     "orderBy": 29,
                     "autoRef": "None",
                     "autoRefValue": "None",
-                    "isAutoRef": false,
                     "notRated": false,
-                    "outdoor": false,
                     "preliminaryReviewMust": false,
                     "optionNScores": [
                         {
@@ -2611,25 +2722,28 @@
                             "isPositive": null,
                             "isDigital": false
                         }
-                    ],
-                    "no": "M5\t",
-                    "item": "Cancelled By Customer But Approved\t",
+                    ]
+                },
+                {
+                    "scoringItemId": 1461,
+                    "no": "M6\t",
+                    "item": "Special Request\t",
+                    "itemValue": null,
                     "category": "",
                     "basicScore": 0,
                     "adjust": 0,
                     "finalScore": 0,
-                    "isPositive": null
-                },
-                {
-                    "scoringItemId": 1461,
+                    "operator": null,
+                    "isAutoRef": false,
+                    "outdoor": false,
+                    "isPositive": null,
+                    "sortId": 30,
                     "itemCode": "M6\t",
                     "description": "Special Request\t",
                     "orderBy": 30,
                     "autoRef": "None",
                     "autoRefValue": "None",
-                    "isAutoRef": false,
                     "notRated": false,
-                    "outdoor": false,
                     "preliminaryReviewMust": false,
                     "optionNScores": [
                         {
@@ -2676,25 +2790,28 @@
                             "isPositive": null,
                             "isDigital": false
                         }
-                    ],
-                    "no": "M6\t",
-                    "item": "Special Request\t",
+                    ]
+                },
+                {
+                    "scoringItemId": 1462,
+                    "no": "M7",
+                    "item": "Cash Flow_Any Month End Balance lower than instalment calculated\t",
+                    "itemValue": null,
                     "category": "",
                     "basicScore": 0,
                     "adjust": 0,
                     "finalScore": 0,
-                    "isPositive": null
-                },
-                {
-                    "scoringItemId": 1462,
+                    "operator": null,
+                    "isAutoRef": false,
+                    "outdoor": false,
+                    "isPositive": null,
+                    "sortId": 31,
                     "itemCode": "M7",
                     "description": "Cash Flow_Any Month End Balance lower than instalment calculated\t",
                     "orderBy": 31,
                     "autoRef": "None",
                     "autoRefValue": "None",
-                    "isAutoRef": false,
                     "notRated": false,
-                    "outdoor": false,
                     "preliminaryReviewMust": false,
                     "optionNScores": [
                         {
@@ -2730,25 +2847,28 @@
                             "isPositive": null,
                             "isDigital": false
                         }
-                    ],
-                    "no": "M7",
-                    "item": "Cash Flow_Any Month End Balance lower than instalment calculated\t",
+                    ]
+                },
+                {
+                    "scoringItemId": 1463,
+                    "no": "M8\t",
+                    "item": "TryCase_Ram 7-10 ignore NDI\t",
+                    "itemValue": null,
                     "category": "",
                     "basicScore": 0,
                     "adjust": 0,
                     "finalScore": 0,
-                    "isPositive": null
-                },
-                {
-                    "scoringItemId": 1463,
+                    "operator": null,
+                    "isAutoRef": false,
+                    "outdoor": false,
+                    "isPositive": null,
+                    "sortId": 32,
                     "itemCode": "M8\t",
                     "description": "TryCase_Ram 7-10 ignore NDI\t",
                     "orderBy": 32,
                     "autoRef": "None",
                     "autoRefValue": "None",
-                    "isAutoRef": false,
                     "notRated": false,
-                    "outdoor": false,
                     "preliminaryReviewMust": false,
                     "optionNScores": [
                         {
@@ -2773,25 +2893,28 @@
                             "isPositive": null,
                             "isDigital": false
                         }
-                    ],
-                    "no": "M8\t",
-                    "item": "TryCase_Ram 7-10 ignore NDI\t",
+                    ]
+                },
+                {
+                    "scoringItemId": 1464,
+                    "no": "M10",
+                    "item": "TryCase_Ram 7-10 waive DriverLicense\t",
+                    "itemValue": null,
                     "category": "",
                     "basicScore": 0,
                     "adjust": 0,
                     "finalScore": 0,
-                    "isPositive": null
-                },
-                {
-                    "scoringItemId": 1464,
+                    "operator": null,
+                    "isAutoRef": false,
+                    "outdoor": false,
+                    "isPositive": null,
+                    "sortId": 33,
                     "itemCode": "M10",
                     "description": "TryCase_Ram 7-10 waive DriverLicense\t",
                     "orderBy": 33,
                     "autoRef": "None",
                     "autoRefValue": "None",
-                    "isAutoRef": false,
                     "notRated": false,
-                    "outdoor": false,
                     "preliminaryReviewMust": false,
                     "optionNScores": [
                         {
@@ -2816,25 +2939,28 @@
                             "isPositive": null,
                             "isDigital": false
                         }
-                    ],
-                    "no": "M10",
-                    "item": "TryCase_Ram 7-10 waive DriverLicense\t",
+                    ]
+                },
+                {
+                    "scoringItemId": 1465,
+                    "no": "M9",
+                    "item": "TryCase_Ram 7-10 ignore DSR\t",
+                    "itemValue": null,
                     "category": "",
                     "basicScore": 0,
                     "adjust": 0,
                     "finalScore": 0,
-                    "isPositive": null
-                },
-                {
-                    "scoringItemId": 1465,
+                    "operator": null,
+                    "isAutoRef": false,
+                    "outdoor": false,
+                    "isPositive": null,
+                    "sortId": 34,
                     "itemCode": "M9",
                     "description": "TryCase_Ram 7-10 ignore DSR\t",
                     "orderBy": 34,
                     "autoRef": "None",
                     "autoRefValue": "None",
-                    "isAutoRef": false,
                     "notRated": false,
-                    "outdoor": false,
                     "preliminaryReviewMust": false,
                     "optionNScores": [
                         {
@@ -2859,25 +2985,28 @@
                             "isPositive": null,
                             "isDigital": false
                         }
-                    ],
-                    "no": "M9",
-                    "item": "TryCase_Ram 7-10 ignore DSR\t",
+                    ]
+                },
+                {
+                    "scoringItemId": 1466,
+                    "no": "M11",
+                    "item": "Employment Verification",
+                    "itemValue": null,
                     "category": "",
                     "basicScore": 0,
                     "adjust": 0,
                     "finalScore": 0,
-                    "isPositive": null
-                },
-                {
-                    "scoringItemId": 1466,
+                    "operator": null,
+                    "isAutoRef": false,
+                    "outdoor": false,
+                    "isPositive": null,
+                    "sortId": 35,
                     "itemCode": "M11",
                     "description": "Employment Verification",
                     "orderBy": 35,
                     "autoRef": "None",
                     "autoRefValue": "None",
-                    "isAutoRef": false,
                     "notRated": false,
-                    "outdoor": false,
                     "preliminaryReviewMust": false,
                     "optionNScores": [
                         {
@@ -2946,14 +3075,7 @@
                             "isPositive": null,
                             "isDigital": false
                         }
-                    ],
-                    "no": "M11",
-                    "item": "Employment Verification",
-                    "category": "",
-                    "basicScore": 0,
-                    "adjust": 0,
-                    "finalScore": 0,
-                    "isPositive": null
+                    ]
                 }
             ]
         },
@@ -2964,29 +3086,29 @@
             "rr": null,
             "remark": null,
             "customer": {
-                "idNo": null,
+                "idNo": "891007777777",
                 "income": [
                     {
                         "isCanDelete": false,
-                        "incomeExpenseItemId": 0,
+                        "incomeExpenseItemId": 39618,
                         "item": "Monthly Income",
                         "amount": 0
                     },
                     {
                         "isCanDelete": false,
-                        "incomeExpenseItemId": 0,
+                        "incomeExpenseItemId": 39619,
                         "item": "Allowances & Bonusess",
                         "amount": 0
                     },
                     {
                         "isCanDelete": false,
-                        "incomeExpenseItemId": 0,
+                        "incomeExpenseItemId": 39620,
                         "item": "Commissions",
                         "amount": 0
                     },
                     {
                         "isCanDelete": false,
-                        "incomeExpenseItemId": 0,
+                        "incomeExpenseItemId": 39621,
                         "item": "Dividends & Interests",
                         "amount": 0
                     }
@@ -2994,43 +3116,43 @@
                 "expense": [
                     {
                         "isCanDelete": false,
-                        "incomeExpenseItemId": 0,
+                        "incomeExpenseItemId": 39627,
                         "item": "Housing & Utility",
                         "amount": 0
                     },
                     {
                         "isCanDelete": false,
-                        "incomeExpenseItemId": 0,
+                        "incomeExpenseItemId": 39623,
                         "item": "Loan Amortizations",
                         "amount": 0
                     },
                     {
                         "isCanDelete": false,
-                        "incomeExpenseItemId": 0,
+                        "incomeExpenseItemId": 39624,
                         "item": "Living",
                         "amount": 0
                     },
                     {
                         "isCanDelete": false,
-                        "incomeExpenseItemId": 0,
+                        "incomeExpenseItemId": 39625,
                         "item": "Transportation",
                         "amount": 0
                     },
                     {
                         "isCanDelete": false,
-                        "incomeExpenseItemId": 0,
+                        "incomeExpenseItemId": 39626,
                         "item": "Education",
                         "amount": 0
                     },
                     {
                         "isCanDelete": false,
-                        "incomeExpenseItemId": 0,
+                        "incomeExpenseItemId": 39622,
                         "item": "EPF",
                         "amount": 0
                     },
                     {
                         "isCanDelete": false,
-                        "incomeExpenseItemId": 0,
+                        "incomeExpenseItemId": 39617,
                         "item": "Others",
                         "amount": 0
                     }
@@ -3059,19 +3181,30 @@
             "bankName": null,
             "bankAccount": null,
             "typeOfAccount": null,
-            "avgCredit": null,
-            "avgDebit": null,
-            "avgBalance": null,
+            "avgCredit": 0,
+            "avgDebit": 0,
+            "avgBalance": 0,
             "remark": null,
-            "statement": []
+            "statement": [
+                {
+                    "month": 0,
+                    "beginningBalance": 0,
+                    "creditAmount": 0,
+                    "creditCount": 0,
+                    "debitAmount": 0,
+                    "debitCount": 0,
+                    "endingBalance": 0,
+                    "returnedChequeCount": null
+                }
+            ]
         },
         "references": [],
         "conclusion": {
             "ramciScore": null,
             "grade": null,
-            "ismValue": null,
-            "pbValue": null,
-            "cimbValue": null,
+            "ismValue": 0,
+            "pbValue": 0,
+            "cimbValue": 0,
             "comment": "•    Origin: ___ and stay in ___ over ___ years. \r\n•    Using ___ work daily. \r\n•    Start ___ pm/am until ___ am/pm daily.  [Singapore] \r\n•    Purpose: ___ \r\n•    Existing car: paid over ___ using by ___ /trade in due to ___. \r\n•    Driving License expire in ___ \r\n•    Provided ___ as DL guarantor. \r\n•    ___ kids/children \r\n•    Spouse is working as ___ \r\n•    Rental (RM ___ per month)/ family’s house  \r\n•    Staying with family/parents/friends \r\n•    Individual: \r\n•    Call @ ___ confirm with Mr/Ms ___ (HR officer) @ ABCD COMPANY \r\n•    Hirer position: ___ (___ department) \r\n•    NOB: ___ \r\n•    YOS: ___ in current company. \r\n•    Previous YOS: ___ in which company. \r\n•    Status: permanent/ contract \r\n•    Education: \r\n•    Own Business: \r\n•    Call @ ___ confirm with Mr/Ms ___ @ ABCD COMPANY \r\n•    NOB: ___ \r\n•    Business location: ___ \r\n•    Facebook: ___ \r\n•    Appraisal value based on Chailease \r\n•    Appraisal value based on ISM + 11K/12K  \r\n•    Appraisal value based on CIMB/PBB \r\n•    Others source of valuation: ___ \r\n•    More than 2 MIA, reason: \r\n•    ___ \r\n•    Pending application in CCRIS, reason: \r\n•    ___ \r\n•    Guarantor: \r\n•    Guarantor age ___ Call @ ___ talk / confirm with ___ agreed to be guarantor.  \r\n•    Call @ ___ confirm with Mr/Ms ___ (HR officer) @ ABCD COMPANY \r\n•    Post: ___ (__ department) \r\n•    NOB: ___ \r\n•    YOS: ___ years \r\n•    Status: permanent/ contract",
             "tradeNCreditReference": null,
             "totalEnquiries": null,
@@ -3551,12 +3684,12 @@
             "dataCount": 1,
             "details": [
                 {
-                    "attachmentId": 3025,
-                    "fileDetailId": "0771b8b8-00d5-4690-b514-66eaf7057296",
-                    "fileDate": "26/09/2022 00:00:00",
-                    "fileName": "APPLICATION & CONSENT FORM(Individual)_20220926_104212448",
-                    "fullPath": "WebSubmission\\33574e42-71f6-4b36-8d73-9dee529767f3",
-                    "fileSize": 75278,
+                    "attachmentId": 3154,
+                    "fileDetailId": "776612b3-d9d4-4517-b378-e716d771fded",
+                    "fileDate": "27/09/2022 00:00:00",
+                    "fileName": "APPLICATION & CONSENT FORM(Individual)_20220927_122539073",
+                    "fullPath": "WebSubmission\\d8a685ce-fc36-43fd-ac74-77a97d03489a",
+                    "fileSize": 75289,
                     "extension": ".pdf",
                     "description": "",
                     "fileSource": "0"
@@ -3569,34 +3702,34 @@
             "dataCount": 3,
             "details": [
                 {
-                    "attachmentId": 3023,
-                    "fileDetailId": "28d50f58-fbf6-4f62-8239-1212bd60c654",
-                    "fileDate": "26/09/2022 00:00:00",
-                    "fileName": "EConsent_20220926_104215623",
-                    "fullPath": "WebSubmission\\30fe0081-42f3-43af-8d9e-835ba5b0d02a",
-                    "fileSize": 73148,
+                    "attachmentId": 3151,
+                    "fileDetailId": "bd3c6475-739d-4446-85aa-07fb0c54c985",
+                    "fileDate": "27/09/2022 00:00:00",
+                    "fileName": "EConsent_20220927_122541371",
+                    "fullPath": "WebSubmission\\08463fea-c3b4-4339-9c20-618df08459d7",
+                    "fileSize": 72997,
                     "extension": ".pdf",
                     "description": "",
                     "fileSource": "0"
                 },
                 {
-                    "attachmentId": 3024,
-                    "fileDetailId": "91e504bc-e333-474c-b045-28604b9571e7",
-                    "fileDate": "26/09/2022 00:00:00",
-                    "fileName": "EConsent_20220926_104213548",
-                    "fullPath": "WebSubmission\\f643fa30-25be-418a-b47d-d42a08f33de4",
-                    "fileSize": 72395,
+                    "attachmentId": 3152,
+                    "fileDetailId": "a7fa585f-fbdb-4478-8802-1bad976819cb",
+                    "fileDate": "27/09/2022 00:00:00",
+                    "fileName": "EConsent_20220927_122540324",
+                    "fullPath": "WebSubmission\\31a2327c-2a6b-4569-9e3f-6ff809a4c174",
+                    "fileSize": 72665,
                     "extension": ".pdf",
                     "description": "",
                     "fileSource": "0"
                 },
                 {
-                    "attachmentId": 3026,
-                    "fileDetailId": "45025021-37b1-4017-86c0-766d2839124f",
-                    "fileDate": "26/09/2022 00:00:00",
-                    "fileName": "EConsent_20220926_104214593",
-                    "fullPath": "WebSubmission\\34d4cb6a-98b2-4ca9-84e0-c5cb6b0c7b09",
-                    "fileSize": 72725,
+                    "attachmentId": 3153,
+                    "fileDetailId": "f2dfaed4-dd69-45e2-bfdc-3d8d1799bcba",
+                    "fileDate": "27/09/2022 00:00:00",
+                    "fileName": "EConsent_20220927_122542403",
+                    "fullPath": "WebSubmission\\5ecf69fe-a3a5-4811-9b7b-4f31b027e1f5",
+                    "fileSize": 73756,
                     "extension": ".pdf",
                     "description": "",
                     "fileSource": "0"
@@ -3634,14 +3767,14 @@
             "details": []
         }
     ],
-    "ltvApply": {{ltv}},
-    "ltvAppraisal": {{ltv}},
+    "ltvApply": 0.75,
+    "ltvAppraisal": 75,
     "ltvTotal": 0,
-    "normalIRR": {{netIRR}},
+    "normalIRR": 14.3079,
     "appealReason": null,
-    "realIRR": {{realIRR}},
-    "npv": {{npv}},
-    "submissionNo": 3570,
+    "realIRR": 14.5856,
+    "npv": 12535.98,
+    "submissionNo": 3594,
     "amendmentReason": null,
     "amendmentOtherReason": null,
     "extendCAExpiryDate": false,
@@ -3650,10 +3783,10 @@
         {
             "item": "Applicant List",
             "itemId": "1",
-            "applied": 2002760,
+            "applied": 2136092,
             "approved": 3149328,
             "outstanding": 0,
-            "total": 5152088,
+            "total": 5285420,
             "hasData": true,
             "quotas": [
                 {
@@ -4120,6 +4253,36 @@
                     "approvedAmt": 0,
                     "principal": 0,
                     "commencementDate": "2022-09-20T00:00:00"
+                },
+                {
+                    "submissionId": 694984,
+                    "caseNo": "H229001491VA2",
+                    "statusID": null,
+                    "operationId": null,
+                    "customerIC": "891007777777",
+                    "customerName": "Angela Hsu",
+                    "productName": "HP for PC-New",
+                    "tenure": 50,
+                    "vehicleRegNo": "",
+                    "appliedAmt": 66666,
+                    "approvedAmt": 0,
+                    "principal": 0,
+                    "commencementDate": null
+                },
+                {
+                    "submissionId": 695018,
+                    "caseNo": "H229001514VA2",
+                    "statusID": null,
+                    "operationId": null,
+                    "customerIC": "891007777777",
+                    "customerName": "Angela Hsu",
+                    "productName": "HP for PC-New",
+                    "tenure": 50,
+                    "vehicleRegNo": "",
+                    "appliedAmt": 66666,
+                    "approvedAmt": 0,
+                    "principal": 0,
+                    "commencementDate": null
                 }
             ]
         },
@@ -4146,10 +4309,10 @@
         {
             "item": "Guaranteed by Applicant's Related Party List",
             "itemId": "4",
-            "applied": 2082760,
+            "applied": 2216092,
             "approved": 3230297.1844,
             "outstanding": 0,
-            "total": 5313057.1844,
+            "total": 5446389.1844,
             "hasData": true,
             "quotas": [
                 {
@@ -4646,6 +4809,36 @@
                     "approvedAmt": 0,
                     "principal": 0,
                     "commencementDate": "2022-09-20T00:00:00"
+                },
+                {
+                    "submissionId": 694984,
+                    "caseNo": "H229001491VA2",
+                    "statusID": null,
+                    "operationId": null,
+                    "customerIC": "891007777777",
+                    "customerName": "Angela Hsu",
+                    "productName": "HP for PC-New",
+                    "tenure": 50,
+                    "vehicleRegNo": "",
+                    "appliedAmt": 66666,
+                    "approvedAmt": 0,
+                    "principal": 0,
+                    "commencementDate": null
+                },
+                {
+                    "submissionId": 695018,
+                    "caseNo": "H229001514VA2",
+                    "statusID": null,
+                    "operationId": null,
+                    "customerIC": "891007777777",
+                    "customerName": "Angela Hsu",
+                    "productName": "HP for PC-New",
+                    "tenure": 50,
+                    "vehicleRegNo": "",
+                    "appliedAmt": 66666,
+                    "approvedAmt": 0,
+                    "principal": 0,
+                    "commencementDate": null
                 }
             ]
         },
@@ -4662,10 +4855,10 @@
         {
             "item": "Cumulative Amount For Approval",
             "itemId": "6",
-            "applied": 4152186,
+            "applied": 4418850,
             "approved": 6379625.1844,
             "outstanding": 0,
-            "total": 5218754,
+            "total": 5352086,
             "hasData": false,
             "quotas": null
         }
@@ -4674,8 +4867,8 @@
     "dealerNplrate": 0,
     "agentNplrate": 0,
     "salesNplrate": 0,
-    "departmentName": "Pre-Screening",
+    "departmentName": "VA1-SME",
     "cap": 5,
     "amendingLists": [],
-    "cumulativeAmountForApproval": 5218754
+    "cumulativeAmountForApproval": 5352086
 }

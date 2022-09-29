@@ -1,15 +1,16 @@
 {
-    "submissionId": 695019,
-    "caseNo": "H229001515VA2",
-    "applicantId": "08292",
-    "applicantName": "Bryant Hsu",
-    "companyId": "92",
-    "departmentId": 20617,
+    "submissionId": {{submissionId}},
+    "caseNo": "{{CaseNo(input)}}",
+    "applicantId": "{{secUserNo}}",
+    "applicantName": "{{secUserName}}",
+    "companyId": "{{companyID(input)}}",
+    "departmentId": {{secUserDepartmentId}},
     "operationId": "1",
     "stageId": "2",
     "lendingType": "H",
     "productType": "001",
-    "productCode": "H-001-0000",
+    "productCode": "{{productCode(input)}}",
+    "productTypeName": null,
     "productVersion": 20,
     "project": null,
     "submissionApplicantId": "",
@@ -17,11 +18,11 @@
     "aggrement": true,
     "useRole": "",
     "creditInstruction": {
-        "openTime": "2022-09-27T12:55:05.7888431+08:00",
-        "financeAmount": 66666,
-        "totalFinanceAmount": 66666,
-        "financeTenure": null,
-        "interestRate": null,
+        "openTime": "2022-09-28T14:02:59.0427611+08:00",
+        "financeAmount": {{financialAmount}},
+        "totalFinanceAmount": {{financialAmount}},
+        "financeTenure": {{applyTerms(input)}},
+        "interestRate": {{interestRate(input)}},
         "rejectReason": null,
         "instruction": "Approval  ",
         "advancePaymentTerms": null,
@@ -34,7 +35,20 @@
         "actualSiteVisitDate": null,
         "actualSiteVisitPerson": null,
         "gpsLocation": null,
-        "requirementPriorCommence": [],
+        "requirementPriorCommence": [
+            {
+                "pisFormNo": "PIS1",
+                "itemId": "10",
+                "itemName": "Client",
+                "itemValue": null
+            },
+            {
+                "pisFormNo": "PIS1",
+                "itemId": "11",
+                "itemName": "Dealer",
+                "itemValue": null
+            }
+        ],
         "creditCommentId": "1",
         "creditComment": [
             {
@@ -60,15 +74,19 @@
             {
                 "creditCommentId": "6",
                 "creditCommentName": "Return"
+            },
+            {
+                "creditCommentId": "7",
+                "creditCommentName": "Return to Sales Manager"
             }
         ],
-        "ltv": 0,
-        "ltvApply": 0
+        "ltv": {{ltvPercentage}},
+        "ltvApply": {{ltvPercentage}}
     },
     "customerInformation": {
         "customerTypeId": "I",
         "basicInformation": {
-            "idNo": "891007777777",
+            "idNo": "{{idNo(input)}}",
             "mykad": false,
             "fingerPrint": false,
             "identificationType": "1",
@@ -85,9 +103,9 @@
             "birthdate": "1989-10-07T00:00:00",
             "gender": "2",
             "nationality": "001",
-            "race": "1",
-            "educationLevel": "1",
-            "maritalStatus": "3",
+            "race": "{{race(input)}}",
+            "educationLevel": "{{education}}",
+            "maritalStatus": "{{maritalStatus}}",
             "spouseName": null,
             "customerName": null,
             "customerNameFromVCIF": false,
@@ -101,7 +119,7 @@
             "isEastMY": null,
             "residentialStatus": "RS1",
             "lengthOfResidence": 8,
-            "industry": "IND1",
+            "industry": "{{industry(input)}}",
             "corporationIndustry": null
         },
         "contactInformation": {
@@ -167,7 +185,7 @@
             "position": "Casher",
             "yearofEmployment": 5,
             "employerName": "Employer Name",
-            "monthlyIncome": 100000,
+            "monthlyIncome": {{monthlyIncome}},
             "workingInSinagapore": false
         },
         "responsiblePersonInformation": {
@@ -213,7 +231,7 @@
             {
                 "customerTypeId": "I",
                 "basicInformation": {
-                    "idNo": "800225777777",
+                    "idNo": "{{idNo(G1)(input)}}",
                     "mykad": null,
                     "fingerPrint": null,
                     "identificationType": "1",
@@ -369,8 +387,8 @@
                     "mykad": null,
                     "fingerPrint": null,
                     "identificationType": "2",
-                    "corporationIDNo": "556097-H",
-                    "corporationIdentificationType": null,
+                    "corporationIDNo": "{{idNo(G2)(input)}}",
+                    "corporationIdentificationType": "2",
                     "firstName": null,
                     "firstNameFromVCIF": false,
                     "familyName": null,
@@ -546,20 +564,20 @@
     },
     "termNCondition": {
         "dealSource": "DS1",
-        "quotesType": "ETP",
+        "quotesType": "{{quotesType(input)}}",
         "purposeNBC": null,
-        "dealerCode": "A000005",
+        "dealerCode": "{{dealerCode(input)}}",
         "agentCode": "",
         "refinancing": null,
         "settlementContract": null,
-        "interestFlatRate": 8,
+        "interestFlatRate": {{interestRate(input)}},
         "annualPercentageRate": 14.3079,
         "currency": "MYR",
-        "financingAmount": 66666,
-        "totalFinancingAmount": 66666,
+        "financingAmount": {{financialAmount}},
+        "totalFinancingAmount": {{financialAmount}},
         "dealerInvoiceType": null,
         "vat": true,
-        "vatAmount": 66666,
+        "vatAmount": {{financialAmount}},
         "vatPaidBy": null,
         "feeNCharges": [
             {
@@ -583,7 +601,7 @@
         ],
         "insurance": {
             "autolife": false,
-            "autolifeSumInsured": 66666,
+            "autolifeSumInsured": {{financialAmount}},
             "insuranceTypes": [
                 {
                     "identityKey": "1664160467_1",
@@ -597,7 +615,7 @@
         },
         "incentive": [],
         "repaymentSchedule": {
-            "applyTenure": 50,
+            "applyTenure": {{applyTerms(input)}},
             "paymentFrequency": 1,
             "paymentTiming": "PT1",
             "paymentTimingId": "PT1",
@@ -607,50 +625,37 @@
                 {
                     "identityKey": "1664160467_1",
                     "startTerm": 1,
-                    "endTerm": 49,
-                    "monthlyPaymentExcludeFee": 1778,
+                    "endTerm": {{endTerm}},
+                    "monthlyPaymentExcludeFee": {{pmt}},
                     "fee": 0,
-                    "monthlyPayment": 1778
+                    "monthlyPayment": {{pmt}}
                 },
                 {
                     "identityKey": "1664160467_2",
-                    "startTerm": 50,
-                    "endTerm": 50,
-                    "monthlyPaymentExcludeFee": 1766,
+                    "startTerm": {{applyTerms(input)}},
+                    "endTerm": {{applyTerms(input)}},
+                    "monthlyPaymentExcludeFee": {{pmtLast}},
                     "fee": 0,
-                    "monthlyPayment": 1766
+                    "monthlyPayment": {{pmtLast}}
                 }
             ]
         },
-        "productName": "H-001-0000",
+        "productName": "{{productCode(input)}}",
         "conditionChange": "",
-        "dealerName": "BERJAYA CHINA MOTOR KLANG",
-        "dealerSalesName": "BERJAYA CHINA MOTOR KLANG ",
+        "dealerName": "{{dealerName}}",
+        "dealerSalesName": "{{dealerName}} ",
         "agentName": "",
         "repaymentScheduleFinal": null
     },
     "securityAsset": {
         "vehicleMotors": [
             {
-                "securityAssetProperty": "f",
-                "securityAssetPropertyId": "f",
-                "securityAssetType": "V",
-                "securityAssetCategory": "NCV",
+                "securityAssetProperty": "{{assetProperty(input)}}",
+                "securityAssetPropertyId": "{{assetProperty(input)}}",
+                "securityAssetType": "{{securityAssetType(input)}}",
+                "securityAssetCategory": "{{assetCategory(input)}}",
                 "purpose": "VP01",
-                "feeInfos": [
-                    {
-                        "itemName": "Premium",
-                        "amount": 0,
-                        "payment": "Y",
-                        "paymentName": "Yearly",
-                        "feeType": "Premium",
-                        "item": "Premium",
-                        "fixed": true,
-                        "fromSecutiryAsset": true,
-                        "byAsset": "P",
-                        "identityKey": null
-                    }
-                ],
+                "feeInfos": [],
                 "securityAssetRemark": "",
                 "sort": 0,
                 "hasCollateralValue": true,
@@ -659,15 +664,15 @@
                 "securityAssetId": 101209,
                 "isNew": true,
                 "amendingCol": [],
-                "brand": "BR118",
-                "model": "MD1488",
-                "vehicleType": "VT1",
+                "brand": "{{brand(input)}}",
+                "model": "{{model(input)}}",
+                "vehicleType": "{{vehicleType(input)}}",
                 "bodyType": "",
-                "transaction": "TS1",
-                "dateManufacture": "2021/01/01",
+                "transaction": "{{transaction(input)}}",
+                "dateManufacture": "{{dateManufacture(input)}}",
                 "vehicleAge": 1,
                 "cap": 5,
-                "manufacturerNationality": "MF1",
+                "manufacturerNationality": "{{manufacturerNationality(input)}}",
                 "displacement": "8",
                 "transmission": "TM2",
                 "gasoline": "GL1",
@@ -679,21 +684,21 @@
                 "engineNo": null,
                 "chassisNo": null,
                 "vehicleRegNo": null,
-                "purchasePrice": 88888,
+                "purchasePrice": {{collPurchasePrice(input)}},
                 "originalPurchasePrice": null,
-                "salesAppraisalPrice": 88888,
+                "salesAppraisalPrice": {{collPurchasePrice(input)}},
                 "accessories": null,
                 "remarkForVehiclePrice": null,
-                "downPayment": 22222,
-                "insurance": "Y",
-                "gpsInstallation": "null",
-                "registrationType": "tf",
+                "downPayment": {{collDownPayment(input)}},
+                "insurance": "{{insurance(input)}}",
+                "gpsInstallation": "{{gpsInstallation(input)}}",
+                "registrationType": "{{registrationType(input)}}",
                 "carUser": null,
                 "driverLicenceType": null,
                 "driverLicenceNo": null,
-                "creditAppraisalPrice": 88888,
-                "appraisalMethod": "1",
-                "securityAssetTypeId": "V",
+                "creditAppraisalPrice": {{collPurchasePrice(input)}},
+                "appraisalMethod": "{{appraisalMethod(input)}}",
+                "securityAssetTypeId": "{{securityAssetType(input)}}",
                 "premium": [],
                 "creditOfficerAppraisalPrice": null
             }
@@ -704,10 +709,10 @@
     "creditReports": {
         "scoringNRiskModelSuggestion": {
             "scoringSettingId": 25,
-            "scorePoint": 16,
-            "riskLevel": "R7",
+            "scorePoint": 37,
+            "riskLevel": "R4",
             "stage1Suggestion": "NONE",
-            "stage3Suggestion": null,
+            "stage3Suggestion": "NONE",
             "riskSpectrum": "",
             "scoringItems": [
                 {
@@ -1233,10 +1238,10 @@
                     "no": "P1",
                     "item": "Basic/Fixed Net Income\t",
                     "itemValue": null,
-                    "category": "",
-                    "basicScore": 0,
+                    "category": "N>=12,000\t",
+                    "basicScore": 4,
                     "adjust": 0,
-                    "finalScore": 0,
+                    "finalScore": 4,
                     "operator": null,
                     "isAutoRef": false,
                     "outdoor": false,
@@ -1248,7 +1253,7 @@
                     "autoRef": "None",
                     "autoRefValue": "None",
                     "notRated": false,
-                    "preliminaryReviewMust": false,
+                    "preliminaryReviewMust": true,
                     "optionNScores": [
                         {
                             "operator": null,
@@ -1312,10 +1317,10 @@
                     "no": "P2",
                     "item": "DSR",
                     "itemValue": null,
-                    "category": "",
-                    "basicScore": 0,
+                    "category": "N=< 30% and 1,200 < N\t",
+                    "basicScore": 4,
                     "adjust": 0,
-                    "finalScore": 0,
+                    "finalScore": 4,
                     "operator": null,
                     "isAutoRef": false,
                     "outdoor": false,
@@ -1327,7 +1332,7 @@
                     "autoRef": "None",
                     "autoRefValue": "None",
                     "notRated": false,
-                    "preliminaryReviewMust": false,
+                    "preliminaryReviewMust": true,
                     "optionNScores": [
                         {
                             "operator": null,
@@ -1402,10 +1407,10 @@
                     "no": "P3",
                     "item": "CCris Record\t",
                     "itemValue": null,
-                    "category": "",
-                    "basicScore": 0,
+                    "category": "Prompt Payment(0 MIA)\t",
+                    "basicScore": 7,
                     "adjust": 0,
-                    "finalScore": 0,
+                    "finalScore": 7,
                     "operator": null,
                     "isAutoRef": false,
                     "outdoor": false,
@@ -1417,7 +1422,7 @@
                     "autoRef": "None",
                     "autoRefValue": "None",
                     "notRated": false,
-                    "preliminaryReviewMust": false,
+                    "preliminaryReviewMust": true,
                     "optionNScores": [
                         {
                             "operator": null,
@@ -1481,10 +1486,10 @@
                     "no": "P4",
                     "item": "Facility Serving Years\t",
                     "itemValue": null,
-                    "category": "",
-                    "basicScore": 0,
+                    "category": "5 =< N\t",
+                    "basicScore": 5,
                     "adjust": 0,
-                    "finalScore": 0,
+                    "finalScore": 5,
                     "operator": null,
                     "isAutoRef": false,
                     "outdoor": false,
@@ -1496,7 +1501,7 @@
                     "autoRef": "None",
                     "autoRefValue": "None",
                     "notRated": false,
-                    "preliminaryReviewMust": false,
+                    "preliminaryReviewMust": true,
                     "optionNScores": [
                         {
                             "operator": null,
@@ -1549,10 +1554,10 @@
                     "no": "P5",
                     "item": "Utilization of Credit Card\t",
                     "itemValue": null,
-                    "category": "",
-                    "basicScore": 0,
+                    "category": "N=< 30%\t",
+                    "basicScore": 4,
                     "adjust": 0,
-                    "finalScore": 0,
+                    "finalScore": 4,
                     "operator": null,
                     "isAutoRef": false,
                     "outdoor": false,
@@ -1564,7 +1569,7 @@
                     "autoRef": "None",
                     "autoRefValue": "None",
                     "notRated": false,
-                    "preliminaryReviewMust": false,
+                    "preliminaryReviewMust": true,
                     "optionNScores": [
                         {
                             "operator": null,
@@ -1650,10 +1655,10 @@
                     "no": "P6",
                     "item": "Negative Remark(Trade Reference/Bounce Cheque/Bankruptcy)\t",
                     "itemValue": null,
-                    "category": "",
-                    "basicScore": 0,
+                    "category": "2 Bounce Cheque within 2 years\t",
+                    "basicScore": -3,
                     "adjust": 0,
-                    "finalScore": 0,
+                    "finalScore": -3,
                     "operator": null,
                     "isAutoRef": false,
                     "outdoor": false,
@@ -1665,7 +1670,7 @@
                     "autoRef": "None",
                     "autoRefValue": "None",
                     "notRated": false,
-                    "preliminaryReviewMust": false,
+                    "preliminaryReviewMust": true,
                     "optionNScores": [
                         {
                             "operator": null,
@@ -1755,7 +1760,7 @@
                     "autoRef": "AR5",
                     "autoRefValue": "AR5",
                     "notRated": false,
-                    "preliminaryReviewMust": false,
+                    "preliminaryReviewMust": true,
                     "optionNScores": [
                         {
                             "operator": null,
@@ -2080,7 +2085,7 @@
                     "no": "G1",
                     "item": "Guarantor Relationship\t",
                     "itemValue": null,
-                    "category": "",
+                    "category": "Parent",
                     "basicScore": 0,
                     "adjust": 0,
                     "finalScore": 0,
@@ -2095,7 +2100,7 @@
                     "autoRef": "None",
                     "autoRefValue": "None",
                     "notRated": false,
-                    "preliminaryReviewMust": false,
+                    "preliminaryReviewMust": true,
                     "optionNScores": [
                         {
                             "operator": null,
@@ -2170,7 +2175,7 @@
                     "no": "P8",
                     "item": "Bounce Check\t",
                     "itemValue": null,
-                    "category": "",
+                    "category": "N",
                     "basicScore": 0,
                     "adjust": 0,
                     "finalScore": 0,
@@ -2185,7 +2190,7 @@
                     "autoRef": "None",
                     "autoRefValue": "None",
                     "notRated": false,
-                    "preliminaryReviewMust": false,
+                    "preliminaryReviewMust": true,
                     "optionNScores": [
                         {
                             "operator": null,
@@ -2216,7 +2221,7 @@
                     "no": "P9",
                     "item": "Bankruptcy",
                     "itemValue": null,
-                    "category": "",
+                    "category": "N",
                     "basicScore": 0,
                     "adjust": 0,
                     "finalScore": 0,
@@ -2231,7 +2236,7 @@
                     "autoRef": "None",
                     "autoRefValue": "None",
                     "notRated": false,
-                    "preliminaryReviewMust": false,
+                    "preliminaryReviewMust": true,
                     "optionNScores": [
                         {
                             "operator": null,
@@ -2262,7 +2267,7 @@
                     "no": "P10",
                     "item": "Special Attention Account\t",
                     "itemValue": null,
-                    "category": "",
+                    "category": "No.\t",
                     "basicScore": 0,
                     "adjust": 0,
                     "finalScore": 0,
@@ -2277,7 +2282,7 @@
                     "autoRef": "None",
                     "autoRefValue": "None",
                     "notRated": false,
-                    "preliminaryReviewMust": false,
+                    "preliminaryReviewMust": true,
                     "optionNScores": [
                         {
                             "operator": null,
@@ -2330,7 +2335,7 @@
                     "no": "P11",
                     "item": "Trade Reference\t",
                     "itemValue": null,
-                    "category": "",
+                    "category": "No.\t",
                     "basicScore": 0,
                     "adjust": 0,
                     "finalScore": 0,
@@ -2345,7 +2350,7 @@
                     "autoRef": "None",
                     "autoRefValue": "None",
                     "notRated": false,
-                    "preliminaryReviewMust": false,
+                    "preliminaryReviewMust": true,
                     "optionNScores": [
                         {
                             "operator": null,
@@ -2398,7 +2403,7 @@
                     "no": "P12\t",
                     "item": "Loan Recently Applied\t",
                     "itemValue": null,
-                    "category": "",
+                    "category": "No.\t",
                     "basicScore": 0,
                     "adjust": 0,
                     "finalScore": 0,
@@ -2413,7 +2418,7 @@
                     "autoRef": "None",
                     "autoRefValue": "None",
                     "notRated": false,
-                    "preliminaryReviewMust": false,
+                    "preliminaryReviewMust": true,
                     "optionNScores": [
                         {
                             "operator": null,
@@ -2466,7 +2471,7 @@
                     "no": "M1\t",
                     "item": "Credit Service Program\t",
                     "itemValue": null,
-                    "category": "",
+                    "category": "N",
                     "basicScore": 0,
                     "adjust": 0,
                     "finalScore": 0,
@@ -2481,7 +2486,7 @@
                     "autoRef": "None",
                     "autoRefValue": "None",
                     "notRated": false,
-                    "preliminaryReviewMust": false,
+                    "preliminaryReviewMust": true,
                     "optionNScores": [
                         {
                             "operator": null,
@@ -2512,7 +2517,7 @@
                     "no": "M2\t",
                     "item": "Local Customer\t",
                     "itemValue": null,
-                    "category": "",
+                    "category": "N",
                     "basicScore": 0,
                     "adjust": 0,
                     "finalScore": 0,
@@ -2527,7 +2532,7 @@
                     "autoRef": "None",
                     "autoRefValue": "None",
                     "notRated": false,
-                    "preliminaryReviewMust": false,
+                    "preliminaryReviewMust": true,
                     "optionNScores": [
                         {
                             "operator": null,
@@ -2558,7 +2563,7 @@
                     "no": "M3",
                     "item": "Income Type\t",
                     "itemValue": null,
-                    "category": "",
+                    "category": "Variable income < 50% of the basic salary\t",
                     "basicScore": 0,
                     "adjust": 0,
                     "finalScore": 0,
@@ -2573,7 +2578,7 @@
                     "autoRef": "None",
                     "autoRefValue": "None",
                     "notRated": false,
-                    "preliminaryReviewMust": false,
+                    "preliminaryReviewMust": true,
                     "optionNScores": [
                         {
                             "operator": null,
@@ -2637,7 +2642,7 @@
                     "no": "M4\t",
                     "item": "Contract Worker\t",
                     "itemValue": null,
-                    "category": "",
+                    "category": "N",
                     "basicScore": 0,
                     "adjust": 0,
                     "finalScore": 0,
@@ -2652,7 +2657,7 @@
                     "autoRef": "None",
                     "autoRefValue": "None",
                     "notRated": false,
-                    "preliminaryReviewMust": false,
+                    "preliminaryReviewMust": true,
                     "optionNScores": [
                         {
                             "operator": null,
@@ -2683,7 +2688,7 @@
                     "no": "M5\t",
                     "item": "Cancelled By Customer But Approved\t",
                     "itemValue": null,
-                    "category": "",
+                    "category": "N",
                     "basicScore": 0,
                     "adjust": 0,
                     "finalScore": 0,
@@ -2698,7 +2703,7 @@
                     "autoRef": "None",
                     "autoRefValue": "None",
                     "notRated": false,
-                    "preliminaryReviewMust": false,
+                    "preliminaryReviewMust": true,
                     "optionNScores": [
                         {
                             "operator": null,
@@ -2729,7 +2734,7 @@
                     "no": "M6\t",
                     "item": "Special Request\t",
                     "itemValue": null,
-                    "category": "",
+                    "category": "NA\t",
                     "basicScore": 0,
                     "adjust": 0,
                     "finalScore": 0,
@@ -2744,7 +2749,7 @@
                     "autoRef": "None",
                     "autoRefValue": "None",
                     "notRated": false,
-                    "preliminaryReviewMust": false,
+                    "preliminaryReviewMust": true,
                     "optionNScores": [
                         {
                             "operator": null,
@@ -2797,7 +2802,7 @@
                     "no": "M7",
                     "item": "Cash Flow_Any Month End Balance lower than instalment calculated\t",
                     "itemValue": null,
-                    "category": "",
+                    "category": "NO",
                     "basicScore": 0,
                     "adjust": 0,
                     "finalScore": 0,
@@ -2812,7 +2817,7 @@
                     "autoRef": "None",
                     "autoRefValue": "None",
                     "notRated": false,
-                    "preliminaryReviewMust": false,
+                    "preliminaryReviewMust": true,
                     "optionNScores": [
                         {
                             "operator": null,
@@ -2854,7 +2859,7 @@
                     "no": "M8\t",
                     "item": "TryCase_Ram 7-10 ignore NDI\t",
                     "itemValue": null,
-                    "category": "",
+                    "category": "N",
                     "basicScore": 0,
                     "adjust": 0,
                     "finalScore": 0,
@@ -2869,7 +2874,7 @@
                     "autoRef": "None",
                     "autoRefValue": "None",
                     "notRated": false,
-                    "preliminaryReviewMust": false,
+                    "preliminaryReviewMust": true,
                     "optionNScores": [
                         {
                             "operator": null,
@@ -2900,7 +2905,7 @@
                     "no": "M10",
                     "item": "TryCase_Ram 7-10 waive DriverLicense\t",
                     "itemValue": null,
-                    "category": "",
+                    "category": "N",
                     "basicScore": 0,
                     "adjust": 0,
                     "finalScore": 0,
@@ -2915,7 +2920,7 @@
                     "autoRef": "None",
                     "autoRefValue": "None",
                     "notRated": false,
-                    "preliminaryReviewMust": false,
+                    "preliminaryReviewMust": true,
                     "optionNScores": [
                         {
                             "operator": null,
@@ -2946,7 +2951,7 @@
                     "no": "M9",
                     "item": "TryCase_Ram 7-10 ignore DSR\t",
                     "itemValue": null,
-                    "category": "",
+                    "category": "N",
                     "basicScore": 0,
                     "adjust": 0,
                     "finalScore": 0,
@@ -2961,7 +2966,7 @@
                     "autoRef": "None",
                     "autoRefValue": "None",
                     "notRated": false,
-                    "preliminaryReviewMust": false,
+                    "preliminaryReviewMust": true,
                     "optionNScores": [
                         {
                             "operator": null,
@@ -2992,7 +2997,7 @@
                     "no": "M11",
                     "item": "Employment Verification",
                     "itemValue": null,
-                    "category": "",
+                    "category": "Call",
                     "basicScore": 0,
                     "adjust": 0,
                     "finalScore": 0,
@@ -3007,7 +3012,7 @@
                     "autoRef": "None",
                     "autoRefValue": "None",
                     "notRated": false,
-                    "preliminaryReviewMust": false,
+                    "preliminaryReviewMust": true,
                     "optionNScores": [
                         {
                             "operator": null,
@@ -3090,25 +3095,25 @@
                 "income": [
                     {
                         "isCanDelete": false,
-                        "incomeExpenseItemId": 39618,
+                        "incomeExpenseItemId": 39860,
                         "item": "Monthly Income",
                         "amount": 0
                     },
                     {
                         "isCanDelete": false,
-                        "incomeExpenseItemId": 39619,
+                        "incomeExpenseItemId": 39861,
                         "item": "Allowances & Bonusess",
                         "amount": 0
                     },
                     {
                         "isCanDelete": false,
-                        "incomeExpenseItemId": 39620,
+                        "incomeExpenseItemId": 39862,
                         "item": "Commissions",
                         "amount": 0
                     },
                     {
                         "isCanDelete": false,
-                        "incomeExpenseItemId": 39621,
+                        "incomeExpenseItemId": 39863,
                         "item": "Dividends & Interests",
                         "amount": 0
                     }
@@ -3116,43 +3121,43 @@
                 "expense": [
                     {
                         "isCanDelete": false,
-                        "incomeExpenseItemId": 39627,
+                        "incomeExpenseItemId": 39869,
                         "item": "Housing & Utility",
                         "amount": 0
                     },
                     {
                         "isCanDelete": false,
-                        "incomeExpenseItemId": 39623,
+                        "incomeExpenseItemId": 39865,
                         "item": "Loan Amortizations",
                         "amount": 0
                     },
                     {
                         "isCanDelete": false,
-                        "incomeExpenseItemId": 39624,
+                        "incomeExpenseItemId": 39866,
                         "item": "Living",
                         "amount": 0
                     },
                     {
                         "isCanDelete": false,
-                        "incomeExpenseItemId": 39625,
+                        "incomeExpenseItemId": 39867,
                         "item": "Transportation",
                         "amount": 0
                     },
                     {
                         "isCanDelete": false,
-                        "incomeExpenseItemId": 39626,
+                        "incomeExpenseItemId": 39868,
                         "item": "Education",
                         "amount": 0
                     },
                     {
                         "isCanDelete": false,
-                        "incomeExpenseItemId": 39622,
+                        "incomeExpenseItemId": 39864,
                         "item": "EPF",
                         "amount": 0
                     },
                     {
                         "isCanDelete": false,
-                        "incomeExpenseItemId": 39617,
+                        "incomeExpenseItemId": 39859,
                         "item": "Others",
                         "amount": 0
                     }
@@ -3684,12 +3689,12 @@
             "dataCount": 1,
             "details": [
                 {
-                    "attachmentId": 3154,
-                    "fileDetailId": "776612b3-d9d4-4517-b378-e716d771fded",
-                    "fileDate": "27/09/2022 00:00:00",
-                    "fileName": "APPLICATION & CONSENT FORM(Individual)_20220927_122539073",
-                    "fullPath": "WebSubmission\\d8a685ce-fc36-43fd-ac74-77a97d03489a",
-                    "fileSize": 75289,
+                    "attachmentId": 3191,
+                    "fileDetailId": "49d08990-b354-4411-812e-27a9043c1131",
+                    "fileDate": "28/09/2022 00:00:00",
+                    "fileName": "APPLICATION & CONSENT FORM(Individual)_20220928_135509653",
+                    "fullPath": "WebSubmission\\83506a3e-e6a3-46b8-9afe-ad8814e3f15e",
+                    "fileSize": 75285,
                     "extension": ".pdf",
                     "description": "",
                     "fileSource": "0"
@@ -3702,34 +3707,34 @@
             "dataCount": 3,
             "details": [
                 {
-                    "attachmentId": 3151,
-                    "fileDetailId": "bd3c6475-739d-4446-85aa-07fb0c54c985",
-                    "fileDate": "27/09/2022 00:00:00",
-                    "fileName": "EConsent_20220927_122541371",
-                    "fullPath": "WebSubmission\\08463fea-c3b4-4339-9c20-618df08459d7",
-                    "fileSize": 72997,
+                    "attachmentId": 3192,
+                    "fileDetailId": "336fe3f7-7cd3-45eb-95c2-6a78a6d33c31",
+                    "fileDate": "28/09/2022 00:00:00",
+                    "fileName": "EConsent_20220928_135511745",
+                    "fullPath": "WebSubmission\\61152c6a-a645-4f85-9d55-95b93550cf2d",
+                    "fileSize": 72999,
                     "extension": ".pdf",
                     "description": "",
                     "fileSource": "0"
                 },
                 {
-                    "attachmentId": 3152,
-                    "fileDetailId": "a7fa585f-fbdb-4478-8802-1bad976819cb",
-                    "fileDate": "27/09/2022 00:00:00",
-                    "fileName": "EConsent_20220927_122540324",
-                    "fullPath": "WebSubmission\\31a2327c-2a6b-4569-9e3f-6ff809a4c174",
+                    "attachmentId": 3193,
+                    "fileDetailId": "01cd521b-6bd9-4fe2-911c-ad8e93f4f1b0",
+                    "fileDate": "28/09/2022 00:00:00",
+                    "fileName": "EConsent_20220928_135510712",
+                    "fullPath": "WebSubmission\\0f6f8c36-601c-47d5-8a84-0777d6bc5677",
                     "fileSize": 72665,
                     "extension": ".pdf",
                     "description": "",
                     "fileSource": "0"
                 },
                 {
-                    "attachmentId": 3153,
-                    "fileDetailId": "f2dfaed4-dd69-45e2-bfdc-3d8d1799bcba",
-                    "fileDate": "27/09/2022 00:00:00",
-                    "fileName": "EConsent_20220927_122542403",
-                    "fullPath": "WebSubmission\\5ecf69fe-a3a5-4811-9b7b-4f31b027e1f5",
-                    "fileSize": 73756,
+                    "attachmentId": 3194,
+                    "fileDetailId": "1ca57be8-7b21-43aa-86aa-dfcfbb25a0c3",
+                    "fileDate": "28/09/2022 00:00:00",
+                    "fileName": "EConsent_20220928_135512745",
+                    "fullPath": "WebSubmission\\35c9aea7-8921-40f7-a1ac-a5223df81f77",
+                    "fileSize": 73760,
                     "extension": ".pdf",
                     "description": "",
                     "fileSource": "0"
@@ -3767,14 +3772,14 @@
             "details": []
         }
     ],
-    "ltvApply": 0.75,
-    "ltvAppraisal": 75,
+    "ltvApply": {{ltv}},
+    "ltvAppraisal": {{ltvPercentage}},
     "ltvTotal": 0,
-    "normalIRR": 14.3079,
+    "normalIRR": {{netIRR}},
     "appealReason": null,
-    "realIRR": 14.5856,
-    "npv": 12535.98,
-    "submissionNo": 3594,
+    "realIRR": {{realIRR}},
+    "npv": {{npv}},
+    "submissionNo": 3606,
     "amendmentReason": null,
     "amendmentOtherReason": null,
     "extendCAExpiryDate": false,
@@ -3783,10 +3788,10 @@
         {
             "item": "Applicant List",
             "itemId": "1",
-            "applied": 2136092,
+            "applied": 2402756,
             "approved": 3149328,
             "outstanding": 0,
-            "total": 5285420,
+            "total": 5552084,
             "hasData": true,
             "quotas": [
                 {
@@ -4283,6 +4288,66 @@
                     "approvedAmt": 0,
                     "principal": 0,
                     "commencementDate": null
+                },
+                {
+                    "submissionId": 695019,
+                    "caseNo": "H229001515VA2",
+                    "statusID": null,
+                    "operationId": null,
+                    "customerIC": "891007777777",
+                    "customerName": "Angela Hsu",
+                    "productName": "HP for PC-New",
+                    "tenure": 50,
+                    "vehicleRegNo": "",
+                    "appliedAmt": 66666,
+                    "approvedAmt": 0,
+                    "principal": 0,
+                    "commencementDate": null
+                },
+                {
+                    "submissionId": 695027,
+                    "caseNo": "H229001522VA2",
+                    "statusID": null,
+                    "operationId": null,
+                    "customerIC": "891007777777",
+                    "customerName": "Angela Hsu",
+                    "productName": "HP for PC-New",
+                    "tenure": null,
+                    "vehicleRegNo": "",
+                    "appliedAmt": 66666,
+                    "approvedAmt": 0,
+                    "principal": 0,
+                    "commencementDate": null
+                },
+                {
+                    "submissionId": 695028,
+                    "caseNo": "H229001523VA2",
+                    "statusID": null,
+                    "operationId": null,
+                    "customerIC": "891007777777",
+                    "customerName": "Angela Hsu",
+                    "productName": "HP for PC-New",
+                    "tenure": null,
+                    "vehicleRegNo": "",
+                    "appliedAmt": 66666,
+                    "approvedAmt": 0,
+                    "principal": 0,
+                    "commencementDate": null
+                },
+                {
+                    "submissionId": 695030,
+                    "caseNo": "H229001525VA2",
+                    "statusID": null,
+                    "operationId": null,
+                    "customerIC": "891007777777",
+                    "customerName": "Angela Hsu",
+                    "productName": "HP for PC-New",
+                    "tenure": 50,
+                    "vehicleRegNo": "",
+                    "appliedAmt": 66666,
+                    "approvedAmt": 0,
+                    "principal": 0,
+                    "commencementDate": null
                 }
             ]
         },
@@ -4309,10 +4374,10 @@
         {
             "item": "Guaranteed by Applicant's Related Party List",
             "itemId": "4",
-            "applied": 2216092,
+            "applied": 2482756,
             "approved": 3230297.1844,
             "outstanding": 0,
-            "total": 5446389.1844,
+            "total": 5713053.1844,
             "hasData": true,
             "quotas": [
                 {
@@ -4839,26 +4904,86 @@
                     "approvedAmt": 0,
                     "principal": 0,
                     "commencementDate": null
+                },
+                {
+                    "submissionId": 695019,
+                    "caseNo": "H229001515VA2",
+                    "statusID": null,
+                    "operationId": null,
+                    "customerIC": "891007777777",
+                    "customerName": "Angela Hsu",
+                    "productName": "HP for PC-New",
+                    "tenure": 50,
+                    "vehicleRegNo": "",
+                    "appliedAmt": 66666,
+                    "approvedAmt": 0,
+                    "principal": 0,
+                    "commencementDate": null
+                },
+                {
+                    "submissionId": 695027,
+                    "caseNo": "H229001522VA2",
+                    "statusID": null,
+                    "operationId": null,
+                    "customerIC": "891007777777",
+                    "customerName": "Angela Hsu",
+                    "productName": "HP for PC-New",
+                    "tenure": null,
+                    "vehicleRegNo": "",
+                    "appliedAmt": 66666,
+                    "approvedAmt": 0,
+                    "principal": 0,
+                    "commencementDate": null
+                },
+                {
+                    "submissionId": 695028,
+                    "caseNo": "H229001523VA2",
+                    "statusID": null,
+                    "operationId": null,
+                    "customerIC": "891007777777",
+                    "customerName": "Angela Hsu",
+                    "productName": "HP for PC-New",
+                    "tenure": null,
+                    "vehicleRegNo": "",
+                    "appliedAmt": 66666,
+                    "approvedAmt": 0,
+                    "principal": 0,
+                    "commencementDate": null
+                },
+                {
+                    "submissionId": 695030,
+                    "caseNo": "H229001525VA2",
+                    "statusID": null,
+                    "operationId": null,
+                    "customerIC": "891007777777",
+                    "customerName": "Angela Hsu",
+                    "productName": "HP for PC-New",
+                    "tenure": 50,
+                    "vehicleRegNo": "",
+                    "appliedAmt": 66666,
+                    "approvedAmt": 0,
+                    "principal": 0,
+                    "commencementDate": null
                 }
             ]
         },
         {
             "item": "ThisApplicant",
             "itemId": "5",
-            "applied": 66666,
+            "applied": {{financialAmount}},
             "approved": 0,
             "outstanding": 0,
-            "total": 66666,
+            "total": {{financialAmount}},
             "hasData": false,
             "quotas": null
         },
         {
             "item": "Cumulative Amount For Approval",
             "itemId": "6",
-            "applied": 4418850,
+            "applied": 4952178,
             "approved": 6379625.1844,
             "outstanding": 0,
-            "total": 5352086,
+            "total": 5618750,
             "hasData": false,
             "quotas": null
         }
@@ -4867,8 +4992,8 @@
     "dealerNplrate": 0,
     "agentNplrate": 0,
     "salesNplrate": 0,
-    "departmentName": "VA1-SME",
+    "departmentName": "Credit",
     "cap": 5,
     "amendingLists": [],
-    "cumulativeAmountForApproval": 5352086
+    "cumulativeAmountForApproval": 5618750
 }
