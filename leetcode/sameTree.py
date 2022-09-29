@@ -24,3 +24,17 @@ class Solution:
         else:
             return self.isSameTree(p.left, q.left) and \
                 self.isSameTree(p.right, q.right)
+
+    def isSameTree(self, p: Optional[TreeNode], q: Optional[TreeNode]) -> bool:
+        if p and not q:
+            return False
+        elif not p and q:
+            return False
+        elif not p and not q:
+            return True
+        elif p.val != q.val:
+            return False
+        elif p.val == q.val:
+            if not self.isSameTree(p.left, q.left): return False
+            if not self.isSameTree(p.right, q.right): return False
+            return True
