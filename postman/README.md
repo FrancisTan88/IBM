@@ -1,15 +1,19 @@
-# Case generation(using Postman)
+# Cases generation(using Postman)
 ## applicationUpdate
-To automatically submit the case
-* json files: requests body of API
-* js file: generate the array of payment terms(a part of requests body)
+To keep payloads of API sent to the application website
+* oriRequestBody : store the original payload
+* varRequestBody : store the payload after adding environment variables
+* genPaymentTerms.js : generate the terms of payment as a part of payment 
 
-## compareDiff & creditReviewUpdate
-To automatically credit review the case(status=70)
-* json files: requests body of API
-* py file: convert values of new request body to environment variables we set in postman automatically
+## compareDiff 
+To transform original payload to one with environment variables
+* main program : find_difference.py
+* ckpt : store the output json files
+
+## creditReviewUpdate
+To keep payloads of API sent to the credit review website
+* oriRequestBody : store the original payload
+* varRequestBody : store the payload after adding environment variables
 
 ## requestBody
-Store some requests body temporarily
-
-
+To keep payloads of API sent to the commencement website

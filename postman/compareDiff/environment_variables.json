@@ -1,6 +1,6 @@
 {
 	"id": "f0f0abf6-6885-4352-a3cb-14907434c272",
-	"name": "CreditRating",
+	"name": "CreditRating_update",
 	"values": [
 		{
 			"key": "host",
@@ -22,55 +22,55 @@
 		},
 		{
 			"key": "subUserNo(input)",
-			"value": "MY00021",
+			"value": "MY00119",
 			"type": "default",
 			"enabled": true
 		},
 		{
-			"key": "companyID(input)",
+			"key": "companyId",
 			"value": "92",
 			"type": "default",
 			"enabled": true
 		},
 		{
-			"key": "productCode(input)",
-			"value": "H-001-0000",
+			"key": "productCode",
+			"value": "H-004-0000",
 			"type": "default",
 			"enabled": true
 		},
 		{
-			"key": "productName(input)",
-			"value": "HP for PC-New",
+			"key": "productName",
+			"value": "HP for CV-New",
 			"type": "default",
 			"enabled": true
 		},
 		{
-			"key": "monthlyIncome(input)",
+			"key": "monthlyIncome",
 			"value": "100000",
 			"type": "default",
 			"enabled": false
 		},
 		{
-			"key": "idNo(input)",
+			"key": "idNo",
 			"value": "891007777777",
 			"type": "default",
 			"enabled": true
 		},
 		{
-			"key": "idNo(G1)(input)",
+			"key": "idNo_G1",
 			"value": "800225777777",
 			"type": "default",
 			"enabled": true
 		},
 		{
-			"key": "idNo(G2)(input)",
+			"key": "idNo_G2",
 			"value": "556097-H",
 			"type": "default",
 			"enabled": true
 		},
 		{
-			"key": "dealerCode(input)",
-			"value": "A000005",
+			"key": "dealerCode",
+			"value": "KDH0054",
 			"type": "default",
 			"enabled": true
 		},
@@ -87,25 +87,61 @@
 			"enabled": false
 		},
 		{
-			"key": "applyTerms(input)",
+			"key": "tenureMonth",
 			"value": "50",
 			"type": "default",
 			"enabled": true
 		},
 		{
-			"key": "interestRate(input)",
+			"key": "policyTerm",
+			"value": "50",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "tenure",
+			"value": "50",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "startTerm2",
+			"value": "50",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "endTerm2",
+			"value": "50",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "interestRate",
 			"value": "8",
 			"type": "default",
 			"enabled": true
 		},
 		{
-			"key": "collPurchasePrice(input)",
+			"key": "rateYear",
+			"value": "8",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "interestFlatRate",
+			"value": "8",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "purchasePrice",
 			"value": "88888",
 			"type": "default",
 			"enabled": true
 		},
 		{
-			"key": "collDownPayment(input)",
+			"key": "downPayment",
 			"value": "22222",
 			"type": "default",
 			"enabled": true
@@ -123,7 +159,7 @@
 			"enabled": false
 		},
 		{
-			"key": "insurance(input)",
+			"key": "insurance",
 			"value": "N",
 			"type": "default",
 			"enabled": true
@@ -135,7 +171,7 @@
 			"enabled": false
 		},
 		{
-			"key": "gpsInstallation(input)",
+			"key": "gpsInstallation",
 			"value": "null",
 			"type": "default",
 			"enabled": true
@@ -147,7 +183,7 @@
 			"enabled": false
 		},
 		{
-			"key": "hasCollValue(input)",
+			"key": "hasCollateralValue",
 			"value": "true",
 			"type": "default",
 			"enabled": true
@@ -159,13 +195,13 @@
 			"enabled": false
 		},
 		{
-			"key": "quotesType(input)",
+			"key": "quotesType",
 			"value": "ETP",
 			"type": "default",
 			"enabled": true
 		},
 		{
-			"key": "autoLife(input)",
+			"key": "autolife",
 			"value": "false",
 			"type": "default",
 			"enabled": true
@@ -183,7 +219,25 @@
 			"enabled": true
 		},
 		{
-			"key": "financialAmount",
+			"key": "applyAmount",
+			"value": "66666",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "totalApplyAmount",
+			"value": "66666",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "vatamount",
+			"value": "66666",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "autolifeSumInsured",
 			"value": "66666",
 			"type": "default",
 			"enabled": true
@@ -195,19 +249,43 @@
 			"enabled": true
 		},
 		{
-			"key": "netIRR",
+			"key": "normalIrr",
 			"value": "14.399135112762451",
 			"type": "default",
 			"enabled": true
 		},
 		{
-			"key": "realIRR",
+			"key": "annualPercentageRate",
+			"value": "14.399135112762451",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "nominalIRR",
+			"value": "14.399135112762451",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "realIrr",
 			"value": "14.678770303726196",
 			"type": "default",
 			"enabled": true
 		},
 		{
-			"key": "pmt",
+			"key": "effectiveIRR",
+			"value": "14.678770303726196",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "monthlyPayment",
+			"value": "1778",
+			"type": "default",
+			"enabled": true
+		},
+		{
+			"key": "monthlyPaymentExcludeFee",
 			"value": "1778",
 			"type": "default",
 			"enabled": true
@@ -255,13 +333,13 @@
 			"enabled": true
 		},
 		{
-			"key": "CaseNo(input)",
+			"key": "caseNo",
 			"value": "H229001411VA2",
 			"type": "default",
 			"enabled": true
 		},
 		{
-			"key": "preUserNo(input)",
+			"key": "preUserNo",
 			"value": "MY00329",
 			"type": "default",
 			"enabled": true
@@ -297,43 +375,43 @@
 			"enabled": true
 		},
 		{
-			"key": "industry(input)",
+			"key": "industry",
 			"value": "IND1",
 			"type": "default",
 			"enabled": true
 		},
 		{
-			"key": "age(input)",
+			"key": "age",
 			"value": "33",
 			"type": "default",
 			"enabled": true
 		},
 		{
-			"key": "manufacturerNationality(input)",
+			"key": "manufacturerNationality",
 			"value": "MF1",
 			"type": "default",
 			"enabled": true
 		},
 		{
-			"key": "race(input)",
+			"key": "race",
 			"value": "1",
 			"type": "default",
 			"enabled": true
 		},
 		{
-			"key": "education(input)",
+			"key": "education",
 			"value": "1",
 			"type": "default",
 			"enabled": true
 		},
 		{
-			"key": "typeOfBusiness(input)",
+			"key": "typeOfBusiness",
 			"value": "IPO / Well Known / Government",
 			"type": "default",
 			"enabled": true
 		},
 		{
-			"key": "position(input)",
+			"key": "position",
 			"value": "Specialist & Professional",
 			"type": "default",
 			"enabled": true
@@ -867,8 +945,8 @@
 			"enabled": false
 		},
 		{
-			"key": "＝＝＝＝＝Forth Credit Review＝＝＝＝＝＝",
-			"value": "＝＝＝＝＝Forth Credit Review＝＝＝＝＝＝",
+			"key": "＝＝＝＝＝Forth&Fifth Credit Review＝＝＝＝＝＝",
+			"value": "＝＝＝＝＝Forth&Fifth Credit Review＝＝＝＝＝＝",
 			"type": "default",
 			"enabled": true
 		},
@@ -939,8 +1017,8 @@
 			"enabled": false
 		},
 		{
-			"key": "＝＝＝＝＝Forth Credit Review＝＝＝＝＝＝＝",
-			"value": "＝＝＝＝＝Forth Credit Review＝＝＝＝＝＝＝",
+			"key": "＝＝＝＝＝Forth&Fifth Credit Review＝＝＝＝＝＝＝",
+			"value": "＝＝＝＝＝Forth&Fifth Credit Review＝＝＝＝＝＝＝",
 			"type": "default",
 			"enabled": true
 		},
@@ -1180,103 +1258,103 @@
 		},
 		{
 			"key": "autolifeSumInsured",
-			"value": "",
+			"value": "66666",
 			"type": "any",
 			"enabled": true
 		},
 		{
 			"key": "chargePremium",
-			"value": "",
+			"value": "466.66",
 			"type": "any",
 			"enabled": true
 		},
 		{
 			"key": "financePremium",
-			"value": "",
+			"value": "500",
 			"type": "any",
 			"enabled": true
 		},
 		{
 			"key": "sumInsured",
-			"value": "",
+			"value": "66666",
 			"type": "any",
 			"enabled": true
 		},
 		{
 			"key": "chargePremiumAfterFinance",
-			"value": "",
+			"value": "466.66",
 			"type": "any",
 			"enabled": true
 		},
 		{
 			"key": "arrayTerms",
-			"value": "",
+			"value": "[{\"paymentDate\":\"2022-10-28\",\"tenure\":1,\"pmt\":1778},{\"paymentDate\":\"2022-11-28\",\"tenure\":2,\"pmt\":1778},{\"paymentDate\":\"2022-12-28\",\"tenure\":3,\"pmt\":1778},{\"paymentDate\":\"2023-01-28\",\"tenure\":4,\"pmt\":1778},{\"paymentDate\":\"2023-02-28\",\"tenure\":5,\"pmt\":1778},{\"paymentDate\":\"2023-03-28\",\"tenure\":6,\"pmt\":1778},{\"paymentDate\":\"2023-04-28\",\"tenure\":7,\"pmt\":1778},{\"paymentDate\":\"2023-05-28\",\"tenure\":8,\"pmt\":1778},{\"paymentDate\":\"2023-06-28\",\"tenure\":9,\"pmt\":1778},{\"paymentDate\":\"2023-07-28\",\"tenure\":10,\"pmt\":1778},{\"paymentDate\":\"2023-08-28\",\"tenure\":11,\"pmt\":1778},{\"paymentDate\":\"2023-09-28\",\"tenure\":12,\"pmt\":1778},{\"paymentDate\":\"2023-10-28\",\"tenure\":13,\"pmt\":1778},{\"paymentDate\":\"2023-11-28\",\"tenure\":14,\"pmt\":1778},{\"paymentDate\":\"2023-12-28\",\"tenure\":15,\"pmt\":1778},{\"paymentDate\":\"2024-01-28\",\"tenure\":16,\"pmt\":1778},{\"paymentDate\":\"2024-02-28\",\"tenure\":17,\"pmt\":1778},{\"paymentDate\":\"2024-03-28\",\"tenure\":18,\"pmt\":1778},{\"paymentDate\":\"2024-04-28\",\"tenure\":19,\"pmt\":1778},{\"paymentDate\":\"2024-05-28\",\"tenure\":20,\"pmt\":1778},{\"paymentDate\":\"2024-06-28\",\"tenure\":21,\"pmt\":1778},{\"paymentDate\":\"2024-07-28\",\"tenure\":22,\"pmt\":1778},{\"paymentDate\":\"2024-08-28\",\"tenure\":23,\"pmt\":1778},{\"paymentDate\":\"2024-09-28\",\"tenure\":24,\"pmt\":1778},{\"paymentDate\":\"2024-10-28\",\"tenure\":25,\"pmt\":1778},{\"paymentDate\":\"2024-11-28\",\"tenure\":26,\"pmt\":1778},{\"paymentDate\":\"2024-12-28\",\"tenure\":27,\"pmt\":1778},{\"paymentDate\":\"2025-01-28\",\"tenure\":28,\"pmt\":1778},{\"paymentDate\":\"2025-02-28\",\"tenure\":29,\"pmt\":1778},{\"paymentDate\":\"2025-03-28\",\"tenure\":30,\"pmt\":1778},{\"paymentDate\":\"2025-04-28\",\"tenure\":31,\"pmt\":1778},{\"paymentDate\":\"2025-05-28\",\"tenure\":32,\"pmt\":1778},{\"paymentDate\":\"2025-06-28\",\"tenure\":33,\"pmt\":1778},{\"paymentDate\":\"2025-07-28\",\"tenure\":34,\"pmt\":1778},{\"paymentDate\":\"2025-08-28\",\"tenure\":35,\"pmt\":1778},{\"paymentDate\":\"2025-09-28\",\"tenure\":36,\"pmt\":1778},{\"paymentDate\":\"2025-10-28\",\"tenure\":37,\"pmt\":1778},{\"paymentDate\":\"2025-11-28\",\"tenure\":38,\"pmt\":1778},{\"paymentDate\":\"2025-12-28\",\"tenure\":39,\"pmt\":1778},{\"paymentDate\":\"2026-01-28\",\"tenure\":40,\"pmt\":1778},{\"paymentDate\":\"2026-02-28\",\"tenure\":41,\"pmt\":1778},{\"paymentDate\":\"2026-03-28\",\"tenure\":42,\"pmt\":1778},{\"paymentDate\":\"2026-04-28\",\"tenure\":43,\"pmt\":1778},{\"paymentDate\":\"2026-05-28\",\"tenure\":44,\"pmt\":1778},{\"paymentDate\":\"2026-06-28\",\"tenure\":45,\"pmt\":1778},{\"paymentDate\":\"2026-07-28\",\"tenure\":46,\"pmt\":1778},{\"paymentDate\":\"2026-08-28\",\"tenure\":47,\"pmt\":1778},{\"paymentDate\":\"2026-09-28\",\"tenure\":48,\"pmt\":1778},{\"paymentDate\":\"2026-10-28\",\"tenure\":49,\"pmt\":1778},{\"paymentDate\":\"2026-11-28\",\"tenure\":50,\"pmt\":1766}]",
 			"type": "any",
 			"enabled": true
 		},
 		{
 			"key": "startDate",
-			"value": "",
+			"value": "2022-09-28",
 			"type": "any",
 			"enabled": true
 		},
 		{
 			"key": "npvBouns",
-			"value": "",
+			"value": 12185.98,
 			"type": "any",
 			"enabled": true
 		},
 		{
 			"key": "annualRate",
-			"value": "",
+			"value": 14.31,
 			"type": "any",
 			"enabled": true
 		},
 		{
 			"key": "subDepartmentId",
-			"value": "",
+			"value": 20618,
 			"type": "any",
 			"enabled": true
 		},
 		{
 			"key": "maritalStatus",
-			"value": "",
+			"value": "3",
 			"type": "any",
 			"enabled": true
 		},
 		{
 			"key": "education",
-			"value": "",
+			"value": "1",
 			"type": "any",
 			"enabled": true
 		},
 		{
 			"key": "position",
-			"value": "",
+			"value": "Casher",
 			"type": "any",
 			"enabled": true
 		},
 		{
 			"key": "yearOfEmployment",
-			"value": "",
+			"value": 5,
 			"type": "any",
 			"enabled": true
 		},
 		{
 			"key": "monthlyIncome",
-			"value": "",
+			"value": 100000,
 			"type": "any",
 			"enabled": true
 		},
 		{
 			"key": "residentialStatus",
-			"value": "",
+			"value": "RS1",
 			"type": "any",
 			"enabled": true
 		},
 		{
 			"key": "occupation",
-			"value": "",
+			"value": "E",
 			"type": "any",
 			"enabled": true
 		},
@@ -1393,9 +1471,111 @@
 			"value": "======First Credit Review=========",
 			"type": "default",
 			"enabled": true
+		},
+		{
+			"key": "secUserEmail",
+			"value": "",
+			"type": "any",
+			"enabled": true
+		},
+		{
+			"key": "secUserDepartmentId",
+			"value": "",
+			"type": "any",
+			"enabled": true
+		},
+		{
+			"key": "forthUserEmail",
+			"value": "",
+			"type": "any",
+			"enabled": true
+		},
+		{
+			"key": "forthUserDepartmentId",
+			"value": "",
+			"type": "any",
+			"enabled": true
+		},
+		{
+			"key": "thirdUserEmail",
+			"value": "",
+			"type": "any",
+			"enabled": true
+		},
+		{
+			"key": "thirdUserDepartmentId",
+			"value": "",
+			"type": "any",
+			"enabled": true
+		},
+		{
+			"key": "ltvPercentage",
+			"value": "",
+			"type": "any",
+			"enabled": true
+		},
+		{
+			"key": "interestFDT",
+			"value": "",
+			"type": "any",
+			"enabled": true
+		},
+		{
+			"key": "allocation",
+			"value": "",
+			"type": "any",
+			"enabled": true
+		},
+		{
+			"key": "fifthUserEmail",
+			"value": "",
+			"type": "any",
+			"enabled": true
+		},
+		{
+			"key": "fifthUserDepartmentId",
+			"value": "",
+			"type": "any",
+			"enabled": true
+		},
+		{
+			"key": "stage1Suggestion",
+			"value": "",
+			"type": "any",
+			"enabled": true
+		},
+		{
+			"key": "stage3Suggestion",
+			"value": "",
+			"type": "any",
+			"enabled": true
+		},
+		{
+			"key": "sixthUserNo",
+			"value": "",
+			"type": "any",
+			"enabled": true
+		},
+		{
+			"key": "sixthUserName",
+			"value": "",
+			"type": "any",
+			"enabled": true
+		},
+		{
+			"key": "sixthUserEmail",
+			"value": "",
+			"type": "any",
+			"enabled": true
+		},
+		{
+			"key": "sixthUserDepartmentId",
+			"value": "",
+			"type": "any",
+			"enabled": true
 		}
 	],
 	"_postman_variable_scope": "environment",
-	"_postman_exported_at": "2022-09-27T05:49:13.959Z",
+	"_postman_exported_at": "2022-10-26T07:30:01.858Z",
 	"_postman_exported_using": "Postman/9.20.0-canary"
 }

@@ -1,0 +1,271 @@
+{
+    "domain": "Credit",
+    "subDomain": "Terms and Conditions",
+    "finacalRate": 0,
+    "finacalRatebonus": 0,
+    "interestMode": "D",
+    "currency": "MYR",
+    "financialAmount": 66666,
+    "plusItem": [
+        350
+    ],
+    "minusItem": [],
+    "interestFDT": "2022-10-26",
+    "rateYear": 8,
+    "tenure": 50,
+    "quotesType": "ETP",
+    "method": "SUM",
+    "paymentFrequency": 1,
+    "paymentData": [
+        {
+            "tenure": 1,
+            "pmt": 1778,
+            "paymentDate": "2022-11-26"
+        },
+        {
+            "tenure": 2,
+            "pmt": 1778,
+            "paymentDate": "2022-12-26"
+        },
+        {
+            "tenure": 3,
+            "pmt": 1778,
+            "paymentDate": "2023-01-26"
+        },
+        {
+            "tenure": 4,
+            "pmt": 1778,
+            "paymentDate": "2023-02-26"
+        },
+        {
+            "tenure": 5,
+            "pmt": 1778,
+            "paymentDate": "2023-03-26"
+        },
+        {
+            "tenure": 6,
+            "pmt": 1778,
+            "paymentDate": "2023-04-26"
+        },
+        {
+            "tenure": 7,
+            "pmt": 1778,
+            "paymentDate": "2023-05-26"
+        },
+        {
+            "tenure": 8,
+            "pmt": 1778,
+            "paymentDate": "2023-06-26"
+        },
+        {
+            "tenure": 9,
+            "pmt": 1778,
+            "paymentDate": "2023-07-26"
+        },
+        {
+            "tenure": 10,
+            "pmt": 1778,
+            "paymentDate": "2023-08-26"
+        },
+        {
+            "tenure": 11,
+            "pmt": 1778,
+            "paymentDate": "2023-09-26"
+        },
+        {
+            "tenure": 12,
+            "pmt": 1778,
+            "paymentDate": "2023-10-26"
+        },
+        {
+            "tenure": 13,
+            "pmt": 1778,
+            "paymentDate": "2023-11-26"
+        },
+        {
+            "tenure": 14,
+            "pmt": 1778,
+            "paymentDate": "2023-12-26"
+        },
+        {
+            "tenure": 15,
+            "pmt": 1778,
+            "paymentDate": "2024-01-26"
+        },
+        {
+            "tenure": 16,
+            "pmt": 1778,
+            "paymentDate": "2024-02-26"
+        },
+        {
+            "tenure": 17,
+            "pmt": 1778,
+            "paymentDate": "2024-03-26"
+        },
+        {
+            "tenure": 18,
+            "pmt": 1778,
+            "paymentDate": "2024-04-26"
+        },
+        {
+            "tenure": 19,
+            "pmt": 1778,
+            "paymentDate": "2024-05-26"
+        },
+        {
+            "tenure": 20,
+            "pmt": 1778,
+            "paymentDate": "2024-06-26"
+        },
+        {
+            "tenure": 21,
+            "pmt": 1778,
+            "paymentDate": "2024-07-26"
+        },
+        {
+            "tenure": 22,
+            "pmt": 1778,
+            "paymentDate": "2024-08-26"
+        },
+        {
+            "tenure": 23,
+            "pmt": 1778,
+            "paymentDate": "2024-09-26"
+        },
+        {
+            "tenure": 24,
+            "pmt": 1778,
+            "paymentDate": "2024-10-26"
+        },
+        {
+            "tenure": 25,
+            "pmt": 1778,
+            "paymentDate": "2024-11-26"
+        },
+        {
+            "tenure": 26,
+            "pmt": 1778,
+            "paymentDate": "2024-12-26"
+        },
+        {
+            "tenure": 27,
+            "pmt": 1778,
+            "paymentDate": "2025-01-26"
+        },
+        {
+            "tenure": 28,
+            "pmt": 1778,
+            "paymentDate": "2025-02-26"
+        },
+        {
+            "tenure": 29,
+            "pmt": 1778,
+            "paymentDate": "2025-03-26"
+        },
+        {
+            "tenure": 30,
+            "pmt": 1778,
+            "paymentDate": "2025-04-26"
+        },
+        {
+            "tenure": 31,
+            "pmt": 1778,
+            "paymentDate": "2025-05-26"
+        },
+        {
+            "tenure": 32,
+            "pmt": 1778,
+            "paymentDate": "2025-06-26"
+        },
+        {
+            "tenure": 33,
+            "pmt": 1778,
+            "paymentDate": "2025-07-26"
+        },
+        {
+            "tenure": 34,
+            "pmt": 1778,
+            "paymentDate": "2025-08-26"
+        },
+        {
+            "tenure": 35,
+            "pmt": 1778,
+            "paymentDate": "2025-09-26"
+        },
+        {
+            "tenure": 36,
+            "pmt": 1778,
+            "paymentDate": "2025-10-26"
+        },
+        {
+            "tenure": 37,
+            "pmt": 1778,
+            "paymentDate": "2025-11-26"
+        },
+        {
+            "tenure": 38,
+            "pmt": 1778,
+            "paymentDate": "2025-12-26"
+        },
+        {
+            "tenure": 39,
+            "pmt": 1778,
+            "paymentDate": "2026-01-26"
+        },
+        {
+            "tenure": 40,
+            "pmt": 1778,
+            "paymentDate": "2026-02-26"
+        },
+        {
+            "tenure": 41,
+            "pmt": 1778,
+            "paymentDate": "2026-03-26"
+        },
+        {
+            "tenure": 42,
+            "pmt": 1778,
+            "paymentDate": "2026-04-26"
+        },
+        {
+            "tenure": 43,
+            "pmt": 1778,
+            "paymentDate": "2026-05-26"
+        },
+        {
+            "tenure": 44,
+            "pmt": 1778,
+            "paymentDate": "2026-06-26"
+        },
+        {
+            "tenure": 45,
+            "pmt": 1778,
+            "paymentDate": "2026-07-26"
+        },
+        {
+            "tenure": 46,
+            "pmt": 1778,
+            "paymentDate": "2026-08-26"
+        },
+        {
+            "tenure": 47,
+            "pmt": 1778,
+            "paymentDate": "2026-09-26"
+        },
+        {
+            "tenure": 48,
+            "pmt": 1778,
+            "paymentDate": "2026-10-26"
+        },
+        {
+            "tenure": 49,
+            "pmt": 1778,
+            "paymentDate": "2026-11-26"
+        },
+        {
+            "tenure": 50,
+            "pmt": 1766,
+            "paymentDate": "2026-12-26"
+        }
+    ]
+}

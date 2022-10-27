@@ -1,26 +1,3 @@
-
-// var object = {
-//     "paymentDate": "2022-10-21",
-//     "tenure": 1,
-//     "pmt": 1778
-// }
-// // object.tenure = 2;
-// // console.log(object);
-// if (09 < 10){
-//     console.log("fuck")
-// }
-    
-
-// var date = '"' + "2022-12-21" + '"'
-// let currDate = new Date()
-// var date = '"' + currDate.toISOString().split('T')[0] + '"'
-
-// {
-//     "paymentDate": "2022-10-21",
-//     "tenure": 1,
-//     "pmt": 1778
-// },
-
 var totalTerms = 50
 var pmt = 100
 var pmtLast = 200

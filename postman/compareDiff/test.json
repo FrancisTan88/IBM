@@ -17,6 +17,7 @@
     "aggrement": true,
     "useRole": "",
     "creditInstruction": {
+        "companyId": "92",
         "openTime": "2022-09-27T12:55:05.7888431+08:00",
         "financeAmount": 66666,
         "totalFinanceAmount": 66666,

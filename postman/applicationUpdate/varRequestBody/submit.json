@@ -9,7 +9,7 @@
         "deptId": {{subDepartmentId}},
         "lending": "H",
         "productName": "{{productName(input)}}",
-        "productType": "001",
+        "productType": "004",
         "productCode": "{{productCode(input)}}",
         "statusId": 0,
         "submissionNo": 0,
@@ -200,7 +200,7 @@
                 "plateNo": null,
                 "transaction": "{{transaction(input)}}",
                 "vehicleType": null,
-                "brand": "brand(input)",
+                "brand": "{{brand(input)}}",
                 "model": "{{model(input)}}",
                 "transmission": "{{transmission(input)}}",
                 "displacement": null,
@@ -264,7 +264,7 @@
         "vatamount": {{financialAmount}},
         "vatpaidby": null,
         "dealerInvoiceType": null,
-        "autolife": true,
+        "autolife": {{autoLife(input)}},
         "autolifeSumInsured": {{financialAmount}},
         "tenureMonth": {{applyTerms(input)}},
         "paymentFrequency": 1,
@@ -301,17 +301,7 @@
             }
         ],
         "incentives": [],
-        "insurances": [
-            {
-                "insuranceSubId": 1,
-                "insuranceType": "A",
-                "chargedPremium": 466.67,
-                "actualPremium": 0,
-                "finance": {{financeInsurances(input)}},
-                "deduct": {{deductInsurance(input)}},
-                "identityKey": null
-            }
-        ],
+        "insurances": [],
         "startNEndTerms": [
             {
                 "termId": 1,

@@ -8,10 +8,10 @@
     "operationId": "1",
     "stageId": "1",
     "lendingType": "H",
-    "productType": "001",
+    "productType": "004",
     "productCode": "{{productCode(input)}}",
     "productTypeName": null,
-    "productVersion": 20,
+    "productVersion": 2,
     "project": null,
     "submissionApplicantId": "",
     "submissionTime": null,
@@ -19,7 +19,7 @@
     "useRole": "",
     "creditInstruction": {
         "openTime": "2022-09-26T10:47:46.7471811+08:00",
-        "financeAmount": null,
+        "financeAmount": {{financialAmount}},
         "totalFinanceAmount": null,
         "financeTenure": null,
         "interestRate": null,
@@ -200,6 +200,7 @@
             "responsiblePersonContactLevel1Local": null,
             "email": ""
         }
+        "cifNo": null
     },
     "guarantor": {
         "guarantors": [
@@ -345,15 +346,16 @@
                     "responsiblePersonContactLevel1Local": null,
                     "email": ""
                 },
-                "legalPosition": "LG1",
-                "relation": "104",
-                "corporationLegalPosition": null,
-                "corporationRelation": null,
-                "sort": 0,
+                "cifNo": null,
+                "legalPosition": null,
+                "relation": null,
+                "corporationLegalPosition": "LG1",
+                "corporationRelation": "105",
+                "sort": 1,
                 "remark": null,
                 "corporationRemark": null,
-                "submissionSubNo": 1,
-                "identityKey": "1664160467_1"
+                "submissionSubNo": 2,
+                "identityKey": "1666165462_2"
             },
             {
                 "customerTypeId": "C",
@@ -571,22 +573,14 @@
                 "isFixed": false,
                 "fromSecutiryAsset": false,
                 "irr": true,
-                "byAsset": "A"
+                "byAsset": "A",
+                "diffs": null
             }
         ],
         "insurance": {
             "autolife": {{autoLife(input)}},
             "autolifeSumInsured": {{financialAmount}},
-            "insuranceTypes": [
-                {
-                    "identityKey": "1664160467_1",
-                    "type": "A",
-                    "chargedPremium": 466.67,
-                    "actualPremium": 0,
-                    "finance": false,
-                    "deduction": false
-                }
-            ]
+            "insuranceTypes": []
         },
         "incentive": [],
         "repaymentSchedule": {
@@ -603,7 +597,8 @@
                     "endTerm": {{endTerm}},
                     "monthlyPaymentExcludeFee": {{pmt}},
                     "fee": 0,
-                    "monthlyPayment": {{pmt}}
+                    "monthlyPayment": {{pmt}},
+                    "diffs": null
                 },
                 {
                     "identityKey": "1664160467_2",
@@ -611,14 +606,15 @@
                     "endTerm": {{applyTerms(input)}},
                     "monthlyPaymentExcludeFee": {{pmtLast}},
                     "fee": 0,
-                    "monthlyPayment": {{pmtLast}}
+                    "monthlyPayment": {{pmtLast}},
+                    "diffs": null
                 }
             ]
         },
         "productName": "{{productCode(input)}}",
         "conditionChange": "",
-        "dealerName": "BERJAYA CHINA MOTOR KLANG",
-        "dealerSalesName": "BERJAYA CHINA MOTOR KLANG ",
+        "dealerName": "{{dealerName}}",
+        "dealerSalesName": "{{dealerName}} ",
         "agentName": "",
         "repaymentScheduleFinal": null
     },
@@ -627,7 +623,7 @@
             {
                 "securityAssetProperty": "{{assetProperty(input)}}",
                 "securityAssetPropertyId": "{{assetProperty(input)}}",
-                "securityAssetType": "{{securityAssetType(input)}}",
+                "securityAssetType": "V",
                 "securityAssetCategory": "{{assetCategory(input)}}",
                 "purpose": "VP01",
                 "feeInfos": [],
@@ -639,6 +635,7 @@
                 "securityAssetId": 101209,
                 "isNew": true,
                 "amendingCol": [],
+                "diffs": null,
                 "brand": "{{brand(input)}}",
                 "model": "{{model(input)}}",
                 "vehicleType": "{{vehicleType(input)}}",
@@ -683,135 +680,135 @@
     },
     "creditReports": {
         "scoringNRiskModelSuggestion": {
-            "scoringSettingId": 25,
-            "scorePoint": 16,
-            "riskLevel": "R7",
-            "stage1Suggestion": "NONE",
+            "scoringSettingId": 41,
+            "scorePoint": 18,
+            "riskLevel": "R5",
+            "stage1Suggestion": "{{stage1Suggestion}}",
             "stage3Suggestion": null,
             "riskSpectrum": "",
             "scoringItems": [
                 {
-                    "scoringItemId": 1433,
+                    "scoringItemId": 3998,
                     "itemCode": "B1",
-                    "description": "Individual/Owner Age\t",
+                    "description": "Individual/Owner Age",
                     "orderBy": 1,
-                    "autoRef": "None",
-                    "autoRefValue": "None",
-                    "isAutoRef": false,
+                    "autoRef": "AR8",
+                    "autoRefValue": "AR8",
+                    "isAutoRef": true,
                     "notRated": false,
                     "outdoor": false,
                     "preliminaryReviewMust": true,
                     "optionNScores": [
                         {
-                            "operator": null,
+                            "operator": "≧",
                             "operator2": null,
-                            "options": "61 & above\t",
-                            "options2": null,
-                            "optionsName": "61 & above\t",
+                            "options": "61",
+                            "options2": "",
+                            "optionsName": "≧",
                             "score": 1,
                             "orderBy": 1,
                             "isPositive": null,
-                            "isDigital": false
+                            "isDigital": true
                         },
                         {
-                            "operator": null,
-                            "operator2": null,
-                            "options": "56 - 60\t",
-                            "options2": null,
-                            "optionsName": "56 - 60\t",
+                            "operator": "≧",
+                            "operator2": "≦",
+                            "options": "56",
+                            "options2": "60",
+                            "optionsName": "≧",
                             "score": 3,
                             "orderBy": 2,
                             "isPositive": null,
-                            "isDigital": false
+                            "isDigital": true
                         },
                         {
-                            "operator": null,
-                            "operator2": null,
-                            "options": "51 - 55\t",
-                            "options2": null,
-                            "optionsName": "51 - 55\t",
+                            "operator": "≧",
+                            "operator2": "≦",
+                            "options": "51",
+                            "options2": "55",
+                            "optionsName": "≧",
                             "score": 4,
                             "orderBy": 3,
                             "isPositive": null,
-                            "isDigital": false
+                            "isDigital": true
                         },
                         {
-                            "operator": null,
-                            "operator2": null,
-                            "options": "45 - 50\t",
-                            "options2": null,
-                            "optionsName": "45 - 50\t",
+                            "operator": "≧",
+                            "operator2": "≦",
+                            "options": "45",
+                            "options2": "50",
+                            "optionsName": "≧",
                             "score": 5,
                             "orderBy": 4,
                             "isPositive": null,
-                            "isDigital": false
+                            "isDigital": true
                         },
                         {
-                            "operator": null,
-                            "operator2": null,
-                            "options": "40 - 44\t",
-                            "options2": null,
-                            "optionsName": "40 - 44\t",
+                            "operator": "≧",
+                            "operator2": "≦",
+                            "options": "40",
+                            "options2": "44",
+                            "optionsName": "≧",
                             "score": 5,
                             "orderBy": 5,
                             "isPositive": null,
-                            "isDigital": false
+                            "isDigital": true
                         },
                         {
-                            "operator": null,
-                            "operator2": null,
-                            "options": "30 - 39\t",
-                            "options2": null,
-                            "optionsName": "30 - 39\t",
+                            "operator": "≧",
+                            "operator2": "≦",
+                            "options": "30",
+                            "options2": "39",
+                            "optionsName": "≧",
                             "score": 4,
                             "orderBy": 6,
                             "isPositive": null,
-                            "isDigital": false
+                            "isDigital": true
                         },
                         {
-                            "operator": null,
-                            "operator2": null,
-                            "options": "26 - 29\t",
-                            "options2": null,
-                            "optionsName": "26 - 29\t",
+                            "operator": "≧",
+                            "operator2": "≦",
+                            "options": "26",
+                            "options2": "29",
+                            "optionsName": "≧",
                             "score": 2,
                             "orderBy": 7,
                             "isPositive": null,
-                            "isDigital": false
+                            "isDigital": true
                         },
                         {
-                            "operator": null,
-                            "operator2": null,
-                            "options": "21 - 25\t",
-                            "options2": null,
-                            "optionsName": "21 - 25\t",
+                            "operator": "≧",
+                            "operator2": "≦",
+                            "options": "21",
+                            "options2": "25",
+                            "optionsName": "≧",
                             "score": 1,
                             "orderBy": 8,
                             "isPositive": null,
-                            "isDigital": false
+                            "isDigital": true
                         },
                         {
-                            "operator": null,
+                            "operator": "<",
                             "operator2": null,
-                            "options": "below 21\t",
-                            "options2": null,
-                            "optionsName": "below 21\t",
+                            "options": "21",
+                            "options2": "",
+                            "optionsName": "<",
                             "score": 0,
                             "orderBy": 9,
                             "isPositive": null,
-                            "isDigital": false
+                            "isDigital": true
                         }
                     ],
                     "no": "B1",
-                    "item": "Individual/Owner Age\t",
-                    "category": "61 & above\t",
-                    "basicScore": 1,
+                    "item": "Individual/Owner Age",
+                    "category": "≧ 30 AND ≦ 39",
+                    "basicScore": 4,
                     "adjust": 0,
-                    "finalScore": 1,
+                    "finalScore": 4,
                     "isPositive": null
                 },
                 {
-                    "scoringItemId": 1434,
+                    "scoringItemId": 3999,
                     "itemCode": "B2",
                     "description": "Education",
                     "orderBy": 2,
@@ -891,16 +888,16 @@
                     ],
                     "no": "B2",
                     "item": "Education",
-                    "category": "1",
+                    "category": " 1   ",
                     "basicScore": 3,
                     "adjust": 0,
                     "finalScore": 3,
                     "isPositive": null
                 },
                 {
-                    "scoringItemId": 1435,
+                    "scoringItemId": 4000,
                     "itemCode": "B3",
-                    "description": "Type of Biz\t",
+                    "description": "Type of Biz",
                     "orderBy": 3,
                     "autoRef": "None",
                     "autoRefValue": "None",
@@ -944,7 +941,7 @@
                         }
                     ],
                     "no": "B3",
-                    "item": "Type of Biz\t",
+                    "item": "Type of Biz",
                     "category": "IPO / Well Known / Government\t",
                     "basicScore": 2,
                     "adjust": 0,
@@ -952,7 +949,7 @@
                     "isPositive": null
                 },
                 {
-                    "scoringItemId": 1436,
+                    "scoringItemId": 4001,
                     "itemCode": "B4",
                     "description": "Position",
                     "orderBy": 4,
@@ -1039,74 +1036,74 @@
                     "isPositive": null
                 },
                 {
-                    "scoringItemId": 1437,
+                    "scoringItemId": 4002,
                     "itemCode": "B5",
-                    "description": "Period Employment\t",
+                    "description": "Period Employment",
                     "orderBy": 5,
-                    "autoRef": "None",
-                    "autoRefValue": "None",
-                    "isAutoRef": false,
+                    "autoRef": "AR9",
+                    "autoRefValue": "AR9",
+                    "isAutoRef": true,
                     "notRated": false,
                     "outdoor": false,
                     "preliminaryReviewMust": true,
                     "optionNScores": [
                         {
-                            "operator": null,
+                            "operator": ">",
                             "operator2": null,
-                            "options": "Over 5 yrs\t",
-                            "options2": null,
-                            "optionsName": "Over 5 yrs\t",
+                            "options": "5",
+                            "options2": "",
+                            "optionsName": ">",
                             "score": 3,
                             "orderBy": 1,
                             "isPositive": null,
-                            "isDigital": false
+                            "isDigital": true
                         },
                         {
-                            "operator": null,
-                            "operator2": null,
-                            "options": "3-5 yrs\t",
-                            "options2": null,
-                            "optionsName": "3-5 yrs\t",
+                            "operator": "≧",
+                            "operator2": "≦",
+                            "options": "3",
+                            "options2": "5",
+                            "optionsName": "≧",
                             "score": 2,
                             "orderBy": 2,
                             "isPositive": null,
-                            "isDigital": false
+                            "isDigital": true
                         },
                         {
-                            "operator": null,
-                            "operator2": null,
-                            "options": "1-2 yrs\t",
-                            "options2": null,
-                            "optionsName": "1-2 yrs\t",
+                            "operator": "≧",
+                            "operator2": "≦",
+                            "options": "1",
+                            "options2": "2",
+                            "optionsName": "≧",
                             "score": 1,
                             "orderBy": 3,
                             "isPositive": null,
-                            "isDigital": false
+                            "isDigital": true
                         },
                         {
-                            "operator": null,
+                            "operator": "<",
                             "operator2": null,
-                            "options": "Below 1 yr\t",
-                            "options2": null,
-                            "optionsName": "Below 1 yr\t",
+                            "options": "1",
+                            "options2": "",
+                            "optionsName": "<",
                             "score": 0,
                             "orderBy": 4,
                             "isPositive": null,
-                            "isDigital": false
+                            "isDigital": true
                         }
                     ],
                     "no": "B5",
-                    "item": "Period Employment\t",
-                    "category": "Over 5 yrs\t",
-                    "basicScore": 3,
+                    "item": "Period Employment",
+                    "category": "≧ 3 AND ≦ 5",
+                    "basicScore": 2,
                     "adjust": 0,
-                    "finalScore": 3,
+                    "finalScore": 2,
                     "isPositive": null
                 },
                 {
-                    "scoringItemId": 1438,
+                    "scoringItemId": 4003,
                     "itemCode": "B6",
-                    "description": "Family Status(Owner/Hirer)\t",
+                    "description": "Family Status(Owner/Hirer)",
                     "orderBy": 6,
                     "autoRef": "AR4",
                     "autoRefValue": "AR4",
@@ -1183,17 +1180,17 @@
                         }
                     ],
                     "no": "B6",
-                    "item": "Family Status(Owner/Hirer)\t",
-                    "category": "3",
+                    "item": "Family Status(Owner/Hirer)",
+                    "category": " 3   ",
                     "basicScore": 0,
                     "adjust": 0,
                     "finalScore": 0,
                     "isPositive": null
                 },
                 {
-                    "scoringItemId": 1439,
+                    "scoringItemId": 4004,
                     "itemCode": "P1",
-                    "description": "Basic/Fixed Net Income\t",
+                    "description": "Basic/Fixed Net Income",
                     "orderBy": 7,
                     "autoRef": "None",
                     "autoRefValue": "None",
@@ -1205,9 +1202,9 @@
                         {
                             "operator": null,
                             "operator2": null,
-                            "options": "N>=12,000\t",
+                            "options": "N >= 12,000",
                             "options2": null,
-                            "optionsName": "N>=12,000\t",
+                            "optionsName": "N >= 12,000",
                             "score": 4,
                             "orderBy": 1,
                             "isPositive": null,
@@ -1216,9 +1213,9 @@
                         {
                             "operator": null,
                             "operator2": null,
-                            "options": "12,000>N>=8,000\t",
+                            "options": "12,000 > N >= 8,000",
                             "options2": null,
-                            "optionsName": "12,000>N>=8,000\t",
+                            "optionsName": "12,000 > N >= 8,000",
                             "score": 3,
                             "orderBy": 2,
                             "isPositive": null,
@@ -1227,9 +1224,9 @@
                         {
                             "operator": null,
                             "operator2": null,
-                            "options": "8,000>N>=5,000\t",
+                            "options": "8,000 > N >= 5,000",
                             "options2": null,
-                            "optionsName": "8,000>N>=5,000\t",
+                            "optionsName": "8,000 > N >= 5,000",
                             "score": 2,
                             "orderBy": 3,
                             "isPositive": null,
@@ -1238,9 +1235,9 @@
                         {
                             "operator": null,
                             "operator2": null,
-                            "options": "5,000>N>=2,000\t",
+                            "options": "5,000 > N >= 2,000",
                             "options2": null,
-                            "optionsName": "5,000>N>=2,000\t",
+                            "optionsName": "5,000 > N >= 2,000",
                             "score": 1,
                             "orderBy": 4,
                             "isPositive": null,
@@ -1249,9 +1246,9 @@
                         {
                             "operator": null,
                             "operator2": null,
-                            "options": "2,000>N\t",
+                            "options": "N < 2,000",
                             "options2": null,
-                            "optionsName": "2,000>N\t",
+                            "optionsName": "N < 2,000",
                             "score": 0,
                             "orderBy": 5,
                             "isPositive": null,
@@ -1259,7 +1256,7 @@
                         }
                     ],
                     "no": "P1",
-                    "item": "Basic/Fixed Net Income\t",
+                    "item": "Basic/Fixed Net Income",
                     "category": "",
                     "basicScore": 0,
                     "adjust": 0,
@@ -1267,7 +1264,7 @@
                     "isPositive": null
                 },
                 {
-                    "scoringItemId": 1440,
+                    "scoringItemId": 4005,
                     "itemCode": "P2",
                     "description": "DSR",
                     "orderBy": 8,
@@ -1281,9 +1278,9 @@
                         {
                             "operator": null,
                             "operator2": null,
-                            "options": "N=< 30% and 1,200 < N\t",
+                            "options": "N=< 30% and 1,200 < N",
                             "options2": null,
-                            "optionsName": "N=< 30% and 1,200 < N\t",
+                            "optionsName": "N=< 30% and 1,200 < N",
                             "score": 4,
                             "orderBy": 1,
                             "isPositive": null,
@@ -1292,9 +1289,9 @@
                         {
                             "operator": null,
                             "operator2": null,
-                            "options": "N =< 30%\t",
+                            "options": "N =< 30%",
                             "options2": null,
-                            "optionsName": "N =< 30%\t",
+                            "optionsName": "N =< 30%",
                             "score": 3,
                             "orderBy": 2,
                             "isPositive": null,
@@ -1303,9 +1300,9 @@
                         {
                             "operator": null,
                             "operator2": null,
-                            "options": "30% < N =< 40%\t",
+                            "options": "30% < N =< 40%",
                             "options2": null,
-                            "optionsName": "30% < N =< 40%\t",
+                            "optionsName": "30% < N =< 40%",
                             "score": 2,
                             "orderBy": 3,
                             "isPositive": null,
@@ -1314,9 +1311,9 @@
                         {
                             "operator": null,
                             "operator2": null,
-                            "options": "50% < N and 2,000 < NDI\t",
+                            "options": "50% < N and 2,000 < NDI",
                             "options2": null,
-                            "optionsName": "50% < N and 2,000 < NDI\t",
+                            "optionsName": "50% < N and 2,000 < NDI",
                             "score": 1,
                             "orderBy": 4,
                             "isPositive": null,
@@ -1325,9 +1322,9 @@
                         {
                             "operator": null,
                             "operator2": null,
-                            "options": "40% < N =< 50%\t",
+                            "options": "40% < N =< 50%",
                             "options2": null,
-                            "optionsName": "40% < N =< 50%\t",
+                            "optionsName": "40% < N =< 50%",
                             "score": 1,
                             "orderBy": 5,
                             "isPositive": null,
@@ -1336,9 +1333,9 @@
                         {
                             "operator": null,
                             "operator2": null,
-                            "options": "50% < N\t",
+                            "options": "50% < N",
                             "options2": null,
-                            "optionsName": "50% < N\t",
+                            "optionsName": "50% < N",
                             "score": 0,
                             "orderBy": 6,
                             "isPositive": null,
@@ -1354,9 +1351,9 @@
                     "isPositive": null
                 },
                 {
-                    "scoringItemId": 1441,
+                    "scoringItemId": 4006,
                     "itemCode": "P3",
-                    "description": "CCris Record\t",
+                    "description": "CCris Record",
                     "orderBy": 9,
                     "autoRef": "None",
                     "autoRefValue": "None",
@@ -1368,9 +1365,9 @@
                         {
                             "operator": null,
                             "operator2": null,
-                            "options": "Prompt Payment(0 MIA)\t",
+                            "options": "Prompt Payment(0 MIA)",
                             "options2": null,
-                            "optionsName": "Prompt Payment(0 MIA)\t",
+                            "optionsName": "Prompt Payment(0 MIA)",
                             "score": 7,
                             "orderBy": 1,
                             "isPositive": null,
@@ -1379,9 +1376,9 @@
                         {
                             "operator": null,
                             "operator2": null,
-                            "options": "Favourable(0-1 MIA for 12 Ms)\t",
+                            "options": "Favourable(0-1 MIA for 12 Ms)",
                             "options2": null,
-                            "optionsName": "Favourable(0-1 MIA for 12 Ms)\t",
+                            "optionsName": "Favourable(0-1 MIA for 12 Ms)",
                             "score": 5,
                             "orderBy": 2,
                             "isPositive": null,
@@ -1390,9 +1387,9 @@
                         {
                             "operator": null,
                             "operator2": null,
-                            "options": "Favourable(0-2 MIA for 12 Ms)\t",
+                            "options": "Favourable(0-2 MIA for 12 Ms)",
                             "options2": null,
-                            "optionsName": "Favourable(0-2 MIA for 12 Ms)\t",
+                            "optionsName": "Favourable(0-2 MIA for 12 Ms)",
                             "score": 3,
                             "orderBy": 3,
                             "isPositive": null,
@@ -1401,9 +1398,9 @@
                         {
                             "operator": null,
                             "operator2": null,
-                            "options": "CCris Nil\t",
+                            "options": "CCris Nil",
                             "options2": null,
-                            "optionsName": "CCris Nil\t",
+                            "optionsName": "CCris Nil",
                             "score": 1,
                             "orderBy": 4,
                             "isPositive": null,
@@ -1412,9 +1409,9 @@
                         {
                             "operator": null,
                             "operator2": null,
-                            "options": "Unfavour(any>=3 MIA for 12 Ms)\t",
+                            "options": "Unfavour(any>=3 MIA for 12 Ms)",
                             "options2": null,
-                            "optionsName": "Unfavour(any>=3 MIA for 12 Ms)\t",
+                            "optionsName": "Unfavour(any>=3 MIA for 12 Ms)",
                             "score": 0,
                             "orderBy": 5,
                             "isPositive": null,
@@ -1422,7 +1419,7 @@
                         }
                     ],
                     "no": "P3",
-                    "item": "CCris Record\t",
+                    "item": "CCris Record",
                     "category": "",
                     "basicScore": 0,
                     "adjust": 0,
@@ -1430,9 +1427,9 @@
                     "isPositive": null
                 },
                 {
-                    "scoringItemId": 1442,
+                    "scoringItemId": 4007,
                     "itemCode": "P4",
-                    "description": "Facility Serving Years\t",
+                    "description": "Facility Serving Years",
                     "orderBy": 10,
                     "autoRef": "None",
                     "autoRefValue": "None",
@@ -1487,7 +1484,7 @@
                         }
                     ],
                     "no": "P4",
-                    "item": "Facility Serving Years\t",
+                    "item": "Facility Serving Years",
                     "category": "",
                     "basicScore": 0,
                     "adjust": 0,
@@ -1495,9 +1492,9 @@
                     "isPositive": null
                 },
                 {
-                    "scoringItemId": 1443,
+                    "scoringItemId": 4008,
                     "itemCode": "P5",
-                    "description": "Utilization of Credit Card\t",
+                    "description": "Utilization of Credit Card",
                     "orderBy": 11,
                     "autoRef": "None",
                     "autoRefValue": "None",
@@ -1509,9 +1506,9 @@
                         {
                             "operator": null,
                             "operator2": null,
-                            "options": "N=< 30%\t",
+                            "options": "N=< 30%",
                             "options2": null,
-                            "optionsName": "N=< 30%\t",
+                            "optionsName": "N=< 30%",
                             "score": 4,
                             "orderBy": 1,
                             "isPositive": null,
@@ -1520,9 +1517,9 @@
                         {
                             "operator": null,
                             "operator2": null,
-                            "options": "30%< N =< 50%\t",
+                            "options": "30%< N =< 50%",
                             "options2": null,
-                            "optionsName": "30%< N =< 50%\t",
+                            "optionsName": "30%< N =< 50%",
                             "score": 3,
                             "orderBy": 2,
                             "isPositive": null,
@@ -1531,9 +1528,9 @@
                         {
                             "operator": null,
                             "operator2": null,
-                            "options": "50%< N =< 70%\t",
+                            "options": "50%< N =< 70%",
                             "options2": null,
-                            "optionsName": "50%< N =< 70%\t",
+                            "optionsName": "50%< N =< 70%",
                             "score": 2,
                             "orderBy": 3,
                             "isPositive": null,
@@ -1542,9 +1539,9 @@
                         {
                             "operator": null,
                             "operator2": null,
-                            "options": "no Credit Card but got CCRIS record\t",
+                            "options": "no Credit Card but got CCRIS record",
                             "options2": null,
-                            "optionsName": "no Credit Card but got CCRIS record\t",
+                            "optionsName": "no Credit Card but got CCRIS record",
                             "score": 2,
                             "orderBy": 4,
                             "isPositive": null,
@@ -1553,9 +1550,9 @@
                         {
                             "operator": null,
                             "operator2": null,
-                            "options": "70%< N=< 90%\t",
+                            "options": "70%< N=< 90%",
                             "options2": null,
-                            "optionsName": "70%< N=< 90%\t",
+                            "optionsName": "70%< N=< 90%",
                             "score": 1,
                             "orderBy": 5,
                             "isPositive": null,
@@ -1564,9 +1561,9 @@
                         {
                             "operator": null,
                             "operator2": null,
-                            "options": "90% < N\t",
+                            "options": "90% < N",
                             "options2": null,
-                            "optionsName": "90% < N\t",
+                            "optionsName": "90% < N",
                             "score": 0,
                             "orderBy": 6,
                             "isPositive": null,
@@ -1575,9 +1572,9 @@
                         {
                             "operator": null,
                             "operator2": null,
-                            "options": "Nil CCRIS and no Credit Card\t",
+                            "options": "Nil CCRIS and no Credit Card",
                             "options2": null,
-                            "optionsName": "Nil CCRIS and no Credit Card\t",
+                            "optionsName": "Nil CCRIS and no Credit Card",
                             "score": 0,
                             "orderBy": 7,
                             "isPositive": null,
@@ -1585,7 +1582,7 @@
                         }
                     ],
                     "no": "P5",
-                    "item": "Utilization of Credit Card\t",
+                    "item": "Utilization of Credit Card",
                     "category": "",
                     "basicScore": 0,
                     "adjust": 0,
@@ -1593,9 +1590,9 @@
                     "isPositive": null
                 },
                 {
-                    "scoringItemId": 1444,
+                    "scoringItemId": 4009,
                     "itemCode": "P6",
-                    "description": "Negative Remark(Trade Reference/Bounce Cheque/Bankruptcy)\t",
+                    "description": "Negative Remark(Trade Reference/Bounce Cheque/Bankruptcy)",
                     "orderBy": 12,
                     "autoRef": "None",
                     "autoRefValue": "None",
@@ -1607,9 +1604,9 @@
                         {
                             "operator": null,
                             "operator2": null,
-                            "options": "2 Bounce Cheque within 2 years\t",
+                            "options": "2 Bounce Cheque within 2 years",
                             "options2": null,
-                            "optionsName": "2 Bounce Cheque within 2 years\t",
+                            "optionsName": "2 Bounce Cheque within 2 years",
                             "score": -3,
                             "orderBy": 1,
                             "isPositive": null,
@@ -1618,9 +1615,9 @@
                         {
                             "operator": null,
                             "operator2": null,
-                            "options": "Bankruptcy within 2 years\t",
+                            "options": "Bankruptcy within 2 years",
                             "options2": null,
-                            "optionsName": "Bankruptcy within 2 years\t",
+                            "optionsName": "Bankruptcy within 2 years",
                             "score": -3,
                             "orderBy": 2,
                             "isPositive": null,
@@ -1629,9 +1626,9 @@
                         {
                             "operator": null,
                             "operator2": null,
-                            "options": "Trade Reference>=2,000\t",
+                            "options": "Trade Reference>=2,000",
                             "options2": null,
-                            "optionsName": "Trade Reference>=2,000\t",
+                            "optionsName": "Trade Reference>=2,000",
                             "score": -2,
                             "orderBy": 3,
                             "isPositive": null,
@@ -1640,9 +1637,9 @@
                         {
                             "operator": null,
                             "operator2": null,
-                            "options": "Bounce Cheque within 2 years\t",
+                            "options": "Bounce Cheque within 2 years",
                             "options2": null,
-                            "optionsName": "Bounce Cheque within 2 years\t",
+                            "optionsName": "Bounce Cheque within 2 years",
                             "score": -2,
                             "orderBy": 4,
                             "isPositive": null,
@@ -1651,9 +1648,9 @@
                         {
                             "operator": null,
                             "operator2": null,
-                            "options": "Trade Reference<2,000\t",
+                            "options": "Trade Reference<2,000",
                             "options2": null,
-                            "optionsName": "Trade Reference<2,000\t",
+                            "optionsName": "Trade Reference<2,000",
                             "score": -1,
                             "orderBy": 5,
                             "isPositive": null,
@@ -1662,9 +1659,9 @@
                         {
                             "operator": null,
                             "operator2": null,
-                            "options": "No adverse record on Trade Reference and Bounce Cheque\t",
+                            "options": "No adverse record on Trade Reference and Bounce Cheque",
                             "options2": null,
-                            "optionsName": "No adverse record on Trade Reference and Bounce Cheque\t",
+                            "optionsName": "No adverse record on Trade Reference and Bounce Cheque",
                             "score": 0,
                             "orderBy": 6,
                             "isPositive": null,
@@ -1672,7 +1669,7 @@
                         }
                     ],
                     "no": "P6",
-                    "item": "Negative Remark(Trade Reference/Bounce Cheque/Bankruptcy)\t",
+                    "item": "Negative Remark(Trade Reference/Bounce Cheque/Bankruptcy)",
                     "category": "",
                     "basicScore": 0,
                     "adjust": 0,
@@ -1680,9 +1677,9 @@
                     "isPositive": null
                 },
                 {
-                    "scoringItemId": 1445,
+                    "scoringItemId": 4010,
                     "itemCode": "P7",
-                    "description": "House Status\t",
+                    "description": "House Status",
                     "orderBy": 13,
                     "autoRef": "AR5",
                     "autoRefValue": "AR5",
@@ -1759,17 +1756,17 @@
                         }
                     ],
                     "no": "P7",
-                    "item": "House Status\t",
-                    "category": "RS1",
+                    "item": "House Status",
+                    "category": " RS1   ",
                     "basicScore": 2,
                     "adjust": 0,
                     "finalScore": 2,
                     "isPositive": null
                 },
                 {
-                    "scoringItemId": 1446,
+                    "scoringItemId": 4011,
                     "itemCode": "B7",
-                    "description": "Hirer Nature\t",
+                    "description": "Hirer Nature",
                     "orderBy": 14,
                     "autoRef": "None",
                     "autoRefValue": "None",
@@ -1824,7 +1821,7 @@
                         }
                     ],
                     "no": "B7",
-                    "item": "Hirer Nature\t",
+                    "item": "Hirer Nature",
                     "category": "Individual",
                     "basicScore": 0,
                     "adjust": 0,
@@ -1832,9 +1829,9 @@
                     "isPositive": null
                 },
                 {
-                    "scoringItemId": 1447,
+                    "scoringItemId": 4012,
                     "itemCode": "B8",
-                    "description": "1st Time Buyer Project\t",
+                    "description": "1st Time Buyer Project",
                     "orderBy": 15,
                     "autoRef": "None",
                     "autoRefValue": "None",
@@ -1846,9 +1843,9 @@
                         {
                             "operator": null,
                             "operator2": null,
-                            "options": "N\t",
+                            "options": "No",
                             "options2": null,
-                            "optionsName": "N\t",
+                            "optionsName": "No",
                             "score": 0,
                             "orderBy": 1,
                             "isPositive": null,
@@ -1857,9 +1854,9 @@
                         {
                             "operator": null,
                             "operator2": null,
-                            "options": "Y\t",
+                            "options": "Yes",
                             "options2": null,
-                            "optionsName": "Y\t",
+                            "optionsName": "Yes",
                             "score": 0,
                             "orderBy": 2,
                             "isPositive": null,
@@ -1867,17 +1864,17 @@
                         }
                     ],
                     "no": "B8",
-                    "item": "1st Time Buyer Project\t",
-                    "category": "N\t",
+                    "item": "1st Time Buyer Project",
+                    "category": "No",
                     "basicScore": 0,
                     "adjust": 0,
                     "finalScore": 0,
                     "isPositive": null
                 },
                 {
-                    "scoringItemId": 1448,
+                    "scoringItemId": 4013,
                     "itemCode": "B9",
-                    "description": "Driver License\t",
+                    "description": "Driver License",
                     "orderBy": 16,
                     "autoRef": "None",
                     "autoRefValue": "None",
@@ -1889,9 +1886,9 @@
                         {
                             "operator": null,
                             "operator2": null,
-                            "options": "N",
+                            "options": "No",
                             "options2": null,
-                            "optionsName": "N",
+                            "optionsName": "No",
                             "score": 0,
                             "orderBy": 1,
                             "isPositive": null,
@@ -1900,9 +1897,9 @@
                         {
                             "operator": null,
                             "operator2": null,
-                            "options": "Y",
+                            "options": "Yes",
                             "options2": null,
-                            "optionsName": "Y",
+                            "optionsName": "Yes",
                             "score": 0,
                             "orderBy": 2,
                             "isPositive": null,
@@ -1910,17 +1907,17 @@
                         }
                     ],
                     "no": "B9",
-                    "item": "Driver License\t",
-                    "category": "N",
+                    "item": "Driver License",
+                    "category": "No",
                     "basicScore": 0,
                     "adjust": 0,
                     "finalScore": 0,
                     "isPositive": null
                 },
                 {
-                    "scoringItemId": 1449,
+                    "scoringItemId": 4014,
                     "itemCode": "B10",
-                    "description": "Purpose of Buying the Vehicle\t",
+                    "description": "Purpose of Buying the Vehicle",
                     "orderBy": 17,
                     "autoRef": "None",
                     "autoRefValue": "None",
@@ -1932,9 +1929,9 @@
                         {
                             "operator": null,
                             "operator2": null,
-                            "options": "Non-Business Purpose\t",
+                            "options": "Non-Business Purpose",
                             "options2": null,
-                            "optionsName": "Non-Business Purpose\t",
+                            "optionsName": "Non-Business Purpose",
                             "score": 0,
                             "orderBy": 1,
                             "isPositive": null,
@@ -1943,9 +1940,9 @@
                         {
                             "operator": null,
                             "operator2": null,
-                            "options": "New Business\t",
+                            "options": "New Business",
                             "options2": null,
-                            "optionsName": "New Business\t",
+                            "optionsName": "New Business",
                             "score": 0,
                             "orderBy": 2,
                             "isPositive": null,
@@ -1954,9 +1951,9 @@
                         {
                             "operator": null,
                             "operator2": null,
-                            "options": "Replace Old Commercial Vehicle\t",
+                            "options": "Replace Old Commercial Vehicle",
                             "options2": null,
-                            "optionsName": "Replace Old Commercial Vehicle\t",
+                            "optionsName": "Replace Old Commercial Vehicle",
                             "score": 0,
                             "orderBy": 3,
                             "isPositive": null,
@@ -1965,9 +1962,9 @@
                         {
                             "operator": null,
                             "operator2": null,
-                            "options": "Extend Business\t",
+                            "options": "Extend Business",
                             "options2": null,
-                            "optionsName": "Extend Business\t",
+                            "optionsName": "Extend Business",
                             "score": 0,
                             "orderBy": 4,
                             "isPositive": null,
@@ -1976,9 +1973,9 @@
                         {
                             "operator": null,
                             "operator2": null,
-                            "options": "For Family Member Use\t",
+                            "options": "For Family Member Use",
                             "options2": null,
-                            "optionsName": "For Family Member Use\t",
+                            "optionsName": "For Family Member Use",
                             "score": 0,
                             "orderBy": 5,
                             "isPositive": null,
@@ -1987,9 +1984,9 @@
                         {
                             "operator": null,
                             "operator2": null,
-                            "options": "Others, Please Describe\t",
+                            "options": "Others, Please Describe",
                             "options2": null,
-                            "optionsName": "Others, Please Describe\t",
+                            "optionsName": "Others, Please Describe",
                             "score": 0,
                             "orderBy": 6,
                             "isPositive": null,
@@ -1997,17 +1994,17 @@
                         }
                     ],
                     "no": "B10",
-                    "item": "Purpose of Buying the Vehicle\t",
-                    "category": "Non-Business Purpose\t",
+                    "item": "Purpose of Buying the Vehicle",
+                    "category": "Non-Business Purpose",
                     "basicScore": 0,
                     "adjust": 0,
                     "finalScore": 0,
                     "isPositive": null
                 },
                 {
-                    "scoringItemId": 1450,
+                    "scoringItemId": 4015,
                     "itemCode": "G1",
-                    "description": "Guarantor Relationship\t",
+                    "description": "Guarantor Relationship",
                     "orderBy": 18,
                     "autoRef": "None",
                     "autoRefValue": "None",
@@ -2041,9 +2038,9 @@
                         {
                             "operator": null,
                             "operator2": null,
-                            "options": "Son/Daughter\t",
+                            "options": "Son/Daughter",
                             "options2": null,
-                            "optionsName": "Son/Daughter\t",
+                            "optionsName": "Son/Daughter",
                             "score": 0,
                             "orderBy": 3,
                             "isPositive": null,
@@ -2052,9 +2049,9 @@
                         {
                             "operator": null,
                             "operator2": null,
-                            "options": "Others, Please Describe\t",
+                            "options": "Others, Please Describe",
                             "options2": null,
-                            "optionsName": "Others, Please Describe\t",
+                            "optionsName": "Others, Please Describe",
                             "score": 0,
                             "orderBy": 4,
                             "isPositive": null,
@@ -2063,9 +2060,9 @@
                         {
                             "operator": null,
                             "operator2": null,
-                            "options": "N/A\t",
+                            "options": "N/A",
                             "options2": null,
-                            "optionsName": "N/A\t",
+                            "optionsName": "N/A",
                             "score": 0,
                             "orderBy": 5,
                             "isPositive": null,
@@ -2084,7 +2081,7 @@
                         }
                     ],
                     "no": "G1",
-                    "item": "Guarantor Relationship\t",
+                    "item": "Guarantor Relationship",
                     "category": "",
                     "basicScore": 0,
                     "adjust": 0,
@@ -2092,9 +2089,9 @@
                     "isPositive": null
                 },
                 {
-                    "scoringItemId": 1451,
+                    "scoringItemId": 4016,
                     "itemCode": "P8",
-                    "description": "Bounce Check\t",
+                    "description": "Bounce Check",
                     "orderBy": 19,
                     "autoRef": "None",
                     "autoRefValue": "None",
@@ -2106,9 +2103,9 @@
                         {
                             "operator": null,
                             "operator2": null,
-                            "options": "N",
+                            "options": "No",
                             "options2": null,
-                            "optionsName": "N",
+                            "optionsName": "No",
                             "score": 0,
                             "orderBy": 1,
                             "isPositive": null,
@@ -2117,9 +2114,9 @@
                         {
                             "operator": null,
                             "operator2": null,
-                            "options": "Y",
+                            "options": "Yes",
                             "options2": null,
-                            "optionsName": "Y",
+                            "optionsName": "Yes",
                             "score": 0,
                             "orderBy": 2,
                             "isPositive": null,
@@ -2127,7 +2124,7 @@
                         }
                     ],
                     "no": "P8",
-                    "item": "Bounce Check\t",
+                    "item": "Bounce Check",
                     "category": "",
                     "basicScore": 0,
                     "adjust": 0,
@@ -2135,7 +2132,7 @@
                     "isPositive": null
                 },
                 {
-                    "scoringItemId": 1452,
+                    "scoringItemId": 4017,
                     "itemCode": "P9",
                     "description": "Bankruptcy",
                     "orderBy": 20,
@@ -2149,9 +2146,9 @@
                         {
                             "operator": null,
                             "operator2": null,
-                            "options": "N",
+                            "options": "No",
                             "options2": null,
-                            "optionsName": "N",
+                            "optionsName": "No",
                             "score": 0,
                             "orderBy": 1,
                             "isPositive": null,
@@ -2160,9 +2157,9 @@
                         {
                             "operator": null,
                             "operator2": null,
-                            "options": "Y",
+                            "options": "Yes",
                             "options2": null,
-                            "optionsName": "Y",
+                            "optionsName": "Yes",
                             "score": 0,
                             "orderBy": 2,
                             "isPositive": null,
@@ -2178,9 +2175,9 @@
                     "isPositive": null
                 },
                 {
-                    "scoringItemId": 1453,
+                    "scoringItemId": 4018,
                     "itemCode": "P10",
-                    "description": "Special Attention Account\t",
+                    "description": "Special Attention Account",
                     "orderBy": 21,
                     "autoRef": "None",
                     "autoRefValue": "None",
@@ -2192,9 +2189,9 @@
                         {
                             "operator": null,
                             "operator2": null,
-                            "options": "Yes, 3 or More, Please Describe.\t",
+                            "options": "Yes, 3 or More, Please Describe.",
                             "options2": null,
-                            "optionsName": "Yes, 3 or More, Please Describe.\t",
+                            "optionsName": "Yes, 3 or More, Please Describe.",
                             "score": 0,
                             "orderBy": 1,
                             "isPositive": null,
@@ -2203,9 +2200,9 @@
                         {
                             "operator": null,
                             "operator2": null,
-                            "options": "Yes, 2, Please Describe.\t",
+                            "options": "Yes, 2, Please Describe.",
                             "options2": null,
-                            "optionsName": "Yes, 2, Please Describe.\t",
+                            "optionsName": "Yes, 2, Please Describe.",
                             "score": 0,
                             "orderBy": 2,
                             "isPositive": null,
@@ -2214,9 +2211,9 @@
                         {
                             "operator": null,
                             "operator2": null,
-                            "options": "Yes, 1, Please Describe.\t",
+                            "options": "Yes, 1, Please Describe.",
                             "options2": null,
-                            "optionsName": "Yes, 1, Please Describe.\t",
+                            "optionsName": "Yes, 1, Please Describe.",
                             "score": 0,
                             "orderBy": 3,
                             "isPositive": null,
@@ -2225,9 +2222,9 @@
                         {
                             "operator": null,
                             "operator2": null,
-                            "options": "No.\t",
+                            "options": "No",
                             "options2": null,
-                            "optionsName": "No.\t",
+                            "optionsName": "No",
                             "score": 0,
                             "orderBy": 4,
                             "isPositive": null,
@@ -2235,7 +2232,7 @@
                         }
                     ],
                     "no": "P10",
-                    "item": "Special Attention Account\t",
+                    "item": "Special Attention Account",
                     "category": "",
                     "basicScore": 0,
                     "adjust": 0,
@@ -2243,9 +2240,9 @@
                     "isPositive": null
                 },
                 {
-                    "scoringItemId": 1454,
+                    "scoringItemId": 4019,
                     "itemCode": "P11",
-                    "description": "Trade Reference\t",
+                    "description": "Trade Reference",
                     "orderBy": 22,
                     "autoRef": "None",
                     "autoRefValue": "None",
@@ -2257,9 +2254,9 @@
                         {
                             "operator": null,
                             "operator2": null,
-                            "options": "Yes, 3 or More, Please Describe.\t",
+                            "options": "Yes, 3 or More, Please Describe.",
                             "options2": null,
-                            "optionsName": "Yes, 3 or More, Please Describe.\t",
+                            "optionsName": "Yes, 3 or More, Please Describe.",
                             "score": 0,
                             "orderBy": 1,
                             "isPositive": null,
@@ -2268,9 +2265,9 @@
                         {
                             "operator": null,
                             "operator2": null,
-                            "options": "Yes, 2, Please Describe.\t",
+                            "options": "Yes, 2, Please Describe.",
                             "options2": null,
-                            "optionsName": "Yes, 2, Please Describe.\t",
+                            "optionsName": "Yes, 2, Please Describe.",
                             "score": 0,
                             "orderBy": 2,
                             "isPositive": null,
@@ -2279,9 +2276,9 @@
                         {
                             "operator": null,
                             "operator2": null,
-                            "options": "Yes, 1, Please Describe.\t",
+                            "options": "Yes, 1, Please Describe.",
                             "options2": null,
-                            "optionsName": "Yes, 1, Please Describe.\t",
+                            "optionsName": "Yes, 1, Please Describe.",
                             "score": 0,
                             "orderBy": 3,
                             "isPositive": null,
@@ -2290,9 +2287,9 @@
                         {
                             "operator": null,
                             "operator2": null,
-                            "options": "No.\t",
+                            "options": "No",
                             "options2": null,
-                            "optionsName": "No.\t",
+                            "optionsName": "No",
                             "score": 0,
                             "orderBy": 4,
                             "isPositive": null,
@@ -2300,7 +2297,7 @@
                         }
                     ],
                     "no": "P11",
-                    "item": "Trade Reference\t",
+                    "item": "Trade Reference",
                     "category": "",
                     "basicScore": 0,
                     "adjust": 0,
@@ -2308,9 +2305,9 @@
                     "isPositive": null
                 },
                 {
-                    "scoringItemId": 1455,
+                    "scoringItemId": 4020,
                     "itemCode": "P12\t",
-                    "description": "Loan Recently Applied\t",
+                    "description": "Loan Recently Applied",
                     "orderBy": 23,
                     "autoRef": "None",
                     "autoRefValue": "None",
@@ -2322,9 +2319,9 @@
                         {
                             "operator": null,
                             "operator2": null,
-                            "options": "Yes, 3 or More, Please Describe.\t",
+                            "options": "Yes, 3 or More, Please Describe.",
                             "options2": null,
-                            "optionsName": "Yes, 3 or More, Please Describe.\t",
+                            "optionsName": "Yes, 3 or More, Please Describe.",
                             "score": 0,
                             "orderBy": 1,
                             "isPositive": 0,
@@ -2333,9 +2330,9 @@
                         {
                             "operator": null,
                             "operator2": null,
-                            "options": "Yes, 2, Please Describe.\t",
+                            "options": "Yes, 2, Please Describe.",
                             "options2": null,
-                            "optionsName": "Yes, 2, Please Describe.\t",
+                            "optionsName": "Yes, 2, Please Describe.",
                             "score": 0,
                             "orderBy": 2,
                             "isPositive": null,
@@ -2344,9 +2341,9 @@
                         {
                             "operator": null,
                             "operator2": null,
-                            "options": "Yes, 1, Please Describe.\t",
+                            "options": "Yes, 1, Please Describe.",
                             "options2": null,
-                            "optionsName": "Yes, 1, Please Describe.\t",
+                            "optionsName": "Yes, 1, Please Describe.",
                             "score": 0,
                             "orderBy": 3,
                             "isPositive": null,
@@ -2355,9 +2352,9 @@
                         {
                             "operator": null,
                             "operator2": null,
-                            "options": "No.\t",
+                            "options": "No",
                             "options2": null,
-                            "optionsName": "No.\t",
+                            "optionsName": "No",
                             "score": 0,
                             "orderBy": 4,
                             "isPositive": 1,
@@ -2365,7 +2362,7 @@
                         }
                     ],
                     "no": "P12\t",
-                    "item": "Loan Recently Applied\t",
+                    "item": "Loan Recently Applied",
                     "category": "",
                     "basicScore": 0,
                     "adjust": 0,
@@ -2373,9 +2370,9 @@
                     "isPositive": null
                 },
                 {
-                    "scoringItemId": 1456,
+                    "scoringItemId": 4021,
                     "itemCode": "M1\t",
-                    "description": "Credit Service Program\t",
+                    "description": "Credit Service Program",
                     "orderBy": 24,
                     "autoRef": "None",
                     "autoRefValue": "None",
@@ -2387,9 +2384,9 @@
                         {
                             "operator": null,
                             "operator2": null,
-                            "options": "N",
+                            "options": "No",
                             "options2": null,
-                            "optionsName": "N",
+                            "optionsName": "No",
                             "score": 0,
                             "orderBy": 1,
                             "isPositive": null,
@@ -2398,9 +2395,9 @@
                         {
                             "operator": null,
                             "operator2": null,
-                            "options": "Y",
+                            "options": "Yes",
                             "options2": null,
-                            "optionsName": "Y",
+                            "optionsName": "Yes",
                             "score": 0,
                             "orderBy": 2,
                             "isPositive": null,
@@ -2408,7 +2405,7 @@
                         }
                     ],
                     "no": "M1\t",
-                    "item": "Credit Service Program\t",
+                    "item": "Credit Service Program",
                     "category": "",
                     "basicScore": 0,
                     "adjust": 0,
@@ -2416,9 +2413,9 @@
                     "isPositive": null
                 },
                 {
-                    "scoringItemId": 1457,
+                    "scoringItemId": 4022,
                     "itemCode": "M2\t",
-                    "description": "Local Customer\t",
+                    "description": "Local Customer",
                     "orderBy": 25,
                     "autoRef": "None",
                     "autoRefValue": "None",
@@ -2430,9 +2427,9 @@
                         {
                             "operator": null,
                             "operator2": null,
-                            "options": "N",
+                            "options": "No",
                             "options2": null,
-                            "optionsName": "N",
+                            "optionsName": "No",
                             "score": 0,
                             "orderBy": 1,
                             "isPositive": null,
@@ -2441,9 +2438,9 @@
                         {
                             "operator": null,
                             "operator2": null,
-                            "options": "Y",
+                            "options": "Yes",
                             "options2": null,
-                            "optionsName": "Y",
+                            "optionsName": "Yes",
                             "score": 0,
                             "orderBy": 2,
                             "isPositive": null,
@@ -2451,7 +2448,7 @@
                         }
                     ],
                     "no": "M2\t",
-                    "item": "Local Customer\t",
+                    "item": "Local Customer",
                     "category": "",
                     "basicScore": 0,
                     "adjust": 0,
@@ -2459,9 +2456,9 @@
                     "isPositive": null
                 },
                 {
-                    "scoringItemId": 1458,
+                    "scoringItemId": 4023,
                     "itemCode": "M3",
-                    "description": "Income Type\t",
+                    "description": "Income Type",
                     "orderBy": 27,
                     "autoRef": "None",
                     "autoRefValue": "None",
@@ -2527,7 +2524,7 @@
                         }
                     ],
                     "no": "M3",
-                    "item": "Income Type\t",
+                    "item": "Income Type",
                     "category": "",
                     "basicScore": 0,
                     "adjust": 0,
@@ -2535,9 +2532,9 @@
                     "isPositive": null
                 },
                 {
-                    "scoringItemId": 1459,
+                    "scoringItemId": 4024,
                     "itemCode": "M4\t",
-                    "description": "Contract Worker\t",
+                    "description": "Contract Worker",
                     "orderBy": 28,
                     "autoRef": "None",
                     "autoRefValue": "None",
@@ -2549,9 +2546,9 @@
                         {
                             "operator": null,
                             "operator2": null,
-                            "options": "N",
+                            "options": "No",
                             "options2": null,
-                            "optionsName": "N",
+                            "optionsName": "No",
                             "score": 0,
                             "orderBy": 1,
                             "isPositive": null,
@@ -2560,9 +2557,9 @@
                         {
                             "operator": null,
                             "operator2": null,
-                            "options": "Y",
+                            "options": "Yes",
                             "options2": null,
-                            "optionsName": "Y",
+                            "optionsName": "Yes",
                             "score": 0,
                             "orderBy": 2,
                             "isPositive": null,
@@ -2570,7 +2567,7 @@
                         }
                     ],
                     "no": "M4\t",
-                    "item": "Contract Worker\t",
+                    "item": "Contract Worker",
                     "category": "",
                     "basicScore": 0,
                     "adjust": 0,
@@ -2578,9 +2575,9 @@
                     "isPositive": null
                 },
                 {
-                    "scoringItemId": 1460,
+                    "scoringItemId": 4025,
                     "itemCode": "M5\t",
-                    "description": "Cancelled By Customer But Approved\t",
+                    "description": "Cancelled By Customer But Approved",
                     "orderBy": 29,
                     "autoRef": "None",
                     "autoRefValue": "None",
@@ -2592,9 +2589,9 @@
                         {
                             "operator": null,
                             "operator2": null,
-                            "options": "N",
+                            "options": "No",
                             "options2": null,
-                            "optionsName": "N",
+                            "optionsName": "No",
                             "score": 0,
                             "orderBy": 1,
                             "isPositive": null,
@@ -2603,9 +2600,9 @@
                         {
                             "operator": null,
                             "operator2": null,
-                            "options": "Y",
+                            "options": "Yes",
                             "options2": null,
-                            "optionsName": "Y",
+                            "optionsName": "Yes",
                             "score": 0,
                             "orderBy": 2,
                             "isPositive": null,
@@ -2613,7 +2610,7 @@
                         }
                     ],
                     "no": "M5\t",
-                    "item": "Cancelled By Customer But Approved\t",
+                    "item": "Cancelled By Customer But Approved",
                     "category": "",
                     "basicScore": 0,
                     "adjust": 0,
@@ -2621,9 +2618,9 @@
                     "isPositive": null
                 },
                 {
-                    "scoringItemId": 1461,
+                    "scoringItemId": 4026,
                     "itemCode": "M6\t",
-                    "description": "Special Request\t",
+                    "description": "Special Request",
                     "orderBy": 30,
                     "autoRef": "None",
                     "autoRefValue": "None",
@@ -2678,7 +2675,7 @@
                         }
                     ],
                     "no": "M6\t",
-                    "item": "Special Request\t",
+                    "item": "Special Request",
                     "category": "",
                     "basicScore": 0,
                     "adjust": 0,
@@ -2686,9 +2683,9 @@
                     "isPositive": null
                 },
                 {
-                    "scoringItemId": 1462,
+                    "scoringItemId": 4027,
                     "itemCode": "M7",
-                    "description": "Cash Flow_Any Month End Balance lower than instalment calculated\t",
+                    "description": "Cash Flow_Any Month End Balance lower than instalment calculated",
                     "orderBy": 31,
                     "autoRef": "None",
                     "autoRefValue": "None",
@@ -2700,9 +2697,9 @@
                         {
                             "operator": null,
                             "operator2": null,
-                            "options": "NO",
+                            "options": "No",
                             "options2": null,
-                            "optionsName": "NO",
+                            "optionsName": "No",
                             "score": 0,
                             "orderBy": 1,
                             "isPositive": null,
@@ -2711,9 +2708,9 @@
                         {
                             "operator": null,
                             "operator2": null,
-                            "options": "YES",
+                            "options": "Yes",
                             "options2": null,
-                            "optionsName": "YES",
+                            "optionsName": "Yes",
                             "score": 0,
                             "orderBy": 2,
                             "isPositive": null,
@@ -2732,7 +2729,7 @@
                         }
                     ],
                     "no": "M7",
-                    "item": "Cash Flow_Any Month End Balance lower than instalment calculated\t",
+                    "item": "Cash Flow_Any Month End Balance lower than instalment calculated",
                     "category": "",
                     "basicScore": 0,
                     "adjust": 0,
@@ -2740,9 +2737,9 @@
                     "isPositive": null
                 },
                 {
-                    "scoringItemId": 1463,
+                    "scoringItemId": 4028,
                     "itemCode": "M8\t",
-                    "description": "TryCase_Ram 7-10 ignore NDI\t",
+                    "description": "TryCase_Ram 7-10 ignore NDI",
                     "orderBy": 32,
                     "autoRef": "None",
                     "autoRefValue": "None",
@@ -2754,9 +2751,9 @@
                         {
                             "operator": null,
                             "operator2": null,
-                            "options": "N",
+                            "options": "No",
                             "options2": null,
-                            "optionsName": "N",
+                            "optionsName": "No",
                             "score": 0,
                             "orderBy": 1,
                             "isPositive": null,
@@ -2765,9 +2762,9 @@
                         {
                             "operator": null,
                             "operator2": null,
-                            "options": "Y",
+                            "options": "Yes",
                             "options2": null,
-                            "optionsName": "Y",
+                            "optionsName": "Yes",
                             "score": 0,
                             "orderBy": 2,
                             "isPositive": null,
@@ -2775,7 +2772,7 @@
                         }
                     ],
                     "no": "M8\t",
-                    "item": "TryCase_Ram 7-10 ignore NDI\t",
+                    "item": "TryCase_Ram 7-10 ignore NDI",
                     "category": "",
                     "basicScore": 0,
                     "adjust": 0,
@@ -2783,9 +2780,9 @@
                     "isPositive": null
                 },
                 {
-                    "scoringItemId": 1464,
+                    "scoringItemId": 4029,
                     "itemCode": "M10",
-                    "description": "TryCase_Ram 7-10 waive DriverLicense\t",
+                    "description": "TryCase_Ram 7-10 waive DriverLicense",
                     "orderBy": 33,
                     "autoRef": "None",
                     "autoRefValue": "None",
@@ -2797,9 +2794,9 @@
                         {
                             "operator": null,
                             "operator2": null,
-                            "options": "N",
+                            "options": "No",
                             "options2": null,
-                            "optionsName": "N",
+                            "optionsName": "No",
                             "score": 0,
                             "orderBy": 1,
                             "isPositive": null,
@@ -2808,9 +2805,9 @@
                         {
                             "operator": null,
                             "operator2": null,
-                            "options": "Y",
+                            "options": "Yes",
                             "options2": null,
-                            "optionsName": "Y",
+                            "optionsName": "Yes",
                             "score": 0,
                             "orderBy": 2,
                             "isPositive": null,
@@ -2818,7 +2815,7 @@
                         }
                     ],
                     "no": "M10",
-                    "item": "TryCase_Ram 7-10 waive DriverLicense\t",
+                    "item": "TryCase_Ram 7-10 waive DriverLicense",
                     "category": "",
                     "basicScore": 0,
                     "adjust": 0,
@@ -2826,9 +2823,9 @@
                     "isPositive": null
                 },
                 {
-                    "scoringItemId": 1465,
+                    "scoringItemId": 4030,
                     "itemCode": "M9",
-                    "description": "TryCase_Ram 7-10 ignore DSR\t",
+                    "description": "TryCase_Ram 7-10 ignore DSR",
                     "orderBy": 34,
                     "autoRef": "None",
                     "autoRefValue": "None",
@@ -2840,9 +2837,9 @@
                         {
                             "operator": null,
                             "operator2": null,
-                            "options": "N",
+                            "options": "No",
                             "options2": null,
-                            "optionsName": "N",
+                            "optionsName": "No",
                             "score": 0,
                             "orderBy": 1,
                             "isPositive": null,
@@ -2851,9 +2848,9 @@
                         {
                             "operator": null,
                             "operator2": null,
-                            "options": "Y",
+                            "options": "Yes",
                             "options2": null,
-                            "optionsName": "Y",
+                            "optionsName": "Yes",
                             "score": 0,
                             "orderBy": 2,
                             "isPositive": null,
@@ -2861,7 +2858,7 @@
                         }
                     ],
                     "no": "M9",
-                    "item": "TryCase_Ram 7-10 ignore DSR\t",
+                    "item": "TryCase_Ram 7-10 ignore DSR",
                     "category": "",
                     "basicScore": 0,
                     "adjust": 0,
@@ -2869,7 +2866,7 @@
                     "isPositive": null
                 },
                 {
-                    "scoringItemId": 1466,
+                    "scoringItemId": 4031,
                     "itemCode": "M11",
                     "description": "Employment Verification",
                     "orderBy": 35,
@@ -2970,25 +2967,25 @@
                         "isCanDelete": false,
                         "incomeExpenseItemId": 0,
                         "item": "Monthly Income",
-                        "amount": 0
+                        "amount": null
                     },
                     {
                         "isCanDelete": false,
                         "incomeExpenseItemId": 0,
                         "item": "Allowances & Bonusess",
-                        "amount": 0
+                        "amount": null
                     },
                     {
                         "isCanDelete": false,
                         "incomeExpenseItemId": 0,
                         "item": "Commissions",
-                        "amount": 0
+                        "amount": null
                     },
                     {
                         "isCanDelete": false,
                         "incomeExpenseItemId": 0,
                         "item": "Dividends & Interests",
-                        "amount": 0
+                        "amount": null
                     }
                 ],
                 "expense": [
@@ -2996,7 +2993,7 @@
                         "isCanDelete": false,
                         "incomeExpenseItemId": 0,
                         "item": "Housing & Utility",
-                        "amount": 0
+                        "amount": null
                     },
                     {
                         "isCanDelete": false,
@@ -3008,31 +3005,31 @@
                         "isCanDelete": false,
                         "incomeExpenseItemId": 0,
                         "item": "Living",
-                        "amount": 0
+                        "amount": null
                     },
                     {
                         "isCanDelete": false,
                         "incomeExpenseItemId": 0,
                         "item": "Transportation",
-                        "amount": 0
+                        "amount": null
                     },
                     {
                         "isCanDelete": false,
                         "incomeExpenseItemId": 0,
                         "item": "Education",
-                        "amount": 0
+                        "amount": null
                     },
                     {
                         "isCanDelete": false,
                         "incomeExpenseItemId": 0,
                         "item": "EPF",
-                        "amount": 0
+                        "amount": null
                     },
                     {
                         "isCanDelete": false,
                         "incomeExpenseItemId": 0,
                         "item": "Others",
-                        "amount": 0
+                        "amount": null
                     }
                 ],
                 "month": []
@@ -3634,8 +3631,8 @@
             "details": []
         }
     ],
-    "ltvApply": {{ltv}},
-    "ltvAppraisal": {{ltv}},
+    "ltvApply": {{ltvPercentage}},
+    "ltvAppraisal": {{ltvPercentage}},
     "ltvTotal": 0,
     "normalIRR": {{netIRR}},
     "appealReason": null,
@@ -4652,10 +4649,10 @@
         {
             "item": "ThisApplicant",
             "itemId": "5",
-            "applied": 66666,
+            "applied": {{financialAmount}},
             "approved": 0,
             "outstanding": 0,
-            "total": 66666,
+            "total": {{financialAmount}},
             "hasData": false,
             "quotas": null
         },
