@@ -1,0 +1,29 @@
+{
+    "companyId": 92,
+    "nationality": "MY",
+    "productName": "H-004-0000",
+    "role": [
+        "prescreen"
+    ],
+    "age": 34,
+    "manufacturerNationality": "MF1",
+    "ltv": 75,
+    "race": "1",
+    "grade": 0,
+    "brand": "BR118",
+    "cCrisRecord": "",
+    "isDriveLicense": "No",
+    "tradeReference": "",
+    "guarantorRelationship": "",
+    "netIncome": "",
+    "houseStatus": "RS1",
+    "education": "1",
+    "employmentYear": "5",
+    "familyStatus": "RS1",
+    "dealerNo": "KDH0054",
+    "tradeNCreditReference": null,
+    "totalEnquiries": null,
+    "outstanding": null,
+    "existingFacility": null,
+    "totalLimit": null
+}
