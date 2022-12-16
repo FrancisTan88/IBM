@@ -33,7 +33,7 @@ def add_var_and_write(json_file, key: str, value, env_variables: Dict, last_inst
             json_file.write("\n")
         else:
             json_file.write(",\n")
-            
+
     def write_env_var(json_file, key: str, last_instance: bool, double_quotes) -> None:
         if double_quotes:
             json_file.write(f'"{key}": ' + '"{{' + key + '}}"')
@@ -46,9 +46,9 @@ def add_var_and_write(json_file, key: str, value, env_variables: Dict, last_inst
             value = json.dumps(value)
         else:
             value = json.dumps(value).strip('"')
-        json_file.write(f'"{key}": {value}') 
+        json_file.write(f'"{key}": {value}')
         whether_comma(json_file, last_instance)
-    
+
     if key in env_variables:
         # no double quotes:
         if (type(value) == int or type(value) == bool) or \
@@ -63,14 +63,15 @@ def add_var_and_write(json_file, key: str, value, env_variables: Dict, last_inst
     else:
         # no double quotes
         if type(value) == int or type(value) == list or \
-            type(value) == bool or isinstance(value, type(None)):
+                type(value) == bool or isinstance(value, type(None)):
             double_quotes = False
             value = json.dumps(value)
         # has double quotes
         else:
             double_quotes = True
-        write_normal(json_file, key, value, env_variables, last_instance, double_quotes)
-    
+        write_normal(json_file, key, value, env_variables,
+                     last_instance, double_quotes)
+
 
 def traverse(json_file, request_body: Dict, env_var: Dict) -> None:
     last_instance = False
@@ -89,11 +90,11 @@ def traverse(json_file, request_body: Dict, env_var: Dict) -> None:
             else:
                 json_file.write("},\n")
             continue
-        
+
         # current value is a sublist
         if isinstance(value, list) and value:
             # if value is something like [1,2,3]
-            if False not in [type(i) == int for i in value]: 
+            if False not in [type(i) == int for i in value]:
                 pass
             else:
                 json_file.write(f'"{key}": ' + "[\n")
@@ -110,7 +111,7 @@ def traverse(json_file, request_body: Dict, env_var: Dict) -> None:
                     last_instance = False
                 else:
                     json_file.write("],\n")
-                continue  
+                continue
 
         add_var_and_write(json_file, key, value, env_var, last_instance)
 
@@ -124,33 +125,34 @@ def parse_args() -> Namespace:
     parser = ArgumentParser()
 
     # environment variables
-    parser.add_argument('--env_file', type=Path, default='./environment/environment_vars.json')
-    
+    parser.add_argument('--env_file', type=Path,
+                        default='./environment/environment_vars.json')
+
     # original request body
-    parser.add_argument('--ori_file', type=Path, default='./application/submit.json')
-    
+    parser.add_argument('--ori_file', type=Path,
+                        default='./application/submit.json')
+
     # output request body(dir)
     parser.add_argument('--output_dir', type=Path, default='./ckpt')
-    parser.add_argument('--output_file', type=Path, default='application_submit.json')
-    
+    parser.add_argument('--output_file', type=Path,
+                        default='application_submit.json')
+
     args = parser.parse_args()
     return args
-
-
-
 
 
 if __name__ == '__main__':
     # get args
     args = parse_args()
-    args.output_dir.mkdir(parents=True, exist_ok=True) # make dir if it doesn't exist
+    # make dir if it doesn't exist
+    args.output_dir.mkdir(parents=True, exist_ok=True)
 
     # read json file: environment variables from postman
     dict_values = read_json(args.env_file)
     values = dict_values['values']
     dict_env_var = env_var_to_dict(values)
-    
-    # add environment variables to original request body and 
+
+    # add environment variables to original request body and
     # store it as a dictionary
     ori_req_body = read_json(args.ori_file)
     with open(args.output_dir / args.output_file, 'w') as json_file:
@@ -160,6 +162,3 @@ if __name__ == '__main__':
 
 # first stage credit
 # python3 ./find_difference.py --ori_file credit/firstStage/submit.json --output_file FC_submit.json
-
-
-
