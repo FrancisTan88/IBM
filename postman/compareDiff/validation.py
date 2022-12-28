@@ -7,20 +7,14 @@ import json
 # print(tmp, "p")
 # print(json.dumps(tmp).strip('"'))
 
-# x = "aa bb cc"
-# print(" ".join(x))
+with open('./application/submit.json', 'r') as file:
+    load_it = json.load(file)
+for k, v in load_it.items():
+    # if k == 'lending':
+    #     break
+    print(type(v))
 
-tmp = [
-    {'key': 1,
-     'value': 2,
-     'y': True 
-    },
-    {
-        'key': 3,
-        'value': 4,
-        'y': False
-    }  
-]
-
-dict = {i['key']: i['value'] for i in tmp if i['y'] == True}
-print(dict)
+lst = []
+lst2 = [1,2,3]
+lst.append(lst2)
+print(lst)

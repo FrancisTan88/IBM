@@ -7,7 +7,7 @@ from typing import Dict, List
 from argparse import ArgumentParser, Namespace
 from pathlib import Path
 
-from jsondiff import diff
+# from jsondiff import diff
 
 LST1 = ["true", "false", "null"]
 
@@ -34,21 +34,21 @@ def add_var_and_write(json_file, key: str, value, env_variables: Dict, last_inst
         else:
             json_file.write(",\n")
             
-    def write_env_var(json_file, key: str, last_instance: bool, double_quotes) -> None:
+    def write_env_var(json_file, key: str, last_instance: bool, double_quotes: bool) -> None:
         if double_quotes:
             json_file.write(f'"{key}": ' + '"{{' + key + '}}"')
         else:
-            json_file.write(f'"{key}": ' + "{{" + key + "}}")
+            json_file.write(f'"{key}": ' + '{{' + key + '}}')
         whether_comma(json_file, last_instance)
 
-    def write_normal(json_file, key: str, value, env_variables: Dict, last_instance: bool, double_quotes) -> None:
-        if double_quotes:
-            value = json.dumps(value)
-        else:
-            value = json.dumps(value).strip('"')
+    def write_normal(json_file, key: str, value, last_instance: bool, double_quotes: bool) -> None:
+        value = json.dumps(value)
+        if not double_quotes:
+            value = value.strip('"')
         json_file.write(f'"{key}": {value}') 
         whether_comma(json_file, last_instance)
     
+    # environment vars
     if key in env_variables:
         # no double quotes:
         if (type(value) == int or type(value) == bool) or \
@@ -60,6 +60,8 @@ def add_var_and_write(json_file, key: str, value, env_variables: Dict, last_inst
         else:
             double_quotes = True
         write_env_var(json_file, key, last_instance, double_quotes)
+    
+    # normal vars
     else:
         # no double quotes
         if type(value) == int or type(value) == list or \
@@ -69,7 +71,7 @@ def add_var_and_write(json_file, key: str, value, env_variables: Dict, last_inst
         # has double quotes
         else:
             double_quotes = True
-        write_normal(json_file, key, value, env_variables, last_instance, double_quotes)
+        write_normal(json_file, key, value, last_instance, double_quotes)
     
 
 def traverse(json_file, request_body: Dict, env_var: Dict) -> None:
@@ -124,7 +126,7 @@ def parse_args() -> Namespace:
     parser = ArgumentParser()
 
     # environment variables
-    parser.add_argument('--env_file', type=Path, default='./environment/environment_vars.json')
+    parser.add_argument('--env_file', type=Path, default='./environment/postman_environment.json')
     
     # original request body
     parser.add_argument('--ori_file', type=Path, default='./application/submit.json')
