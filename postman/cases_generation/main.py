@@ -5,7 +5,6 @@ import json
 from typing import Dict, List
 from argparse import ArgumentParser, Namespace
 from pathlib import Path
-from jsondiff import diff
 
 from dataset import Env_Dataset, Input_Dataset
 
@@ -84,7 +83,7 @@ def traverse(json_file, request_body: Dict, env_var: Dict) -> None:
         # current value is a sublist
         if isinstance(value, list) and value:
             # if value is something like [1,2,3]
-            if False not in [type(i) == int for i in value]: 
+            if False not in [type(i) == int for i in value]:
                 pass
             else:
                 json_file.write(f'"{key}": ' + "[\n")
@@ -101,7 +100,7 @@ def traverse(json_file, request_body: Dict, env_var: Dict) -> None:
                     last_instance = False
                 else:
                     json_file.write("],\n")
-                continue  
+                continue
         add_var_and_write(json_file, key, value, env_var, last_instance)
 
 def parse_args() -> Namespace:
