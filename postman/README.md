@@ -1,5 +1,5 @@
-# Cases generation(using Postman)
-## Elementary Information：
+# Cases generation(data preprocessing for the Postman)
+## Basic Information：
 ### Original Payload
 * application
 * credit(include different stages, depends on specific condition)
